@@ -1,8 +1,7 @@
 # Portal de Justificativa de Faltas
 Projeto desenvolvido para auxiliar a secretaria acadêmica no registro e controle de justificativa de faltas dos docentes da unidade e no envio dos planos de reposições de aula.
 
-
-### Desenvolvido pelos alunos da Fatec de Itapira
+### Desenvolvido pelos alunos da Fatec de Itapira (2024)
 - Cristiane A. de Lima
 - Letícia Favoretto
 - Guilherme Soriani
