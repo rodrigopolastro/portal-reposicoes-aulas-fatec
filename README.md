@@ -3,6 +3,7 @@ Projeto desenvolvido para auxiliar a secretaria acadêmica no registro e control
 
 ### Desenvolvido pelos alunos da Fatec de Itapira (2024)
 - Cristiane A. de Lima
+- David G. Vicentini
 - Letícia Favoretto
 - Guilherme Soriani
 - Rodrigo Polastro
