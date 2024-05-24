@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Formulário de Justificativa de Falta</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var faltaEspecificacao = {
+                "1": ["a - Falta Médica (Atestado médico de 1 dia)", "b - Comparecimento ao Médico no período", 
+                "c - Licença-Saúde (Atestado médico igual ou superior a 2 dias)", "d - Licença-Maternidade. (Atestado médico até 15 dias)"],
+                "2": ["a - Falta", "b - Atraso ou Saída Antecipada no período"],
+                "3": ["a - Falta", "b - Atraso ou Saída Antecipada no período"],
+                "4": ["a - Falecimento de cônjuge, pai, mãe, filho. (9 dias consecutivos)", 
+                "b - Falecimento ascendente (exceto pai e mãe), descendente (exceto filho), irmão ou pessoa declarada na CTPS, que viva sob sua dependência econômica. (2 dias consecutivos)",
+                "c - Casamento. (9 dias consecutivos).", 
+                "d - Nascimento de filho, no decorrer da primeira semana. (5 dias).", 
+                "e - Acompanhar esposa ou companheira durante a gravidez, em consultas médicas e exames complementares. (Até 2 dias).", 
+                "f - Acompanhar filho de até 6 anos em consulta médica. (1 dia por ano)",
+                "g - Doação voluntária de sangue. (1 dia em cada 12 meses de trabalho).", 
+                "h - Alistamento como eleitor. (Até 2 dias consecutivos ou não).", 
+                "i - Convocação para depoimento judicial.",
+                "j - Comparecimento como jurado no Tribunal do Júri.",
+                "k - Convocação para serviço eleitoral.",
+                "l - Dispensa dos dias devido à nomeação para compor as mesas receptoras ou juntas eleitorais nas eleições ou requisitado para auxiliar seus trabalhos (Lei nº 9.504/97).",
+                "m - Realização de Prova de Vestibular para ingresso em estabelecimento de ensino superior.",
+                "n - Comparecimento necessário como parte na Justiça do Trabalho (Enunciado TST nº 155). (Horas necessárias).",
+                "o - Atrasos decorrentes de acidentes de transporte, com atestado da empresa concessionária. (Horas necessárias)."]
+
+            };
+
+            var selectFalta = document.getElementById("falta");
+            var radioContainer = document.getElementById("radioContainer");
+
+            selectFalta.onchange = function() {
+                // Limpar radio buttons anteriores
+                radioContainer.innerHTML = '';
+
+                
+                var selectEspecificacao = document.createElement("select");
+                selectEspecificacao.id = "especificacao";
+
+                faltaEspecificacao[selectFalta.value].forEach(function(especificacao) {
+                    var option = new Option(especificacao, especificacao);
+                    selectEspecificacao.add(option);
+
+                    // Adicionar radio buttons correspondentes
+                    var radio = document.createElement("input");
+                    radio.type = "radio";
+                    radio.name = "especificacao";
+                    radio.value = especificacao;
+                    radio.id = especificacao;
+
+
+                    var label = document.createElement("label");
+                    label.htmlFor = especificacao;
+                    label.textContent = especificacao;
+
+                    var lineBreak = document.createElement("br");
+
+                    radioContainer.appendChild(radio);
+                    radioContainer.appendChild(label);
+
+                    // Adicionar campos de horário se necessário
+                    if (especificacao.includes("período")) {
+                        var timeFields = document.createElement("div");
+                        timeFields.style.marginLeft = "20px";
+                        timeFields.style.color = "#004F68";
+                        timeFields.style.fontFamily = "helvetica";
+                        timeFields.style.fontSize = "16px";
+                        timeFields.style.padding = "6px";
+
+                        var startTime = document.createElement("input");
+                        startTime.type = "time";
+                        startTime.name = "start_" + especificacao;
+                        startTime.style.border = "3px solid #004F68";
+                        startTime.style.borderRadius = "4px";
+                        startTime.style.fontFamily = "helvetica";
+                        startTime.style.fontSize = "16px";
+
+
+                        var endTime = document.createElement("input");
+                        endTime.type = "time";
+                        endTime.name = "end_" + especificacao;
+                        endTime.style.border = "3px solid #004F68";
+                        endTime.style.borderRadius = "4px";
+                        endTime.style.fontFamily = "helvetica";
+                        endTime.style.fontSize = "16px";
+
+                        timeFields.appendChild(document.createTextNode(" das "));
+                        timeFields.appendChild(startTime);
+                        timeFields.appendChild(document.createTextNode(" às "));
+                        timeFields.appendChild(endTime);
+
+                        radioContainer.appendChild(timeFields);
+                    }
+                    
+                    //Adicionar campos de texto se necessário
+                    if (especificacao.includes("Falta") || especificacao.includes("Antecipada")) {
+                        var txtFields = document.createElement("div");
+                        txtFields.style.marginLeft = "20px";
+                        txtFields.style.marginLeft = "20px";
+                        txtFields.style.color = "#004F68";
+                        txtFields.style.fontFamily = "helvetica";
+                        txtFields.style.fontSize = "16px";
+                        txtFields.style.padding = "6px";
+
+                        var startTxt = document.createElement("input");
+                        startTxt.type = "text";
+                        startTxt.name = "start_" + especificacao;
+
+                        txtFields.appendChild(document.createTextNode("por motivo de "));
+                        txtFields.appendChild(startTxt);
+
+                        radioContainer.appendChild(txtFields);
+                    }
+
+                    radioContainer.appendChild(lineBreak);
+                });
+
+            }
+        });
+    </script>
+
+</head>
+<body>
+    <header>
+        <div class="topo">
+            <div class="fundo"><img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
+            <div class="fundo2"><img src="img/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
+        </div>
+        <nav>
+            <a href="#" class="botao-nav">Início</a>
+            <a href="#" class="botao-nav">Enviar formulário</a>
+            <a href="#" class="botao-nav">Formulários enviados</a>
+            <a href="#" class="botao-nav">Sair</a>
+        </nav>
+
+    </header>
+
+    <h1>Formulário para Justificativa de Faltas:</h1>
+    <div class="corpo">
+
+        <form>
+            <div class="formcomeço">
+                <div class="item-pequeno">
+                    <label for="nome" class="">Nome:</label><br><br>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo">
+                </div>
+
+                <div class="item-pequeno">
+                    <label for="matricula">Matrícula:</label><br><br>
+                    <input type="number" id="matricula" name="matricula" placeholder="0000000000000">
+                </div>
+
+                <div class="item-pequeno">
+                    <p>Função:</p>
+                    <p>Professor de Ensino Superior</p>
+                </div>
+                <div class="item-pequeno">
+                    <p>Regime jurídico:</p>
+                    <p>CLT</p>
+                </div>
+            </div>
+
+            <div class="checkbox">
+                <label for="cursos" class="cursos"> Curso(s) envolvido(s) na ausência:</label>
+                <label class="checkbox-label">
+                    <input type="checkbox" value="cst-dsm" name="cursos">
+                    <span class="custom-checkbox"></span> CST-DSM
+                </label>
+            
+                <label class="checkbox-label">
+                    <input type="checkbox" value="cst-ge" name="cursos">
+                    <span class="custom-checkbox"></span> CST-GE
+                </label>
+            
+                <label class="checkbox-label">
+                    <input type="checkbox" value="cst-gpi" name="cursos">
+                    <span class="custom-checkbox"></span> CST-GPI
+                </label>
+            
+                <label class="checkbox-label">
+                    <input type="checkbox" value="cst-gti" name="cursos">
+                    <span class="custom-checkbox"></span> CST-GTI
+                </label>
+            
+                <label class="checkbox-label">
+                    <input type="checkbox" value="hae" name="cursos">
+                    <span class="custom-checkbox"></span> HAE
+                </label>
+            </div>
+
+            
+            <label for="data">Data:</label><br>
+            <input type="radio" id="faltaReferente" name="data" value="data">
+            <label for="data">Falta referente ao dia: </label>
+            <input type="date" id="data" name="data"><br><br>
+            <input type="radio" id="faltaReferente" name="data" value="data">
+            <label for="data">Período de </label>
+            <input type="number" id="dias" name="dias" class="dias" placeholder="">
+            <label for="dias"> dias - de </label>
+            <input type="date" id="dateStart" name="dateStart">
+            <label for="dias"> até </label>
+            <input type="date" id="dateEnd" name="dateEnd"><br><br>
+
+            <label for="falta">Tipo de falta:</label>
+            <select id="falta">
+                <option value="0">Selecione...</option>
+                <option value="1">1 – LICENÇA E FALTA MÉDICA </option>
+                <option value="2">2 – FALTA INJUSTIFICADA (Com desconto do Descanso Semanal Remunerado – DSR) </option>
+                <option value="3">3 – FALTAS JUSTIFICADAS (Se deferido, não implicam em desconto do Descanso Semanal Remunerado – DSR)</option>
+                <option value="4">4 – FALTAS PREVISTAS NA LEGISLAÇÃO TRABALHISTA.</option> 
+            </select><br><br>
+            
+            <div id="radioContainer">
+                <!-- O select de especificações será inserido aqui -->
+            </div>
+            <br><br>
+            
+            <label for="botao_upload" class="file-label">Anexar comprovante:</label>
+            <input type="file" name="comprovante" id="comprovante" class="file-input"> <br><br>
+
+            <p>*Selecionar um item e anexar o comprovante, devendo o original ser entregue na sede e
+                a cópia simples nas unidades de ampliação
+                (desde que acompanhada do original para conferência).</p>
+            <br><br>
+            <input type="submit" value="Enviar">
+            <input type="reset" name="Limpar">
+        </form>
+    </div>
+    
+    <footer class="site-footer">
+        <div class="footer">
+            <img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
+            <p>Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista - CEP: 13974-080</p>
+            <p>Telefone: (19) 3843-1996 | (19) 3863-5210 (WhatsApp)</p>
+            <p>&copy; 2024 nome grupo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
