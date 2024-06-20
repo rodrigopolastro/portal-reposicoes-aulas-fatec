@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style-login.css">
+    <title>Login</title>
+</head>
+<body>    
+        <div class="caixa">
+            <div class="topo">
+                <div class="fundo"><img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
+                <div class="fundo2"><img src="img/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
+            </div>
+            <div class="inicio"></div>
+            <h1>Redefinir Senha</h1>
+
+            <p>Enviamos um código de verificação para seu e-mail institucional</p>
+            <form id="codigo">
+                <label for="codigo">Código</label>
+                <input type="text" id="codigo" required>
+                <div class="botao"><a href="redefinir.html" class="botao-senha">Verificar</button></a></div>
+            </form>
+        </div>
+
+        <script>
+            document.getElementById('loginForm').addEventListener('submit', function(event) {
+                var usuario = document.getElementById('usuario').value;
+                var senha = document.getElementById('senha').value;
+                
+                if (!usuario || !senha) {
+                    alert('Por favor, preencha ambos os campos.');
+                    event.preventDefault();
+                }
+            });
+        </script>
+</body>
+</html>

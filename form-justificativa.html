@@ -2,138 +2,21 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
     <title>Formulário de Justificativa de Falta</title>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var faltaEspecificacao = {
-                "1": ["a - Falta Médica (Atestado médico de 1 dia)", "b - Comparecimento ao Médico no período", 
-                "c - Licença-Saúde (Atestado médico igual ou superior a 2 dias)", "d - Licença-Maternidade. (Atestado médico até 15 dias)"],
-                "2": ["a - Falta", "b - Atraso ou Saída Antecipada no período"],
-                "3": ["a - Falta", "b - Atraso ou Saída Antecipada no período"],
-                "4": ["a - Falecimento de cônjuge, pai, mãe, filho. (9 dias consecutivos)", 
-                "b - Falecimento ascendente (exceto pai e mãe), descendente (exceto filho), irmão ou pessoa declarada na CTPS, que viva sob sua dependência econômica. (2 dias consecutivos)",
-                "c - Casamento. (9 dias consecutivos).", 
-                "d - Nascimento de filho, no decorrer da primeira semana. (5 dias).", 
-                "e - Acompanhar esposa ou companheira durante a gravidez, em consultas médicas e exames complementares. (Até 2 dias).", 
-                "f - Acompanhar filho de até 6 anos em consulta médica. (1 dia por ano)",
-                "g - Doação voluntária de sangue. (1 dia em cada 12 meses de trabalho).", 
-                "h - Alistamento como eleitor. (Até 2 dias consecutivos ou não).", 
-                "i - Convocação para depoimento judicial.",
-                "j - Comparecimento como jurado no Tribunal do Júri.",
-                "k - Convocação para serviço eleitoral.",
-                "l - Dispensa dos dias devido à nomeação para compor as mesas receptoras ou juntas eleitorais nas eleições ou requisitado para auxiliar seus trabalhos (Lei nº 9.504/97).",
-                "m - Realização de Prova de Vestibular para ingresso em estabelecimento de ensino superior.",
-                "n - Comparecimento necessário como parte na Justiça do Trabalho (Enunciado TST nº 155). (Horas necessárias).",
-                "o - Atrasos decorrentes de acidentes de transporte, com atestado da empresa concessionária. (Horas necessárias)."]
-
-            };
-
-            var selectFalta = document.getElementById("falta");
-            var radioContainer = document.getElementById("radioContainer");
-
-            selectFalta.onchange = function() {
-                // Limpar radio buttons anteriores
-                radioContainer.innerHTML = '';
-
-                
-                var selectEspecificacao = document.createElement("select");
-                selectEspecificacao.id = "especificacao";
-
-                faltaEspecificacao[selectFalta.value].forEach(function(especificacao) {
-                    var option = new Option(especificacao, especificacao);
-                    selectEspecificacao.add(option);
-
-                    // Adicionar radio buttons correspondentes
-                    var radio = document.createElement("input");
-                    radio.type = "radio";
-                    radio.name = "especificacao";
-                    radio.value = especificacao;
-                    radio.id = especificacao;
-
-
-                    var label = document.createElement("label");
-                    label.htmlFor = especificacao;
-                    label.textContent = especificacao;
-
-                    var lineBreak = document.createElement("br");
-
-                    radioContainer.appendChild(radio);
-                    radioContainer.appendChild(label);
-
-                    // Adicionar campos de horário se necessário
-                    if (especificacao.includes("período")) {
-                        var timeFields = document.createElement("div");
-                        timeFields.style.marginLeft = "20px";
-                        timeFields.style.color = "#004F68";
-                        timeFields.style.fontFamily = "helvetica";
-                        timeFields.style.fontSize = "16px";
-                        timeFields.style.padding = "6px";
-
-                        var startTime = document.createElement("input");
-                        startTime.type = "time";
-                        startTime.name = "start_" + especificacao;
-                        startTime.style.border = "3px solid #004F68";
-                        startTime.style.borderRadius = "4px";
-                        startTime.style.fontFamily = "helvetica";
-                        startTime.style.fontSize = "16px";
-
-
-                        var endTime = document.createElement("input");
-                        endTime.type = "time";
-                        endTime.name = "end_" + especificacao;
-                        endTime.style.border = "3px solid #004F68";
-                        endTime.style.borderRadius = "4px";
-                        endTime.style.fontFamily = "helvetica";
-                        endTime.style.fontSize = "16px";
-
-                        timeFields.appendChild(document.createTextNode(" das "));
-                        timeFields.appendChild(startTime);
-                        timeFields.appendChild(document.createTextNode(" às "));
-                        timeFields.appendChild(endTime);
-
-                        radioContainer.appendChild(timeFields);
-                    }
-                    
-                    //Adicionar campos de texto se necessário
-                    if (especificacao.includes("Falta") || especificacao.includes("Antecipada")) {
-                        var txtFields = document.createElement("div");
-                        txtFields.style.marginLeft = "20px";
-                        txtFields.style.marginLeft = "20px";
-                        txtFields.style.color = "#004F68";
-                        txtFields.style.fontFamily = "helvetica";
-                        txtFields.style.fontSize = "16px";
-                        txtFields.style.padding = "6px";
-
-                        var startTxt = document.createElement("input");
-                        startTxt.type = "text";
-                        startTxt.name = "start_" + especificacao;
-
-                        txtFields.appendChild(document.createTextNode("por motivo de "));
-                        txtFields.appendChild(startTxt);
-
-                        radioContainer.appendChild(txtFields);
-                    }
-
-                    radioContainer.appendChild(lineBreak);
-                });
-
-            }
-        });
-    </script>
-
 </head>
-<body>
+<body>    
     <header>
         <div class="topo">
             <div class="fundo"><img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
             <div class="fundo2"><img src="img/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
         </div>
         <nav>
-            <a href="index.html" class="botao-nav">Início</a>
+            <a href="index-professor.html" class="botao-nav">Início</a>
             <a href="enviar-formularios.html" class="botao-nav">Enviar formulário</a>
-            <a href="#" class="botao-nav">Formulários enviados</a>
+            <a href="lista-enviados.html" class="botao-nav">Formulários enviados</a>
             <a href="#" class="botao-nav">Sair</a>
         </nav>
 
@@ -141,18 +24,19 @@
     <main>
 
     <h1>Formulário para Justificativa de Faltas:</h1>
+
     <div class="corpo">
 
         <form>
             <div class="formcomeço">
                 <div class="item-pequeno">
-                    <label for="nome" class="">Nome:</label><br><br>
-                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo">
+                    <label for="nome" class="">Nome: *</label><br><br>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
                 </div>
 
                 <div class="item-pequeno">
-                    <label for="matricula">Matrícula:</label><br><br>
-                    <input type="number" id="matricula" name="matricula" placeholder="0000000000000">
+                    <label for="matricula">Matrícula: *</label><br><br>
+                    <input type="number" id="matricula" name="matricula" placeholder="0000000000000" required>
                 </div>
 
                 <div class="item-pequeno">
@@ -166,7 +50,7 @@
             </div>
 
             <div class="checkbox">
-                <label for="cursos" class="cursos"> Curso(s) envolvido(s) na ausência:</label>
+                <label for="cursos" class="cursos"> Curso(s) envolvido(s) na ausência: *</label>
                 <label class="checkbox-label">
                     <input type="checkbox" value="cst-dsm" name="cursos">
                     <span class="custom-checkbox"></span> CST-DSM
@@ -194,39 +78,346 @@
             </div>
 
             
-            <label for="data">Data:</label><br>
-            <input type="radio" id="faltaReferente" name="data" value="data">
-            <label for="data">Falta referente ao dia: </label>
-            <input type="date" id="data" name="data"><br><br>
-            <input type="radio" id="faltaReferente" name="data" value="data">
-            <label for="data">Período de </label>
+            <label for="dataDia">Data: *</label><br><br>
+            <input type="radio" id="faltaReferenteDia" name="data" value="dia">
+            <label for="dataDia">Falta referente ao dia: </label>
+            <input type="date" id="dataDia" name="dataDia"><br><br>
+
+            <input type="radio" id="faltaReferentePeriodo" name="data" value="periodo">
+            <label for="dias">Período de </label>
             <input type="number" id="dias" name="dias" class="dias" placeholder="">
             <label for="dias"> dias - de </label>
             <input type="date" id="dateStart" name="dateStart">
             <label for="dias"> até </label>
             <input type="date" id="dateEnd" name="dateEnd"><br><br>
 
+            <script>
+                // Função para atualizar a opacidade dos elementos
+                function updateOpacity() {
+                    document.getElementById('dataDia').classList.toggle('disabled-opacity', document.getElementById('dataDia').disabled);
+                    document.getElementById('dias').classList.toggle('disabled-opacity', document.getElementById('dias').disabled);
+                    document.getElementById('dateStart').classList.toggle('disabled-opacity', document.getElementById('dateStart').disabled);
+                    document.getElementById('dateEnd').classList.toggle('disabled-opacity', document.getElementById('dateEnd').disabled);
+                }
+
+                document.getElementById('faltaReferenteDia').addEventListener('change', function() {
+                    if (this.checked) {
+                        document.getElementById('dataDia').disabled = false;
+                        document.getElementById('dias').disabled = true;
+                        document.getElementById('dateStart').disabled = true;
+                        document.getElementById('dateEnd').disabled = true;
+                    }
+                    updateOpacity();
+                });
+
+                document.getElementById('faltaReferentePeriodo').addEventListener('change', function() {
+                    if (this.checked) {
+                        document.getElementById('dataDia').disabled = true;
+                        document.getElementById('dias').disabled = false;
+                        document.getElementById('dateStart').disabled = false;
+                        document.getElementById('dateEnd').disabled = false;
+                    }
+                    updateOpacity();
+                });
+
+                // Inicializa os campos como desabilitados
+                document.getElementById('dataDia').disabled = true;    
+                document.getElementById('dias').disabled = true;
+                document.getElementById('dateStart').disabled = true;
+                document.getElementById('dateEnd').disabled = true;
+
+            </script>
+
+            <style>
+                .disabled-opacity {
+                    opacity: 0.5;
+                }
+            </style>
+
+           
             <label for="falta">Tipo de falta:</label>
             <select id="falta">
                 <option value="0">Selecione...</option>
-                <option value="1">1 – LICENÇA E FALTA MÉDICA </option>
-                <option value="2">2 – FALTA INJUSTIFICADA (Com desconto do Descanso Semanal Remunerado – DSR) </option>
-                <option value="3">3 – FALTAS JUSTIFICADAS (Se deferido, não implicam em desconto do Descanso Semanal Remunerado – DSR)</option>
-                <option value="4">4 – FALTAS PREVISTAS NA LEGISLAÇÃO TRABALHISTA.</option> 
+                <option value="LICENÇA-FALTA MÉDICA">1 – Licença e Falta Médica </option>
+                <option value="FALTA-INJUSTIFICADA">2 – Faltas Injustificadas (Com desconto do Descanso Semanal Remunerado – DSR) </option>
+                <option value="FALTAS-JUSTIFICADAS">3 – Faltas Justificadas (Se deferido, não implicam em desconto do Descanso Semanal Remunerado – DSR)</option>
+                <option value="LEGISLAÇÃO-TRABALHISTA">4 – Faltas Previstas na Legislação Trabalhista</option> 
             </select><br><br>
             
-            <div id="radioContainer">
-                <!-- O select de especificações será inserido aqui -->
-            </div>
-            <br><br>
+           <div id="licenca" class="hidden-content">
+            <input type="radio" value="falta-medica" name="medica" id="faltaMedica"><label> Médica (Atestado médico de 1 dia) por motivo de</label> <input type="text" id="motivo-falta"><br><br>
+            <input type="radio" value="comparecimento" name="medica" id="comparecimento"><label> Comparecimento ao Médico no período das </label><input type="time" id="time-inicio"><label> às </label><input type="time" id="time-fim"><br><br>
+            <input type="radio" value="licenca-saude" name="medica" id="licencaSaude"><label> Licença-Saúde (Atestado médico igual ou superior a 2 dias)</label><br><br>
+            <input type="radio" value="licenca-maternidade" name="medica" id="licencaMaternidade"><label> Licença-Maternidade. (Atestado médico até 15 dias)</label>
+           </div>
+           
+           <script>
+                // Função para atualizar a opacidade dos elementos
+                function updateOpacity() {
+                    document.getElementById('motivo-falta').classList.toggle('disabled-opacity', document.getElementById('motivo-falta').disabled);
+                    document.getElementById('time-inicio').classList.toggle('disabled-opacity', document.getElementById('time-inicio').disabled);
+                    document.getElementById('time-fim').classList.toggle('disabled-opacity', document.getElementById('time-fim').disabled);
+                }
             
-            <label for="botao_upload" class="file-label">Anexar comprovante:</label>
-            <input type="file" name="comprovante" id="comprovante" class="file-input"> <br><br>
+                // Evento para quando a opção "faltaMedica" é selecionada
+                document.getElementById('faltaMedica').addEventListener('change', function() {
+                    if (this.checked) {
+                        document.getElementById('motivo-falta').disabled = false;
+                        document.getElementById('time-inicio').disabled = true;
+                        document.getElementById('time-fim').disabled = true;
+                    }
+                    updateOpacity();
+                });
+            
+                // Evento para quando a opção "comparecimento" é selecionada
+                document.getElementById('comparecimento').addEventListener('change', function() {
+                    if (this.checked) {
+                        document.getElementById('motivo-falta').disabled = true;
+                        document.getElementById('time-inicio').disabled = false;
+                        document.getElementById('time-fim').disabled = false;
+                    }
+                    updateOpacity();
+                });
+            
+                // Evento para quando a opção "licencaSaude" ou "licencaMaternidade" é selecionada
+                document.getElementById('licencaSaude').addEventListener('change', function() {
+                    if (this.checked) {
+                        document.getElementById('motivo-falta').disabled = true;
+                        document.getElementById('time-inicio').disabled = true;
+                        document.getElementById('time-fim').disabled = true;
+                    }
+                    updateOpacity();
+                });
+            
+                document.getElementById('licencaMaternidade').addEventListener('change', function() {
+                    if (this.checked) {
+                        document.getElementById('motivo-falta').disabled = true;
+                        document.getElementById('time-inicio').disabled = true;
+                        document.getElementById('time-fim').disabled = true;
+                    }
+                    updateOpacity();
+                });
+            
+                // Inicializa os campos como desabilitados
+                document.getElementById('motivo-falta').disabled = true;    
+                document.getElementById('time-inicio').disabled = true;
+                document.getElementById('time-fim').disabled = true;
+        
+            </script>
 
-            <p>*Selecionar um item e anexar o comprovante, devendo o original ser entregue na sede e
-                a cópia simples nas unidades de ampliação
-                (desde que acompanhada do original para conferência).</p>
+            <div id="injustificada" class="hidden-content">
+                <input type="radio" id="faltaMedica-inju" name="falta-inju" value="falta-inju">
+                <label for="faltaMedica-inju">Falta por motivo de</label>
+                <input type="text" id="motivo-falta-inju"><br><br>
+                
+                <input type="radio" id="comparecimento-inju" name="falta-inju" value="atraso-saida-inju">
+                <label for="comparecimento-inju">Atraso ou Saída Antecipada no período</label>
+                <input type="time" id="time-inicio-inju"> às <input type="time" id="time-fim-inju"><br><br>
+                
+                <input type="radio" id="licencaSaude-inju" name="falta-inju" value="licenca-saude-inju">
+                <label for="licencaSaude-inju">Licença Saúde</label><br><br>
+                
+                <input type="radio" id="licencaMaternidade-inju" name="falta-inju" value="licenca-maternidade-inju">
+                <label for="licencaMaternidade-inju">Licença Maternidade</label>
+            </div>
+
+            <script>
+                // Função para atualizar a opacidade dos elementos
+                function updateOpacity() {
+                    document.getElementById('motivo-falta-inju').classList.toggle('disabled-opacity', document.getElementById('motivo-falta-inju').disabled);
+                    document.getElementById('time-inicio-inju').classList.toggle('disabled-opacity', document.getElementById('time-inicio-inju').disabled);
+                    document.getElementById('time-fim-inju').classList.toggle('disabled-opacity', document.getElementById('time-fim-inju').disabled);
+                }
+        
+                // Evento para quando a opção "faltaMedica" é selecionada
+                document.getElementById('faltaMedica-inju').addEventListener('change', function() {
+                    if (this.checked) {
+                        document.getElementById('motivo-falta-inju').disabled = false;
+                        document.getElementById('time-inicio-inju').disabled = true;
+                        document.getElementById('time-fim-inju').disabled = true;
+                    }
+                    updateOpacity();
+                });
+        
+                // Evento para quando a opção "comparecimento" é selecionada
+                document.getElementById('comparecimento-inju').addEventListener('change', function() {
+                    if (this.checked) {
+                        document.getElementById('motivo-falta-inju').disabled = true;
+                        document.getElementById('time-inicio-inju').disabled = false;
+                        document.getElementById('time-fim-inju').disabled = false;
+                    }
+                    updateOpacity();
+                });
+        
+                // Evento para quando a opção "licencaSaude" é selecionada
+                document.getElementById('licencaSaude-inju').addEventListener('change', function() {
+                    if (this.checked) {
+                        document.getElementById('motivo-falta-inju').disabled = true;
+                        document.getElementById('time-inicio-inju').disabled = true;
+                        document.getElementById('time-fim-inju').disabled = true;
+                    }
+                    updateOpacity();
+                });
+        
+                // Evento para quando a opção "licencaMaternidade" é selecionada
+                document.getElementById('licencaMaternidade-inju').addEventListener('change', function() {
+                    if (this.checked) {
+                        document.getElementById('motivo-falta-inju').disabled = true;
+                        document.getElementById('time-inicio-inju').disabled = true;
+                        document.getElementById('time-fim-inju').disabled = true;
+                    }
+                    updateOpacity();
+                });
+        
+                // Inicializa os campos como desabilitados
+                document.getElementById('motivo-falta-inju').disabled = true;    
+                document.getElementById('time-inicio-inju').disabled = true;
+                document.getElementById('time-fim-inju').disabled = true;
+                
+            </script>
+
+            <div id="justificada" class="hidden-content">
+                <input type="radio" id="faltaMedica-just" name="falta-just" value="falta-just">
+                <label for="faltaMedica-just">Falta por motivo de</label>
+                <input type="text" id="motivo-falta-just"><br><br>
+                
+                <input type="radio" id="comparecimento-just" name="falta-just" value="atraso-saida-just">
+                <label for="comparecimento-just">Atraso ou Saída Antecipada no período</label>
+                <input type="time" id="time-inicio-just"> às <input type="time" id="time-fim-just">
+                <label for="motivo-atraso-saida-just"> por motivo de </label>
+                <input type="text" id="motivo-atraso-saida-just" class="motivo"><br><br>
+
+                <input type="radio" id="licencaSaude-just" name="falta-just" value="licenca-saude-just">
+                <label for="licencaSaude-just">Licença Saúde</label><br><br>
+                
+                <input type="radio" id="licencaMaternidade-just" name="falta-just" value="licenca-maternidade-just">
+                <label for="licencaMaternidade-just">Licença Maternidade</label>
+            </div>
+
+            <script>
+                // Função para atualizar a opacidade dos elementos
+                function updateOpacity() {
+                    document.getElementById('motivo-falta-just').classList.toggle('disabled-opacity', document.getElementById('motivo-falta-just').disabled);
+                    document.getElementById('time-inicio-just').classList.toggle('disabled-opacity', document.getElementById('time-inicio-just').disabled);
+                    document.getElementById('time-fim-just').classList.toggle('disabled-opacity', document.getElementById('time-fim-just').disabled);
+                    document.getElementById('motivo-atraso-saida-just').classList.toggle('disabled-opacity', document.getElementById('motivo-atraso-saida-just').disabled);
+                }
+
+                // Evento para quando a opção "faltaMedica" é selecionada
+                document.getElementById('faltaMedica-just').addEventListener('change', function() {
+                    if (this.checked) {
+                        document.getElementById('motivo-falta-just').disabled = false;
+                        document.getElementById('time-inicio-just').disabled = true;
+                        document.getElementById('time-fim-just').disabled = true;
+                        document.getElementById('motivo-atraso-saida-just').disabled = true;
+                    }
+                    updateOpacity();
+                });
+
+                // Evento para quando a opção "comparecimento" é selecionada
+                document.getElementById('comparecimento-just').addEventListener('change', function() {
+                    if (this.checked) {
+                        document.getElementById('motivo-falta-just').disabled = true;
+                        document.getElementById('time-inicio-just').disabled = false;
+                        document.getElementById('time-fim-just').disabled = false;
+                        document.getElementById('motivo-atraso-saida-just').disabled = false;
+                    }
+                    updateOpacity();
+                });
+
+                // Evento para quando a opção "licencaSaude" é selecionada
+                document.getElementById('licencaSaude-just').addEventListener('change', function() {
+                    if (this.checked) {
+                        document.getElementById('motivo-falta-just').disabled = true;
+                        document.getElementById('time-inicio-just').disabled = true;
+                        document.getElementById('time-fim-just').disabled = true;
+                        document.getElementById('motivo-atraso-saida-just').disabled = true;
+                    }
+                    updateOpacity();
+                });
+
+                // Evento para quando a opção "licencaMaternidade" é selecionada
+                document.getElementById('licencaMaternidade-just').addEventListener('change', function() {
+                    if (this.checked) {
+                        document.getElementById('motivo-falta-just').disabled = true;
+                        document.getElementById('time-inicio-just').disabled = true;
+                        document.getElementById('time-fim-just').disabled = true;
+                        document.getElementById('motivo-atraso-saida-just').disabled = true;
+                    }
+                    updateOpacity();
+                });
+
+                // Inicializa os campos como desabilitados
+                document.getElementById('motivo-falta-just').disabled = true;    
+                document.getElementById('time-inicio-just').disabled = true;
+                document.getElementById('time-fim-just').disabled = true;
+                document.getElementById('motivo-atraso-saida-just').disabled = true;
+
+            </script>
+           
+           <div id="trabalhista" class="hidden-content">
+                <input type="radio" value="falecimento" name="trabalhista"><label> Falecimento de cônjuge, pai, mãe, filho. (9 dias consecutivos)<br><br>
+                <input type="radio" value="falecimento-ascendente" name="trabalhista"><label> Falecimento ascendente (exceto pai e mãe), descendente (exceto filho), irmão ou pessoa declarada na CTPS, que viva sob sua dependência econômica. (2 dias consecutivos)</label><br><br>
+                <input type="radio" value="casamento" name="trabalhista"><label> Casamento. (9 dias consecutivos)<br><br>
+                <input type="radio" value="nascimento" name="trabalhista"><label> Nascimento de filho, no decorrer da primeira semana. (5 dias).<br><br>
+                <input type="radio" value="acompanhar" name="trabalhista"><label> Acompanhar esposa ou companheira durante a gravidez, em consultas médicas e exames complementares. (Até 2 dias).</label><br><br>
+                <input type="radio" value="acompanhar-filho" name="trabalhista"><label> Acompanhar filho de até 6 anos em consulta médica. (1 dia por ano)<br><br>
+                <input type="radio" value="doacao" name="trabalhista"><label> Doação voluntária de sangue. (1 dia em cada 12 meses de trabalho).<br><br>
+                <input type="radio" value="alistamento" name="trabalhista"><label> Alistamento como eleitor. (Até 2 dias consecutivos ou não).<br><br>
+                <input type="radio" value="convocacao" name="trabalhista"><label> Convocação para depoimento judicial.<br><br>
+                <input type="radio" value="comparecimento" name="trabalhista"><label> Comparecimento como jurado no Tribunal do Júri.<br><br>
+                <input type="radio" value="eleitoral" name="trabalhista"><label> Convocação para serviço eleitoral.<br><br>
+                <input type="radio" value="dispensa" name="trabalhista"><label> Dispensa dos dias devido à nomeação para compor as mesas receptoras ou juntas eleitorais nas eleições ou requisitado para auxiliar seus trabalhos (Lei nº 9.504/97).<br><br>
+                <input type="radio" value="vestibular" name="trabalhista"><label> Realização de Prova de Vestibular para ingresso em estabelecimento de ensino superior.<br><br>
+                <input type="radio" value="justica-trabalho" name="trabalhista"><label> Comparecimento necessário como parte na Justiça do Trabalho (Enunciado TST nº 155). (Horas necessárias).<br><br>
+                <input type="radio" value="transporte" name="trabalhista"><label> Atrasos decorrentes de acidentes de transporte, com atestado da empresa concessionária. (Horas necessárias).<br><br>
+
+           </div>
+
+           <script>
+                document.getElementById('falta').addEventListener('change', function() {
+                    var selectedValue = this.value;
+        
+                    // Esconde todas as divs
+                    document.getElementById('licenca').classList.add('hidden-content');
+                    document.getElementById('injustificada').classList.add('hidden-content');
+                    document.getElementById('justificada').classList.add('hidden-content');
+                    document.getElementById('trabalhista').classList.add('hidden-content');
+        
+                    // Mostra a div correspondente ao valor selecionado
+                    if (selectedValue === 'LICENÇA-FALTA MÉDICA') {
+                        document.getElementById('licenca').classList.remove('hidden-content');
+                    } else if (selectedValue === 'FALTA-INJUSTIFICADA') {
+                        document.getElementById('injustificada').classList.remove('hidden-content');
+                    } else if (selectedValue === 'FALTAS-JUSTIFICADAS') {
+                        document.getElementById('justificada').classList.remove('hidden-content');
+                    } else if (selectedValue === 'LEGISLAÇÃO-TRABALHISTA') {
+                        document.getElementById('trabalhista').classList.remove('hidden-content');
+                    }
+                });
+            
+            </script>
+
             <br><br>
+
+            <label for="fileInput" class="file-label">Anexar comprovante</label>
+            <input type="file" id="fileInput" class="file-input">
+            <span id="fileName" class="file-name">Nenhum arquivo selecionado</span>
+
+            <script>
+                document.getElementById('fileInput').addEventListener('change', function() {
+                    var fileName = this.files[0] ? this.files[0].name : 'Nenhum arquivo selecionado';
+                    document.getElementById('fileName').textContent = fileName;
+                });
+            </script>
+    
+
+            <p>Selecionar um item e anexar o comprovante, devendo o original ser entregue na sede e
+                a cópia simples nas unidades de ampliação
+                (desde que acompanhada do original para conferência).</p><br><br>
+           
+            <p>*Campo obrigatório</p> <br><br>
+            
             <input type="submit" value="Enviar">
             <input type="reset" name="Limpar">
         </form>
