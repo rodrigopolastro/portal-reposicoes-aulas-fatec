@@ -27,7 +27,7 @@
 
     <div class="corpo">
 
-        <form>
+        <form method="POST" action="./gera-pdf-formulario.php">
             <div class="formcomeço">
                 <div class="item-pequeno">
                     <label for="nome" class="">Nome: *</label><br><br>
@@ -52,44 +52,45 @@
             <div class="checkbox">
                 <label for="cursos" class="cursos"> Curso(s) envolvido(s) na ausência: *</label>
                 <label class="checkbox-label">
-                    <input type="checkbox" value="cst-dsm" name="cursos">
+                    <input type="checkbox" value="cst-dsm" name="cursos[]">
                     <span class="custom-checkbox"></span> CST-DSM
                 </label>
             
                 <label class="checkbox-label">
-                    <input type="checkbox" value="cst-ge" name="cursos">
+                    <input type="checkbox" value="cst-ge" name="cursos[]">
                     <span class="custom-checkbox"></span> CST-GE
                 </label>
             
                 <label class="checkbox-label">
-                    <input type="checkbox" value="cst-gpi" name="cursos">
+                    <input type="checkbox" value="cst-gpi" name="cursos[]">
                     <span class="custom-checkbox"></span> CST-GPI
                 </label>
             
                 <label class="checkbox-label">
-                    <input type="checkbox" value="cst-gti" name="cursos">
+                    <input type="checkbox" value="cst-gti" name="cursos[]">
                     <span class="custom-checkbox"></span> CST-GTI
                 </label>
             
                 <label class="checkbox-label">
-                    <input type="checkbox" value="hae" name="cursos">
+                    <input type="checkbox" value="hae" name="cursos[]">
                     <span class="custom-checkbox"></span> HAE
                 </label>
             </div>
 
             
             <label for="dataDia">Data: *</label><br><br>
-            <input type="radio" id="faltaReferenteDia" name="data" value="dia">
+            <input type="radio" id="faltaReferenteDia" name="tipo_periodo" value="dia">
             <label for="dataDia">Falta referente ao dia: </label>
-            <input type="date" id="dataDia" name="dataDia"><br><br>
+            <input type="date" id="dataDia" name="data_dia"><br><br>
 
-            <input type="radio" id="faltaReferentePeriodo" name="data" value="periodo">
+            <input type="radio" id="faltaReferentePeriodo" name="tipo_periodo" value="periodo">
             <label for="dias">Período de </label>
-            <input type="number" id="dias" name="dias" class="dias" placeholder="">
+            <input type="number" id="dias" name="dias_periodo" class="dias" placeholder="">
             <label for="dias"> dias - de </label>
-            <input type="date" id="dateStart" name="dateStart">
+            <input type="date" id="dateStart" name="inicio_periodo">
+            <!-- AUTOMATIZAR O CÁLCULO DA DATA FINAL UTILIZANDO JAVASCRIPT!  -->
             <label for="dias"> até </label>
-            <input type="date" id="dateEnd" name="dateEnd"><br><br>
+            <input type="date" id="dateEnd" name="fim_periodo"><br><br>
 
             <script>
                 // Função para atualizar a opacidade dos elementos
@@ -137,18 +138,18 @@
            
             <label for="falta">Tipo de falta:</label>
             <select id="falta">
-                <option value="0">Selecione...</option>
-                <option value="LICENÇA-FALTA MÉDICA">1 – Licença e Falta Médica </option>
-                <option value="FALTA-INJUSTIFICADA">2 – Faltas Injustificadas (Com desconto do Descanso Semanal Remunerado – DSR) </option>
-                <option value="FALTAS-JUSTIFICADAS">3 – Faltas Justificadas (Se deferido, não implicam em desconto do Descanso Semanal Remunerado – DSR)</option>
-                <option value="LEGISLAÇÃO-TRABALHISTA">4 – Faltas Previstas na Legislação Trabalhista</option> 
+                <option value="">Selecione...</option>
+                <option value="licenca_medica">1 – Licença e Falta Médica </option>
+                <option value="falta_injustificada">2 – Faltas Injustificadas (Com desconto do Descanso Semanal Remunerado – DSR) </option>
+                <option value="falta_justificada">3 – Faltas Justificadas (Se deferido, não implicam em desconto do Descanso Semanal Remunerado – DSR)</option>
+                <option value="legislacao_trabalhista">4 – Faltas Previstas na Legislação Trabalhista</option> 
             </select><br><br>
             
            <div id="licenca" class="hidden-content">
-            <input type="radio" value="falta-medica" name="medica" id="faltaMedica"><label> Médica (Atestado médico de 1 dia) por motivo de</label> <input type="text" id="motivo-falta"><br><br>
-            <input type="radio" value="comparecimento" name="medica" id="comparecimento"><label> Comparecimento ao Médico no período das </label><input type="time" id="time-inicio"><label> às </label><input type="time" id="time-fim"><br><br>
-            <input type="radio" value="licenca-saude" name="medica" id="licencaSaude"><label> Licença-Saúde (Atestado médico igual ou superior a 2 dias)</label><br><br>
-            <input type="radio" value="licenca-maternidade" name="medica" id="licencaMaternidade"><label> Licença-Maternidade. (Atestado médico até 15 dias)</label>
+            <input type="radio" value="falta-medica" name="tipo_licenca_medica" id="faltaMedica"><label> Médica (Atestado médico de 1 dia) por motivo de</label> <input type="text" id="motivo-falta"><br><br>
+            <input type="radio" value="comparecimento" name="tipo_licenca_medica" id="comparecimento"><label> Comparecimento ao Médico no período das </label><input type="time" id="time-inicio"><label> às </label><input type="time" id="time-fim"><br><br>
+            <input type="radio" value="licenca-saude" name="tipo_licenca_medica" id="licencaSaude"><label> Licença-Saúde (Atestado médico igual ou superior a 2 dias)</label><br><br>
+            <input type="radio" value="licenca-maternidade" name="tipo_licenca_medica" id="licencaMaternidade"><label> Licença-Maternidade. (Atestado médico até 15 dias)</label>
            </div>
            
            <script>
@@ -204,21 +205,22 @@
                 document.getElementById('time-fim').disabled = true;
         
             </script>
+            <div id="injustificada" class=  "hidden-content">
+                <input type="radio" id="faltaMedica-just" name="tipo_falta_injustificada" value="motivo_adicional">
+                <label for="faltaMedica-just">Falta por motivo de</label>
+                <input type="text" id="motivo-falta-just" name="texto_motivo_adicional"><br><br>
+                
+                <input type="radio" id="comparecimento-just" name="tipo_falta_injustificada" value="atraso_saida_antecipada">
+                <label for="comparecimento-just">Atraso ou Saída Antecipada no período</label>
+                <input type="time" id="time-inicio-just" name="inicio_atraso_saida"> às <input type="time" id="time-fim-just" name="fim_atraso_saida">
+                <label for="motivo-atraso-saida-just"> por motivo de </label>
+                <input type="text" id="motivo-atraso-saida-just" class="motivo" name="motivo_atraso_saida_antecipada"><br><br>
 
-            <div id="injustificada" class="hidden-content">
-                <input type="radio" id="faltaMedica-inju" name="falta-inju" value="falta-inju">
-                <label for="faltaMedica-inju">Falta por motivo de</label>
-                <input type="text" id="motivo-falta-inju"><br><br>
+                <input type="radio" id="licencaSaude-just" name="tipo_falta_injustificada" value="licenca_saude">
+                <label for="licencaSaude-just">Licença Saúde</label><br><br>
                 
-                <input type="radio" id="comparecimento-inju" name="falta-inju" value="atraso-saida-inju">
-                <label for="comparecimento-inju">Atraso ou Saída Antecipada no período</label>
-                <input type="time" id="time-inicio-inju"> às <input type="time" id="time-fim-inju"><br><br>
-                
-                <input type="radio" id="licencaSaude-inju" name="falta-inju" value="licenca-saude-inju">
-                <label for="licencaSaude-inju">Licença Saúde</label><br><br>
-                
-                <input type="radio" id="licencaMaternidade-inju" name="falta-inju" value="licenca-maternidade-inju">
-                <label for="licencaMaternidade-inju">Licença Maternidade</label>
+                <input type="radio" id="licencaMaternidade-just" name="tipo_falta_injustificada" value="licenca_maternidade">
+                <label for="licencaMaternidade-just">Licença Maternidade</label>
             </div>
 
             <script>
@@ -277,20 +279,20 @@
             </script>
 
             <div id="justificada" class="hidden-content">
-                <input type="radio" id="faltaMedica-just" name="falta-just" value="falta-just">
+                <input type="radio" id="faltaMedica-just" name="tipo_falta_justificada" value="motivo_adicional">
                 <label for="faltaMedica-just">Falta por motivo de</label>
                 <input type="text" id="motivo-falta-just"><br><br>
                 
-                <input type="radio" id="comparecimento-just" name="falta-just" value="atraso-saida-just">
+                <input type="radio" id="comparecimento-just" name="tipo_falta_justificada" value="atraso_saida_antecipada">
                 <label for="comparecimento-just">Atraso ou Saída Antecipada no período</label>
-                <input type="time" id="time-inicio-just"> às <input type="time" id="time-fim-just">
+                <input type="time" id="time-inicio-just" name="inicio_atraso_saida"> às <input type="time" id="time-fim-just" name="fim_atraso_saida">
                 <label for="motivo-atraso-saida-just"> por motivo de </label>
-                <input type="text" id="motivo-atraso-saida-just" class="motivo"><br><br>
+                <input type="text" id="motivo-atraso-saida-just" class="motivo" name="motivo_atraso_saida_antecipada"><br><br>
 
-                <input type="radio" id="licencaSaude-just" name="falta-just" value="licenca-saude-just">
+                <input type="radio" id="licencaSaude-just" name="tipo_falta_justificada" value="licenca_saude">
                 <label for="licencaSaude-just">Licença Saúde</label><br><br>
                 
-                <input type="radio" id="licencaMaternidade-just" name="falta-just" value="licenca-maternidade-just">
+                <input type="radio" id="licencaMaternidade-just" name="tipo_falta_justificada" value="licenca_maternidade">
                 <label for="licencaMaternidade-just">Licença Maternidade</label>
             </div>
 
@@ -357,11 +359,11 @@
            
            <div id="trabalhista" class="hidden-content">
                 <input type="radio" value="falecimento" name="trabalhista"><label> Falecimento de cônjuge, pai, mãe, filho. (9 dias consecutivos)<br><br>
-                <input type="radio" value="falecimento-ascendente" name="trabalhista"><label> Falecimento ascendente (exceto pai e mãe), descendente (exceto filho), irmão ou pessoa declarada na CTPS, que viva sob sua dependência econômica. (2 dias consecutivos)</label><br><br>
+                <input type="radio" value="falecimento_ascendente" name="trabalhista"><label> Falecimento ascendente (exceto pai e mãe), descendente (exceto filho), irmão ou pessoa declarada na CTPS, que viva sob sua dependência econômica. (2 dias consecutivos)</label><br><br>
                 <input type="radio" value="casamento" name="trabalhista"><label> Casamento. (9 dias consecutivos)<br><br>
                 <input type="radio" value="nascimento" name="trabalhista"><label> Nascimento de filho, no decorrer da primeira semana. (5 dias).<br><br>
                 <input type="radio" value="acompanhar" name="trabalhista"><label> Acompanhar esposa ou companheira durante a gravidez, em consultas médicas e exames complementares. (Até 2 dias).</label><br><br>
-                <input type="radio" value="acompanhar-filho" name="trabalhista"><label> Acompanhar filho de até 6 anos em consulta médica. (1 dia por ano)<br><br>
+                <input type="radio" value="acompanhar_filho" name="trabalhista"><label> Acompanhar filho de até 6 anos em consulta médica. (1 dia por ano)<br><br>
                 <input type="radio" value="doacao" name="trabalhista"><label> Doação voluntária de sangue. (1 dia em cada 12 meses de trabalho).<br><br>
                 <input type="radio" value="alistamento" name="trabalhista"><label> Alistamento como eleitor. (Até 2 dias consecutivos ou não).<br><br>
                 <input type="radio" value="convocacao" name="trabalhista"><label> Convocação para depoimento judicial.<br><br>
@@ -369,7 +371,7 @@
                 <input type="radio" value="eleitoral" name="trabalhista"><label> Convocação para serviço eleitoral.<br><br>
                 <input type="radio" value="dispensa" name="trabalhista"><label> Dispensa dos dias devido à nomeação para compor as mesas receptoras ou juntas eleitorais nas eleições ou requisitado para auxiliar seus trabalhos (Lei nº 9.504/97).<br><br>
                 <input type="radio" value="vestibular" name="trabalhista"><label> Realização de Prova de Vestibular para ingresso em estabelecimento de ensino superior.<br><br>
-                <input type="radio" value="justica-trabalho" name="trabalhista"><label> Comparecimento necessário como parte na Justiça do Trabalho (Enunciado TST nº 155). (Horas necessárias).<br><br>
+                <input type="radio" value="justica_trabalho" name="trabalhista"><label> Comparecimento necessário como parte na Justiça do Trabalho (Enunciado TST nº 155). (Horas necessárias).<br><br>
                 <input type="radio" value="transporte" name="trabalhista"><label> Atrasos decorrentes de acidentes de transporte, com atestado da empresa concessionária. (Horas necessárias).<br><br>
 
            </div>
@@ -385,13 +387,13 @@
                     document.getElementById('trabalhista').classList.add('hidden-content');
         
                     // Mostra a div correspondente ao valor selecionado
-                    if (selectedValue === 'LICENÇA-FALTA MÉDICA') {
+                    if (selectedValue === 'licenca_medica') {
                         document.getElementById('licenca').classList.remove('hidden-content');
-                    } else if (selectedValue === 'FALTA-INJUSTIFICADA') {
+                    } else if (selectedValue === 'falta_injustificada') {
                         document.getElementById('injustificada').classList.remove('hidden-content');
-                    } else if (selectedValue === 'FALTAS-JUSTIFICADAS') {
+                    } else if (selectedValue === 'falta_justificada') {
                         document.getElementById('justificada').classList.remove('hidden-content');
-                    } else if (selectedValue === 'LEGISLAÇÃO-TRABALHISTA') {
+                    } else if (selectedValue === 'legislacao_trabalhista') {
                         document.getElementById('trabalhista').classList.remove('hidden-content');
                     }
                 });
