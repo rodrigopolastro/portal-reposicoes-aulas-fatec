@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    <title>Informações do curso</title>
+
+</head>
+<body>
+    <header>
+        <div id="topo" class="topo">
+            <div class="fundo"><img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
+            <div class="fundo2"><img src="img/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
+        </div>
+        <nav>
+            <a href="index-coordenador.html" class="botao-nav">Início</a>
+            <a href="lista-recebidos-faltas.html" class="botao-nav">Justificativas de Falta</a>
+            <a href="" class="botao-nav">Reposição de Aulas</a>
+            <a href="" class="botao-nav">Informações do Curso</a>
+            <a href="#" class="botao-nav">Sair</a>
+        </nav>
+
+    </header>
+    <main>
+
+        <h1>Informações do Curso</h1>
+
+        <h2>Desenvolvimento de Software Multiplataforma</h2>
+
+        <div class="texto">
+            <p><strong>Duração:</strong> 6 semestres</p>
+            <p><strong>Vagas:</strong> 40</p>
+            <p><strong>Período:</strong> noturno (19h00 às 22h30)</p><br>
+            <a href="pdf/PPC_DSM_Itapira_extensao_2024-versao-CESU.pdf" target="_blank" class="link-pdf">Projeto Pedagógico </a><br><br>
+            <a href="pdf/NDE_DSM.pdf" target="_blank" class="link-pdf">NDE</a> 
+        </div>
+
+        <div class="exibir">
+            <button id="botao-professores" class="custom-link">Lista de Professores</button>
+            <button id="botao-disciplinas" class="custom-link">Lista de Disciplinas</button>
+            <button id="botao-grade" class="custom-link">Grade Horária</button>
+        </div>
+
+        <div id="conteudo-professores" class="hidden-content">
+        
+            <div class="table">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="matricula">Matrícula</th>
+                            <th class="professor">Professor</th>
+                            <th class="disciplina">Disciplinas atribuidas</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr>
+                            <td>0000000000005</td>
+                            <td>Ana Célia Ribeiro Bizigato Portes</td>
+                            <td>Engenharia de Software I;<br> Engenharia de Software II;<br> Gestão Ágil de Projetos de
+                                Software </td>
+                        </tr>
+                        <tr>
+                            <td>0000000000013</td>
+                            <td>Douglas Rosa</td>
+                            <td>Programação para Dispositivos Móveis I;<br> Experiência do Usuário;<br> Laboratório de Desenvolvimento para
+                                Dispositivos Móveis;<br> Programação para Dispositivos Móveis II</td>
+                        </tr>
+                        <tr>
+                            <td>0000000000001</td>
+                            <td>Edison Kazuo Igarashi</td>
+                            <td>Sistemas Operacionais e Redes de Computadores</td>
+                        </tr>
+                        <tr>
+                            <td>0000000000014</td>
+                            <td>Janaina</td>
+                            <td>Inglês II;<br>Inglês III</td>
+                        </tr>
+                        <tr>
+                            <td>0000000000003</td>
+                            <td>José Gonçalves Pinto Junior</td>
+                            <td>Algoritmo e lógica de programação; <br>Banco de Dados Relacional; <br>Desenvolvimento Web III; <br>Técnicas de Programação II; <br>
+                                Laboratório de Desenvolvimento Web; <br>Segurança no Desenvolvimento de Aplicações </td>
+                        </tr>
+                        <tr>
+                            <td>0000000000015</td>
+                            <td>Lúcio</td>
+                            <td>Integração e Entrega Contínua; <br>Computação em Nuvem I </td>
+                        </tr> 
+                        <tr>
+                            <td>0000000000009</td>
+                            <td>Mateus</td>
+                            <td>Banco de Dados Não Relacional; <br>Aprendizagem de Máquina</td>
+                        </tr>
+                        <tr>
+                            <td>0000000000007</td>
+                            <td>Maromo</td>
+                            <td>Técnicas de Programação I</td>
+                        </tr>
+                        <tr>
+                            <td>0000000000012</td>
+                            <td>Mota</td>
+                            <td>Estatística Aplicada</td>
+                        </tr>
+                        <tr>
+                            <td>0000000000010</td>
+                            <td>Paula Renata</td>
+                            <td>Inglês I</td>
+                        </tr>
+                        <tr>
+                            <td>0000000000006</td>
+                            <td>Rafael</td>
+                            <td>Matemática para Computação</td>
+                        </tr>
+                        <tr>
+                            <td>0000000000011</td>
+                            <td>Reginaldo</td>
+                            <td>Desenvolvimento Web II; <br>Internet das Coisas e Aplicações</td>
+                        </tr>
+                        <tr>
+                            <td>0000000000002</td>
+                            <td>Thiago Salhab Alves</td>
+                            <td>Design Digital; <br>Desenvolvimento Web I; <br>Estrutura de Dados; <br>Interação Humano Computador</td>
+                        </tr>
+                        <tr>
+                            <td>0000000000008</td>
+                            <td>Vagner</td>
+                            <td>Álgebra Linear </td>
+                        </tr>
+                        <tr>
+                            <td>0000000000004</td>
+                            <td>Wladimir José Camillo Menegassi</td>
+                            <td>Modelagem de Banco de Dados</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="conteudo-disciplinas" class="hidden-content">
+            <p class="info">AP = Quantidade de Aulas Semestrais - Presencial</p>
+            <p class="info">AO = Quantidade de Aulas Semestrais - Online</p>
+            
+            <div class="exibir">
+                <a href="#1semestre" class="link-semestre">1º Semestre</a>
+                <a href="#2semestre" class="link-semestre">2º Semestre</a>
+                <a href="#3semestre" class="link-semestre">3º Semestre</a>
+                <a href="#4semestre" class="link-semestre">4º Semestre</a>
+                <a href="#5semestre" class="link-semestre">5º Semestre</a>
+                <a href="#6semestre" class="link-semestre">6º Semestre</a>
+            </div>
+            
+            <h4 id="1semestre">1º Semestre</h4>
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="ordem">Sigla</th>
+                            <th class="componente">Componente</th>
+                            <th class="ordem">Oferta</th>
+                            <th class="ordem">AP - Sala</th>
+                            <th class="ordem">AP - Lab.</th>
+                            <th class="ordem">AO - Sala</th>
+                            <th class="ordem">AO - Lab.</th>
+                            <th class="ordem">Carga Horária</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr>
+                            <td>IAL-010</td>
+                            <td>Algoritmos e Lógica de Programação </td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>ISW-028</td>
+                            <td>Desenvolvimento Web I </td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>  
+                        <tr>
+                            <td>ISW-031 </td>
+                            <td>Design Digital</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>IES-011</td>
+                            <td>Engenharia de Software I</td>
+                            <td>Presencial</td>
+                            <td class="centro">40</td>
+                            <td class="centro">40</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>    
+                        </tr> 
+                        <tr>
+                            <td>IBD-014 </td>
+                            <td>Modelagem de Banco de Dados</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>ISO-011</td>
+                            <td>Sistemas Operacionais e Redes de Computadores</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>    
+                        </tr>        
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="centro">Total</td>
+                            <td class="centro">480</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+
+            <h4 id="2semestre">2º Semestre</h4>
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="ordem">Sigla</th>
+                            <th class="componente">Componente</th>
+                            <th class="ordem">Oferta</th>
+                            <th class="ordem">AP - Sala</th>
+                            <th class="ordem">AP - Lab.</th>
+                            <th class="ordem">AO - Sala</th>
+                            <th class="ordem">AO - Lab.</th>
+                            <th class="ordem">Carga Horária</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr>
+                            <td>ILP-036</td>
+                            <td>Técnicas de Programação I </td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>ISW-029</td>
+                            <td>Desenvolvimento Web II </td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>  
+                        <tr>
+                            <td>MAT-019</td>
+                            <td>Matemática para computação</td>
+                            <td>Presencial</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>IES-012</td>
+                            <td>Engenharia de Software II</td>
+                            <td>Presencial</td>
+                            <td class="centro">40</td>
+                            <td class="centro">40</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>    
+                        </tr> 
+                        <tr>
+                            <td>IBD-015 </td>
+                            <td>Banco de Dados – Relacional </td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>IED-005</td>
+                            <td>Estrutura de Dados</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>    
+                        </tr>        
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="centro">Total</td>
+                            <td class="centro">480</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+
+            <h4 id="3semestre">3º Semestre</h4>
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="ordem">Sigla</th>
+                            <th class="componente">Componente</th>
+                            <th class="ordem">Oferta</th>
+                            <th class="ordem">AP - Sala</th>
+                            <th class="ordem">AP - Lab.</th>
+                            <th class="ordem">AO - Sala</th>
+                            <th class="ordem">AO - Lab.</th>
+                            <th class="ordem">Carga Horária</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr>
+                            <td>ILP-037</td>
+                            <td>Técnicas de Programação II </td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>ISW-030</td>
+                            <td>Desenvolvimento Web III </td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>  
+                        <tr>
+                            <td>MAG-004</td>
+                            <td>Álgebra Linear</td>
+                            <td>Presencial</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>AGO-021</td>
+                            <td>Gestão Ágil de Projetos de Software</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>    
+                        </tr> 
+                        <tr>
+                            <td>IBD-016 </td>
+                            <td>Banco de Dados - Não Relacional</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>IHC-004 </td>
+                            <td>Interação Humano Computador </td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">40</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">40</td>    
+                        </tr>     
+                        <tr>
+                            <td>ING-085 </td>
+                            <td>Inglês I </td>
+                            <td>Presencial</td>
+                            <td class="centro">40</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">40</td>    
+                        </tr>    
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="centro">Total</td>
+                            <td class="centro">480</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+
+            <h4 id="4semestre">4º Semestre</h4>
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="ordem">Sigla</th>
+                            <th class="componente">Componente</th>
+                            <th class="ordem">Oferta</th>
+                            <th class="ordem">AP - Sala</th>
+                            <th class="ordem">AP - Lab.</th>
+                            <th class="ordem">AO - Sala</th>
+                            <th class="ordem">AO - Lab.</th>
+                            <th class="ordem">Carga Horária</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr>
+                            <td>ISW-032 </td>
+                            <td>Integração e Entrega Contínua</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>ISW-033</td>
+                            <td>Laboratório de Desenvolvimento Web </td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>  
+                        <tr>
+                            <td>IAL-011 </td>
+                            <td>Internet das Coisas e Aplicações</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>ILP-038 </td>
+                            <td>Programação para Dispositivos Móveis I</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>    
+                        </tr> 
+                        <tr>
+                            <td>MET-004 </td>
+                            <td>Estatística Aplicada</td>
+                            <td>Presencial</td>
+                            <td class="centro">40</td>
+                            <td class="centro">40</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>IHC-005 </td>
+                            <td>Experiência do Usuário </td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">40</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">40</td>    
+                        </tr>     
+                        <tr>
+                            <td>ING-086 </td>
+                            <td>Inglês II </td>
+                            <td>Presencial</td>
+                            <td class="centro">40</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">40</td>    
+                        </tr>    
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="centro">Total</td>
+                            <td class="centro">480</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+
+            <h4 id="5semestre">5º Semestre</h4>
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="ordem">Sigla</th>
+                            <th class="componente">Componente</th>
+                            <th class="ordem">Oferta</th>
+                            <th class="ordem">AP - Sala</th>
+                            <th class="ordem">AP - Lab.</th>
+                            <th class="ordem">AO - Sala</th>
+                            <th class="ordem">AO - Lab.</th>
+                            <th class="ordem">Carga Horária</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr>
+                            <td>ISW-034</td>
+                            <td>Computação em Nuvem I</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>MAQ-024 </td>
+                            <td>Aprendizagem de Máquina</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>  
+                        <tr>
+                            <td>ISW-036 </td>
+                            <td>Laboratório de Desenvolvimento para Dispositivos Móveis</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>ILP-039 </td>
+                            <td>Programação para Dispositivos Móveis II</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>    
+                        </tr> 
+                        <tr>
+                            <td>ISG-022 </td>
+                            <td>Segurança no Des. de Aplicações</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>POR-040</td>
+                            <td>Fundamentos da Redação técnica</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">40</td>
+                            <td class="centro">-</td>
+                            <td class="centro">40</td>    
+                        </tr>     
+                        <tr>
+                            <td>ING-087 </td>
+                            <td>Inglês III </td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">40</td>
+                            <td class="centro">-</td>
+                            <td class="centro">40</td>    
+                        </tr>    
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="centro">Total</td>
+                            <td class="centro">480</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+
+            <h4 id="6semestre">6º Semestre</h4>
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="ordem">Sigla</th>
+                            <th class="componente">Componente</th>
+                            <th class="ordem">Oferta</th>
+                            <th class="ordem">AP - Sala</th>
+                            <th class="ordem">AP - Lab.</th>
+                            <th class="ordem">AO - Sala</th>
+                            <th class="ordem">AO - Lab.</th>
+                            <th class="ordem">Carga Horária</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr>
+                            <td>ISW-035</td>
+                            <td>Computação em Nuvem II</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>ISW-037</td>
+                            <td>Processamento de Linguagem Natural</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>  
+                        <tr>
+                            <td>ISW-038</td>
+                            <td>Laboratório de Des. Multiplataforma </td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>ISW-039</td>
+                            <td>Mineração de Dados </td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">20</td>
+                            <td class="centro">60</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>    
+                        </tr> 
+                        <tr>
+                            <td>IQS-004 </td>
+                            <td>Qualidade e Testes de Software</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                            <td class="centro">-</td>
+                            <td class="centro">80</td>
+                        </tr>
+                        <tr>
+                            <td>DDI-009 </td>
+                            <td>Ética Profissional e Patente</td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">40</td>
+                            <td class="centro">-</td>
+                            <td class="centro">40</td>    
+                        </tr>     
+                        <tr>
+                            <td>ING-088 </td>
+                            <td>Inglês VI </td>
+                            <td>Presencial</td>
+                            <td class="centro">-</td>
+                            <td class="centro">-</td>
+                            <td class="centro">40</td>
+                            <td class="centro">-</td>
+                            <td class="centro">40</td>    
+                        </tr>    
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="centro">Total</td>
+                            <td class="centro">480</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="ordem"></th>
+                            <th class="componente"></th>
+                            <th class="ordem">AP - Sala</th>
+                            <th class="ordem">AP - Lab.</th>
+                            <th class="ordem">AO - Sala</th>
+                            <th class="ordem">AO - Lab.</th>
+                            <th class="ordem">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr>
+                            <td></td>
+                            <td>Total de aulas do curso</td>
+                            <td>360</td>
+                            <td>1980</td>
+                            <td>540</td>
+                            <td>-</td>
+                            <td>2880</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Total de horas do curso</td>
+                            <td>300</td>
+                            <td>1650</td>
+                            <td>450</td>
+                            <td>-</td>
+                            <td>2400</td>
+                        </tr> 
+                </table>
+            </div>
+
+            <a href="#topo" class="link-semestre">Voltar ao topo</p>
+
+        </div>
+
+        <div id="conteudo-grade" class="hidden-content">
+            <div class="texto">
+                <a href="pdf/HORARIO_DE_AULA_MULTIPLATAFORMA_1o_S__20241.pdf" target="_blank" class="link-pdf">Grade Horária 1º Semestre 2024</a><br><br>
+                <a href="" class="link-pdf">Grade Horária 2º Semestre 2023</a> <br><br>
+                <a href="" class="link-pdf">Grade Horária 1º Semestre 2023</a> <br><br>
+                <a href="" class="link-pdf">Grade Horária 2º Semestre 2022</a> 
+            </div>
+        </div>
+
+
+        <script>
+            document.getElementById('botao-professores').addEventListener('click', function() {
+                document.getElementById('conteudo-professores').style.display = 'block';
+                document.getElementById('conteudo-disciplinas').style.display = 'none';
+                document.getElementById('conteudo-grade').style.display = 'none';
+            });
+    
+            document.getElementById('botao-disciplinas').addEventListener('click', function() {
+                document.getElementById('conteudo-professores').style.display = 'none';
+                document.getElementById('conteudo-disciplinas').style.display = 'block';
+                document.getElementById('conteudo-grade').style.display = 'none';
+            });
+    
+            document.getElementById('botao-grade').addEventListener('click', function() {
+                document.getElementById('conteudo-professores').style.display = 'none';
+                document.getElementById('conteudo-disciplinas').style.display = 'none';
+                document.getElementById('conteudo-grade').style.display = 'block';
+            });
+    
+            document.getElementById('botao-turma').addEventListener('click', function() {
+                document.getElementById('conteudo-professores').style.display = 'none';
+                document.getElementById('conteudo-disciplinas').style.display = 'none';
+                document.getElementById('conteudo-grade').style.display = 'none';
+            });
+        </script>
+    </main>
+    <footer class="site-footer">
+        <div class="footer">
+            <img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
+            <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista - CEP: 13974-080</p>
+            <p class="rodape">Telefone: (19) 3843-1996 | (19) 3863-5210 (WhatsApp)</p>
+            <p class="rodape">&copy; 2024 Bonde das Maravilhas. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
