@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    <title>Formulário enviados</title>
+
+</head>
+<body>
+    <header>
+        <div class="topo">
+            <div class="fundo"><img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
+            <div class="fundo2"><img src="img/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
+        </div>
+        <nav>
+            <a href="index-coordenador.html" class="botao-nav">Início</a>
+            <a href="lista-recebidos-faltas.html" class="botao-nav">Justificativas de Falta</a>
+            <a href="" class="botao-nav">Reposição de Aulas</a>
+            <a href="informacoes.html" class="botao-nav">Informações do Curso</a>
+            <a href="#" class="botao-nav">Sair</a>
+        </nav>
+
+    </header>
+    <main>
+        <h1>Justificativa de Faltas Recebidas</h1>
+        <br><br>
+
+        <div class="topo-form">
+            <form>
+                <div class="filtro-form">
+                <label for="filterTipo">Professor: </label>
+                <select id="filterTipo" class="filter-input">
+                    <option value="">Todos</option>
+                    <option value="Professor 1">Professor 1</option>
+                    <option value="Professor 2">Professor 2</option>
+                    <option value="Professor 3">Professor 3</option>
+                    <option value="Professor 4">Professor 4</option>
+                    <option value="Professor 5">Professor 5</option>
+                </select>
+
+                <label for="disciplina">Disciplina:</label>
+                <select id="disciplina">
+                    <option value="0">Todos</option>
+                    <option value="1">Disciplina 1</option>
+                    <option value="2">Disciplina 2</option>
+                    <option value="3">Disciplina 3</option>
+                    <option value="4">Disciplina 4</option> 
+                </select>
+
+                <label for="filterStatus">Status:</label>
+                <select id="filterStatus" class="filter-input">
+                    <option value="">Todos</option>
+                    <option value="Em analise">Analisar</option>
+                    <option value="Deferido">Deferido</option>
+                    <option value="Indeferido">Indeferido</option>
+                </select>
+
+                <input type="submit" value="Aplicar filtro">
+                <input type="reset" name="Limpar" value="Limpar filtro">
+            </div>
+            </form>
+        </div>
+    
+
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="ordem">Número</th>
+                        <th class="ordem">Data de recebimento</th>
+                        <th class="componente">Professor</th>
+                        <th class="componente">Disciplina</th>
+                        <th class="status">Status</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr>
+                        <td>01</td>
+                        <td>14/04/2024</td>
+                        <td>Wladimir José Camillo Menegassi</td>
+                        <td>Modelagem de Banco de Dados</td>
+                        <td>Indeferido</td>
+                    </tr>
+                    <tr>
+                        <td>02</td>
+                        <td>16/05/2024</td>
+                        <td>Wladimir José Camillo Menegassi</td>
+                        <td>Modelagem de Banco de Dados</td>
+                        <td>Deferido</td>
+                    </tr>
+                    <tr>
+                        <td>03</td>
+                        <td>17/05/2024</td>
+                        <td>Ana Célia Ribeiro Bizigato Portes</td>
+                        <td>Engenharia de Software I</td>
+                        <td>Indeferido</td>
+                    </tr>
+                    <tr>
+                        <td>04</td>
+                        <td>20/05/2024</td>
+                        <td>Ana Célia Ribeiro Bizigato Portes</td>
+                        <td>Engenharia de Software I</td>
+                        <td>Deferido</td>
+                    </tr>
+                    <tr>
+                        <td>05</td>
+                        <td>26/05/2024</td>
+                        <td>Ana Célia Ribeiro Bizigato Portes</td>
+                        <td>Engenharia de Software I</td>
+                        <td>Analisar</td>
+                    </tr>
+                    <tr>
+                        <td>06</td>
+                        <td>28/05/2024</td>
+                        <td>Thiago Salhab Alves</td>
+                        <td>Design Digital</td>
+                        <td>Analisar</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </main>
+    <footer class="site-footer">
+        <div class="footer">
+            <img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
+            <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista - CEP: 13974-080</p>
+            <p class="rodape">Telefone: (19) 3843-1996 | (19) 3863-5210 (WhatsApp)</p>
+            <p class="rodape">&copy; 2024 Bonde das Maravilhas. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
