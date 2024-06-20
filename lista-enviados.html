@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    <title>Formulário enviados</title>
+
+</head>
+<body>
+    <header>
+        <div class="topo">
+            <div class="fundo"><img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
+            <div class="fundo2"><img src="img/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
+        </div>
+        <nav>
+            <a href="index-professor.html" class="botao-nav">Início</a>
+            <a href="enviar-formularios.html" class="botao-nav">Enviar formulário</a>
+            <a href="lista-enviados.html" class="botao-nav">Formulários enviados</a>
+            <a href="#" class="botao-nav">Sair</a>
+        </nav>
+
+    </header>
+    <main>
+        <h1>Formulários Enviados</h1>
+
+        <div class="topo-form">
+            <form>
+                <div class="filtro-form">
+                <label for="filterTipo">Tipo de Formulário:</label>
+                <select id="filterTipo" class="filter-input">
+                    <option value="">Todos</option>
+                    <option value="Justificativa de Falta">Justificativa de Falta</option>
+                    <option value="Reposição de Aulas">Reposição de Aulas</option>
+                </select>
+                
+                <label for="filterStatus">Status:</label>
+                <select id="filterStatus" class="filter-input">
+                    <option value="">Todos</option>
+                    <option value="Em analise">Em análise</option>
+                    <option value="Deferido">Deferido</option>
+                    <option value="Indeferido">Indeferido</option>
+                </select>
+
+                <input type="submit" value="Aplicar filtro">
+                <input type="reset" name="Limpar" value="Limpar filtro">
+            </div>
+            </form>
+        </div>
+    
+
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="ordem">Nº do Formulário</th>
+                        <th class="ordem">Data de envio</th>
+                        <th class="tipo">Tipo de Formulário</th>
+                        <th class="ordem">Curso</th>
+                        <th class="tipo">Disciplina</th>
+                        <th class="status">Status</th>
+                        <th class="ordem">Feedback</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr>
+                        <td>01</td>
+                        <td>14/04/2024</td>
+                        <td>Justificativa de Falta</td>
+                        <td>CST-DSM</td>
+                        <td>Engenharia de Software I</td>
+                        <td>Indeferido</td>
+                        <td class="centro"><a href=""><img src="img/feedback.png"></a></td>
+                    </tr>
+                    <tr>
+                        <td>02</td>
+                        <td>16/05/2024</td>
+                        <td>Reposição de Aulas</td>
+                        <td>CST-DSM</td>
+                        <td>Engenharia de Software I</td>
+                        <td>Deferido</td>
+                        <td class="centro">-</td>
+                    </tr>
+                    <tr>
+                        <td>03</td>
+                        <td>17/05/2024</td>
+                        <td>Justificativa de Faltas</td>
+                        <td>CST-DSM</td>
+                        <td>Engenharia de Software II</td>
+                        <td>Indeferido</td>
+                        <td class="centro"><a href=""><img src="img/feedback.png"></a></td>
+                    </tr>
+                    <tr>
+                        <td>04</td>
+                        <td>20/05/2024</td>
+                        <td>Reposição de aulas</td>
+                        <td>CST-DSM</td>
+                        <td>Engenharia de Software II</td>
+                        <td>Deferido</td>
+                        <td class="centro">-</td>
+                    </tr>
+                    <tr>
+                        <td>05</td>
+                        <td>25/05/2024</td>
+                        <td>Justificativa de falta</td>
+                        <td></td>
+                        <td></td>
+                        <td>Em análise</td>
+                        <td class="centro"></td>
+                    </tr>
+                    <tr>
+                        <td>06</td>
+                        <td>28/05/2024</td>
+                        <td>Reposição de aula</td>
+                        <td></td>
+                        <td></td>
+                        <td>Em análise</td>
+                        <td class="centro"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </main>
+    <footer class="site-footer">
+        <div class="footer">
+            <img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
+            <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista - CEP: 13974-080</p>
+            <p class="rodape">Telefone: (19) 3843-1996 | (19) 3863-5210 (WhatsApp)</p>
+            <p class="rodape">&copy; 2024 Bonde das Maravilhas. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
