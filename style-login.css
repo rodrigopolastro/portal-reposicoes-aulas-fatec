@@ -157,6 +157,8 @@ p{
 
 .botao-senha:hover {
     background-color: #720606;
+    color:#fff;
+    text-decoration: none;
 }
 
 #error-message {

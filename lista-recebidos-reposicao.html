@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    <title>Reposição de aulas</title>
+
+</head>
+<body>
+    <header>
+        <div class="topo">
+            <div class="fundo"><img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
+            <div class="fundo2"><img src="img/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
+        </div>
+        <nav>
+            <a href="index-coordenador.html" class="botao-nav">Início</a>
+            <a href="lista-recebidos-faltas.html" class="botao-nav">Justificativas de Falta</a>
+            <a href="lista-recebidos-reposicao.html" class="botao-nav">Reposição de Aulas</a>
+            <a href="informacoes.html" class="botao-nav">Informações do Curso</a>
+            <a href="login.html" class="botao-nav">Sair</a>
+        </nav>
+
+    </header>
+    <main>
+        <h1>Reposições de Aulas Recebidas</h1>
+        <div class="form-coord">
+        <p>Escolha quais formlulários gostaria de visualizar: </p>
+            <div class="exibir2">
+
+                <button id="botao-recebidos" class="custom-link">Esperando análise</button>
+                <button id="botao-finalizados" class="custom-link">Finalizados</button>
+            </div>
+        </div>
+
+        <div id="recebidos" class="hidden-content">
+            <div class="topo-form">
+                <form id="filtro-form-recebidos">
+                    <div class="filtro-form">
+                    <label for="filterTipo">Professor: </label>
+                    <select id="filterTipo" class="filter-input">
+                        <option value="">Todos</option>
+                        <option value="Professor 1">Professor 1</option>
+                        <option value="Professor 2">Professor 2</option>
+                        <option value="Professor 3">Professor 3</option>
+                        <option value="Professor 4">Professor 4</option>
+                        <option value="Professor 5">Professor 5</option>
+                    </select>
+
+                    <input type="submit" value="Aplicar filtro">
+                    <input type="reset" name="Limpar" value="Limpar filtro">
+                </div>
+                </form>
+            </div>
+        
+
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="ordem">Data de recebimento</th>
+                            <th class="ordem">Data de falta</th>
+                            <th class="componente">Professor</th>
+                            <th class="componente">Nome da disciplina</th>
+                            <th class="ordem">Data da reposição</th>
+                            <th class="status">Analizar</th>
+                            <th class="ordem"></th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr>
+                            <td>12/04/2024</td>
+                            <td>10/04/2024</td>
+                            <td>Wladimir José Camillo Menegassi</td>
+                            <td>Modelagem de Banco de Dados</td>
+                            <td>15/04/2024</td>
+                           
+                            <td class="centro"><a href="analisar1.html"><img src="img/analisar.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        <tr>
+                            <td>23/03/2024</td>
+                            <td>19/03/2024</td>
+                            <td>Janaina</td>
+                            <td>Inglês</td>
+                            <td>06/05/2024</td>
+                           
+                            <td class="centro"><a href="analisar2.html"><img src="img/analisar.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        <tr>
+                            <td>21/04/2024</td>
+                            <td>20/04/2024</td>
+                            <td>Ana Célia Ribeiro Bizigato Portes</td>
+                            <td>Engenharia de Software I</td>
+                            <td>01/05/2024</td>
+                           
+                            <td class="centro"><a href="analisar3.html"><img src="img/analisar.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        <tr>
+                            <td>06/05/2024</td>
+                            <td>04/05/2024</td>
+                            <td>José Gonçalves Pinto Juniors</td>
+                            <td>Segurança no Desenvolvimento de Aplicações</td>
+                            <td>10/05/2024</td>
+                           
+                            <td class="centro"><a href=""><img src="img/analisar.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        <tr>
+                            <td>25/05/2024</td>
+                            <td>22/05/2024</td>
+                            <td>Edison Kazuo Igarashi</td>
+                            <td>Sistemas Operacionais e Redes de Computadores</td>
+                            <td>03/06/2024</td>
+                           
+                            <td class="centro"><a href=""><img src="img/analisar.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        <tr>
+                            <td>03/06/2024</td>
+                            <td>02/06/2024</td>
+                            <td>Thiago Salhab Alves</td>
+                            <td>Design Digital</td>
+                            <td>01/07/2024</td>
+                           
+                            <td class="centro"><a href=""><img src="img/analisar.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="finalizados" class="hidden-content">
+            <div class="topo-form">
+                <form id="filtro-form-recebidos">
+                    <div class="filtro-form">
+                    <label for="filterTipo">Professor: </label>
+                    <select id="filterTipo" class="filter-input">
+                        <option value="">Todos</option>
+                        <option value="Professor 1">Professor 1</option>
+                        <option value="Professor 2">Professor 2</option>
+                        <option value="Professor 3">Professor 3</option>
+                        <option value="Professor 4">Professor 4</option>
+                        <option value="Professor 5">Professor 5</option>
+                    </select>
+
+                    <label for="disciplina">Disciplina:</label>
+                    <select id="disciplina">
+                        <option value="0">Todos</option>
+                        <option value="1">Disciplina 1</option>
+                        <option value="2">Disciplina 2</option>
+                        <option value="3">Disciplina 3</option>
+                        <option value="4">Disciplina 4</option> 
+                    </select>
+
+                    <label for="filterStatus">Status:</label>
+                    <select id="filterStatus" class="filter-input">
+                        <option value="">Todos</option>
+                        <option value="Em analise">Em análise</option>
+                        <option value="Deferido">Deferido</option>
+                        <option value="Indeferido">Indeferido</option>
+                    </select>
+
+                    <input type="submit" value="Aplicar filtro">
+                    <input type="reset" name="Limpar" value="Limpar filtro">
+                </div>
+                </form>
+            </div>
+        
+
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="ordem">Data de recebimento</th>
+                            <th class="componente">Professor</th>
+                            <th class="componente">Disciplina</th>
+                            <th class="status">Status</th>
+                            <th class="ordem"></th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr>
+                            <td>03/03/2024</td>
+                            <td>Douglas Rosa</td>
+                            <td>Programação para Dispositivos Móveis I</td>
+                            <td>Indeferido</td>
+                            <td class="centro"><a href="indeferido.html"><img src="img/indeferido.png" class="iconeAnalisar"><a href=""><img src="img/feedback.png" class="iconeAnalisar"></a></a></td>
+                        </tr>
+                        <tr>
+                            <td>15/03/2024</td>
+                            <td>José Gonçalves Pinto Junior	</td>
+                            <td>Banco de Dados Relacional</td>
+                            <td>Deferido</td>
+                            <td class="centro"><a href="deferido.html"><img src="img/deferido.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        <tr>
+                            <td>17/03/2024</td>
+                            <td>Lúcio</td>
+                            <td>Integração e Entrega Contínua</td>
+                            <td>Deferido</td>
+                            <td class="centro"><a href=""><img src="img/indeferido.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        <tr>
+                            <td>20/03/2024</td>
+                            <td>Mateus</td>
+                            <td>Aprendizagem de Máquina</td>
+                            <td>Deferido</td>
+                            <td class="centro"><a href=""><img src="img/indeferido.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        <tr>
+                            <td>26/03/2024</td>
+                            <td>Thiago Salhab Alves</td>
+                            <td>Interação Humano Computador</td>
+                            <td>Indeferido</td>
+                            <td class="centro"><a href=""><img src="img/indeferido.png" class="iconeAnalisar"><a href=""><img src="img/feedback.png" class="iconeAnalisar"></a></a></td>
+                        </tr>
+                        <tr>
+                            <td>28/03/2024</td>
+                            <td>Vagner</td>
+                            <td>Álgebra Linear</td>
+                            <td>Deferido</td>
+                            <td class="centro"><a href=""><img src="img/indeferido.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById('botao-recebidos').addEventListener('click', function() {
+                document.getElementById('recebidos').style.display = 'block';
+                document.getElementById('finalizados').style.display = 'none';
+            });
+    
+            document.getElementById('botao-finalizados').addEventListener('click', function() {
+                document.getElementById('recebidos').style.display = 'none';
+                document.getElementById('finalizados').style.display = 'block';
+            });
+    
+        </script>
+
+    </main>
+    <footer class="site-footer">
+        <div class="footer">
+            <img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
+            <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista - CEP: 13974-080</p>
+            <p class="rodape">Telefone: (19) 3843-1996 | (19) 3863-5210 (WhatsApp)</p>
+            <p class="rodape">&copy; 2024 Equipe 6tec. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

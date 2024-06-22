@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style-login.css">
-    <title>Login</title>
+    <title>verificação</title>
 </head>
 <body>    
         <div class="caixa">
@@ -19,20 +19,11 @@
             <form id="codigo">
                 <label for="codigo">Código</label>
                 <input type="text" id="codigo" required>
-                <div class="botao"><a href="redefinir.html" class="botao-senha">Verificar</button></a></div>
+                <div class="botao">
+                    <a href="redefinir.html" class="botao-senha">Verificar</a>
+                </div>
             </form>
         </div>
 
-        <script>
-            document.getElementById('loginForm').addEventListener('submit', function(event) {
-                var usuario = document.getElementById('usuario').value;
-                var senha = document.getElementById('senha').value;
-                
-                if (!usuario || !senha) {
-                    alert('Por favor, preencha ambos os campos.');
-                    event.preventDefault();
-                }
-            });
-        </script>
 </body>
 </html>

@@ -18,75 +18,56 @@
             <form id="novaSenha">
                 <label for="senha">Nova senha:</label>
                 <input type="password" id="senha" placeholder="8+ caracteres, incluindo letras e números" required>
-                <div id="strength-message"></div> <!-- Indicador de força da senha -->
-        
+                <div id="strength-message"></div> 
+            
                 <label for="confirmaSenha">Confirme a senha:</label>
                 <input type="password" id="confirmaSenha" placeholder="Repita a nova senha" required>
-                <div id="error-message"></div> <!-- Mensagem de erro -->
-        
+                <div id="error-message"></div> 
+            
                 <input type="submit" value="Salvar">
             </form>
-
+            
             <script>
-                // Função para avaliar a força da senha
+                // Avaliar a força da senha
                 function checkPasswordStrength(password) {
                     let strength = 0;
                     if (password.length >= 8) strength += 1;
                     if (password.match(/[a-z]/)) strength += 1;
                     if (password.match(/[A-Z]/)) strength += 1;
                     if (password.match(/[0-9]/)) strength += 1;
-                    if (password.match(/[\W]/)) strength += 1; // Caracteres especiais
+                    if (password.match(/[\W]/)) strength += 1; 
                     return strength;
                 }
-        
-                // Adiciona evento de input ao campo de senha para verificar a força em tempo real
+            
+                // Atualizar a mensagem de força da senha conforme o usuário digita
                 document.getElementById('senha').addEventListener('input', function() {
                     var senha = document.getElementById('senha').value;
                     var strengthMessage = document.getElementById('strength-message');
                     var strength = checkPasswordStrength(senha);
-        
-                    // Define mensagens de acordo com a força da senha
+            
                     var messages = ["muito fraca", "fraca", "moderada", "forte", "muito forte"];
                     var colors = ["#A50000", "#8b451d", "#dcc214", "#003347", "#004714"];
                     
-                    // Atualiza a mensagem de força da senha
                     strengthMessage.textContent = `Senha ${messages[strength]}`;
                     strengthMessage.style.color = colors[strength];
                 });
-        
-                // Adiciona um ouvinte de evento de envio ao formulário para validar a igualdade das senhas
+            
+                // Validar a igualdade das senhas no envio do formulário
                 document.getElementById('novaSenha').addEventListener('submit', function(event) {
+                    event.preventDefault(); // Previne a submissão do formulário inicialmente
                     var senha = document.getElementById('senha').value;
                     var confirmaSenha = document.getElementById('confirmaSenha').value;
                     var errorMessage = document.getElementById('error-message');
-        
-                    // Verifica se as senhas são iguais
+            
                     if (senha !== confirmaSenha) {
-                        // Exibe a mensagem de erro e impede o envio do formulário
                         errorMessage.textContent = 'As senhas não coincidem. Por favor, digite novamente.';
                         errorMessage.style.display = 'block';
-                        event.preventDefault();
                     } else {
-                        // Esconde a mensagem de erro (caso esteja visível) e permite o envio
-                        errorMessage.style.display = 'none';
+                        // As senhas coincidem, redirecionar para login.html
+                        window.location.href = 'login.html';
                     }
                 });
             </script>
-        
-
-
         </div>
-
-        <script>
-            document.getElementById('loginForm').addEventListener('submit', function(event) {
-                var usuario = document.getElementById('usuario').value;
-                var senha = document.getElementById('senha').value;
-                
-                if (!usuario || !senha) {
-                    alert('Por favor, preencha ambos os campos.');
-                    event.preventDefault();
-                }
-            });
-        </script>
 </body>
 </html>

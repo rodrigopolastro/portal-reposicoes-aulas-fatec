@@ -1,0 +1,107 @@
+Falta fazer:
+
+login:
+    - script para verificar qual email está sendo informado
+        - se for professor@fatec.sp.gov.br - botão direciona para página index-professor
+        - se for coordenador@fatec.sp.gov.br - botão direfiona para página index-coordenador
+        - se for secretaria@fatec.sp.gov.br - botão direfiona para página index-secretaria
+
+Redefinir senha:
+    - modificar script para aparecer a mensagem "Senha salva com sucesso!", caso as duas senhas sejam iguais
+
+telas de index: 
+    - professor - layout
+    - coordenador - layout
+    - secretaria - layout
+
+textos para serem exibidos: (SAMARA)
+    - Como não temos banco de dados ainda, precisamos acertar os textos que serão exibidos como exemplos
+    - As datas precisam fazer sentido e seguirem cronologia
+    - As informações precisam ser melhoradas de acordo com cada visualização
+        - Professsor
+            - Visualiza apenas seus formulários 
+
+        - Coordenador
+            - Visualiza formulários de muitos professores de um curso específico
+
+        - Secretaria
+            - Visualiza formulários de muitos professores de todos os cursos
+
+Professor:
+
+    Formulário de Justificativa de Faltas:
+        - validar preenchimento dos campos
+    
+    Formulário de Reposição de Faltas:
+        - perquisar, se der tempo, possibilidadde de preencher as tabelas com as informação dos inputs usando javascript 
+        - validar preenchimento dos campos
+        - acertar css de alguns elementos desalinhados no fim da página
+
+    Formulários enviados:
+        - criar um modal para exibir apenas o feedback do coordenador caso o formulário tenha sido indeferido. Exibir quando clicar no ícone.
+        - acertar css do icone
+        - perquisar, se der tempo, possibilidade de filtrar os campos da tabela usando javascript
+        
+        --------------CRIAR------------
+            - Página para visualização do formulário enviado completo deferido
+            - Página para visualização do formulário enviado completo indeferido
+            - Página para visualização do formulário enviado completo em análise 
+
+            - Botão gerar PDF
+            - Botão baixar PDF
+
+Coordenador:
+
+    Justificativas de Faltas:
+        - Pesquisar, se der tempo, possibilidade de filtrar os campos da tabela usando javascript
+        - criar um modal para exibir apenas o feedback do coordenador caso o formulário tenha sido indeferido. Exibir quando clicar no ícone.
+
+        --------------CRIAR------------
+            - Página para visualização do formulário enviado completo deferido
+            - Página para visualização do formulário enviado completo indeferido
+            - Página para visualização do formulário enviado completo em análise 
+    
+    Reposição de Aulas:
+        - Criar página seguindo o modelo da página de justificativa de faltas
+        - Pesquisar, se der tempo, possibilidade de filtrar os campos da tabela usando javascript
+        - criar um modal para exibir apenas o feedback do coordenador caso o formulário tenha sido indeferido. Exibir quando clicar no ícone.
+
+        --------------CRIAR------------
+            - Página para visualização do formulário enviado completo deferido
+            - Página para visualização do formulário enviado completo indeferido
+            - Página para visualização do formulário enviado completo em análise 
+    
+    Informações do curso:
+        - página sugerida para conter informações que possam ajudar o coordenador a visualizar informações se necessário
+            - caso alguém tenha mais ideias do que pode estar nessa página.
+
+Secretária:
+    --------------CRIAR------------
+    - Página index
+    - Página de visualização dos formulários
+        
+        - COMO FAZER?
+
+        1.
+        - Uma tabela com todos os formulários de Justificativas de faltas e uma tabela com todos os formulários de reposição de aulas
+        - Filtros por curso, professor, etc.
+
+        2.
+        - Uma página com opções de qual curso visualizar, que direciona para 
+        - uma página de qual tipo de formulário visualizar, que direciona para
+        - uma página onde está a tabela com os formulários, semelhante a página de visualização do do coordenador.
+
+        3.
+        - Uma página para visualizar formulários de justificativa de falta com botões de cursos
+        - Quando clicar no botão de um curso aparece a tabela dos formulários de justificativa daquele curso em especifico, com os filtros 
+        
+        E
+
+        - Uma página para visualizar formulários de reposição de aulas com botões de cursos
+        - Quando clicar no botão de um curso aparece a tabela dos formulários de reposição daquele curso em especifico, com os filtros 
+
+Sair:
+
+ - como estamos simulando, pensei em a opção sair do menu ser apenas um link para a página login.
+
+

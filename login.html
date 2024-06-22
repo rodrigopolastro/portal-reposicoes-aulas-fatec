@@ -27,12 +27,26 @@
 
         <script>
             document.getElementById('loginForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Impede o envio do formulário para evitar o comportamento padrão
+                
                 var usuario = document.getElementById('usuario').value;
                 var senha = document.getElementById('senha').value;
                 
+                // Verifica se os campos estão preenchidos
                 if (!usuario || !senha) {
                     alert('Por favor, preencha ambos os campos.');
-                    event.preventDefault();
+                    return;
+                }
+                
+                // Redireciona com base no email inserido
+                if (usuario === 'professor@fatec.sp.gov.br') {
+                    window.location.href = 'index-professor.html';
+                } else if (usuario === 'coordenador@fatec.sp.gov.br') {
+                    window.location.href = 'index-coordenador.html';
+                } else if (usuario === 'secretaria@fatec.sp.gov.br') {
+                    window.location.href = 'index-secretaria.html';
+                } else {
+                    alert('Email não reconhecido. Por favor, tente novamente.');
                 }
             });
         </script>

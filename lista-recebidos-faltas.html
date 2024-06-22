@@ -18,109 +18,308 @@
             <a href="lista-recebidos-faltas.html" class="botao-nav">Justificativas de Falta</a>
             <a href="" class="botao-nav">Reposição de Aulas</a>
             <a href="informacoes.html" class="botao-nav">Informações do Curso</a>
-            <a href="#" class="botao-nav">Sair</a>
+            <a href="login.html" class="botao-nav">Sair</a>
         </nav>
 
     </header>
     <main>
         <h1>Justificativa de Faltas Recebidas</h1>
-        <br><br>
+        <div class="form-coord">
+        <p>Escolha quais formlulários gostaria de visualizar: </p>
+            <div class="exibir2">
 
-        <div class="topo-form">
-            <form>
-                <div class="filtro-form">
-                <label for="filterTipo">Professor: </label>
-                <select id="filterTipo" class="filter-input">
-                    <option value="">Todos</option>
-                    <option value="Professor 1">Professor 1</option>
-                    <option value="Professor 2">Professor 2</option>
-                    <option value="Professor 3">Professor 3</option>
-                    <option value="Professor 4">Professor 4</option>
-                    <option value="Professor 5">Professor 5</option>
-                </select>
-
-                <label for="disciplina">Disciplina:</label>
-                <select id="disciplina">
-                    <option value="0">Todos</option>
-                    <option value="1">Disciplina 1</option>
-                    <option value="2">Disciplina 2</option>
-                    <option value="3">Disciplina 3</option>
-                    <option value="4">Disciplina 4</option> 
-                </select>
-
-                <label for="filterStatus">Status:</label>
-                <select id="filterStatus" class="filter-input">
-                    <option value="">Todos</option>
-                    <option value="Em analise">Analisar</option>
-                    <option value="Deferido">Deferido</option>
-                    <option value="Indeferido">Indeferido</option>
-                </select>
-
-                <input type="submit" value="Aplicar filtro">
-                <input type="reset" name="Limpar" value="Limpar filtro">
+                <button id="botao-recebidos" class="custom-link">Esperando análise</button>
+                <button id="botao-finalizados" class="custom-link">Finalizados</button>
             </div>
-            </form>
+        </div>
+
+        <div id="recebidos" class="hidden-content">
+            <div class="topo-form">
+                <form id="filtro-form-recebidos" onsubmit="return aplicarFiltro()">
+                    <div class="filtro-form">
+                        <label for="filterProfessor">Professor:</label>
+                        <select id="filterProfessor" class="filter-input">
+                            <option value="">Todos</option>
+                            <option value="Wladimir José Camillo Menegassi">Wladimir José Camillo Menegassi</option>
+                            <option value="Janaina">Janaina</option>
+                            <option value="Ana Célia Ribeiro Bizigato Portes">Ana Célia Ribeiro Bizigato Portes</option>
+                            <option value="Thiago Salhab Alves">Thiago Salhab Alves</option>
+                            <option value="José Gonçalves Pinto Junior">José Gonçalves Pinto Junior</option>
+                            <option value="Edison Kazuo Igarashi">Edison Kazuo Igarashi</option>
+                        </select>
+    
+                        <label for="filterDisciplina">Disciplina:</label>
+                        <select id="filterDisciplina" class="filter-input">
+                            <option value="">Todos</option>
+                            <option value="Modelagem de Banco de Dados">Modelagem de Banco de Dados</option>
+                            <option value="Inglês">Inglês</option>
+                            <option value="Engenharia de Software I">Engenharia de Software I</option>
+                            <option value="Design Digital">Design Digital</option>
+                            <option value="Algoritmo e lógica de programação">Algoritmo e lógica de programação</option>
+                            <option value="Sistemas Operacionais e Redes de Computadores">Sistemas Operacionais e Redes de Computadores</option>
+                        </select>
+    
+                        <input type="submit" value="Aplicar filtro">
+                        <input type="reset" value="Limpar filtro" onclick="limparFiltro()">
+                    </div>
+                </form>
+            </div>
+        
+            <div class="table">
+                <table id="tabela-recebidos">
+                    <thead>
+                        <tr>
+                            <th class="ordem">Número</th>
+                            <th class="ordem">Data de recebimento</th>
+                            <th class="componente">Professor</th>
+                            <th class="componente">Disciplina</th>
+                            <th class="status">Status</th>
+                            <th class="ordem"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-professor="Wladimir José Camillo Menegassi" data-disciplina="Modelagem de Banco de Dados">
+                            <td>01</td>
+                            <td>09/05/2024</td>
+                            <td>Wladimir José Camillo Menegassi</td>
+                            <td>Modelagem de Banco de Dados</td>
+                            <td>Analisar</td>
+                            <td class="centro"><a href="analisar1.html"><img src="img/analisar.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        <tr data-professor="Janaina" data-disciplina="Inglês">
+                            <td>02</td>
+                            <td>10/05/2024</td>
+                            <td>Janaina</td>
+                            <td>Inglês</td>
+                            <td>Analisar</td>
+                            <td class="centro"><a href="analisar2.html"><img src="img/analisar.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        <tr data-professor="Wladimir José Camillo Menegassi" data-disciplina="Modelagem de Banco de Dados">
+                            <td>03</td>
+                            <td>23/05/2024</td>
+                            <td>Wladimir José Camillo Menegassi</td>
+                            <td>Modelagem de Banco de Dados</td>
+                            <td>Analisar</td>
+                            <td class="centro"><a href="analisar1.html"><img src="img/analisar.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        <tr data-professor="Ana Célia Ribeiro Bizigato Portes" data-disciplina="Engenharia de Software I">
+                            <td>04</td>
+                            <td>25/05/2024</td>
+                            <td>Ana Célia Ribeiro Bizigato Portes</td>
+                            <td>Gestão Ágil de Projetos de Software</td>
+                            <td>Analisar</td>
+                            <td class="centro"><a href="justificativa3_coord.html"><img src="img/analisar.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        <tr data-professor="Thiago Salhab Alves" data-disciplina="Design Digital">
+                            <td>05</td>
+                            <td>09/06/2024</td>
+                            <td>Thiago Salhab Alves</td>
+                            <td>Design Digital</td>
+                            <td>Analisar</td>
+                            <td class="centro"><a href=""><img src="img/analisar.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        <tr data-professor="José Gonçalves Pinto Junior" data-disciplina="Algoritmo e lógica de programação">
+                            <td>06</td>
+                            <td>12/06/2024</td>
+                            <td>José Gonçalves Pinto Junior</td>
+                            <td>Algoritmo e lógica de programação</td>
+                            <td>Analisar</td>
+                            <td class="centro"><a href=""><img src="img/analisar.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        <tr data-professor="Edison Kazuo Igarashi" data-disciplina="Sistemas Operacionais e Redes de Computadores">
+                            <td>07</td>
+                            <td>17/06/2024</td>
+                            <td>Edison Kazuo Igarashi</td>
+                            <td>Sistemas Operacionais e Redes de Computadores</td>
+                            <td>Analisar</td>
+                            <td class="centro"><a href=""><img src="img/analisar.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
         </div>
     
+        <script>
+            // Função para aplicar os filtros
+            function aplicarFiltro() {
+                var professorFiltro = document.getElementById('filterProfessor').value;
+                var disciplinaFiltro = document.getElementById('filterDisciplina').value;
+    
+                var tabela = document.getElementById('tabela-recebidos');
+                var linhas = tabela.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    
+                for (var i = 0; i < linhas.length; i++) {
+                    var professor = linhas[i].getAttribute('data-professor');
+                    var disciplina = linhas[i].getAttribute('data-disciplina');
+    
+                    if ((professorFiltro === "" || professor === professorFiltro) &&
+                        (disciplinaFiltro === "" || disciplina === disciplinaFiltro)) {
+                        linhas[i].classList.remove('hidden');
+                    } else {
+                        linhas[i].classList.add('hidden');
+                    }
+                }
+                return false; // Evita o envio do formulário
+            }
+    
+            // Função para limpar os filtros
+            function limparFiltro() {
+                var tabela = document.getElementById('tabela-recebidos');
+                var linhas = tabela.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    
+                for (var i = 0; i < linhas.length; i++) {
+                    linhas[i].classList.remove('hidden');
+                }
+            }
+        </script>
 
-        <div class="table">
-            <table>
-                <thead>
-                    <tr>
-                        <th class="ordem">Número</th>
-                        <th class="ordem">Data de recebimento</th>
-                        <th class="componente">Professor</th>
-                        <th class="componente">Disciplina</th>
-                        <th class="status">Status</th>
-                    </tr>
-                </thead>
-                <tbody >
-                    <tr>
-                        <td>01</td>
-                        <td>14/04/2024</td>
-                        <td>Wladimir José Camillo Menegassi</td>
-                        <td>Modelagem de Banco de Dados</td>
-                        <td>Indeferido</td>
-                    </tr>
-                    <tr>
-                        <td>02</td>
-                        <td>16/05/2024</td>
-                        <td>Wladimir José Camillo Menegassi</td>
-                        <td>Modelagem de Banco de Dados</td>
-                        <td>Deferido</td>
-                    </tr>
-                    <tr>
-                        <td>03</td>
-                        <td>17/05/2024</td>
-                        <td>Ana Célia Ribeiro Bizigato Portes</td>
-                        <td>Engenharia de Software I</td>
-                        <td>Indeferido</td>
-                    </tr>
-                    <tr>
-                        <td>04</td>
-                        <td>20/05/2024</td>
-                        <td>Ana Célia Ribeiro Bizigato Portes</td>
-                        <td>Engenharia de Software I</td>
-                        <td>Deferido</td>
-                    </tr>
-                    <tr>
-                        <td>05</td>
-                        <td>26/05/2024</td>
-                        <td>Ana Célia Ribeiro Bizigato Portes</td>
-                        <td>Engenharia de Software I</td>
-                        <td>Analisar</td>
-                    </tr>
-                    <tr>
-                        <td>06</td>
-                        <td>28/05/2024</td>
-                        <td>Thiago Salhab Alves</td>
-                        <td>Design Digital</td>
-                        <td>Analisar</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div id="finalizados" class="hidden-content">
+            <div class="topo-form">
+                <form id="filtro-form-finalizados" onsubmit="return aplicarFiltroFinalizados()">
+                    <div class="filtro-form">
+                        <label for="filterProfessorF">Professor:</label>
+                        <select id="filterProfessorF" class="filter-input">
+                            <option value="">Todos</option>
+                            <option value="Wladimir José Camillo Menegassi">Wladimir José Camillo Menegassi</option>
+                            <option value="Ana Célia Ribeiro Bizigato Portes">Ana Célia Ribeiro Bizigato Portes</option>
+                            <option value="Thiago Salhab Alves">Thiago Salhab Alves</option>
+                        </select>
+
+                        <label for="filterDisciplinaF">Disciplina:</label>
+                        <select id="filterDisciplinaF" class="filter-input">
+                            <option value="">Todos</option>
+                            <option value="Modelagem de Banco de Dados">Modelagem de Banco de Dados</option>
+                            <option value="Engenharia de Software I">Engenharia de Software I</option>
+                            <option value="Design Digital">Design Digital</option>
+                        </select>
+
+                        <label for="filterStatusF">Status:</label>
+                        <select id="filterStatusF" class="filter-input">
+                            <option value="">Todos</option>
+                            <option value="Indeferido">Indeferido</option>
+                            <option value="Deferido">Deferido</option>
+                        </select>
+
+                        <input type="submit" value="Aplicar filtro">
+                        <input type="reset" value="Limpar filtro" onclick="limparFiltroFinalizados()">
+                    </div>
+                </form>
+            </div>
+
+            <div class="table">
+                <table id="tabela-finalizados">
+                    <thead>
+                        <tr>
+                            <th class="ordem">Número</th>
+                            <th class="ordem">Data de recebimento</th>
+                            <th class="componente">Professor</th>
+                            <th class="componente">Disciplina</th>
+                            <th class="status">Status</th>
+                            <th class="ordem"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-professor="Wladimir José Camillo Menegassi" data-disciplina="Modelagem de Banco de Dados" data-status="Indeferido">
+                            <td>01</td>
+                            <td>04/03/2024</td>
+                            <td>Wladimir José Camillo Menegassi</td>
+                            <td>Modelagem de Banco de Dados</td>
+                            <td>Indeferido</td>
+                            <td class="centro"><a href="indeferido.html"><img src="img/indeferido.png" class="iconeAnalisar"></a><a href=""><img src="img/feedback.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        <tr data-professor="Wladimir José Camillo Menegassi" data-disciplina="Modelagem de Banco de Dados" data-status="Deferido">
+                            <td>02</td>
+                            <td>16/03/2024</td>
+                            <td>Wladimir José Camillo Menegassi</td>
+                            <td>Modelagem de Banco de Dados</td>
+                            <td>Deferido</td>
+                            <td class="centro"><a href="deferido.html"><img src="img/deferido.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                        <tr data-professor="Ana Célia Ribeiro Bizigato Portes" data-disciplina="Engenharia de Software I" data-status="Deferido">
+                            <td>03</td>
+                            <td>14/04/2024</td>
+                            <td>Ana Célia Ribeiro Bizigato Portes</td>
+                            <td>Engenharia de Software I</td>
+                            <td>Indeferido</td>
+                            <td class="centro">
+                                <a href="justificativa1_coord.html"><img src="img/indeferido.png" class="iconeAnalisar"></a>
+                                <a href=""><img src="img/feedback.png" class="iconeAnalisar"></a>
+                            </td>
+                        </tr>
+                        <tr data-professor="Ana Célia Ribeiro Bizigato Portes" data-disciplina="Engenharia de Software I" data-status="Deferido">
+                            <td>04</td>
+                            <td>17/05/2024</td>
+                            <td>Ana Célia Ribeiro Bizigato Portes</td>
+                            <td>Engenharia de Software II</td>
+                            <td>Deferido</td>
+                            <td class="centro">
+                                <a href="justificativa2_coord.html"><img src="img/deferido.png" class="iconeAnalisar"></a>
+                            </td>
+                        </tr>
+                        <tr data-professor="Thiago Salhab Alves" data-disciplina="Design Digital" data-status="Deferido">
+                            <td>06</td>
+                            <td>28/04/2024</td>
+                            <td>Thiago Salhab Alves</td>
+                            <td>Design Digital</td>
+                            <td>Deferido</td>
+                            <td class="centro"><a href=""><img src="img/deferido.png" class="iconeAnalisar"></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        
+
+        <script>
+            // Função para aplicar os filtros
+            function aplicarFiltroFinalizados() {
+                var professorFiltro = document.getElementById('filterProfessorF').value;
+                var disciplinaFiltro = document.getElementById('filterDisciplinaF').value;
+                var statusFiltro = document.getElementById('filterStatusF').value;
+
+                var tabela = document.getElementById('tabela-finalizados');
+                var linhas = tabela.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+                for (var i = 0; i < linhas.length; i++) {
+                    var professor = linhas[i].getAttribute('data-professor');
+                    var disciplina = linhas[i].getAttribute('data-disciplina');
+                    var status = linhas[i].getAttribute('data-status');
+
+                    if ((professorFiltro === "" || professor === professorFiltro) &&
+                        (disciplinaFiltro === "" || disciplina === disciplinaFiltro) &&
+                        (statusFiltro === "" || status === statusFiltro)) {
+                        linhas[i].classList.remove('hidden');
+                    } else {
+                        linhas[i].classList.add('hidden');
+                    }
+                }
+                return false; // Evita o envio do formulário
+            }
+
+            // Função para limpar os filtros
+            function limparFiltroFinalizados() {
+                var tabela = document.getElementById('tabela-finalizados');
+                var linhas = tabela.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+                for (var i = 0; i < linhas.length; i++) {
+                    linhas[i].classList.remove('hidden');
+                }
+            }
+        </script>
+
+        <script>
+            document.getElementById('botao-recebidos').addEventListener('click', function() {
+                document.getElementById('recebidos').style.display = 'block';
+                document.getElementById('finalizados').style.display = 'none';
+            });
+    
+            document.getElementById('botao-finalizados').addEventListener('click', function() {
+                document.getElementById('recebidos').style.display = 'none';
+                document.getElementById('finalizados').style.display = 'block';
+            });
+    
+        </script>
+
     </main>
     <footer class="site-footer">
         <div class="footer">
