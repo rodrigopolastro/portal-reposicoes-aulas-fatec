@@ -27,7 +27,7 @@
 
     <div class="corpo">
 
-        <form method="POST" action="./gera-pdf-formulario.php">
+        <form method="POST" action="./gera-pdf-formulario.php" enctype="multipart/form-data">
             <div class="formcomeço">
                 <div class="item-pequeno">
                     <label for="nome" class="">Nome: *</label><br><br>
@@ -52,22 +52,22 @@
             <div class="checkbox">
                 <label for="cursos" class="cursos"> Curso(s) envolvido(s) na ausência: *</label>
                 <label class="checkbox-label">
-                    <input type="checkbox" value="cst-dsm" name="cursos[]">
+                    <input type="checkbox" value="dsm" name="cursos[]">
                     <span class="custom-checkbox"></span> CST-DSM
                 </label>
             
                 <label class="checkbox-label">
-                    <input type="checkbox" value="cst-ge" name="cursos[]">
+                    <input type="checkbox" value="ge" name="cursos[]">
                     <span class="custom-checkbox"></span> CST-GE
                 </label>
             
                 <label class="checkbox-label">
-                    <input type="checkbox" value="cst-gpi" name="cursos[]">
+                    <input type="checkbox" value="gpi" name="cursos[]">
                     <span class="custom-checkbox"></span> CST-GPI
                 </label>
             
                 <label class="checkbox-label">
-                    <input type="checkbox" value="cst-gti" name="cursos[]">
+                    <input type="checkbox" value="gti" name="cursos[]">
                     <span class="custom-checkbox"></span> CST-GTI
                 </label>
             
@@ -137,7 +137,7 @@
 
            
             <label for="falta">Tipo de falta:</label>
-            <select id="falta">
+            <select id="falta" name="tipo_falta">
                 <option value="">Selecione...</option>
                 <option value="licenca_medica">1 – Licença e Falta Médica </option>
                 <option value="falta_injustificada">2 – Faltas Injustificadas (Com desconto do Descanso Semanal Remunerado – DSR) </option>
@@ -146,10 +146,10 @@
             </select><br><br>
             
            <div id="licenca" class="hidden-content">
-            <input type="radio" value="falta-medica" name="tipo_licenca_medica" id="faltaMedica"><label> Médica (Atestado médico de 1 dia) por motivo de</label> <input type="text" id="motivo-falta"><br><br>
-            <input type="radio" value="comparecimento" name="tipo_licenca_medica" id="comparecimento"><label> Comparecimento ao Médico no período das </label><input type="time" id="time-inicio"><label> às </label><input type="time" id="time-fim"><br><br>
-            <input type="radio" value="licenca-saude" name="tipo_licenca_medica" id="licencaSaude"><label> Licença-Saúde (Atestado médico igual ou superior a 2 dias)</label><br><br>
-            <input type="radio" value="licenca-maternidade" name="tipo_licenca_medica" id="licencaMaternidade"><label> Licença-Maternidade. (Atestado médico até 15 dias)</label>
+            <input type="radio" value="Médica (Atestado médico de 1 dia) por motivo de:" name="tipo_licenca_medica" id="faltaMedica"><label> Médica (Atestado médico de 1 dia) por motivo de</label> <input type="text" id="motivo-falta" name="motivo_falta_medica"><br><br>
+            <input type="radio" value="Comparecimento ao Médico no período das:" name="tipo_licenca_medica" id="comparecimento"><label> Comparecimento ao Médico no período das </label><input type="time" id="time-inicio" name="comparecimento_inicio"><label> às </label><input type="time" id="time-fim" name="comparecimento_fim"><br><br>
+            <input type="radio" value="Licença-Saúde (Atestado médico igual ou superior a 2 dias)" name="tipo_licenca_medica" id="licencaSaude"><label> Licença-Saúde (Atestado médico igual ou superior a 2 dias)</label><br><br>
+            <input type="radio" value="Licença-Maternidade. (Atestado médico até 15 dias)" name="tipo_licenca_medica" id="licencaMaternidade"><label> Licença-Maternidade. (Atestado médico até 15 dias)</label>
            </div>
            
            <script>
@@ -403,7 +403,7 @@
             <br><br>
 
             <label for="fileInput" class="file-label">Anexar comprovante</label>
-            <input type="file" id="fileInput" class="file-input">
+            <input type="file" id="fileInput" class="file-input" name="comprovante" accept="image/*">
             <span id="fileName" class="file-name">Nenhum arquivo selecionado</span>
 
             <script>
