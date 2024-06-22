@@ -9,7 +9,7 @@
 </head>
 <body>    
     <header>
-        <div class="topo">
+        <div class  ="topo">
             <div class="fundo"><img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
             <div class="fundo2"><img src="img/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
         </div>
@@ -30,21 +30,21 @@
         <form method="POST" action="./gera-pdf-formulario.php" enctype="multipart/form-data">
             <div class="formcomeço">
                 <div class="item-pequeno">
-                    <label for="nome" class="">Nome: *</label><br><br>
-                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                    <p><strong>Nome:</strong> </p>
+                    <p>Ana Célia Ribeiro Bizigato Portes</p>
                 </div>
 
                 <div class="item-pequeno">
-                    <label for="matricula">Matrícula: *</label><br><br>
-                    <input type="number" id="matricula" name="matricula" placeholder="0000000000000" required>
+                    <p><strong>Matrícula:</strong> </p>
+                    <p>0000000000005</p>
                 </div>
 
                 <div class="item-pequeno">
-                    <p>Função:</p>
+                    <p><strong>Função:</strong></p>
                     <p>Professor de Ensino Superior</p>
                 </div>
                 <div class="item-pequeno">
-                    <p>Regime jurídico:</p>
+                    <p><strong>Regime jurídico:</strong></p>
                     <p>CLT</p>
                 </div>
             </div>
@@ -79,9 +79,9 @@
 
             
             <label for="dataDia">Data: *</label><br><br>
-            <input type="radio" id="faltaReferenteDia" name="tipo_periodo" value="dia">
+            <input type="radio" id="faltaReferenteDia" name="tipo_periodo" value="dia" checked>
             <label for="dataDia">Falta referente ao dia: </label>
-            <input type="date" id="dataDia" name="data_dia"><br><br>
+            <input type="date" id="dataDia" name="data_dia" value="2024-06-22"><br><br>
 
             <input type="radio" id="faltaReferentePeriodo" name="tipo_periodo" value="periodo">
             <label for="dias">Período de </label>
@@ -206,21 +206,12 @@
         
             </script>
             <div id="injustificada" class=  "hidden-content">
-                <input type="radio" id="faltaMedica-just" name="tipo_falta_injustificada" value="motivo_adicional">
-                <label for="faltaMedica-just">Falta por motivo de</label>
-                <input type="text" id="motivo-falta-just" name="texto_motivo_adicional"><br><br>
+                <input type="radio" id="faltaMedica-just" name="tipo_falta_injustificada" value="falta">
+                <label for="faltaMedica-just">Falta </label><br><br>
                 
                 <input type="radio" id="comparecimento-just" name="tipo_falta_injustificada" value="atraso_saida_antecipada">
                 <label for="comparecimento-just">Atraso ou Saída Antecipada no período</label>
                 <input type="time" id="time-inicio-just" name="inicio_atraso_saida"> às <input type="time" id="time-fim-just" name="fim_atraso_saida">
-                <label for="motivo-atraso-saida-just"> por motivo de </label>
-                <input type="text" id="motivo-atraso-saida-just" class="motivo" name="motivo_atraso_saida_antecipada"><br><br>
-
-                <input type="radio" id="licencaSaude-just" name="tipo_falta_injustificada" value="licenca_saude">
-                <label for="licencaSaude-just">Licença Saúde</label><br><br>
-                
-                <input type="radio" id="licencaMaternidade-just" name="tipo_falta_injustificada" value="licenca_maternidade">
-                <label for="licencaMaternidade-just">Licença Maternidade</label>
             </div>
 
             <script>
@@ -281,19 +272,13 @@
             <div id="justificada" class="hidden-content">
                 <input type="radio" id="faltaMedica-just" name="tipo_falta_justificada" value="motivo_adicional">
                 <label for="faltaMedica-just">Falta por motivo de</label>
-                <input type="text" id="motivo-falta-just"><br><br>
+                <input type="text" id="motivo-falta-just" name="motivo_falta_justificada"><br><br>
                 
                 <input type="radio" id="comparecimento-just" name="tipo_falta_justificada" value="atraso_saida_antecipada">
                 <label for="comparecimento-just">Atraso ou Saída Antecipada no período</label>
                 <input type="time" id="time-inicio-just" name="inicio_atraso_saida"> às <input type="time" id="time-fim-just" name="fim_atraso_saida">
                 <label for="motivo-atraso-saida-just"> por motivo de </label>
                 <input type="text" id="motivo-atraso-saida-just" class="motivo" name="motivo_atraso_saida_antecipada"><br><br>
-
-                <input type="radio" id="licencaSaude-just" name="tipo_falta_justificada" value="licenca_saude">
-                <label for="licencaSaude-just">Licença Saúde</label><br><br>
-                
-                <input type="radio" id="licencaMaternidade-just" name="tipo_falta_justificada" value="licenca_maternidade">
-                <label for="licencaMaternidade-just">Licença Maternidade</label>
             </div>
 
             <script>
@@ -358,21 +343,22 @@
             </script>
            
            <div id="trabalhista" class="hidden-content">
-                <input type="radio" value="falecimento" name="trabalhista"><label> Falecimento de cônjuge, pai, mãe, filho. (9 dias consecutivos)<br><br>
-                <input type="radio" value="falecimento_ascendente" name="trabalhista"><label> Falecimento ascendente (exceto pai e mãe), descendente (exceto filho), irmão ou pessoa declarada na CTPS, que viva sob sua dependência econômica. (2 dias consecutivos)</label><br><br>
-                <input type="radio" value="casamento" name="trabalhista"><label> Casamento. (9 dias consecutivos)<br><br>
-                <input type="radio" value="nascimento" name="trabalhista"><label> Nascimento de filho, no decorrer da primeira semana. (5 dias).<br><br>
-                <input type="radio" value="acompanhar" name="trabalhista"><label> Acompanhar esposa ou companheira durante a gravidez, em consultas médicas e exames complementares. (Até 2 dias).</label><br><br>
-                <input type="radio" value="acompanhar_filho" name="trabalhista"><label> Acompanhar filho de até 6 anos em consulta médica. (1 dia por ano)<br><br>
-                <input type="radio" value="doacao" name="trabalhista"><label> Doação voluntária de sangue. (1 dia em cada 12 meses de trabalho).<br><br>
-                <input type="radio" value="alistamento" name="trabalhista"><label> Alistamento como eleitor. (Até 2 dias consecutivos ou não).<br><br>
-                <input type="radio" value="convocacao" name="trabalhista"><label> Convocação para depoimento judicial.<br><br>
-                <input type="radio" value="comparecimento" name="trabalhista"><label> Comparecimento como jurado no Tribunal do Júri.<br><br>
-                <input type="radio" value="eleitoral" name="trabalhista"><label> Convocação para serviço eleitoral.<br><br>
-                <input type="radio" value="dispensa" name="trabalhista"><label> Dispensa dos dias devido à nomeação para compor as mesas receptoras ou juntas eleitorais nas eleições ou requisitado para auxiliar seus trabalhos (Lei nº 9.504/97).<br><br>
-                <input type="radio" value="vestibular" name="trabalhista"><label> Realização de Prova de Vestibular para ingresso em estabelecimento de ensino superior.<br><br>
-                <input type="radio" value="justica_trabalho" name="trabalhista"><label> Comparecimento necessário como parte na Justiça do Trabalho (Enunciado TST nº 155). (Horas necessárias).<br><br>
-                <input type="radio" value="transporte" name="trabalhista"><label> Atrasos decorrentes de acidentes de transporte, com atestado da empresa concessionária. (Horas necessárias).<br><br>
+            n
+                <input type="radio" value="Falecimento de cônjuge, pai, mãe, filho. (9 dias consecutivos)" name="trabalhista"><label> Falecimento de cônjuge, pai, mãe, filho. (9 dias consecutivos)<br><br>
+                <input type="radio" value="Falecimento ascendente (exceto pai e mãe), descendente (exceto filho), irmão ou pessoa declarada na CTPS, que viva sob sua dependência econômica. (2 dias consecutivos)" name="trabalhista"><label> Falecimento ascendente (exceto pai e mãe), descendente (exceto filho), irmão ou pessoa declarada na CTPS, que viva sob sua dependência econômica. (2 dias consecutivos)</label><br><br>
+                <input type="radio" value="Casamento. (9 dias consecutivos)" name="trabalhista"><label> Casamento. (9 dias consecutivos)<br><br>
+                <input type="radio" value="Nascimento de filho, no decorrer da primeira semana. (5 dias)." name="trabalhista"><label> Nascimento de filho, no decorrer da primeira semana. (5 dias).<br><br>
+                <input type="radio" value="Acompanhar esposa ou companheira durante a gravidez, em consultas médicas e exames complementares. (Até 2 dias)." name="trabalhista"><label> Acompanhar esposa ou companheira durante a gravidez, em consultas médicas e exames complementares. (Até 2 dias).</label><br><br>
+                <input type="radio" value="Acompanhar filho de até 6 anos em consulta médica. (1 dia por ano)" name="trabalhista"><label> Acompanhar filho de até 6 anos em consulta médica. (1 dia por ano)<br><br>
+                <input type="radio" value="Doação voluntária de sangue. (1 dia em cada 12 meses de trabalho)." name="trabalhista"><label> Doação voluntária de sangue. (1 dia em cada 12 meses de trabalho).<br><br>
+                <input type="radio" value="Alistamento como eleitor. (Até 2 dias consecutivos ou não)." name="trabalhista"><label> Alistamento como eleitor. (Até 2 dias consecutivos ou não).<br><br>
+                <input type="radio" value="Convocação para depoimento judicial." name="trabalhista"><label> Convocação para depoimento judicial.<br><br>
+                <input type="radio" value="Comparecimento como jurado no Tribunal do Júri." name="trabalhista"><label> Comparecimento como jurado no Tribunal do Júri.<br><br>
+                <input type="radio" value="Convocação para serviço eleitoral." name="trabalhista"><label> Convocação para serviço eleitoral.<br><br>
+                <input type="radio" value="Dispensa dos dias devido à nomeação para compor as mesas receptoras ou juntas eleitorais nas eleições ou requisitado para auxiliar seus trabalhos (Lei nº 9.504/97)." name="trabalhista"><label> Dispensa dos dias devido à nomeação para compor as mesas receptoras ou juntas eleitorais nas eleições ou requisitado para auxiliar seus trabalhos (Lei nº 9.504/97).<br><br>
+                <input type="radio" value="Realização de Prova de Vestibular para ingresso em estabelecimento de ensino superior." name="trabalhista"><label> Realização de Prova de Vestibular para ingresso em estabelecimento de ensino superior.<br><br>
+                <input type="radio" value="Comparecimento necessário como parte na Justiça do Trabalho (Enunciado TST nº 155). (Horas necessárias)." name="trabalhista"><label> Comparecimento necessário como parte na Justiça do Trabalho (Enunciado TST nº 155). (Horas necessárias).<br><br>
+                <input type="radio" value="Atrasos decorrentes de acidentes de transporte, com atestado da empresa concessionária. (Horas necessárias)." name="trabalhista"><label> Atrasos decorrentes de acidentes de transporte, com atestado da empresa concessionária. (Horas necessárias).<br><br>
 
            </div>
 
@@ -430,7 +416,7 @@
             <img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
             <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista - CEP: 13974-080</p>
             <p class="rodape">Telefone: (19) 3843-1996 | (19) 3863-5210 (WhatsApp)</p>
-            <p class="rodape">&copy; 2024 Bonde das Maravilhas. Todos os direitos reservados.</p>
+            <p class="rodape">&copy; 2024  Equipe 6Tec. Todos os direitos reservados.</p>
         </div>
     </footer>
 

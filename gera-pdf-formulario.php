@@ -29,23 +29,19 @@ class CustomTCPDF extends TCPDF
     }
 }
 
-
-
-// var_dump($_FILES);
-var_dump($_POST);
+// echo '<pre>';
+// print_r($_POST);
+// echo '</pre>';
 
 $pdf = new CustomTCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
 
 $pdf->SetTitle('Formulário de Justificativa de Faltas');
 $pdf->AddPage();
-// var_dump($_POST['nome']);
-
-// Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link='')
 $pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 180, $pdf->GetY());
 $pdf->Cell(0, 10, 'Dados do Professor', 0, 1, 'C');
-$pdf->Cell(0, 10, 'Nome: ' . $_POST['nome'], 0, 1);
-$pdf->Cell(0, 10, 'Matrícula: ' . $_POST['matricula'], 0, 1);
+$pdf->Cell(0, 10, 'Nome: ' . 'Ana Célia Ribeiro Bizigato Portes', 0, 1);
+$pdf->Cell(0, 10, 'Matrícula: ' . '0000000000005', 0, 1);
 $pdf->write(10, 'Cursos: ');
 foreach ($_POST['cursos'] as $curso) {
     $pdf->write(10, strtoupper($curso) . ',');
@@ -76,30 +72,44 @@ $pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 180, $pdf->GetY());
 $pdf->Cell(0, 10, 'Motivo da Falta', 0, 1, 'C');
 switch ($_POST['tipo_falta']) {
     case 'licenca_medica':
-        $pdf->Cell(0, 10, $_POST['tipo_licenca_medica'], 0, 0);
-        if($_POST['motivo_falta_medica']){
-            $pdf->Cell(0, 10, $_POST['motivo_falta_medica'], 0, 0);
-        } elseif($_POST['comparecimento_inicio'] && $_POST['comparecimento_fim']){
+        $pdf->Cell(0, 10, $_POST['tipo_licenca_medica'], 0, 1);
+        if ($_POST['motivo_falta_medica']) {
+            $pdf->Cell(0, 10, $_POST['motivo_falta_medica'], 0, 1);
+        } elseif ($_POST['comparecimento_inicio'] && $_POST['comparecimento_fim']) {
             $pdf->Cell(0, 10, $_POST['comparecimento_inicio'] . ' às ' . $_POST['comparecimento_fim'], 0, 0);
         }
         break;
     case 'falta_injustificada':
-        $pdf->Cell(0, 10, $_POST['tipo_falta '], 0, 0);
+        if ($_POST['tipo_falta_justificada'] == 'falta') {
+            $pdf->Cell(0, 10, 'Falta Injustificada.', 0, 1);
+        } else {
+            $pdf->Write(10, 'Atraso ou Saída Antecipada no período: ');
+            $pdf->Cell(0, 10, $_POST['inicio_atraso_saida'] . ' às ' . $_POST['fim_atraso_saida'], 0, 1);
+        }
         break;
     case 'falta_justificada':
+        if ($_POST['tipo_falta_justificada'] == 'motivo_adicional') {
+            $pdf->Cell(0, 10, 'Falta por motivo de: ', 0, 1);
+            $pdf->Cell(0, 10, $_POST['motivo_falta_justificada'], 0, 1);
+        } else {
+            $pdf->Write(10, 'Atraso ou Saída Antecipada no período: ');
+            $pdf->Write(10, $_POST['inicio_atraso_saida'] . ' às ' . $_POST['fim_atraso_saida']);
+            $pdf->Write(10, ' por motivo de: ' . $_POST['motivo_atraso_saida_antecipada']);
+        }
         break;
     case 'legislacao_trabalhista':
+        $pdf->Write(10, 'Falta prevista na legislação trabalhista: ' . $_POST['trabalhista']);
         break;
 }
 $pdf->Cell(0, 10, '', 0, 1, '');
-
+$pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 180, $pdf->GetY());
+$pdf->Cell(0, 10, 'Comprovantes Anexados', 0, 1, 'C');
 if (isset($_FILES['comprovante']) && $_FILES['comprovante']['error'] === UPLOAD_ERR_OK) {
     $file_temp_path = $_FILES['comprovante']['tmp_name'];
     $file_name = $_FILES['comprovante']['name'];
     $file_name_parts = explode(".", $file_name);
     $file_extension = strtolower(end($file_name_parts));
 
-    $pdf->Cell(0, 20, 'Comprovante Anexado:', 0, 1);
     $file_content = file_get_contents($file_temp_path);
     $pdf->Image(
         $file_temp_path, // File
@@ -134,20 +144,50 @@ $final_file_name = $date->format("Y-m-d-H-i-s ") . '.pdf';
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
-    <title>Embedded PDF Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Formulário de Justificativa de Falta</title>
+
 </head>
 
 <body>
-    <h1>Revise os dados preenchidos antes de enviar o formulário</h1>
-    <embed src="pdfs-formularios/temp_file.pdf" type="application/pdf" width="100%" height="600px" />
-    <form method="POST" action="save-pdf.php">
-        <input type="hidden" name="file_name" value="<?= $final_file_name ?>">
-        <input type="submit" value="Enviar">
-    </form>
+    <header>
+        <div class="topo">
+            <div class="fundo"><img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
+            <div class="fundo2"><img src="img/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
+        </div>
+        <nav>
+            <a href="index-professor.html" class="botao-nav">Início</a>
+            <a href="enviar-formularios.html" class="botao-nav">Enviar formulário</a>
+            <a href="lista-enviados.html" class="botao-nav">Formulários enviados</a>
+            <a href="#" class="botao-nav">Sair</a>
+        </nav>
+    </header>
+    <main>
+        <h1 style="text-align: center; margin:0; padding-bottom: 25px;">Revise os dados preenchidos antes de enviar o formulário</h1>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <embed src="pdfs-formularios/temp_file.pdf" type="application/pdf" width="60%" height="1200px" />
+        </div>
+        <form method="POST" action="save-pdf.php">
+            <input type="hidden" name="file_name" value="<?= $final_file_name ?>">
+            <div style="display: flex; justify-content: center;">
+                <input style="margin-top: 25px; padding: 20px; width: 500px;" type="submit" value="Enviar">
+            </div>
+        </form>
+    </main>
+    <footer class="site-footer">
+        <div class="footer">
+            <img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
+            <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista - CEP: 13974-080</p>
+            <p class="rodape">Telefone: (19) 3843-1996 | (19) 3863-5210 (WhatsApp)</p>
+            <p class="rodape">&copy; 2024 Equipe 6Tec. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
 </body>
 
 </html>
