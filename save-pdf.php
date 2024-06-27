@@ -51,7 +51,7 @@ if($final_path){
                         </div>
                     <?php endif ?>
                     <div style="display:flex; justify-content: center; align-items: center; padding-top: 20px;">
-                        <a href="./home.php" class="btn btn-primary">Voltar para a Página Inicial</a>
+                        <a href="./index-professor.html" class="btn btn-primary">Voltar para a Página Inicial</a>
                     </div>
                 </div>
             </div>
