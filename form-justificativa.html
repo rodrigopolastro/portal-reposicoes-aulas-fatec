@@ -146,7 +146,7 @@
             </select><br><br>
             
            <div id="licenca" class="hidden-content">
-            <input type="radio" value="Médica (Atestado médico de 1 dia) por motivo de:" name="tipo_licenca_medica" id="faltaMedica"><label> Médica (Atestado médico de 1 dia) por motivo de</label> <input type="text" id="motivo-falta" name="motivo_falta_medica"><br><br>
+            <input type="radio" value="Médica (Atestado médico de 1 dia) por motivo de:" name="tipo_licenca_medica" id="faltaMedica"><label> Médica (Atestado médico de 1 dia) por motivo de</label> <input type="text" id="motivo-falta" name="motivo_falta_medica" autocomplete="off"><br><br>
             <input type="radio" value="Comparecimento ao Médico no período das:" name="tipo_licenca_medica" id="comparecimento"><label> Comparecimento ao Médico no período das </label><input type="time" id="time-inicio" name="comparecimento_inicio"><label> às </label><input type="time" id="time-fim" name="comparecimento_fim"><br><br>
             <input type="radio" value="Licença-Saúde (Atestado médico igual ou superior a 2 dias)" name="tipo_licenca_medica" id="licencaSaude"><label> Licença-Saúde (Atestado médico igual ou superior a 2 dias)</label><br><br>
             <input type="radio" value="Licença-Maternidade. (Atestado médico até 15 dias)" name="tipo_licenca_medica" id="licencaMaternidade"><label> Licença-Maternidade. (Atestado médico até 15 dias)</label>
@@ -272,13 +272,13 @@
             <div id="justificada" class="hidden-content">
                 <input type="radio" id="faltaMedica-just" name="tipo_falta_justificada" value="motivo_adicional">
                 <label for="faltaMedica-just">Falta por motivo de</label>
-                <input type="text" id="motivo-falta-just" name="motivo_falta_justificada"><br><br>
+                <input type="text" id="motivo-falta-just" name="motivo_falta_justificada" autocomplete="off"><br><br>
                 
                 <input type="radio" id="comparecimento-just" name="tipo_falta_justificada" value="atraso_saida_antecipada">
                 <label for="comparecimento-just">Atraso ou Saída Antecipada no período</label>
                 <input type="time" id="time-inicio-just" name="inicio_atraso_saida"> às <input type="time" id="time-fim-just" name="fim_atraso_saida">
                 <label for="motivo-atraso-saida-just"> por motivo de </label>
-                <input type="text" id="motivo-atraso-saida-just" class="motivo" name="motivo_atraso_saida_antecipada"><br><br>
+                <input type="text" id="motivo-atraso-saida-just" class="motivo" name="motivo_atraso_saida_antecipada" autocomplete="off"><br><br>
             </div>
 
             <script>
