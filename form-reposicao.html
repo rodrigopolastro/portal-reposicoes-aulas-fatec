@@ -160,7 +160,7 @@
                         <option value="0">Selecione...</option>
                         <option value="1">Engenharia I</option>
                         <option value="2">Engenharia II</option>
-                        <option value="3">Engenharia II</option>
+                        <option value="3">Engenharia III</option>
                     </select>
                     <input type="submit" value="Adicionar">
                 </div>
@@ -180,7 +180,7 @@
                             <tr>
                                 <td>01</td>
                                 <td>19/04/2024</td>
-                                <td>22/06/2024</td>
+                                <td>21/06/2024</td>
                                 <td>19h00min - 22h30min</td>
                                 <td>Engenharia de Software I</td>
                             </tr>
@@ -215,13 +215,10 @@
                     <br><br>
                     <p>*Campo obrigatório</p>
                 </div>
-
-                <div class="botao">
-                    
-                    <input type="submit" value="Enviar">
-                    <input type="reset" name="Limpar">
-                </div>
-
+            </form>
+            <form method="POST" action="gera-pdf-formulario-reposicao.php">
+                <input type="hidden" name="file_name" value="pdf-reposicao.pdf">
+                <input type="submit" value="Enviar">
             </form>
 
         </div>

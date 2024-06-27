@@ -1,12 +1,16 @@
 <?php
 $file_name = $_POST['file_name'];
-$final_path = 'pdfs-formularios/' . $file_name;
+if ($file_name == 'pdf-reposicao.pdf') {
+    $was_file_created = true;
+} else {
+    $final_path = 'pdfs-formularios/' . $file_name;
 
-if($final_path){
-    if (rename('pdfs-formularios/temp_file.pdf', trim($final_path))) {
-        $was_file_created = true;
-    } else {
-        $was_file_created = false;
+    if ($final_path) {
+        if (rename('pdfs-formularios/temp_file.pdf', trim($final_path))) {
+            $was_file_created = true;
+        } else {
+            $was_file_created = false;
+        }
     }
 }
 ?>
@@ -18,7 +22,7 @@ if($final_path){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Formulário de Justificativa de Falta</title>
+    <title>Envio de Formulário</title>
 
 </head>
 
@@ -41,7 +45,7 @@ if($final_path){
                 <div style="padding: 40px; border: 2px solid #004F68; border-radius: 25px">
                     <?php if ($was_file_created) : ?>
                         <div>
-                            <h2 style="text-align: center;">Formulário enviado corretamente!</h2>
+                            <h2 style="text-align: center; margin:0">Formulário enviado corretamente!</h2>
                             <p style="text-align: center; margin-top: 15px;"> Você será notificado quando o coordenador aprová-lo ou reprová-lo.</p>
                         </div>
                     <?php else : ?>
@@ -51,7 +55,7 @@ if($final_path){
                         </div>
                     <?php endif ?>
                     <div style="display:flex; justify-content: center; align-items: center; padding-top: 20px;">
-                        <a href="./index-professor.html" class="btn btn-primary">Voltar para a Página Inicial</a>
+                        <a href="./index-professor.html"><button class="voltar">Voltar para a Página Inicial</button></a>
                     </div>
                 </div>
             </div>
