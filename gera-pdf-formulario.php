@@ -29,24 +29,31 @@ class CustomTCPDF extends TCPDF
     }
 }
 
-// echo '<pre>';
-// print_r($_POST);
-// echo '</pre>';
-
 $pdf = new CustomTCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-
 $pdf->SetTitle('Formulário de Justificativa de Faltas');
+$pdf->SetFont('helvetica', '', 12);
+
 $pdf->AddPage();
 $pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 180, $pdf->GetY());
+$pdf->SetFont('helvetica', 'B', 16);
 $pdf->Cell(0, 10, 'Dados do Professor', 0, 1, 'C');
+$pdf->SetFont('helvetica', '', 12);
 $pdf->Cell(0, 10, 'Nome: ' . 'Ana Célia Ribeiro Bizigato Portes', 0, 1);
 $pdf->Cell(0, 10, 'Matrícula: ' . '0000000000005', 0, 1);
+$pdf->Cell(0, 10, 'Regime jurídico: CLT', 0, 1);
+$pdf->Cell(0, 3, '', 0, 1);
+$pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 180, $pdf->GetY());
+$pdf->SetFont('helvetica', 'B', 16);
+$pdf->Cell(0, 15, 'Justificativa de Falta', 0, 1, 'C');
+$pdf->SetFont('helvetica', '', 12);
 $pdf->write(10, 'Cursos: ');
-foreach ($_POST['cursos'] as $curso) {
-    $pdf->write(10, strtoupper($curso) . ',');
+if(isset($_POST['cursos'])){
+    foreach ($_POST['cursos'] as $curso) {
+        $pdf->write(10, strtoupper($curso) . ',');
+    }
 }
-$pdf->Cell(0, 10, '', 0, 1);
+$pdf->write(10, '', '', '', '', 1);
 if ($_POST['tipo_periodo'] == 'dia') {
     $date = DateTimeImmutable::createFromFormat(
         'Y-m-d',
@@ -68,32 +75,32 @@ if ($_POST['tipo_periodo'] == 'dia') {
     $string = 'Período de ' . $_POST['dias_periodo'] . ' dias: ' . $date_start->format('d/m/Y') . ' até ' . $date_end->format('d/m/Y');
     $pdf->Cell(0, 10, $string, 0, 1);
 }
-$pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 180, $pdf->GetY());
-$pdf->Cell(0, 10, 'Motivo da Falta', 0, 1, 'C');
+$pdf->SetFont('helvetica', '', 12);
+$pdf->write(10, 'Motivo: ');
 switch ($_POST['tipo_falta']) {
     case 'licenca_medica':
-        $pdf->Cell(0, 10, $_POST['tipo_licenca_medica'], 0, 1);
-        if ($_POST['motivo_falta_medica']) {
+        $pdf->Write(10, $_POST['tipo_licenca_medica']);
+        if (isset($_POST['motivo_falta_medica'])) {
             $pdf->Cell(0, 10, $_POST['motivo_falta_medica'], 0, 1);
-        } elseif ($_POST['comparecimento_inicio'] && $_POST['comparecimento_fim']) {
+        } elseif (isset($_POST['comparecimento_inicio']) && isset($_POST['comparecimento_fim'])) {
             $pdf->Cell(0, 10, $_POST['comparecimento_inicio'] . ' às ' . $_POST['comparecimento_fim'], 0, 0);
         }
         break;
     case 'falta_injustificada':
-        if ($_POST['tipo_falta_justificada'] == 'falta') {
+        if ($_POST['tipo_falta_injustificada'] == 'falta') {
             $pdf->Cell(0, 10, 'Falta Injustificada.', 0, 1);
         } else {
             $pdf->Write(10, 'Atraso ou Saída Antecipada no período: ');
-            $pdf->Cell(0, 10, $_POST['inicio_atraso_saida'] . ' às ' . $_POST['fim_atraso_saida'], 0, 1);
+            $pdf->Write(10, $_POST['inicio_atraso_saida_injustificada'] . ' às ' . $_POST['fim_atraso_saida_injustificada']);
         }
         break;
     case 'falta_justificada':
         if ($_POST['tipo_falta_justificada'] == 'motivo_adicional') {
-            $pdf->Cell(0, 10, 'Falta por motivo de: ', 0, 1);
-            $pdf->Cell(0, 10, $_POST['motivo_falta_justificada'], 0, 1);
+            $pdf->Write(10, 'Falta por motivo de: ');
+            $pdf->Write(10, $_POST['motivo_falta_justificada']);
         } else {
             $pdf->Write(10, 'Atraso ou Saída Antecipada no período: ');
-            $pdf->Write(10, $_POST['inicio_atraso_saida'] . ' às ' . $_POST['fim_atraso_saida']);
+            $pdf->Write(10, $_POST['inicio_atraso_saida_justificada'] . ' às ' . $_POST['fim_atraso_saida_justificada']);
             $pdf->Write(10, ' por motivo de: ' . $_POST['motivo_atraso_saida_antecipada']);
         }
         break;
@@ -101,9 +108,11 @@ switch ($_POST['tipo_falta']) {
         $pdf->Write(10, 'Falta prevista na legislação trabalhista: ' . $_POST['trabalhista']);
         break;
 }
-$pdf->Cell(0, 10, '', 0, 1, '');
+$pdf->Cell(0, 10, '', 0, 1);
 $pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 180, $pdf->GetY());
-$pdf->Cell(0, 10, 'Comprovantes Anexados', 0, 1, 'C');
+$pdf->SetFont('helvetica', 'B', 16);
+$pdf->Cell(0, 15, 'Comprovante Anexado', 0, 1, 'C');
+$pdf->SetFont('helvetica', '', 12);
 if (isset($_FILES['comprovante']) && $_FILES['comprovante']['error'] === UPLOAD_ERR_OK) {
     $file_temp_path = $_FILES['comprovante']['tmp_name'];
     $file_name = $_FILES['comprovante']['name'];
@@ -111,12 +120,13 @@ if (isset($_FILES['comprovante']) && $_FILES['comprovante']['error'] === UPLOAD_
     $file_extension = strtolower(end($file_name_parts));
 
     $file_content = file_get_contents($file_temp_path);
+    $attachment_height = ($pdf->getPageHeight() - $pdf->GetY()) * 0.8;
     $pdf->Image(
         $file_temp_path, // File
         $pdf->GetX(),               // X coordinate
         $pdf->GetY(),               // Y coordinate
-        $pdf->getPageWidth() * 0.8,              // Width
-        0,               // Height
+        0,              // Width
+        $attachment_height,               // Height
         '',               // Type (inferred from file extension)
         '',              // Link
         '',              // Align

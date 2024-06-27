@@ -79,7 +79,7 @@
 
             
             <label for="dataDia">Data: *</label><br><br>
-            <input type="radio" id="faltaReferenteDia" name="tipo_periodo" value="dia" checked>
+            <input type="radio" id="faltaReferenteDia" name="tipo_periodo" value="dia">
             <label for="dataDia">Falta referente ao dia: </label>
             <input type="date" id="dataDia" name="data_dia"><br><br>
 
@@ -146,8 +146,8 @@
             </select><br><br>
             
            <div id="licenca" class="hidden-content">
-            <input type="radio" value="Médica (Atestado médico de 1 dia) por motivo de:" name="tipo_licenca_medica" id="faltaMedica"><label> Médica (Atestado médico de 1 dia) por motivo de</label> <input type="text" id="motivo-falta" name="motivo_falta_medica" autocomplete="off"><br><br>
-            <input type="radio" value="Comparecimento ao Médico no período das:" name="tipo_licenca_medica" id="comparecimento"><label> Comparecimento ao Médico no período das </label><input type="time" id="time-inicio" name="comparecimento_inicio"><label> às </label><input type="time" id="time-fim" name="comparecimento_fim"><br><br>
+            <input type="radio" value="Médica (Atestado médico de 1 dia) por motivo de: " name="tipo_licenca_medica" id="faltaMedica"><label> Médica (Atestado médico de 1 dia) por motivo de</label> <input type="text" id="motivo-falta" name="motivo_falta_medica" autocomplete="off"><br><br>
+            <input type="radio" value="Comparecimento ao Médico no período das: " name="tipo_licenca_medica" id="comparecimento"><label> Comparecimento ao Médico no período das </label><input type="time" id="time-inicio" name="comparecimento_inicio"><label> às </label><input type="time" id="time-fim" name="comparecimento_fim"><br><br>
             <input type="radio" value="Licença-Saúde (Atestado médico igual ou superior a 2 dias)" name="tipo_licenca_medica" id="licencaSaude"><label> Licença-Saúde (Atestado médico igual ou superior a 2 dias)</label><br><br>
             <input type="radio" value="Licença-Maternidade. (Atestado médico até 15 dias)" name="tipo_licenca_medica" id="licencaMaternidade"><label> Licença-Maternidade. (Atestado médico até 15 dias)</label>
            </div>
@@ -207,11 +207,11 @@
             </script>
             <div id="injustificada" class=  "hidden-content">
                 <input type="radio" id="faltaMedica-just" name="tipo_falta_injustificada" value="falta">
-                <label for="faltaMedica-just">Falta </label><br><br>
+                <label for="faltaMedica-just">Falta Injustificada</label><br><br>
                 
                 <input type="radio" id="comparecimento-just" name="tipo_falta_injustificada" value="atraso_saida_antecipada">
                 <label for="comparecimento-just">Atraso ou Saída Antecipada no período</label>
-                <input type="time" id="time-inicio-just" name="inicio_atraso_saida"> às <input type="time" id="time-fim-just" name="fim_atraso_saida">
+                <input type="time" id="time-inicio-inju" name="inicio_atraso_saida_injustificada"> às <input type="time" id="time-fim-inju" name="fim_atraso_saida_injustificada">
             </div>
 
             <script>
@@ -276,7 +276,7 @@
                 
                 <input type="radio" id="comparecimento-just" name="tipo_falta_justificada" value="atraso_saida_antecipada">
                 <label for="comparecimento-just">Atraso ou Saída Antecipada no período</label>
-                <input type="time" id="time-inicio-just" name="inicio_atraso_saida"> às <input type="time" id="time-fim-just" name="fim_atraso_saida">
+                <input type="time" id="time-inicio-just" name="inicio_atraso_saida_justificada"> às <input type="time" id="time-fim-just" name="fim_atraso_saida_justificada">
                 <label for="motivo-atraso-saida-just"> por motivo de </label>
                 <input type="text" id="motivo-atraso-saida-just" class="motivo" name="motivo_atraso_saida_antecipada" autocomplete="off"><br><br>
             </div>
@@ -343,7 +343,6 @@
             </script>
            
            <div id="trabalhista" class="hidden-content">
-            n
                 <input type="radio" value="Falecimento de cônjuge, pai, mãe, filho. (9 dias consecutivos)" name="trabalhista"><label> Falecimento de cônjuge, pai, mãe, filho. (9 dias consecutivos)<br><br>
                 <input type="radio" value="Falecimento ascendente (exceto pai e mãe), descendente (exceto filho), irmão ou pessoa declarada na CTPS, que viva sob sua dependência econômica. (2 dias consecutivos)" name="trabalhista"><label> Falecimento ascendente (exceto pai e mãe), descendente (exceto filho), irmão ou pessoa declarada na CTPS, que viva sob sua dependência econômica. (2 dias consecutivos)</label><br><br>
                 <input type="radio" value="Casamento. (9 dias consecutivos)" name="trabalhista"><label> Casamento. (9 dias consecutivos)<br><br>
@@ -400,11 +399,11 @@
             </script>
     
 
-            <p>Selecionar um item e anexar o comprovante, devendo o original ser entregue na sede e
+            <!-- <p>Selecionar um item e anexar o comprovante, devendo o original ser entregue na sede e
                 a cópia simples nas unidades de ampliação
-                (desde que acompanhada do original para conferência).</p><br><br>
+                (desde que acompanhada do original para conferência).</p><br><br> -->
            
-            <p>*Campo obrigatório</p> <br><br>
+            <!-- <p>*Campo obrigatório</p> <br><br> -->
             
             <input type="submit" value="Enviar">
             <input type="reset" name="Limpar">
