@@ -54,8 +54,10 @@ CREATE TABLE TIPOS_FALTAS (
     TPF_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     TPF_categoria VARCHAR(100) NOT NULL,
     TPF_descricao VARCHAR(300) NOT NULL,
+    TPF_tipo_intervalo VARCHAR(30) NOT NULL,
     TPF_max_dias INTEGER NOT NULL, -- Se for 0, não possui máximo
-
+    TPF_intervalo_fixo BOOLEAN NOT NULL,
+    
     CONSTRAINT UNQ_TIPOS_FALTAS_nome UNIQUE (TPF_descricao),
     CONSTRAINT CHK_TIPOS_FALTAS_categoria 
         CHECK (TPF_categoria IN (
@@ -63,28 +65,34 @@ CREATE TABLE TIPOS_FALTAS (
             'Falta Injustificada',
             'Falta Justificada',
             'Falta Prevista na Legislação Trabalhista'
-        ))
+        )),
+    CONSTRAINT CHK_TIPOS_FALTAS_tipo_intervalo
+    CHECK (TPF_tipo_intervalo IN (
+        'dias',
+        'horas',
+    )),
+    CONSTRAINT CHK_TIPOS_FALTAS_max_dias CHECK (TPF_max_dias >= 0)
 );
 
 CREATE TABLE JUSTIFICATIVAS_FALTAS (
     JUF_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     JUF_id_tipo_falta INTEGER NOT NULL,
+    JUF_texto_justificativa VARCHAR(500),
     JUF_status VARCHAR(30) NOT NULL,
     JUF_data_envio TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     JUF_data_aprovacao TIMESTAMP NULL DEFAULT NULL,
-    JUF_texto_motivo VARCHAR(500),
     JUF_feedback_coordenador VARCHAR(300),
 
-    CONSTRAINT FK_TIPOS_FALTAS_JUSTIFICATIVAS_FALTAS
-        FOREIGN KEY (JUF_id_tipo_falta)
-        REFERENCES TIPOS_FALTAS (TPF_id)
-        ON DELETE RESTRICT,
     CONSTRAINT CHK_JUSTIFICATIVAS_FALTAS_status
         CHECK (JUF_status IN (
             'deferido',
             'indeferido',
             'em análise'
-        ))
+        )),
+    CONSTRAINT FK_TIPOS_FALTAS_JUSTIFICATIVAS_FALTAS
+        FOREIGN KEY (JUF_id_tipo_falta)
+        REFERENCES TIPOS_FALTAS (TPF_id)
+        ON DELETE RESTRICT,
 );
 
 CREATE TABLE COMPROVANTES_FALTAS (
@@ -101,6 +109,7 @@ CREATE TABLE COMPROVANTES_FALTAS (
 
 CREATE TABLE PLANOS_REPOSICOES (
     PLR_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    PLR_id_justificativa INTEGER NOT NULL,
     PLR_status VARCHAR(30) NOT NULL,
     PLR_data_envio TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PLR_data_aprovacao TIMESTAMP NULL DEFAULT NULL,
@@ -111,7 +120,11 @@ CREATE TABLE PLANOS_REPOSICOES (
             'deferido',
             'indeferido',
             'em análise'
-        ))
+        )),
+    CONSTRAINT FK_JUSTIFICATIVAS_FALTAS_PLANOS_REPOSICOES
+        FOREIGN KEY (PLR_id_justificativa)
+        REFERENCES JUSTIFICATIVAS_FALTAS (JUF_id)
+        ON DELETE RESTRICT
 );
 
 CREATE TABLE HORARIOS_AULAS (
