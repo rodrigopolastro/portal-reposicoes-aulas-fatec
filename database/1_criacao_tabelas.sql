@@ -69,7 +69,7 @@ CREATE TABLE TIPOS_FALTAS (
     CONSTRAINT CHK_TIPOS_FALTAS_tipo_intervalo
     CHECK (TPF_tipo_intervalo IN (
         'dias',
-        'horas',
+        'horas'
     )),
     CONSTRAINT CHK_TIPOS_FALTAS_max_dias CHECK (TPF_max_dias >= 0)
 );
@@ -92,7 +92,7 @@ CREATE TABLE JUSTIFICATIVAS_FALTAS (
     CONSTRAINT FK_TIPOS_FALTAS_JUSTIFICATIVAS_FALTAS
         FOREIGN KEY (JUF_id_tipo_falta)
         REFERENCES TIPOS_FALTAS (TPF_id)
-        ON DELETE RESTRICT,
+        ON DELETE RESTRICT
 );
 
 CREATE TABLE COMPROVANTES_FALTAS (

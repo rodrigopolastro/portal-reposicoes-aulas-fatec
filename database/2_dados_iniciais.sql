@@ -1,37 +1,38 @@
 INSERT INTO TIPOS_FALTAS (
     TPF_categoria,
     TPF_descricao,
-    TPF_max_dias
-     'opcional', 'obrigatório', 'não exige'
+    TPF_tipo_intervalo
+    TPF_max_dias,
+    TPF_intervalo_fixo
 ) VALUES 
-    ('Licença e Falta Médica', 'Falta Médica (Atestado médico de 1 dia).', 1),
-    ('Licença e Falta Médica', 'Comparecimento ao Médico no período das _____:_____ às _____:_____.', 1),
-    ('Licença e Falta Médica', 'Licença-Saúde (Atestado médico igual ou superior a 2 dias).', 0),
-    ('Licença e Falta Médica', 'Licença-Maternidade. (Atestado médico até 15 dias)', 15),
+    ('Licença e Falta Médica', 'Falta Médica (Atestado médico de 1 dia).', 'dias', 1, TRUE),
+    ('Licença e Falta Médica', 'Comparecimento ao Médico no período das _____:_____ às _____:_____.', 'horas', 1, FALSE),
+    ('Licença e Falta Médica', 'Licença-Saúde (Atestado médico igual ou superior a 2 dias).', 'dias', 0, FALSE),
+    ('Licença e Falta Médica', 'Licença-Maternidade. (Atestado médico até 15 dias)',  'dias', 15, FALSE),
 
-    ('Falta Injustificada', 'Falta', 0),
-    ('Falta Injustificada', 'Atraso', 0),
-    ('Falta Injustificada', 'Saída Antecipada', 0),
+    ('Falta Injustificada', 'Falta', 'dias', 0, FALSE),
+    ('Falta Injustificada', 'Atraso', 'horas', 0, FALSE),
+    ('Falta Injustificada', 'Saída Antecipada', 'horas', 0, FALSE),
 
-    ('Falta Justificada', 'Falta' 0),
-    ('Falta Justificada', 'Atraso' 0),
-    ('Falta Justificada', 'Saída Antecipada' 0),
+    ('Falta Justificada', 'Falta', 'dias', 0, FALSE),
+    ('Falta Justificada', 'Atraso', 'horas', 0, FALSE),
+    ('Falta Justificada', 'Saída Antecipada', 'horas', 0, FALSE),
 
-    ('Falta Prevista na Legislação Trabalhista', 'Falecimento de cônjuge, pai, mãe, filho. (9 dias consecutivos).', 9),
-    ('Falta Prevista na Legislação Trabalhista', 'Falecimento ascendente (exceto pai e mãe), descendente (exceto filho), irmão ou pessoa declarada na CTPS, que viva sob sua dependência econômica. (2 dias consecutivos).', 2),
-    ('Falta Prevista na Legislação Trabalhista', 'Casamento. (9 dias consecutivos).', 9),
-    ('Falta Prevista na Legislação Trabalhista', 'Nascimento de filho, no decorrer da primeira semana. (5 dias).', 5),
-    ('Falta Prevista na Legislação Trabalhista', 'Acompanhar esposa ou companheira no período de gravidez, em consultas médicas e exames complementares. (Até 2 dias).', 2),
-    ('Falta Prevista na Legislação Trabalhista', 'Acompanhar filho de até 6 anos em consulta médica. (1 dia por ano).', 1),
-    ('Falta Prevista na Legislação Trabalhista', 'Doação voluntária de sangue. (1 dia em cada 12 meses de trabalho).', 1),
-    ('Falta Prevista na Legislação Trabalhista', 'Alistamento como eleitor. (Até 2 dias consecutivos ou não).', 2),
-    ('Falta Prevista na Legislação Trabalhista', 'Convocação para depoimento judicial.', 0),
-    ('Falta Prevista na Legislação Trabalhista', 'Comparecimento como jurado no Tribunal do Júri.', 0),
-    ('Falta Prevista na Legislação Trabalhista', 'Convocação para serviço eleitoral.', 0),
-    ('Falta Prevista na Legislação Trabalhista', 'Dispensa dos dias devido à nomeação para compor as mesas receptoras ou juntas eleitorais nas eleições ou requisitado para auxiliar seus trabalhos (Lei nº 9.504/97).', 0),
-    ('Falta Prevista na Legislação Trabalhista', 'Realização de Prova de Vestibular para ingresso em estabelecimento de ensino superior.', 1),
-    ('Falta Prevista na Legislação Trabalhista', 'Comparecimento necessário como parte na Justiça do Trabalho (Enunciado TST nº 155). (Horas necessárias).', 1),
-    ('Falta Prevista na Legislação Trabalhista', 'Atrasos decorrentes de acidentes de transporte, com atestado da empresa concessionária. (Horas necessárias).', 1),
+    ('Falta Prevista na Legislação Trabalhista', 'Falecimento de cônjuge, pai, mãe, filho. (9 dias consecutivos).', 'dias', 9, TRUE),
+    ('Falta Prevista na Legislação Trabalhista', 'Falecimento ascendente (exceto pai e mãe), descendente (exceto filho), irmão ou pessoa declarada na CTPS, que viva sob sua dependência econômica. (2 dias consecutivos).', 'dias', 2, TRUE),
+    ('Falta Prevista na Legislação Trabalhista', 'Casamento. (9 dias consecutivos).', 'dias', 9, TRUE),
+    ('Falta Prevista na Legislação Trabalhista', 'Nascimento de filho, no decorrer da primeira semana. (5 dias).', 'dias', 5, TRUE),
+    ('Falta Prevista na Legislação Trabalhista', 'Acompanhar esposa ou companheira no período de gravidez, em consultas médicas e exames complementares. (Até 2 dias).', 'dias', 2, FALSE),
+    ('Falta Prevista na Legislação Trabalhista', 'Acompanhar filho de até 6 anos em consulta médica. (1 dia por ano).', 'dias', 1, TRUE),
+    ('Falta Prevista na Legislação Trabalhista', 'Doação voluntária de sangue. (1 dia em cada 12 meses de trabalho).', 'dias', 1, TRUE),
+    ('Falta Prevista na Legislação Trabalhista', 'Alistamento como eleitor. (Até 2 dias consecutivos ou não).', 'dias', 2, FALSE),
+    ('Falta Prevista na Legislação Trabalhista', 'Convocação para depoimento judicial.', 'horas', 0, FALSE),
+    ('Falta Prevista na Legislação Trabalhista', 'Comparecimento como jurado no Tribunal do Júri.', 'horas', 0, FALSE),
+    ('Falta Prevista na Legislação Trabalhista', 'Convocação para serviço eleitoral.', 'horas', 0, FALSE),
+    ('Falta Prevista na Legislação Trabalhista', 'Dispensa dos dias devido à nomeação para compor as mesas receptoras ou juntas eleitorais nas eleições ou requisitado para auxiliar seus trabalhos (Lei nº 9.504/97).', 'dias', 0, FALSE),
+    ('Falta Prevista na Legislação Trabalhista', 'Realização de Prova de Vestibular para ingresso em estabelecimento de ensino superior.', 'horas', 0, FALSE),
+    ('Falta Prevista na Legislação Trabalhista', 'Comparecimento necessário como parte na Justiça do Trabalho (Enunciado TST nº 155). (Horas necessárias).', 'horas', 0, FALSE),
+    ('Falta Prevista na Legislação Trabalhista', 'Atrasos decorrentes de acidentes de transporte, com atestado da empresa concessionária. (Horas necessárias).', 'horas', 0, FALSE),
     
 INSERT INTO HORARIOS_AULAS (
     HRA_dia_semana, 
@@ -48,8 +49,8 @@ INSERT INTO HORARIOS_AULAS (
     ('segunda', '19:00', '19:50'),
     ('segunda', '19:50', '20:40'),
     ('segunda', '20:50', '21:40'),
-    ('segunda', '21:40', '22:30'), (id=15)
-    --  horarios_faltas : (x, 15, id_justificativa, 21/10/2024)
+    ('segunda', '21:40', '22:30'), 
+    -- 
     ('terça', '13:00', '13:50'),
     ('terça', '13:50', '14:40'),
     ('terça', '14:50', '15:40'),
