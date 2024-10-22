@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS pi1_reposicoes_aulas;
-CREATE DATABASE pi1_reposicoes_aulas;
-USE pi1_reposicoes_aulas;
+DROP DATABASE IF EXISTS portal_reposicoes_aulas_fatec;
+CREATE DATABASE portal_reposicoes_aulas_fatec;
+USE portal_reposicoes_aulas_fatec;
 
 CREATE TABLE CURSOS (
     CUR_id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -16,6 +16,8 @@ CREATE TABLE USUARIOS (
     USR_cpf CHAR(11) NOT NULL,
     USR_numero_matricula CHAR(13) NOT NULL,
     USR_tipo VARCHAR(30) NOT NULL,
+    USR_email VARCHAR(100) NOT NULL,
+    USR_senha VARCHAR(20) NOT NULL,
 
     CONSTRAINT UNQ_USUARIOS_cpf UNIQUE (USR_cpf),
     CONSTRAINT UNQ_USUARIOS_numero_matricula UNIQUE (USR_numero_matricula),
@@ -26,6 +28,7 @@ CREATE TABLE USUARIOS (
             'coordenador',
             'secretaria'
         )),
+    CONSTRAINT UNQ_USUARIOS_email UNIQUE (USR_email),
     CONSTRAINT FK_CURSOS_USUARIOS
         FOREIGN KEY (USR_id_curso_coordenado)
         REFERENCES CURSOS (CUR_id)
@@ -38,6 +41,7 @@ CREATE TABLE DISCIPLINAS (
     DCP_id_curso INTEGER NOT NULL,
     DCP_nome VARCHAR(100) NOT NULL,
     DCP_sigla VARCHAR(5),
+    DCP_semestre INTEGER,
 
     CONSTRAINT UNQ_DISCIPLINAS_id_curso_e_nome UNIQUE (DCP_id_curso, DCP_nome),
     CONSTRAINT FK_USUARIOS_DISCIPLINAS
@@ -47,7 +51,8 @@ CREATE TABLE DISCIPLINAS (
     CONSTRAINT FK_CURSOS_DISCIPLINAS
         FOREIGN KEY (DCP_id_curso)
         REFERENCES CURSOS (CUR_id)
-        ON DELETE RESTRICT
+        ON DELETE RESTRICT,
+    CONSTRAINT CHK_DISCIPLINAS_semestre CHECK (DCP_semestre BETWEEN 1 AND 6)
 );
 
 CREATE TABLE TIPOS_FALTAS (
@@ -58,7 +63,7 @@ CREATE TABLE TIPOS_FALTAS (
     TPF_max_dias INTEGER NOT NULL, -- Se for 0, não possui máximo
     TPF_intervalo_fixo BOOLEAN NOT NULL,
     
-    CONSTRAINT UNQ_TIPOS_FALTAS_nome UNIQUE (TPF_descricao),
+    CONSTRAINT UNQ_TIPOS_FALTAS_categoria_e_descricao UNIQUE (TPF_categoria, TPF_descricao),
     CONSTRAINT CHK_TIPOS_FALTAS_categoria 
         CHECK (TPF_categoria IN (
             'Licença e Falta Médica',
@@ -127,16 +132,19 @@ CREATE TABLE PLANOS_REPOSICOES (
         ON DELETE RESTRICT
 );
 
-CREATE TABLE HORARIOS_AULAS (
-    HRA_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    HRA_dia_semana VARCHAR(10) NOT NULL,
-    HRA_horario_inicio CHAR(5) NOT NULL, -- Format: "HH:mm"
-    HRA_horario_fim CHAR(5) NOT NULL, -- Format: "HH:mm"
+CREATE TABLE HORARIOS_FATEC (
+    HRF_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    HRF_ordem_dia_semana INTEGER NOT NULL,
+    HRF_nome_dia_semana VARCHAR(10) NOT NULL,
+    HRF_horario_inicio CHAR(5) NOT NULL, -- Format: "HH:mm"
+    HRF_horario_fim CHAR(5) NOT NULL, -- Format: "HH:mm"
 
-    CONSTRAINT UNQ_HORARIOS_AULAS_dia_semana_e_horarios 
-        UNIQUE (HRA_dia_semana, HRA_horario_inicio, HRA_horario_fim),
-    CONSTRAINT CHK_HORARIOS_AULAS_dia_semana
-        CHECK (HRA_dia_semana IN (
+    CONSTRAINT UNQ_HORARIOS_FATEC_dia_semana_e_horarios 
+        UNIQUE (HRF_nome_dia_semana, HRF_horario_inicio, HRF_horario_fim),
+    CONSTRAINT CHK_HORARIOS_FATEC_ordem_dia_semana
+        CHECK (HRF_ordem_dia_semana BETWEEN 1 AND 6),
+    CONSTRAINT CHK_HORARIOS_FATEC_nome_dia_semana
+        CHECK (HRF_nome_dia_semana IN (
             'segunda',
             'terça',
             'quarta',
@@ -151,9 +159,9 @@ CREATE TABLE HORARIOS_DISCIPLINAS (
     HRD_id_horario INTEGER NOT NULL,
     HRD_id_disciplina INTEGER NOT NULL,
 
-    CONSTRAINT FK_HORARIOS_AULAS_HORARIOS_DISCIPLINAS
+    CONSTRAINT FK_HORARIOS_FATEC_HORARIOS_DISCIPLINAS
         FOREIGN KEY (HRD_id_horario)
-        REFERENCES HORARIOS_AULAS (HRA_id)
+        REFERENCES HORARIOS_FATEC (HRF_id)
         ON DELETE RESTRICT,
     CONSTRAINT FK_DISCIPLINAS_HORARIOS_DISCIPLINAS
         FOREIGN KEY (HRD_id_disciplina)
@@ -167,9 +175,9 @@ CREATE TABLE HORARIOS_FALTAS (
     HRF_id_justificativa INTEGER NOT NULL,
     HRF_data_falta DATE NOT NULL,
 
-    CONSTRAINT FK_HORARIOS_AULAS_HORARIOS_FALTAS
+    CONSTRAINT FK_HORARIOS_FATEC_HORARIOS_FALTAS
         FOREIGN KEY (HRF_id_horario)
-        REFERENCES HORARIOS_AULAS (HRA_id)
+        REFERENCES HORARIOS_FATEC (HRF_id)
         ON DELETE RESTRICT,
     CONSTRAINT FK_JUSTIFICATIVAS_FALTAS_HORARIOS_FALTAS
         FOREIGN KEY (HRF_id_justificativa)
@@ -183,9 +191,9 @@ CREATE TABLE HORARIOS_REPOSICOES (
     HRR_id_reposicao INTEGER NOT NULL,
     HRR_data_reposicao DATE NOT NULL,
 
-    CONSTRAINT FK_HORARIOS_AULAS_HORARIOS_REPOSICOES
+    CONSTRAINT FK_HORARIOS_FATEC_HORARIOS_REPOSICOES
         FOREIGN KEY (HRR_id_horario)
-        REFERENCES HORARIOS_AULAS (HRA_id)
+        REFERENCES HORARIOS_FATEC (HRF_id)
         ON DELETE RESTRICT,
     CONSTRAINT FK_PLANOS_REPOSICOES_HORARIOS_REPOSICOES
         FOREIGN KEY (HRR_id_reposicao)
