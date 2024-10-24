@@ -1,0 +1,485 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] .
+    '/portal-reposicoes-aulas-fatec/helpers/caminho-absoluto.php';
+
+require_once caminhoAbsoluto('controllers/tipos-faltas.php');
+$tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
+?>
+
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
+    <link rel="stylesheet" href="../../assets/css/utilidades.css">
+    <title>Formulário de Justificativa de Falta</title>
+
+</head>
+
+<body>
+    <header>
+        <div class="topo">
+            <div class="fundo"><img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
+            <div class="fundo2"><img src="img/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
+        </div>
+        <nav>
+            <a href="index-professor.html" class="botao-nav">Início</a>
+            <a href="enviar-formularios.html" class="botao-nav">Enviar formulário</a>
+            <a href="lista-enviados.html" class="botao-nav">Formulários enviados</a>
+            <a href="login.html" class="botao-nav">Sair</a>
+        </nav>
+
+    </header>
+    <main>
+
+        <h1>Formulário para Justificativa de Faltas:</h1>
+
+        <div class="corpo">
+
+
+            <form method="POST" action="./gera-pdf-formulario.php" enctype="multipart/form-data">
+                <div class="formcomeço">
+                    <div class="item-pequeno">
+                        <p><strong>Nome:</strong> </p>
+                        <p>Ana Célia Ribeiro Bizigato Portes</p>
+                    </div>
+
+                    <div class="item-pequeno">
+                        <p><strong>Matrícula:</strong> </p>
+                        <p>0000000000005</p>
+                    </div>
+
+                    <div class="item-pequeno">
+                        <p><strong>Função:</strong></p>
+                        <p>Professor de Ensino Superior</p>
+                    </div>
+                    <div class="item-pequeno">
+                        <p><strong>Regime jurídico:</strong></p>
+                        <p>CLT</p>
+                    </div>
+                </div>
+
+                <!-- <div class="checkbox">
+                <label for="cursos" class="cursos"> Curso(s) envolvido(s) na ausência: *</label>
+                <label class="checkbox-label">
+                    <input type="checkbox" value="dsm" name="cursos[]">
+                    <span class="custom-checkbox"></span> CST-DSM
+                </label>
+            
+                <label class="checkbox-label">
+                    <input type="checkbox" value="ge" name="cursos[]">
+                    <span class="custom-checkbox"></span> CST-GE
+                </label>
+            
+                <label class="checkbox-label">
+                    <input type="checkbox" value="gpi" name="cursos[]">
+                    <span class="custom-checkbox"></span> CST-GPI
+                </label>
+            
+                <label class="checkbox-label">
+                    <input type="checkbox" value="gti" name="cursos[]">
+                    <span class="custom-checkbox"></span> CST-GTI
+                </label>
+            
+                <label class="checkbox-label">
+                    <input type="checkbox" value="hae" name="cursos[]">
+                    <span class="custom-checkbox"></span> HAE
+                </label>
+            </div> -->
+
+                <label for="categoria_falta">Categoria da Falta:</label>
+                <select id="selectCategoriaFalta" name="categoria_falta">
+                    <option id="optionNenhumaOpcao" value="">Selecione...</option>
+                    <option id="optionlicencaMedica" value="licenca_medica">Licença e Falta Médica </option>
+                    <option id="optionLegislacao" value="legislacao_trabalhista">Faltas Previstas na Legislação Trabalhista</option>
+                    <option id="optionJustificada" value="falta_justificada">Faltas Justificadas (Se deferido, não implicam em desconto do Descanso Semanal Remunerado – DSR)</option>
+                    <option id="optionInjustificada" value="falta_injustificada">Faltas Injustificadas (Com desconto do Descanso Semanal Remunerado – DSR) </option>
+                </select>
+
+                <div id="divFaltasLicencaMedica" class="d-none">
+                    <?php foreach ($tiposFaltas as $tipoFalta) : ?>
+                        <?php if ($tipoFalta['TPF_categoria'] == 'Licença e Falta Médica') : ?>
+                            <input type="radio" value="<?= $tipoFalta['TPF_id'] ?>" name="" onclick="visibilidadeCaixas()">    
+                            <label><?= $tipoFalta['TPF_descricao'] ?></label>
+                            <br>
+                            <br>
+                        <?php endif ?>
+                    <?php endforeach ?>
+                </div>
+
+                <div id="divFaltasLegislacao" class="d-none">
+                    <?php foreach ($tiposFaltas as $tipoFalta) : ?>
+                        <?php if ($tipoFalta['TPF_categoria'] == 'Falta Prevista na Legislação Trabalhista') : ?>
+                            <input type="radio" value="<?= $tipoFalta['TPF_id'] ?>" name="" onclick="visibilidadeCaixas()">    
+                            <label><?= $tipoFalta['TPF_descricao'] ?></label>
+                            <br>
+                            <br>
+                        <?php endif ?>
+                    <?php endforeach ?>
+                </div>
+
+                <div id="divFaltasJustificadas" class="d-none">
+                    <?php foreach ($tiposFaltas as $tipoFalta) : ?>
+                        <?php if ($tipoFalta['TPF_categoria'] == 'Falta Justificada') : ?>
+                            <input type="radio" value="<?= $tipoFalta['TPF_id'] ?>" name="" onclick="visibilidadeCaixas()">    
+                            <label><?= $tipoFalta['TPF_descricao'] ?></label>
+                            <br>
+                            <br>
+                        <?php endif ?>
+                    <?php endforeach ?>
+                </div>
+
+                <div id="divFaltasInjustificadas" class="d-none">
+                    <?php foreach ($tiposFaltas as $tipoFalta) : ?>
+                        <?php if ($tipoFalta['TPF_categoria'] == 'Falta Injustificada') : ?>
+                            <input type="radio" value="<?= $tipoFalta['TPF_id'] ?>" name="" onclick="visibilidadeCaixas()">    
+                            <label><?= $tipoFalta['TPF_descricao'] ?></label>
+                            <br>
+                            <br>
+                        <?php endif ?>
+                    <?php endforeach ?>
+                </div>
+
+                <br><br>
+
+                <div id="licenca" class="hidden-content">
+                    <input type="radio" value="Médica (Atestado médico de 1 dia) por motivo de: " name="tipo_licenca_medica" id="faltaMedica" onclick="visibilidadeCaixas()"><label> Médica (Atestado médico de 1 dia)</label><br><br>
+                    <input type="radio" value="Comparecimento ao Médico no período das: " name="tipo_licenca_medica" id="comparecimento" onclick="visibilidadeCaixas()"><label> Comparecimento ao Médico no período parcial (Atestado médico de horas)</label><br><br>
+                    <input type="radio" value="Licença-Saúde (Atestado médico igual ou superior a 2 dias)" name="tipo_licenca_medica" id="licencaSaude" onclick="visibilidadeCaixas()"><label> Licença-Saúde (Atestado médico igual ou superior a 2 dias)</label><br><br>
+                    <input type="radio" value="Licença-Maternidade. (Atestado médico até 15 dias)" name="tipo_licenca_medica" id="licencaMaternidade" onclick="visibilidadeCaixas()"><label> Licença-Maternidade. (Atestado médico até 15 dias)</label>
+                </div>
+
+
+                <script>
+                    // // Função para atualizar a opacidade dos elementos
+                    // function updateOpacity() {
+                    //     document.getElementById('motivo-falta').classList.toggle('disabled-opacity', document.getElementById('motivo-falta').disabled);
+                    //     document.getElementById('time-inicio').classList.toggle('disabled-opacity', document.getElementById('time-inicio').disabled);
+                    //     document.getElementById('time-fim').classList.toggle('disabled-opacity', document.getElementById('time-fim').disabled);
+                    // }
+
+                    // // Evento para quando a opção "faltaMedica" é selecionada
+                    // document.getElementById('faltaMedica').addEventListener('change', function() {
+                    //     if (this.checked) {
+                    //         document.getElementById('motivo-falta').disabled = false;
+                    //         document.getElementById('time-inicio').disabled = true;
+                    //         document.getElementById('time-fim').disabled = true;
+                    //     }
+                    //     updateOpacity();
+                    // });
+
+                    // // Evento para quando a opção "comparecimento" é selecionada
+                    // document.getElementById('comparecimento').addEventListener('change', function() {
+                    //     if (this.checked) {
+                    //         document.getElementById('motivo-falta').disabled = true;
+                    //         document.getElementById('time-inicio').disabled = false;
+                    //         document.getElementById('time-fim').disabled = false;
+                    //     }
+                    //     updateOpacity();
+                    // });
+
+                    // // Evento para quando a opção "licencaSaude" ou "licencaMaternidade" é selecionada
+                    // document.getElementById('licencaSaude').addEventListener('change', function() {
+                    //     if (this.checked) {
+                    //         document.getElementById('motivo-falta').disabled = true;
+                    //         document.getElementById('time-inicio').disabled = true;
+                    //         document.getElementById('time-fim').disabled = true;
+                    //     }
+                    //     updateOpacity();
+                    // });
+
+                    // document.getElementById('licencaMaternidade').addEventListener('change', function() {
+                    //     if (this.checked) {
+                    //         document.getElementById('motivo-falta').disabled = true;
+                    //         document.getElementById('time-inicio').disabled = true;
+                    //         document.getElementById('time-fim').disabled = true;
+                    //     }
+                    //     updateOpacity();
+                    // });
+
+                    // // Inicializa os campos como desabilitados
+                    // document.getElementById('motivo-falta').disabled = true;    
+                    // document.getElementById('time-inicio').disabled = true;
+                    // document.getElementById('time-fim').disabled = true;
+                </script>
+                <div id="injustificada" class="hidden-content">
+                    <input type="radio" id="faltaMedica-just" name="tipo_falta_injustificada" value="falta">
+                    <label for="faltaMedica-just">Falta Injustificada</label><br><br>
+
+                    <input type="radio" id="comparecimento-just" name="tipo_falta_injustificada" value="atraso_saida_antecipada">
+                    <label for="comparecimento-just">Atraso ou Saída Antecipada no período</label>
+                    <input type="time" id="time-inicio-inju" name="inicio_atraso_saida_injustificada"> às <input type="time" id="time-fim-inju" name="fim_atraso_saida_injustificada">
+                </div>
+
+                <script>
+                    // // Função para atualizar a opacidade dos elementos
+                    // function updateOpacity() {
+                    //     document.getElementById('motivo-falta-inju').classList.toggle('disabled-opacity', document.getElementById('motivo-falta-inju').disabled);
+                    //     document.getElementById('time-inicio-inju').classList.toggle('disabled-opacity', document.getElementById('time-inicio-inju').disabled);
+                    //     document.getElementById('time-fim-inju').classList.toggle('disabled-opacity', document.getElementById('time-fim-inju').disabled);
+                    // }
+
+                    // // Evento para quando a opção "faltaMedica" é selecionada
+                    // document.getElementById('faltaMedica-inju').addEventListener('change', function() {
+                    //     if (this.checked) {
+                    //         document.getElementById('motivo-falta-inju').disabled = false;
+                    //         document.getElementById('time-inicio-inju').disabled = true;
+                    //         document.getElementById('time-fim-inju').disabled = true;
+                    //     }
+                    //     updateOpacity();
+                    // });
+
+                    // // Evento para quando a opção "comparecimento" é selecionada
+                    // document.getElementById('comparecimento-inju').addEventListener('change', function() {
+                    //     if (this.checked) {
+                    //         document.getElementById('motivo-falta-inju').disabled = true;
+                    //         document.getElementById('time-inicio-inju').disabled = false;
+                    //         document.getElementById('time-fim-inju').disabled = false;
+                    //     }
+                    //     updateOpacity();
+                    // });
+
+                    // // Evento para quando a opção "licencaSaude" é selecionada
+                    // document.getElementById('licencaSaude-inju').addEventListener('change', function() {
+                    //     if (this.checked) {
+                    //         document.getElementById('motivo-falta-inju').disabled = true;
+                    //         document.getElementById('time-inicio-inju').disabled = true;
+                    //         document.getElementById('time-fim-inju').disabled = true;
+                    //     }
+                    //     updateOpacity();
+                    // });
+
+                    // // Evento para quando a opção "licencaMaternidade" é selecionada
+                    // document.getElementById('licencaMaternidade-inju').addEventListener('change', function() {
+                    //     if (this.checked) {
+                    //         document.getElementById('motivo-falta-inju').disabled = true;
+                    //         document.getElementById('time-inicio-inju').disabled = true;
+                    //         document.getElementById('time-fim-inju').disabled = true;
+                    //     }
+                    //     updateOpacity();
+                    // });
+
+                    // // Inicializa os campos como desabilitados
+                    // document.getElementById('motivo-falta-inju').disabled = true;    
+                    // document.getElementById('time-inicio-inju').disabled = true;
+                    // document.getElementById('time-fim-inju').disabled = true;
+                </script>
+
+
+
+                <div id="justificada" class="hidden-content">
+                    <input type="radio" id="faltaMedica-just" name="tipo_falta_justificada" value="motivo_adicional">
+                    <label for="faltaMedica-just">Falta por motivo de</label>
+                    <input type="text" id="motivo-falta-just" name="motivo_falta_justificada" autocomplete="off"><br><br>
+
+                    <input type="radio" id="comparecimento-just" name="tipo_falta_justificada" value="atraso_saida_antecipada">
+                    <label for="comparecimento-just">Atraso ou Saída Antecipada no período</label>
+                    <input type="time" id="time-inicio-just" name="inicio_atraso_saida_justificada"> às <input type="time" id="time-fim-just" name="fim_atraso_saida_justificada">
+                    <label for="motivo-atraso-saida-just"> por motivo de </label>
+                    <input type="text" id="motivo-atraso-saida-just" class="motivo" name="motivo_atraso_saida_antecipada" autocomplete="off"><br><br>
+                </div>
+
+                <script>
+                    // Função para atualizar a opacidade dos elementos
+                    // function updateOpacity() {
+                    //     document.getElementById('motivo-falta-just').classList.toggle('disabled-opacity', document.getElementById('motivo-falta-just').disabled);
+                    //     document.getElementById('time-inicio-just').classList.toggle('disabled-opacity', document.getElementById('time-inicio-just').disabled);
+                    //     document.getElementById('time-fim-just').classList.toggle('disabled-opacity', document.getElementById('time-fim-just').disabled);
+                    //     document.getElementById('motivo-atraso-saida-just').classList.toggle('disabled-opacity', document.getElementById('motivo-atraso-saida-just').disabled);
+                    // }
+
+                    // // Evento para quando a opção "faltaMedica" é selecionada
+                    // document.getElementById('faltaMedica-just').addEventListener('change', function() {
+                    //     if (this.checked) {
+                    //         document.getElementById('motivo-falta-just').disabled = false;
+                    //         document.getElementById('time-inicio-just').disabled = true;
+                    //         document.getElementById('time-fim-just').disabled = true;
+                    //         document.getElementById('motivo-atraso-saida-just').disabled = true;
+                    //     }
+                    //     updateOpacity();
+                    // });
+
+                    // // Evento para quando a opção "comparecimento" é selecionada
+                    // document.getElementById('comparecimento-just').addEventListener('change', function() {
+                    //     if (this.checked) {
+                    //         document.getElementById('motivo-falta-just').disabled = true;
+                    //         document.getElementById('time-inicio-just').disabled = false;
+                    //         document.getElementById('time-fim-just').disabled = false;
+                    //         document.getElementById('motivo-atraso-saida-just').disabled = false;
+                    //     }
+                    //     updateOpacity();
+                    // });
+
+                    // // Evento para quando a opção "licencaSaude" é selecionada
+                    // document.getElementById('licencaSaude-just').addEventListener('change', function() {
+                    //     if (this.checked) {
+                    //         document.getElementById('motivo-falta-just').disabled = true;
+                    //         document.getElementById('time-inicio-just').disabled = true;
+                    //         document.getElementById('time-fim-just').disabled = true;
+                    //         document.getElementById('motivo-atraso-saida-just').disabled = true;
+                    //     }
+                    //     updateOpacity();
+                    // });
+
+                    // // Evento para quando a opção "licencaMaternidade" é selecionada
+                    // document.getElementById('licencaMaternidade-just').addEventListener('change', function() {
+                    //     if (this.checked) {
+                    //         document.getElementById('motivo-falta-just').disabled = true;
+                    //         document.getElementById('time-inicio-just').disabled = true;
+                    //         document.getElementById('time-fim-just').disabled = true;
+                    //         document.getElementById('motivo-atraso-saida-just').disabled = true;
+                    //     }
+                    //     updateOpacity();
+                    // });
+
+                    // // Inicializa os campos como desabilitados
+                    // document.getElementById('motivo-falta-just').disabled = true;    
+                    // document.getElementById('time-inicio-just').disabled = true;
+                    // document.getElementById('time-fim-just').disabled = true;
+                    // document.getElementById('motivo-atraso-saida-just').disabled = true;
+                </script>
+
+                <div id="trabalhista" class="hidden-content">
+                    <input type="radio" value="Falecimento de cônjuge, pai, mãe, filho. (9 dias consecutivos)" name="trabalhista"><label> Falecimento de cônjuge, pai, mãe, filho. (9 dias consecutivos)<br><br>
+                        <input type="radio" value="Falecimento ascendente (exceto pai e mãe), descendente (exceto filho), irmão ou pessoa declarada na CTPS, que viva sob sua dependência econômica. (2 dias consecutivos)" name="trabalhista"><label> Falecimento ascendente (exceto pai e mãe), descendente (exceto filho), irmão ou pessoa declarada na CTPS, que viva sob sua dependência econômica. (2 dias consecutivos)</label><br><br>
+                        <input type="radio" value="Casamento. (9 dias consecutivos)" name="trabalhista"><label> Casamento. (9 dias consecutivos)<br><br>
+                            <input type="radio" value="Nascimento de filho, no decorrer da primeira semana. (5 dias)." name="trabalhista"><label> Nascimento de filho, no decorrer da primeira semana. (5 dias).<br><br>
+                                <input type="radio" value="Acompanhar esposa ou companheira durante a gravidez, em consultas médicas e exames complementares. (Até 2 dias)." name="trabalhista"><label> Acompanhar esposa ou companheira durante a gravidez, em consultas médicas e exames complementares. (Até 2 dias).</label><br><br>
+                                <input type="radio" value="Acompanhar filho de até 6 anos em consulta médica. (1 dia por ano)" name="trabalhista"><label> Acompanhar filho de até 6 anos em consulta médica. (1 dia por ano)<br><br>
+                                    <input type="radio" value="Doação voluntária de sangue. (1 dia em cada 12 meses de trabalho)." name="trabalhista"><label> Doação voluntária de sangue. (1 dia em cada 12 meses de trabalho).<br><br>
+                                        <input type="radio" value="Alistamento como eleitor. (Até 2 dias consecutivos ou não)." name="trabalhista"><label> Alistamento como eleitor. (Até 2 dias consecutivos ou não).<br><br>
+                                            <input type="radio" value="Convocação para depoimento judicial." name="trabalhista"><label> Convocação para depoimento judicial.<br><br>
+                                                <input type="radio" value="Comparecimento como jurado no Tribunal do Júri." name="trabalhista"><label> Comparecimento como jurado no Tribunal do Júri.<br><br>
+                                                    <input type="radio" value="Convocação para serviço eleitoral." name="trabalhista"><label> Convocação para serviço eleitoral.<br><br>
+                                                        <input type="radio" value="Dispensa dos dias devido à nomeação para compor as mesas receptoras ou juntas eleitorais nas eleições ou requisitado para auxiliar seus trabalhos (Lei nº 9.504/97)." name="trabalhista"><label> Dispensa dos dias devido à nomeação para compor as mesas receptoras ou juntas eleitorais nas eleições ou requisitado para auxiliar seus trabalhos (Lei nº 9.504/97).<br><br>
+                                                            <input type="radio" value="Realização de Prova de Vestibular para ingresso em estabelecimento de ensino superior." name="trabalhista"><label> Realização de Prova de Vestibular para ingresso em estabelecimento de ensino superior.<br><br>
+                                                                <input type="radio" value="Comparecimento necessário como parte na Justiça do Trabalho (Enunciado TST nº 155). (Horas necessárias)." name="trabalhista"><label> Comparecimento necessário como parte na Justiça do Trabalho (Enunciado TST nº 155). (Horas necessárias).<br><br>
+                                                                    <input type="radio" value="Atrasos decorrentes de acidentes de transporte, com atestado da empresa concessionária. (Horas necessárias)." name="trabalhista"><label> Atrasos decorrentes de acidentes de transporte, com atestado da empresa concessionária. (Horas necessárias).<br><br>
+
+                </div>
+
+                <script>
+                    // document.getElementById('falta').addEventListener('change', function() {
+                    //     var selectedValue = this.value;
+
+                    //     // Esconde todas as divs
+                    //     document.getElementById('licenca').classList.add('hidden-content');
+                    //     document.getElementById('injustificada').classList.add('hidden-content');
+                    //     document.getElementById('justificada').classList.add('hidden-content');
+                    //     document.getElementById('trabalhista').classList.add('hidden-content');
+
+                    //     // Mostra a div correspondente ao valor selecionado
+                    //     if (selectedValue === 'licenca_medica') {
+                    //         document.getElementById('licenca').classList.remove('hidden-content');
+                    //     } else if (selectedValue === 'falta_injustificada') {
+                    //         document.getElementById('injustificada').classList.remove('hidden-content');
+                    //     } else if (selectedValue === 'falta_justificada') {
+                    //         document.getElementById('justificada').classList.remove('hidden-content');
+                    //     } else if (selectedValue === 'legislacao_trabalhista') {
+                    //         document.getElementById('trabalhista').classList.remove('hidden-content');
+                    //     }
+                    // });
+                </script>
+                <br><br>
+                <label for="dataDia">Data: *</label><br><br>
+                <input type="radio" id="faltaReferenteDia" name="tipo_periodo" value="dia">
+                <label for="dataDia">Dia inicial: </label>
+                <input type="date" id="dataDia" name="data_dia">
+                <br><br>
+                <label style="display: none;" id="dataDiaAfastado" for="dataDia">Dias Afastado: </label>
+                <input type="number" id="numericBox" name="numericBox" min="1" step="1" value="1" style="display: none;">
+                <label style="display: none;" id="dataHoraAfastado" for="dataHora">Horario Afastado: </label>
+                <input type="time" id="timeInput1" name="timeInput" style="display: none;"><label style="display: none;" id="das">das</label><input type="time" id="timeInput2" name="timeInput" style="display: none;">
+
+                <br><br>
+
+                <!-- <input type="radio" id="faltaReferentePeriodo" name="tipo_periodo" value="periodo">
+            <label for="dias">Período de </label>
+            <input type="number" id="dias" name="dias_periodo" class="dias" placeholder="">
+            <label for="dias"> dias - de </label>
+            <input type="date" id="dateStart" name="inicio_periodo">
+            <!-- AUTOMATIZAR O CÁLCULO DA DATA FINAL UTILIZANDO JAVASCRIPT!  -->
+                <!-- <label for="dias"> até </label>
+            <input type="date" id="dateEnd" name="fim_periodo"><br><br> -->
+
+                <script>
+                    // // Função para atualizar a opacidade dos elementos
+                    // function updateOpacity() {
+                    //     document.getElementById('dataDia').classList.toggle('disabled-opacity', document.getElementById('dataDia').disabled);
+                    //     document.getElementById('dias').classList.toggle('disabled-opacity', document.getElementById('dias').disabled);
+                    //     document.getElementById('dateStart').classList.toggle('disabled-opacity', document.getElementById('dateStart').disabled);
+                    //     document.getElementById('dateEnd').classList.toggle('disabled-opacity', document.getElementById('dateEnd').disabled);
+                    // }
+
+                    // document.getElementById('faltaReferenteDia').addEventListener('change', function() {
+                    //     if (this.checked) {
+                    //         document.getElementById('dataDia').disabled = false;
+                    //         document.getElementById('dias').disabled = true;
+                    //         document.getElementById('dateStart').disabled = true;
+                    //         document.getElementById('dateEnd').disabled = true;
+                    //     }
+                    //     updateOpacity();
+                    // });
+
+                    // document.getElementById('faltaReferentePeriodo').addEventListener('change', function() {
+                    //     if (this.checked) {
+                    //         document.getElementById('dataDia').disabled = true;
+                    //         document.getElementById('dias').disabled = false;
+                    //         document.getElementById('dateStart').disabled = false;
+                    //         document.getElementById('dateEnd').disabled = false;
+                    //     }
+                    //     updateOpacity();
+                    // });
+
+                    // // Inicializa os campos como desabilitados
+                    // document.getElementById('dataDia').disabled = true;    
+                    // document.getElementById('dias').disabled = true;
+                    // document.getElementById('dateStart').disabled = true;
+                    // document.getElementById('dateEnd').disabled = true;
+                </script>
+
+                <style>
+                    .disabled-opacity {
+                        opacity: 0.5;
+                    }
+                </style>
+
+                <br><br>
+
+                <label for="fileInput" id="fileLabel" class="d-none file-label" >Anexar comprovante</label>
+                <input type="file" id="fileInput" class="d-none file-input" name="comprovante" accept="image/*">
+                <span id="fileName" class="d-none file-name">Nenhum arquivo selecionado</span>
+
+                <script>
+                    // document.getElementById('fileInput').addEventListener('change', function() {
+                    //     var fileName = this.files[0] ? this.files[0].name : 'Nenhum arquivo selecionado';
+                    //     document.getElementById('fileName').textContent = fileName;
+                    // });
+                </script>
+
+
+                <!-- <p>Selecionar um item e anexar o comprovante, devendo o original ser entregue na sede e
+                a cópia simples nas unidades de ampliação
+                (desde que acompanhada do original para conferência).</p><br><br> -->
+
+                <!-- <p>*Campo obrigatório</p> <br><br> -->
+
+                <input type="submit" value="Enviar">
+                <input type="reset" name="Limpar">
+            </form>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer">
+            <img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
+            <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista - CEP: 13974-080</p>
+            <p class="rodape">Telefone: (19) 3843-1996 | (19) 3863-5210 (WhatsApp)</p>
+            <p class="rodape">&copy; 2024 Equipe 6Tec. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <script src="../../assets/js/formulario-justificativa.js"></script>
+</body>
+
+</html>
