@@ -11,17 +11,17 @@ INSERT INTO TIPOS_FALTAS (
     TPF_intervalo_fixo
 ) VALUES 
     ('Licença e Falta Médica', 'Falta Médica (Atestado médico de 1 dia)', 'dias', 1, TRUE),
-    ('Licença e Falta Médica', 'Comparecimento ao Médico em período', 'horas', 1, FALSE),
-    ('Licença e Falta Médica', 'Licença-Saúde (Atestado médico igual ou superior a 2 dias)', 'dias', 0, FALSE),
+    ('Licença e Falta Médica', 'Comparecimento ao Médico em período', 'horas', NULL, FALSE),
+    ('Licença e Falta Médica', 'Licença-Saúde (Atestado médico igual ou superior a 2 dias)', 'dias', NULL, FALSE),
     ('Licença e Falta Médica', 'Licença-Maternidade (Atestado médico de até 15 dias)',  'dias', 15, FALSE),
 
-    ('Falta Injustificada', 'Falta', 'dias', 0, FALSE),
-    ('Falta Injustificada', 'Atraso', 'horas', 0, FALSE),
-    ('Falta Injustificada', 'Saída Antecipada', 'horas', 0, FALSE),
+    ('Falta Injustificada', 'Falta', 'dias', NULL, FALSE),
+    ('Falta Injustificada', 'Atraso', 'horas', NULL, FALSE),
+    ('Falta Injustificada', 'Saída Antecipada', 'horas', NULL, FALSE),
 
-    ('Falta Justificada', 'Falta', 'dias', 0, FALSE),
-    ('Falta Justificada', 'Atraso', 'horas', 0, FALSE),
-    ('Falta Justificada', 'Saída Antecipada', 'horas', 0, FALSE),
+    ('Falta Justificada', 'Falta', 'dias', NULL, FALSE),
+    ('Falta Justificada', 'Atraso', 'horas', NULL, FALSE),
+    ('Falta Justificada', 'Saída Antecipada', 'horas', NULL, FALSE),
 
     ('Falta Prevista na Legislação Trabalhista', 'Falecimento de cônjuge, pai, mãe, filho', 'dias', 9, TRUE),
     ('Falta Prevista na Legislação Trabalhista', 'Falecimento ascendente (exceto pai e mãe), descendente (exceto filho), irmão ou pessoa declarada na CTPS, que viva sob sua dependência econômica', 'dias', 2, TRUE),
@@ -31,13 +31,13 @@ INSERT INTO TIPOS_FALTAS (
     ('Falta Prevista na Legislação Trabalhista', 'Acompanhar filho de até 6 anos em consulta médica', 'dias', 1, TRUE),
     ('Falta Prevista na Legislação Trabalhista', 'Doação voluntária de sangue', 'dias', 1, TRUE),
     ('Falta Prevista na Legislação Trabalhista', 'Alistamento como eleitor', 'dias', 2, FALSE),
-    ('Falta Prevista na Legislação Trabalhista', 'Convocação para depoimento judicial', 'horas', 0, FALSE),
-    ('Falta Prevista na Legislação Trabalhista', 'Comparecimento como jurado no Tribunal do Júri', 'horas', 0, FALSE),
-    ('Falta Prevista na Legislação Trabalhista', 'Convocação para serviço eleitoral', 'horas', 0, FALSE),
-    ('Falta Prevista na Legislação Trabalhista', 'Dispensa dos dias devido à nomeação para compor as mesas receptoras ou juntas eleitorais nas eleições ou requisitado para auxiliar seus trabalhos (Lei nº 9.504/97)', 'dias', 0, FALSE),
-    ('Falta Prevista na Legislação Trabalhista', 'Realização de Prova de Vestibular para ingresso em estabelecimento de ensino superior', 'horas', 0, FALSE),
-    ('Falta Prevista na Legislação Trabalhista', 'Comparecimento necessário como parte na Justiça do Trabalho (Enunciado TST nº 155)', 'horas', 0, FALSE),
-    ('Falta Prevista na Legislação Trabalhista', 'Atrasos decorrentes de acidentes de transporte, com atestado da empresa concessionária', 'horas', 0, FALSE);
+    ('Falta Prevista na Legislação Trabalhista', 'Convocação para depoimento judicial', 'horas', NULL, FALSE),
+    ('Falta Prevista na Legislação Trabalhista', 'Comparecimento como jurado no Tribunal do Júri', 'horas', NULL, FALSE),
+    ('Falta Prevista na Legislação Trabalhista', 'Convocação para serviço eleitoral', 'horas', NULL, FALSE),
+    ('Falta Prevista na Legislação Trabalhista', 'Dispensa dos dias devido à nomeação para compor as mesas receptoras ou juntas eleitorais nas eleições ou requisitado para auxiliar seus trabalhos (Lei nº 9.504/97)', 'dias', NULL, FALSE),
+    ('Falta Prevista na Legislação Trabalhista', 'Realização de Prova de Vestibular para ingresso em estabelecimento de ensino superior', 'horas', NULL, FALSE),
+    ('Falta Prevista na Legislação Trabalhista', 'Comparecimento necessário como parte na Justiça do Trabalho (Enunciado TST nº 155)', 'horas', NULL, FALSE),
+    ('Falta Prevista na Legislação Trabalhista', 'Atrasos decorrentes de acidentes de transporte, com atestado da empresa concessionária', 'horas', NULL, FALSE);
 
 INSERT INTO CURSOS (
     CUR_nome,

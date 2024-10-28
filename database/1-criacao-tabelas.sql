@@ -60,7 +60,7 @@ CREATE TABLE TIPOS_FALTAS (
     TPF_categoria VARCHAR(100) NOT NULL,
     TPF_descricao VARCHAR(300) NOT NULL,
     TPF_tipo_intervalo VARCHAR(30) NOT NULL,
-    TPF_max_dias INTEGER NOT NULL, -- Se for 0, não possui máximo
+    TPF_max_dias INTEGER, -- Se for NULL, não possui máximo
     TPF_intervalo_fixo BOOLEAN NOT NULL,
     
     CONSTRAINT UNQ_TIPOS_FALTAS_categoria_e_descricao UNIQUE (TPF_categoria, TPF_descricao),
@@ -76,7 +76,7 @@ CREATE TABLE TIPOS_FALTAS (
         'dias',
         'horas'
     )),
-    CONSTRAINT CHK_TIPOS_FALTAS_max_dias CHECK (TPF_max_dias >= 0)
+    CONSTRAINT CHK_TIPOS_FALTAS_max_dias CHECK (TPF_max_dias IS NULL OR TPF_max_dias > 0)
 );
 
 CREATE TABLE JUSTIFICATIVAS_FALTAS (
