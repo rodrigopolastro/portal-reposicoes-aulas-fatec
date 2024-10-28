@@ -34,7 +34,7 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
     <main>
         <h1>Formulário para Justificativa de Faltas:</h1>
         <div class="corpo">
-            <form method="POST" action="./gera-pdf-formulario.php" enctype="multipart/form-data">
+            <form method="POST" action="enviar-form-justificativa.php" enctype="multipart/form-data">
                 <div class="formcomeço">
                     <div class="item-pequeno">
                         <p><strong>Nome:</strong> </p>
@@ -70,6 +70,7 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
                         <?php if ($tipoFalta['TPF_categoria'] == 'Licença e Falta Médica') : ?>
                             <div>
                                 <input type="radio" class="option-falta" 
+                                    data-intervalo-fixo="<?= $tipoFalta['TPF_intervalo_fixo'] ?>"
                                     data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>"
                                     data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"  
                                     value="<?= $tipoFalta['TPF_id'] ?>" 
@@ -85,6 +86,7 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
                         <?php if ($tipoFalta['TPF_categoria'] == 'Falta Prevista na Legislação Trabalhista') : ?>
                             <div>
                                 <input type="radio" class="option-falta"
+                                    data-intervalo-fixo="<?= $tipoFalta['TPF_intervalo_fixo'] ?>"
                                     data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>" 
                                     data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"  
                                     value="<?= $tipoFalta['TPF_id'] ?>" 
@@ -100,6 +102,7 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
                         <?php if ($tipoFalta['TPF_categoria'] == 'Falta Justificada') : ?>
                             <div>
                                 <input type="radio" class="option-falta" 
+                                    data-intervalo-fixo="<?= $tipoFalta['TPF_intervalo_fixo'] ?>"
                                     data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>"
                                     data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"  
                                     value="<?= $tipoFalta['TPF_id'] ?>" 
@@ -115,6 +118,7 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
                         <?php if ($tipoFalta['TPF_categoria'] == 'Falta Injustificada') : ?>
                             <div>
                                 <input type="radio" class="option-falta"
+                                    data-intervalo-fixo="<?= $tipoFalta['TPF_intervalo_fixo'] ?>"
                                     data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>" 
                                     data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"  
                                     value="<?= $tipoFalta['TPF_id'] ?>" 

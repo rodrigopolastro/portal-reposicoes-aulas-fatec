@@ -7,13 +7,15 @@ const divFaltasInjustificadas = document.getElementById(
     "divFaltasInjustificadas"
 );
 const selectCategoriaFalta = document.getElementById("selectCategoriaFalta");
-const caixaDiasMaximos = document.getElementById('periodoDias');
+const periodoDias = document.getElementById('periodoDias');
 const dataFalta = document.getElementById("dataFalta");
 const dataFinal = document.getElementById("dataFinal");
 
 selectCategoriaFalta.addEventListener("change", () => {
     escondeTodasDivsFaltas();
-
+    const divDataFalta = document.getElementById("divDataFalta");
+    const divPeriodoDias = document.getElementById("divPeriodoDias");
+    const divPeriodoHoras = document.getElementById("divPeriodoHoras");
     const selectedOption =
         selectCategoriaFalta.options[selectCategoriaFalta.selectedIndex];
     const option = selectedOption.id;
@@ -22,6 +24,9 @@ selectCategoriaFalta.addEventListener("change", () => {
         document.getElementById("fileInput").classList.add("d-none");
         document.getElementById("fileName").classList.add("d-none");
         document.getElementById("fileLabel").classList.add("d-none");
+        divDataFalta.classList.add("d-none")
+        divPeriodoDias.classList.add("d-none")
+        divPeriodoHoras.classList.add("d-none")
     } else if (option == "optionlicencaMedica") {
         divFaltasLicencaMedica.classList.remove("d-none");
         //anexo obrigatório
@@ -68,26 +73,41 @@ window.addEventListener("load", () => {
     const divPeriodoDias = document.getElementById("divPeriodoDias");
     const divPeriodoHoras = document.getElementById("divPeriodoHoras");
     const listaOptionsFaltas = document.getElementsByClassName("option-falta");
+
+    function atualizarPeriodoDias(optionFalta){
+        divDataFalta.classList.remove("d-none");
+        let intervaloFixo = optionFalta.dataset.intervaloFixo
+        let tipoIntervalo = optionFalta.dataset.tipoIntervalo;
+        let maxDias = optionFalta.getAttribute("data-max-dias");
+        
+        if (tipoIntervalo == "dias") {
+            divPeriodoDias.classList.remove("d-none");
+            divPeriodoHoras.classList.add("d-none");
+            periodoDias.max = maxDias;
+
+            if(intervaloFixo == 1){
+                periodoDias.min = maxDias
+            }
+            else{
+                periodoDias.min = 1
+            }
+
+            periodoDias.value = intervaloFixo === "1" ? maxDias : "";
+
+        } else if (tipoIntervalo == "horas") {
+            divPeriodoDias.classList.add("d-none");
+            divPeriodoHoras.classList.remove("d-none");
+        }
+        
+    }
     Array.from(listaOptionsFaltas).forEach((optionFalta) => {
         optionFalta.addEventListener("click", () => {
-            divDataFalta.classList.remove("d-none");
-
-            let tipoIntervalo = optionFalta.dataset.tipoIntervalo;
-            console.log(optionFalta)
-            if (tipoIntervalo == "dias") {
-                divPeriodoDias.classList.remove("d-none");
-                divPeriodoHoras.classList.add("d-none");
-            } else if (tipoIntervalo == "horas") {
-                divPeriodoDias.classList.add("d-none");
-                divPeriodoHoras.classList.remove("d-none");
-            }
-            const maxDias = optionFalta.getAttribute("data-max-dias");
-            caixaDiasMaximos.max = maxDias;
+            atualizarPeriodoDias(optionFalta)
         });
     });
 });
 function calculaDataFinal() {
-    const dias = parseInt(caixaDiasMaximos.value, 10); 
+    const dias = parseInt(periodoDias.value, 10); 
     const dataInicial = new Date(dataFalta.value);
 
    
@@ -101,5 +121,5 @@ function calculaDataFinal() {
 }
 
 
-caixaDiasMaximos.addEventListener("input", calculaDataFinal);
+periodoDias.addEventListener("input", calculaDataFinal);
 dataFalta.addEventListener("change", calculaDataFinal);
