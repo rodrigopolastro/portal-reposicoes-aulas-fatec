@@ -7,6 +7,9 @@ const divFaltasInjustificadas = document.getElementById(
     "divFaltasInjustificadas"
 );
 const selectCategoriaFalta = document.getElementById("selectCategoriaFalta");
+const caixaDiasMaximos = document.getElementById('periodoDias');
+const dataFalta = document.getElementById("dataFalta");
+const dataFinal = document.getElementById("dataFinal");
 
 selectCategoriaFalta.addEventListener("change", () => {
     escondeTodasDivsFaltas();
@@ -78,6 +81,25 @@ window.addEventListener("load", () => {
                 divPeriodoDias.classList.add("d-none");
                 divPeriodoHoras.classList.remove("d-none");
             }
+            const maxDias = optionFalta.getAttribute("data-max-dias");
+            caixaDiasMaximos.max = maxDias;
         });
     });
 });
+function calculaDataFinal() {
+    const dias = parseInt(caixaDiasMaximos.value, 10); 
+    const dataInicial = new Date(dataFalta.value);
+
+   
+    if (!isNaN(dias) && dataInicial instanceof Date && !isNaN(dataInicial)) {
+        const dataCalculada = new Date(dataInicial); 
+        dataCalculada.setDate(dataCalculada.getDate() + dias - 1); 
+        dataFinal.value = dataCalculada.toISOString().split("T")[0];
+    } else {
+        dataFinal.value = "";
+    }
+}
+
+
+caixaDiasMaximos.addEventListener("input", calculaDataFinal);
+dataFalta.addEventListener("change", calculaDataFinal);

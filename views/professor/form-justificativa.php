@@ -70,6 +70,7 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
                         <?php if ($tipoFalta['TPF_categoria'] == 'Licença e Falta Médica') : ?>
                             <div>
                                 <input type="radio" class="option-falta" 
+                                    data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>"
                                     data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"  
                                     value="<?= $tipoFalta['TPF_id'] ?>" 
                                     name="tipoFalta">
@@ -83,7 +84,8 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
                     <?php foreach ($tiposFaltas as $tipoFalta) : ?>
                         <?php if ($tipoFalta['TPF_categoria'] == 'Falta Prevista na Legislação Trabalhista') : ?>
                             <div>
-                                <input type="radio" class="option-falta" 
+                                <input type="radio" class="option-falta"
+                                    data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>" 
                                     data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"  
                                     value="<?= $tipoFalta['TPF_id'] ?>" 
                                     name="tipoFalta">
@@ -98,6 +100,7 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
                         <?php if ($tipoFalta['TPF_categoria'] == 'Falta Justificada') : ?>
                             <div>
                                 <input type="radio" class="option-falta" 
+                                    data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>"
                                     data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"  
                                     value="<?= $tipoFalta['TPF_id'] ?>" 
                                     name="tipoFalta">
@@ -111,7 +114,8 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
                     <?php foreach ($tiposFaltas as $tipoFalta) : ?>
                         <?php if ($tipoFalta['TPF_categoria'] == 'Falta Injustificada') : ?>
                             <div>
-                                <input type="radio" class="option-falta" 
+                                <input type="radio" class="option-falta"
+                                    data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>" 
                                     data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"  
                                     value="<?= $tipoFalta['TPF_id'] ?>" 
                                     name="tipoFalta">
