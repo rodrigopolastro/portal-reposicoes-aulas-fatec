@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style-login.css">
+    <link rel="stylesheet" href="../assets/css/estilo-geral.css">
     <title>Login</title>
 </head>
 <body>    
@@ -40,11 +40,11 @@
                 
                 // Redireciona com base no email inserido
                 if (usuario === 'professor@fatec.sp.gov.br') {
-                    window.location.href = 'index-professor.html';
+                    window.location.href = '/professor/index-professor.html';
                 } else if (usuario === 'coordenador@fatec.sp.gov.br') {
-                    window.location.href = 'index-coordenador.html';
+                    window.location.href = '/coordenador/index-coordenador.html';
                 } else if (usuario === 'secretaria@fatec.sp.gov.br') {
-                    window.location.href = 'index-secretaria.html';
+                    window.location.href = 'secretaria/index-secretaria.html';
                 } else {
                     alert('Email não reconhecido. Por favor, tente novamente.');
                 }

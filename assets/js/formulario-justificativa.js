@@ -123,3 +123,5 @@ function calculaDataFinal() {
 
 periodoDias.addEventListener("input", calculaDataFinal);
 dataFalta.addEventListener("change", calculaDataFinal);
+
+
