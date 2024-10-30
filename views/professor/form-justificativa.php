@@ -34,7 +34,9 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
     <main>
         <h1>Formulário para Justificativa de Faltas:</h1>
         <div class="corpo">
-            <form method="POST" action="enviar-form-justificativa.php" enctype="multipart/form-data">
+            <form method="POST" action="../../controllers/justificativas-faltas.php" enctype="multipart/form-data">
+                <input type="hidden" name="acao" value="insertJustificativaFalta">
+                <input id="inputTipoIntervalo" type="hidden" name="tipo_intervalo" value="">
                 <div class="formcomeço">
                     <div class="item-pequeno">
                         <p><strong>Nome:</strong> </p>
@@ -69,12 +71,12 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
                     <?php foreach ($tiposFaltas as $tipoFalta) : ?>
                         <?php if ($tipoFalta['TPF_categoria'] == 'Licença e Falta Médica') : ?>
                             <div>
-                                <input type="radio" class="option-falta" 
+                                <input type="radio" class="option-falta"
                                     data-intervalo-fixo="<?= $tipoFalta['TPF_intervalo_fixo'] ?>"
                                     data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>"
-                                    data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"  
-                                    value="<?= $tipoFalta['TPF_id'] ?>" 
-                                    name="tipoFalta">
+                                    data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"
+                                    value="<?= $tipoFalta['TPF_id'] ?>"
+                                    name="id_tipo_falta">
                                 <label><?= $tipoFalta['TPF_descricao'] ?></label>
                             </div>
                         <?php endif ?>
@@ -87,10 +89,10 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
                             <div>
                                 <input type="radio" class="option-falta"
                                     data-intervalo-fixo="<?= $tipoFalta['TPF_intervalo_fixo'] ?>"
-                                    data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>" 
-                                    data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"  
-                                    value="<?= $tipoFalta['TPF_id'] ?>" 
-                                    name="tipoFalta">
+                                    data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>"
+                                    data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"
+                                    value="<?= $tipoFalta['TPF_id'] ?>"
+                                    name="id_tipo_falta">
                                 <label><?= $tipoFalta['TPF_descricao'] ?></label>
                             </div>
                         <?php endif ?>
@@ -101,12 +103,12 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
                     <?php foreach ($tiposFaltas as $tipoFalta) : ?>
                         <?php if ($tipoFalta['TPF_categoria'] == 'Falta Justificada') : ?>
                             <div>
-                                <input type="radio" class="option-falta" 
+                                <input type="radio" class="option-falta"
                                     data-intervalo-fixo="<?= $tipoFalta['TPF_intervalo_fixo'] ?>"
                                     data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>"
-                                    data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"  
-                                    value="<?= $tipoFalta['TPF_id'] ?>" 
-                                    name="tipoFalta">
+                                    data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"
+                                    value="<?= $tipoFalta['TPF_id'] ?>"
+                                    name="id_tipo_falta">
                                 <label><?= $tipoFalta['TPF_descricao'] ?></label>
                             </div>
                         <?php endif ?>
@@ -119,11 +121,11 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
                             <div>
                                 <input type="radio" class="option-falta"
                                     data-intervalo-fixo="<?= $tipoFalta['TPF_intervalo_fixo'] ?>"
-                                    data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>" 
-                                    data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"  
-                                    value="<?= $tipoFalta['TPF_id'] ?>" 
-                                    name="tipoFalta">
-                                <label><?= $tipoFalta['TPF_descricao'] ?></label>
+                                    data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>"
+                                    data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"
+                                    value="<?= $tipoFalta['TPF_id'] ?>"
+                                    name="id_tipo_falta">
+                                <labeli><?= $tipoFalta['TPF_descricao'] ?></label>
                             </div>
                         <?php endif ?>
                     <?php endforeach ?>
@@ -131,21 +133,31 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
                 <div>
                     <div class="d-flex">
                         <div id="divDataFalta" class="d-none">
-                            <label for="dataFalta">Data Falta: </label>
-                            <input type="date" id="dataFalta" name="data_dia">
+                            <label for="inputDataFalta">Data Falta: </label>
+                            <input type="date" id="inputDataFalta" name="data_falta">
                         </div>
                         <div id="divPeriodoDias" class="d-none d-flex">
                             <label for="periodoDias">Dias Afastado: </label>
-                            <input type="number" id="periodoDias" name="numericBox" min="1" step="1" value="1">
-                            <label for="dataFinal">Dia final: </label>
-                            <input type="date" id="dataFinal" name="data_dia" disabled>
+                            <input type="number" id="periodoDias" name="quantidade_dias" min="1" step="1" value="1">
+                            <label for="inputDataFinal">Dia final: </label>
+                            <input type="date" id="inputDataFinal" disabled>
                         </div>
-                        <div id="divPeriodoHoras" class="d-none d-flex">
-                            <label id="horarioInicial" for="dataHora">Horário Inicial: </label>
-                            <input type="time" id="horarioInicial" name="timeInput">
-                            <label for="horarioFinal">Horário Final</label>
-                            <input type="time" id="horarioFinal" name="timeInput">
-                            
+                        <div id="divPeriodoHoras" class="d-none d-flex align-items-center">
+                            <div>
+                                <span>Tipo da Falta por Horário</span>
+                                <div>
+                                    <input type="radio" name="tipo_falta_horas" id="inputRadioAtraso" value="atraso" checked>
+                                    <label for="inputRadioAtraso">Atraso</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="tipo_falta_horas" id="inputRadioSaidaAntecipada" value="saida_antecipada">
+                                    <label for="inputRadioSaidaAntecipada">Saída Antecipada</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label id="labelHorarioFalta" for="inputHorarioFalta">Horário Chegada: </label>
+                                <input type="time" id="inputHorarioFalta" name="horario_falta">
+                            </div>
                         </div>
                     </div>
                     <div><h1 id="horarioArredondado"></h1></div>
