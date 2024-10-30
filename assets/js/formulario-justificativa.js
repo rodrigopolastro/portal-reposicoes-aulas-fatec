@@ -7,12 +7,13 @@ const divFaltasInjustificadas = document.getElementById(
     "divFaltasInjustificadas"
 );
 const selectCategoriaFalta = document.getElementById("selectCategoriaFalta");
-const periodoDias = document.getElementById('periodoDias');
-const dataFalta = document.getElementById("dataFalta");
-const dataFinal = document.getElementById("dataFinal");
+const periodoDias = document.getElementById("periodoDias");
+const inputDataFalta = document.getElementById("inputDataFalta");
+const inputDataFinal = document.getElementById("inputDataFinal");
+const inputTipoIntervalo = document.getElementById("inputTipoIntervalo");
+const divAnexo = document.getElementById("divAnexo");
 
 selectCategoriaFalta.addEventListener("change", () => {
-    escondeTodasDivsFaltas();
     const divDataFalta = document.getElementById("divDataFalta");
     const divPeriodoDias = document.getElementById("divPeriodoDias");
     const divPeriodoHoras = document.getElementById("divPeriodoHoras");
@@ -20,37 +21,24 @@ selectCategoriaFalta.addEventListener("change", () => {
         selectCategoriaFalta.options[selectCategoriaFalta.selectedIndex];
     const option = selectedOption.id;
 
+    escondeTodasDivsFaltas();
     if (option == "optionNenhumaOpcao") {
-        document.getElementById("fileInput").classList.add("d-none");
-        document.getElementById("fileName").classList.add("d-none");
-        document.getElementById("fileLabel").classList.add("d-none");
-        divDataFalta.classList.add("d-none")
-        divPeriodoDias.classList.add("d-none")
-        divPeriodoHoras.classList.add("d-none")
+        divDataFalta.classList.add("d-none");
+        divPeriodoDias.classList.add("d-none");
+        divPeriodoHoras.classList.add("d-none");
+        divAnexo.classList.add("d-none");
     } else if (option == "optionlicencaMedica") {
         divFaltasLicencaMedica.classList.remove("d-none");
-        //anexo obrigatório
-        document.getElementById("fileInput").classList.remove("d-none");
-        document.getElementById("fileName").classList.remove("d-none");
-        document.getElementById("fileLabel").classList.remove("d-none");
+        divAnexo.remove("d-none"); //anexo obrigatório
     } else if (option == "optionLegislacao") {
         divFaltasLegislacao.classList.remove("d-none");
-        //anexo obrigatório
-        document.getElementById("fileInput").classList.remove("d-none");
-        document.getElementById("fileName").classList.remove("d-none");
-        document.getElementById("fileLabel").classList.remove("d-none");
+        divAnexo.remove("d-none"); //anexo obrigatório
     } else if (option == "optionJustificada") {
         divFaltasJustificadas.classList.remove("d-none");
-        //anexo opcional
-        document.getElementById("fileInput").classList.remove("d-none");
-        document.getElementById("fileName").classList.remove("d-none");
-        document.getElementById("fileLabel").classList.remove("d-none");
+        divAnexo.remove("d-none"); //anexo opcional
     } else if (option == "optionInjustificada") {
         divFaltasInjustificadas.classList.remove("d-none");
-        //não possui anexo
-        document.getElementById("fileInput").classList.add("d-none");
-        document.getElementById("fileName").classList.add("d-none");
-        document.getElementById("fileLabel").classList.add("d-none");
+        divAnexo.add("d-none"); //não possui anexo
     }
 });
 
@@ -74,54 +62,86 @@ window.addEventListener("load", () => {
     const divPeriodoHoras = document.getElementById("divPeriodoHoras");
     const listaOptionsFaltas = document.getElementsByClassName("option-falta");
 
-    function atualizarPeriodoDias(optionFalta){
+    function atualizarPeriodoDias(optionFalta) {
         divDataFalta.classList.remove("d-none");
-        let intervaloFixo = optionFalta.dataset.intervaloFixo
+        let intervaloFixo = optionFalta.dataset.intervaloFixo;
         let tipoIntervalo = optionFalta.dataset.tipoIntervalo;
         let maxDias = optionFalta.getAttribute("data-max-dias");
-        
+
         if (tipoIntervalo == "dias") {
             divPeriodoDias.classList.remove("d-none");
             divPeriodoHoras.classList.add("d-none");
             periodoDias.max = maxDias;
 
-            if(intervaloFixo == 1){
-                periodoDias.min = maxDias
-            }
-            else{
-                periodoDias.min = 1
+            if (intervaloFixo == 1) {
+                periodoDias.min = maxDias;
+            } else {
+                periodoDias.min = 1;
             }
 
             periodoDias.value = intervaloFixo === "1" ? maxDias : "";
-
         } else if (tipoIntervalo == "horas") {
             divPeriodoDias.classList.add("d-none");
             divPeriodoHoras.classList.remove("d-none");
         }
-        
     }
     Array.from(listaOptionsFaltas).forEach((optionFalta) => {
         optionFalta.addEventListener("click", () => {
-            atualizarPeriodoDias(optionFalta)
+            atualizarPeriodoDias(optionFalta);
+            inputTipoIntervalo.value = optionFalta.dataset.tipoIntervalo;
         });
     });
 });
-function calculaDataFinal() {
-    const dias = parseInt(periodoDias.value, 10); 
-    const dataInicial = new Date(dataFalta.value);
+function calculaDataFinal(dataFalta) {
+    const dias = parseInt(periodoDias.value, 10);
+    const dataInicial = new Date(dataFalta);
 
-   
     if (!isNaN(dias) && dataInicial instanceof Date && !isNaN(dataInicial)) {
-        const dataCalculada = new Date(dataInicial); 
-        dataCalculada.setDate(dataCalculada.getDate() + dias - 1); 
-        dataFinal.value = dataCalculada.toISOString().split("T")[0];
+        const dataCalculada = new Date(dataInicial);
+        dataCalculada.setDate(dataCalculada.getDate() + dias - 1);
+        inputDataFinal.value = dataCalculada.toISOString().split("T")[0];
     } else {
-        dataFinal.value = "";
+        inputDataFinal.value = "";
     }
 }
 
-
 periodoDias.addEventListener("input", calculaDataFinal);
-dataFalta.addEventListener("change", calculaDataFinal);
+inputDataFalta.addEventListener("change", () => {
+    buscaAulasProfessorData();
+    calculaDataFinal();
+});
 
+async function buscaAulasProfessorData() {
+    let dataFalta = inputDataFalta.value;
+    try {
+        fetch("../../controllers/horarios-disciplinas.php", {
+            method: "POST",
+            mode: "same-origin",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: JSON.stringify({
+                acao: "selectAulasProfessorData",
+                params: { dataAula: dataFalta },
+            }),
+        })
+            .then((response) => response.json())
+            .then((aulasProfessor) => {
+                console.log(JSON.stringify(aulasProfessor));
+            })
+    } catch (erro) {
+        console.error("Erro na requisição: ", erro);
+    }
+}
 
+document.getElementById("inputRadioAtraso").addEventListener("click", () => {
+    document.getElementById("labelHorarioFalta").textContent =
+        "Horário Chegada";
+});
+
+document
+    .getElementById("inputRadioSaidaAntecipada")
+    .addEventListener("click", () => {
+        document.getElementById("labelHorarioFalta").textContent =
+            "Horário Saída";
+    });
