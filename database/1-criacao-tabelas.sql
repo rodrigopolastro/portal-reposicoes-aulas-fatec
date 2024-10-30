@@ -52,6 +52,7 @@ CREATE TABLE DISCIPLINAS (
         FOREIGN KEY (DCP_id_curso)
         REFERENCES CURSOS (CUR_id)
         ON DELETE RESTRICT,
+    -- os cursos da fatec possuem 3 anos de duração = 6 semestres
     CONSTRAINT CHK_DISCIPLINAS_semestre CHECK (DCP_semestre BETWEEN 1 AND 6)
 );
 
@@ -136,13 +137,13 @@ CREATE TABLE HORARIOS_FATEC (
     HRF_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     HRF_ordem_dia_semana INTEGER NOT NULL,
     HRF_nome_dia_semana VARCHAR(10) NOT NULL,
-    HRF_horario_inicio CHAR(5) NOT NULL, -- Format: "HH:mm"
-    HRF_horario_fim CHAR(5) NOT NULL, -- Format: "HH:mm"
+    HRF_horario_inicio CHAR(5) NOT NULL, -- Formato: "HH:mm"
+    HRF_horario_fim CHAR(5) NOT NULL, -- Formato: "HH:mm"
 
     CONSTRAINT UNQ_HORARIOS_FATEC_dia_semana_e_horarios 
         UNIQUE (HRF_nome_dia_semana, HRF_horario_inicio, HRF_horario_fim),
     CONSTRAINT CHK_HORARIOS_FATEC_ordem_dia_semana
-        CHECK (HRF_ordem_dia_semana BETWEEN 1 AND 6),
+        CHECK (HRF_ordem_dia_semana BETWEEN 2 AND 7), -- aulas de segunda a sábado
     CONSTRAINT CHK_HORARIOS_FATEC_nome_dia_semana
         CHECK (HRF_nome_dia_semana IN (
             'segunda',
@@ -169,18 +170,18 @@ CREATE TABLE HORARIOS_DISCIPLINAS (
         ON DELETE CASCADE
 );
 
-CREATE TABLE HORARIOS_FALTAS (
-    HRF_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    HRF_id_horario INTEGER NOT NULL,
-    HRF_id_justificativa INTEGER NOT NULL,
-    HRF_data_falta DATE NOT NULL,
+CREATE TABLE HORARIOS_AUSENCIAS (
+    HRA_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    HRA_id_horario INTEGER NOT NULL,
+    HRA_id_justificativa INTEGER NOT NULL,
+    HRA_data_falta DATE NOT NULL,
 
-    CONSTRAINT FK_HORARIOS_FATEC_HORARIOS_FALTAS
-        FOREIGN KEY (HRF_id_horario)
+    CONSTRAINT FK_HORARIOS_FATEC_HORARIOS_AUSENCIAS
+        FOREIGN KEY (HRA_id_horario)
         REFERENCES HORARIOS_FATEC (HRF_id)
         ON DELETE RESTRICT,
-    CONSTRAINT FK_JUSTIFICATIVAS_FALTAS_HORARIOS_FALTAS
-        FOREIGN KEY (HRF_id_justificativa)
+    CONSTRAINT FK_JUSTIFICATIVAS_FALTAS_HORARIOS_AUSENCIAS
+        FOREIGN KEY (HRA_id_justificativa)
         REFERENCES JUSTIFICATIVAS_FALTAS (JUF_id)
         ON DELETE CASCADE
 );
