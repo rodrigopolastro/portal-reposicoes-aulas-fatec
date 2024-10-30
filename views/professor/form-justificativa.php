@@ -21,8 +21,8 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
 <body>
     <header>
         <div class="topo">
-            <div class="fundo"><img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
-            <div class="fundo2"><img src="img/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
+            <div class="fundo"><img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
+            <div class="fundo2"><img src="../../assets/images/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
         </div>
         <nav>
             <a href="index-professor.html" class="botao-nav">Início</a>
@@ -145,8 +145,10 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
                             <input type="time" id="horarioInicial" name="timeInput">
                             <label for="horarioFinal">Horário Final</label>
                             <input type="time" id="horarioFinal" name="timeInput">
+                            
                         </div>
                     </div>
+                    <div><h1 id="horarioArredondado"></h1></div>
                     <div id="divAnexo">
                         <label for="fileInput" id="fileLabel" class="d-none file-label">Anexar comprovante</label>
                         <input type="file" id="fileInput" class="d-none file-input" name="comprovante" accept="image/*">
@@ -162,7 +164,7 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
     </main>
     <footer class="site-footer">
         <div class="footer">
-            <img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
+            <img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
             <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista - CEP: 13974-080</p>
             <p class="rodape">Telefone: (19) 3843-1996 | (19) 3863-5210 (WhatsApp)</p>
             <p class="rodape">&copy; 2024 Equipe 6Tec. Todos os direitos reservados.</p>
