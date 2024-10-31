@@ -11,10 +11,7 @@ if (isset($jsonRequest['acao_horarios_disciplinas'])) {
 } else if (isset($_POST['acao_horarios_disciplinas'])) {
     $params = $_POST['params'] ?? [];
     echo json_encode(controllerHorariosDisciplinas($_POST['acao_horarios_disciplinas'], $params));
-} else {
-    echo json_encode(['erro' => 'Ação não definida.']);
-}
-
+} 
 
 function controllerHorariosDisciplinas($acao_horarios_disciplinas, $params = [])
 {
@@ -30,7 +27,9 @@ function controllerHorariosDisciplinas($acao_horarios_disciplinas, $params = [])
             break;
 
         default:
-            $msgErro = "Ação para Horários de Disciplinas inválida informada: '" . $acao_horarios_disciplinas . "'";
-            return $msgErro;
+            return [
+                'sucesso' => false,
+                'msgErro' => "Ação para Horários de Disciplinas inválida informada: '" . $acao_horarios_disciplinas . "'"
+            ];    
     }
 }

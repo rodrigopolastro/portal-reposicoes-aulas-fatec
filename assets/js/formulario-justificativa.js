@@ -123,7 +123,7 @@ async function buscaAulasProfessorData() {
     let dataFalta = inputDataInicialFalta.value;
     let quantidadeDias = inputPeriodoDias.value;
     if (!dataFalta || !quantidadeDias) {
-        return;
+        return false;
     }
     try {
         fetch("../../controllers/horarios-disciplinas.php", {

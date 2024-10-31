@@ -14,42 +14,50 @@ if (isset($jsonRequest['acao_justificativas_faltas_justificativas_faltas'])) {
 } else if (isset($_POST['acao_justificativas_faltas'])) {
     $params = $_POST['params'] ?? [];
     echo json_encode(controllerJustificativasFaltas($_POST['acao_justificativas_faltas'], $params));
-} else {
-    echo json_encode(['erro' => 'Ação não definida.']);
 }
-
 
 function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [])
 {
     switch ($acao_justificativas_faltas) {
         case 'insert_justificativa_falta':
-            $idNovaJustificativa = criaJustificativaFalta(
-                $_POST['id_tipo_falta'],
-                '',
-                'em análise'
-            );
-
-            if ($_POST['tipo_intervalo'] == 'dias') {
-                $aulasPerdidas = controllerHorariosDisciplinas(
-                    'select_aulas_professor_periodo',
-                    [
-                        'data_inicial' => $_POST['data_inicial_falta'],
-                        'quantidade_dias' => $_POST['quantidade_dias']
-                    ]
+            try {
+                $idNovaJustificativa = criaJustificativaFalta(
+                    $_POST['id_tipo_falta'],
+                    '',
+                    'em análise'
                 );
-                
-                foreach ($aulasPerdidas as $aulaPerdida) {
-                    controllerHorariosAusencias('insert_horario_ausencia', [
-                        'id_justificativa' => $idNovaJustificativa,
-                        'data_falta' => $aulaPerdida['data_aula'],
-                        'id_horario' => $aulaPerdida['HRF_id']
-                    ]);
+
+                if ($_POST['tipo_intervalo'] == 'dias') {
+                    $aulasPerdidas = controllerHorariosDisciplinas(
+                        'select_aulas_professor_periodo',
+                        [
+                            'data_inicial' => $_POST['data_inicial_falta'],
+                            'quantidade_dias' => $_POST['quantidade_dias']
+                        ]
+                    );
+
+                    foreach ($aulasPerdidas as $aulaPerdida) {
+                        controllerHorariosAusencias('insert_horario_ausencia', [
+                            'id_justificativa' => $idNovaJustificativa,
+                            'data_falta' => $aulaPerdida['data_aula'],
+                            'id_horario' => $aulaPerdida['HRF_id']
+                        ]);
+                    }
                 }
+
+                return ['sucesso' => true];
+            } catch (Throwable $erro) {
+                return [
+                    'sucesso' => false, 
+                    'msgErro' => 'Ocorreu um erro interno ao executar a requisição: ' . $erro->getMessage()
+                ];
             }
             break;
 
         default:
-            $msgErro = "Ação para Justificativa de Falta inválida informada: '" . $acao_justificativas_faltas . "'";
-            return $msgErro;
+            return [
+                'sucesso' => false,
+                'msgErro' => "Ação para Justificativa de Falta inválida informada: '" . $acao_justificativas_faltas . "'"
+            ];
     }
 }

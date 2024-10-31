@@ -10,8 +10,6 @@ if (isset($jsonRequest['acao_horarios_ausencias'])) {
 } else if (isset($_POST['acao_horarios_ausencias'])) {
     $params = $_POST['params'] ?? [];
     echo json_encode(controllerHorariosAusencias($_POST['acao_horarios_ausencias'], $params));
-} else {
-    echo json_encode(['erro' => 'Ação não definida.']);
 }
 
 function controllerHorariosAusencias($acao_horarios_ausencias, $params = [])
@@ -23,10 +21,13 @@ function controllerHorariosAusencias($acao_horarios_ausencias, $params = [])
                 $params['data_falta'],
                 $params['id_horario']
             );
+            return ['sucesso' => true];
             break;
 
         default:
-            $msgErro = "Ação para Horários de Ausências inválida informada: '" . $acao_horarios_ausencias . "'";
-            return $msgErro;
+            return [
+                'sucesso' => false,
+                'msgErro' => "Ação para Horários de Ausências inválida informada: '" . $acao_horarios_ausencias . "'"
+            ];
     }
 }
