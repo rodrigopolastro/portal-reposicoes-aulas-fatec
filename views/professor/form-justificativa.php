@@ -14,6 +14,7 @@ $tiposFaltas = controllerTiposFaltas('select_tipos_faltas');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
     <link rel="stylesheet" href="../../assets/css/utilidades.css">
+    <link rel="stylesheet" href="../../assets/css/form-justificativa.css">
     <title>Formulário de Justificativa de Falta</title>
 
 </head>

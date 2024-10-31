@@ -30,19 +30,20 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
             );
 
             if ($_POST['tipo_intervalo'] == 'dias') {
-                $diasFaltas = geraListaDiasFaltas($_POST['data_inicial'], $_POST['quantidade_dias']);
-                foreach ($diasFaltas as $diaFalta) {
-                    $aulasPerdidas = json_decode(controllerHorariosDisciplinas(
-                        'selectAulasProfessorData', 
-                        ['dataAula' => $diaFalta]
-                    ));
-                    foreach ($aulasPerdidas as $aulaPerdida) {
-                        controllerHorariosAusencias('insertHorarioAusencia', [
-                            'idJustificativa' => $idNovaJustificativa,
-                            'dataFalta' => $diaFalta,
-                            'idHorario' => $aulaPerdida['HRF_id']
-                        ]);
-                    }
+                $aulasPerdidas = controllerHorariosDisciplinas(
+                    'select_aulas_professor_periodo',
+                    [
+                        'data_inicial' => $_POST['data_inicial_falta'],
+                        'quantidade_dias' => $_POST['quantidade_dias']
+                    ]
+                );
+                
+                foreach ($aulasPerdidas as $aulaPerdida) {
+                    controllerHorariosAusencias('insert_horario_ausencia', [
+                        'id_justificativa' => $idNovaJustificativa,
+                        'data_falta' => $aulaPerdida['data_aula'],
+                        'id_horario' => $aulaPerdida['HRF_id']
+                    ]);
                 }
             }
             break;
@@ -51,18 +52,4 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
             $msgErro = "Ação para Justificativa de Falta inválida informada: '" . $acao_justificativas_faltas . "'";
             return $msgErro;
     }
-}
-
-function geraListaDiasFaltas($dataInicial, $quantidadeDias)
-{
-    $diasFaltas = [];
-    $datetime = new DateTimeImmutable($dataInicial);
-
-    for ($incrementoDias = 0; $incrementoDias < $quantidadeDias; $incrementoDias++) {
-        $strIncremento = 'P' . $incrementoDias . 'D';
-        $dataStr = $datetime->add(new DateInterval($strIncremento))->format('Y-m-d');
-        array_push($diasFaltas, $dataStr);
-    }
-
-    return $diasFaltas;
 }

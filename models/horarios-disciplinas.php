@@ -7,6 +7,7 @@ function buscaAulasProfessorData($idProfessor, $dataAula)
     global $conexao;
     $sql = $conexao->prepare(
         "SELECT
+            :data_aula AS 'data_aula',
             HRF_id,
             HRF_nome_dia_semana,
             CUR_sigla,

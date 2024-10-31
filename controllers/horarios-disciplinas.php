@@ -1,5 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers/caminho-absoluto.php';
+require_once caminhoAbsoluto('helpers/gera-sequencia-dias.php');
 require_once caminhoAbsoluto('models/horarios-disciplinas.php');
 
 $jsonRequest = json_decode(file_get_contents('php://input'), true);
@@ -20,8 +21,12 @@ function controllerHorariosDisciplinas($acao_horarios_disciplinas, $params = [])
     switch ($acao_horarios_disciplinas) {
         case 'select_aulas_professor_periodo':
             $idProfessor = 3; // ana célia
-            $horariosDisciplinas = buscaAulasProfessorData($idProfessor, $params['dataAula']);
-            return $horariosDisciplinas;
+            $aulasNoPeriodo = [];
+            $sequenciaDias = geraSequenciaDias($params['data_inicial'], $params['quantidade_dias']);
+            foreach ($sequenciaDias as $dia) {
+                $aulasNoPeriodo = array_merge($aulasNoPeriodo, buscaAulasProfessorData($idProfessor, $dia));
+            }
+            return $aulasNoPeriodo;
             break;
 
         default:

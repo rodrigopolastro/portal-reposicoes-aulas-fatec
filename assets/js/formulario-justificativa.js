@@ -72,6 +72,7 @@ window.addEventListener("load", () => {
         let maxDias = optionFalta.getAttribute("data-max-dias");
 
         if (tipoIntervalo == "dias") {
+            labelDataInicialFalta.textContent = "Data Inicial da Falta";
             divPeriodoDias.classList.remove("d-none");
             divPeriodoHoras.classList.add("d-none");
             inputPeriodoDias.max = maxDias;
@@ -82,8 +83,9 @@ window.addEventListener("load", () => {
                 inputPeriodoDias.min = 1;
             }
 
-            periodoDias.value = intervaloFixo === "1" ? maxDias : "";
+            inputPeriodoDias.value = intervaloFixo === "1" ? maxDias : "";
         } else if (tipoIntervalo == "horas") {
+            labelDataInicialFalta.textContent = "Data da Falta";
             divPeriodoDias.classList.add("d-none");
             divPeriodoHoras.classList.remove("d-none");
         }
@@ -108,14 +110,21 @@ function calculaDataFinal() {
     }
 }
 
-periodoDias.addEventListener("input", calculaDataFinal);
-inputDataFalta.addEventListener("change", () => {
+inputDataInicialFalta.addEventListener("change", () => {
+    buscaAulasProfessorData();
+    calculaDataFinal();
+});
+inputPeriodoDias.addEventListener("input", () => {
     buscaAulasProfessorData();
     calculaDataFinal();
 });
 
 async function buscaAulasProfessorData() {
-    let dataFalta = inputDataFalta.value;
+    let dataFalta = inputDataInicialFalta.value;
+    let quantidadeDias = inputPeriodoDias.value;
+    if (!dataFalta || !quantidadeDias) {
+        return;
+    }
     try {
         fetch("../../controllers/horarios-disciplinas.php", {
             method: "POST",
@@ -124,14 +133,30 @@ async function buscaAulasProfessorData() {
                 "Content-Type": "application/x-www-form-urlencoded",
             },
             body: JSON.stringify({
-                acao: "selectAulasProfessorData",
-                params: { dataAula: dataFalta },
+                acao_horarios_disciplinas: "select_aulas_professor_periodo",
+                params: {
+                    data_inicial: dataFalta,
+                    quantidade_dias: quantidadeDias,
+                },
             }),
         })
             .then((response) => response.json())
             .then((aulasProfessor) => {
-                console.log(JSON.stringify(aulasProfessor));
-            })
+                let btnEnviar = document.getElementById("btnEnviar");
+                if (aulasProfessor.length > 0) {
+                    console.log(JSON.stringify(aulasProfessor, null, 4));
+                    btnEnviar.disabled = false;
+                    btnEnviar.classList.remove("btn-disabled");
+                } else {
+                    alert(
+                        "Cadastro negado: Você não ministra nenhuma aula no período!"
+                    );
+                    btnEnviar.disabled = true;
+                    btnEnviar.classList.add("btn-disabled");
+                    // inputDataInicialFalta.value = "";
+                    // inputPeriodoDias.value = "";
+                }
+            });
     } catch (erro) {
         console.error("Erro na requisição: ", erro);
     }
