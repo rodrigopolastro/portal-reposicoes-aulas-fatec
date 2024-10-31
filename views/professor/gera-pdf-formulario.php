@@ -1,5 +1,6 @@
 <?php
-require 'vendor/autoload.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers/caminho-absoluto.php';
+require_once caminhoAbsoluto('vendor/autoload.php');
 
 class CustomTCPDF extends TCPDF
 {
@@ -180,12 +181,13 @@ $final_file_name = $date->format("Y-m-d-H-i-s ") . '.pdf';
     <main>
         <h1 style="text-align: center; margin:0; padding-bottom: 25px;">Revise os dados preenchidos antes de enviar o formulário</h1>
         <div style="display: flex; justify-content: center; align-items: center;">
-            <embed src="pdfs-formularios/temp_file.pdf" type="application/pdf" width="60%" height="1200px" />
+            <embed src="pdfs-formularios/pdf-justifativa.pdf" type="application/pdf" width="60%" height="1200px" />
         </div>
         <form method="POST" action="save-pdf.php">
             <input type="hidden" name="file_name" value="<?= $final_file_name ?>">
             <div style="display: flex; justify-content: center;">
                 <input style="margin-top: 25px; padding: 20px; width: 500px;" type="submit" value="Enviar">
+                <button onclick="history.go(-2);">Corigir dados</button>
             </div>
         </form>
     </main>

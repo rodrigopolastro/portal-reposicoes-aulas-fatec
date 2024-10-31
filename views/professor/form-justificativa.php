@@ -1,8 +1,7 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] .
-    '/portal-reposicoes-aulas-fatec/helpers/caminho-absoluto.php';
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers/caminho-absoluto.php';
 require_once caminhoAbsoluto('controllers/tipos-faltas.php');
+
 $tiposFaltas = controllerTiposFaltas('select_tipos_faltas');
 ?>
 
