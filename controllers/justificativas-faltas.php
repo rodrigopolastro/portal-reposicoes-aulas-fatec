@@ -8,23 +8,21 @@ $idUsuarioLogado = 3; // Ana Célia
 
 $jsonRequest = json_decode(file_get_contents('php://input'), true);
 
-if (isset($jsonRequest['acao'])) {
+if (isset($jsonRequest['acao_justificativas_faltas_justificativas_faltas'])) {
     $params = $jsonRequest['params'] ?? [];
-    $response = controllerTiposFaltas($jsonRequest['acao'], $params);
-    echo json_encode($response);
-} else if (isset($_POST['acao'])) {
+    echo json_encode(controllerJustificativasFaltas($jsonRequest['acao_justificativas_faltas'], $params));
+} else if (isset($_POST['acao_justificativas_faltas'])) {
     $params = $_POST['params'] ?? [];
-    $response = controllerTiposFaltas($_POST['acao'], $params);
-    echo json_encode($response);
+    echo json_encode(controllerJustificativasFaltas($_POST['acao_justificativas_faltas'], $params));
 } else {
     echo json_encode(['erro' => 'Ação não definida.']);
 }
 
-function controllerTiposFaltas($acao, $params = [])
+
+function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [])
 {
-    switch ($acao) {
-        case 'insertJustificativaFalta':
-            print_r($_POST);
+    switch ($acao_justificativas_faltas) {
+        case 'insert_justificativa_falta':
             $idNovaJustificativa = criaJustificativaFalta(
                 $_POST['id_tipo_falta'],
                 '',
@@ -50,7 +48,7 @@ function controllerTiposFaltas($acao, $params = [])
             break;
 
         default:
-            $msgErro = "Ação inválida informada: '" . $acao . "'";
+            $msgErro = "Ação para Justificativa de Falta inválida informada: '" . $acao_justificativas_faltas . "'";
             return $msgErro;
     }
 }

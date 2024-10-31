@@ -4,28 +4,27 @@ require_once caminhoAbsoluto('models/tipos-faltas.php');
 
 $jsonRequest = json_decode(file_get_contents('php://input'), true);
 
-if (isset($jsonRequest['acao'])) {
+if (isset($jsonRequest['acao_tipos_faltas'])) {
     $params = $jsonRequest['params'] ?? [];
-    $response = controllerTiposFaltas($jsonRequest['acao'], $params);
-    echo json_encode($response);
-} else if (isset($_POST['acao'])) {
+    echo json_encode(controllerTiposFaltas($jsonRequest['acao_tipos_faltas'], $params));
+} else if (isset($_POST['acao_tipos_faltas'])) {
     $params = $_POST['params'] ?? [];
-    $response = controllerTiposFaltas($_POST['acao'], $params);
-    echo json_encode($response);
+    echo json_encode(controllerTiposFaltas($_POST['acao_tipos_faltas'], $params));
 } else {
     echo json_encode(['erro' => 'Ação não definida.']);
 }
 
-function controllerTiposFaltas($acao, $params = [])
+
+function controllerTiposFaltas($acao_tipos_faltas, $params = [])
 {
-    switch ($acao) {
-        case 'selectTiposFaltas':
+    switch ($acao_tipos_faltas) {
+        case 'select_tipos_faltas':
             $tiposFaltas = buscaTiposFaltas();
             return $tiposFaltas;
             break;
 
         default:
-            $msgErro = "Ação inválida informada: '" . $acao . "'";
+            $msgErro = "Ação para Tipos de Faltas inválida informada: '" . $acao_tipos_faltas . "'";
             return $msgErro;
     }
 }

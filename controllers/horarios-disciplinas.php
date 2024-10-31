@@ -4,29 +4,28 @@ require_once caminhoAbsoluto('models/horarios-disciplinas.php');
 
 $jsonRequest = json_decode(file_get_contents('php://input'), true);
 
-if (isset($jsonRequest['acao'])) {
+if (isset($jsonRequest['acao_horarios_disciplinas'])) {
     $params = $jsonRequest['params'] ?? [];
-    $response = controllerHorariosDisciplinas($jsonRequest['acao'], $params);
-    echo json_encode($response);
-} else if (isset($_POST['acao'])) {
+    echo json_encode(controllerHorariosDisciplinas($jsonRequest['acao_horarios_disciplinas'], $params));
+} else if (isset($_POST['acao_horarios_disciplinas'])) {
     $params = $_POST['params'] ?? [];
-    $response = controllerHorariosDisciplinas($_POST['acao'], $params);
-    echo json_encode($response);
+    echo json_encode(controllerHorariosDisciplinas($_POST['acao_horarios_disciplinas'], $params));
 } else {
     echo json_encode(['erro' => 'Ação não definida.']);
 }
 
-function controllerHorariosDisciplinas($acao, $params = [])
+
+function controllerHorariosDisciplinas($acao_horarios_disciplinas, $params = [])
 {
-    switch ($acao) {
-        case 'selectAulasProfessorData':
+    switch ($acao_horarios_disciplinas) {
+        case 'select_aulas_professor_periodo':
             $idProfessor = 3; // ana célia
             $horariosDisciplinas = buscaAulasProfessorData($idProfessor, $params['dataAula']);
             return $horariosDisciplinas;
             break;
 
         default:
-            $msgErro = "Ação inválida informada: '" . $acao . "'";
+            $msgErro = "Ação para Horários de Disciplinas inválida informada: '" . $acao_horarios_disciplinas . "'";
             return $msgErro;
     }
 }

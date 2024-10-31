@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] .
     '/portal-reposicoes-aulas-fatec/helpers/caminho-absoluto.php';
 
 require_once caminhoAbsoluto('controllers/tipos-faltas.php');
-$tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
+$tiposFaltas = controllerTiposFaltas('select_tipos_faltas');
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +35,7 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
         <h1>Formulário para Justificativa de Faltas:</h1>
         <div class="corpo">
             <form method="POST" action="../../controllers/justificativas-faltas.php" enctype="multipart/form-data">
-                <input type="hidden" name="acao" value="insertJustificativaFalta">
+                <input type="hidden" name="acao_justificativas_faltas" value="insert_justificativa_falta">
                 <input id="inputTipoIntervalo" type="hidden" name="tipo_intervalo" value="">
                 <div class="formcomeço">
                     <div class="item-pequeno">
@@ -132,15 +132,15 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
                 </div>
                 <div>
                     <div class="d-flex">
-                        <div id="divDataFalta" class="d-none">
-                            <label for="inputDataFalta">Data Falta: </label>
-                            <input type="date" id="inputDataFalta" name="data_falta">
+                        <div id="divDataInicialFalta" class="d-none">
+                            <label id="labelDataInicialFalta" for="inputDataInicialFalta">Data Inicial da Falta: </label>
+                            <input type="date" id="inputDataInicialFalta" name="data_inicial_falta">
                         </div>
                         <div id="divPeriodoDias" class="d-none d-flex">
-                            <label for="periodoDias">Dias Afastado: </label>
-                            <input type="number" id="periodoDias" name="quantidade_dias" min="1" step="1" value="1">
-                            <label for="inputDataFinal">Dia final: </label>
-                            <input type="date" id="inputDataFinal" disabled>
+                            <label for="inputPeriodoDias">Dias Afastado: </label>
+                            <input type="number" id="inputPeriodoDias" name="quantidade_dias" min="1" step="1" value="1">
+                            <label for="inputDataFinalFalta">Data Final da Falta: </label>
+                            <input type="date" id="inputDataFinalFalta" disabled>
                         </div>
                         <div id="divPeriodoHoras" class="d-none d-flex align-items-center">
                             <div>
@@ -160,15 +160,13 @@ $tiposFaltas = controllerTiposFaltas('selectTiposFaltas')
                             </div>
                         </div>
                     </div>
-                    <div><h1 id="horarioArredondado"></h1></div>
                     <div id="divAnexo">
                         <label for="fileInput" id="fileLabel" class="d-none file-label">Anexar comprovante</label>
                         <input type="file" id="fileInput" class="d-none file-input" name="comprovante" accept="image/*">
                         <span id="fileName" class="d-none file-name">Nenhum arquivo selecionado</span>
                     </div>
                     <div>
-                        <input type="submit" value="Enviar">
-                        <input type="reset" name="Limpar">
+                        <input type="submit" value="Enviar" id="btnEnviar">
                     </div>
                 </div>
             </form>

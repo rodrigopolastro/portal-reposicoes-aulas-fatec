@@ -4,31 +4,29 @@ require_once caminhoAbsoluto('models/horarios-ausencias.php');
 
 $jsonRequest = json_decode(file_get_contents('php://input'), true);
 
-if (isset($jsonRequest['acao'])) {
+if (isset($jsonRequest['acao_horarios_ausencias'])) {
     $params = $jsonRequest['params'] ?? [];
-    $response = controllerHorariosAusencias($jsonRequest['acao'], $params);
-    echo json_encode($response);
-} else if (isset($_POST['acao'])) {
+    echo json_encode(controllerHorariosAusencias($jsonRequest['acao_horarios_ausencias'], $params));
+} else if (isset($_POST['acao_horarios_ausencias'])) {
     $params = $_POST['params'] ?? [];
-    $response = controllerHorariosAusencias($_POST['acao'], $params);
-    echo json_encode($response);
+    echo json_encode(controllerHorariosAusencias($_POST['acao_horarios_ausencias'], $params));
 } else {
     echo json_encode(['erro' => 'Ação não definida.']);
 }
 
-function controllerHorariosAusencias($acao, $params = [])
+function controllerHorariosAusencias($acao_horarios_ausencias, $params = [])
 {
-    switch ($acao) {
-        case 'insertHorarioAusencia':
+    switch ($acao_horarios_ausencias) {
+        case 'insert_horario_ausencia':
             criaHorarioAusencia(
-                $params['idJustificativa'],
-                $params['dataFalta'],
-                $params['idHorario']
+                $params['id_justificativa'],
+                $params['data_falta'],
+                $params['id_horario']
             );
             break;
 
         default:
-            $msgErro = "Ação inválida informada: '" . $acao . "'";
+            $msgErro = "Ação para Horários de Ausências inválida informada: '" . $acao_horarios_ausencias . "'";
             return $msgErro;
     }
 }

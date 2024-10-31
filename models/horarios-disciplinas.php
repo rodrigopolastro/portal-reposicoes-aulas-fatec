@@ -21,12 +21,12 @@ function buscaAulasProfessorData($idProfessor, $dataAula)
         INNER JOIN DISCIPLINAS ON DCP_id = HRD_id_disciplina
         INNER JOIN CURSOS ON CUR_id = DCP_id_curso
         INNER JOIN USUARIOS ON USR_id = DCP_id_professor
-        WHERE USR_id = :idProfessor
-          AND HRF_ordem_dia_semana = DAYOFWEEK(:dataAula)"
+        WHERE USR_id = :id_professor
+          AND HRF_ordem_dia_semana = DAYOFWEEK(:data_aula)"
     );
     
-    $sql->bindValue('idProfessor', $idProfessor);
-    $sql->bindValue('dataAula', $dataAula);
+    $sql->bindValue('id_professor', $idProfessor);
+    $sql->bindValue('data_aula', $dataAula);
     $sql->execute();
 
     $resultados = $sql->fetchAll(PDO::FETCH_ASSOC);
