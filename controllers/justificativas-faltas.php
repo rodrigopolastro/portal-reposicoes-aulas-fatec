@@ -45,7 +45,7 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                     }
                 }
 
-                header("Location: ../views/professor/gera-pdf-formulario.php");
+                header("Location: ../views/professor/teste-pdf.html");
                 exit();
             } catch (Throwable $erro) {
                 return [
