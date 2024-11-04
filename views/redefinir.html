@@ -1,73 +1,76 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/estilo-geral.css">
     <title>Redefinir senha</title>
 </head>
-<body>    
-        <div class="caixa">
-            <div class="topo">
-                <div class="fundo"><img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
-                <div class="fundo2"><img src="img/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
-            </div>
-            <div class="inicio"></div>
-            <h1>Redefinir Senha</h1>
 
-            <form id="novaSenha">
-                <label for="senha">Nova senha:</label>
-                <input type="password" id="senha" placeholder="8+ caracteres, incluindo letras e números" required>
-                <div id="strength-message"></div> 
-            
-                <label for="confirmaSenha">Confirme a senha:</label>
-                <input type="password" id="confirmaSenha" placeholder="Repita a nova senha" required>
-                <div id="error-message"></div> 
-            
-                <input type="submit" value="Salvar">
-            </form>
-            
-            <script>
-                // Avaliar a força da senha
-                function checkPasswordStrength(password) {
-                    let strength = 0;
-                    if (password.length >= 8) strength += 1;
-                    if (password.match(/[a-z]/)) strength += 1;
-                    if (password.match(/[A-Z]/)) strength += 1;
-                    if (password.match(/[0-9]/)) strength += 1;
-                    if (password.match(/[\W]/)) strength += 1; 
-                    return strength;
-                }
-            
-                // Atualizar a mensagem de força da senha conforme o usuário digita
-                document.getElementById('senha').addEventListener('input', function() {
-                    var senha = document.getElementById('senha').value;
-                    var strengthMessage = document.getElementById('strength-message');
-                    var strength = checkPasswordStrength(senha);
-            
-                    var messages = ["muito fraca", "fraca", "moderada", "forte", "muito forte"];
-                    var colors = ["#A50000", "#8b451d", "#dcc214", "#003347", "#004714"];
-                    
-                    strengthMessage.textContent = `Senha ${messages[strength]}`;
-                    strengthMessage.style.color = colors[strength];
-                });
-            
-                // Validar a igualdade das senhas no envio do formulário
-                document.getElementById('novaSenha').addEventListener('submit', function(event) {
-                    event.preventDefault(); // Previne a submissão do formulário inicialmente
-                    var senha = document.getElementById('senha').value;
-                    var confirmaSenha = document.getElementById('confirmaSenha').value;
-                    var errorMessage = document.getElementById('error-message');
-            
-                    if (senha !== confirmaSenha) {
-                        errorMessage.textContent = 'As senhas não coincidem. Por favor, digite novamente.';
-                        errorMessage.style.display = 'block';
-                    } else {
-                        // As senhas coincidem, redirecionar para login.html
-                        window.location.href = 'login.html';
-                    }
-                });
-            </script>
+<body>
+    <div class="caixa">
+        <div class="topo">
+            <div class="fundo"><img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
+            <div class="fundo2"><img src="img/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
         </div>
+        <div class="inicio"></div>
+        <h1>Redefinir Senha</h1>
+
+        <form id="novaSenha">
+            <label for="senha">Nova senha:</label>
+            <input type="password" id="senha" placeholder="8+ caracteres, incluindo letras e números" required>
+            <div id="strength-message"></div>
+
+            <label for="confirmaSenha">Confirme a senha:</label>
+            <input type="password" id="confirmaSenha" placeholder="Repita a nova senha" required>
+            <div id="error-message"></div>
+
+            <input type="submit" value="Salvar">
+        </form>
+
+        <script>
+            // Avaliar a força da senha
+            function checkPasswordStrength(password) {
+                let strength = 0;
+                if (password.length >= 8) strength += 1;
+                if (password.match(/[a-z]/)) strength += 1;
+                if (password.match(/[A-Z]/)) strength += 1;
+                if (password.match(/[0-9]/)) strength += 1;
+                if (password.match(/[\W]/)) strength += 1;
+                return strength;
+            }
+
+            // Atualizar a mensagem de força da senha conforme o usuário digita
+            document.getElementById('senha').addEventListener('input', function () {
+                var senha = document.getElementById('senha').value;
+                var strengthMessage = document.getElementById('strength-message');
+                var strength = checkPasswordStrength(senha);
+
+                var messages = ["muito fraca", "fraca", "moderada", "forte", "muito forte"];
+                var colors = ["#A50000", "#8b451d", "#dcc214", "#003347", "#004714"];
+
+                strengthMessage.textContent = `Senha ${messages[strength]}`;
+                strengthMessage.style.color = colors[strength];
+            });
+
+            // Validar a igualdade das senhas no envio do formulário
+            document.getElementById('novaSenha').addEventListener('submit', function (event) {
+                event.preventDefault(); // Previne a submissão do formulário inicialmente
+                var senha = document.getElementById('senha').value;
+                var confirmaSenha = document.getElementById('confirmaSenha').value;
+                var errorMessage = document.getElementById('error-message');
+
+                if (senha !== confirmaSenha) {
+                    errorMessage.textContent = 'As senhas não coincidem. Por favor, digite novamente.';
+                    errorMessage.style.display = 'block';
+                } else {
+                    // As senhas coincidem, redirecionar para login.html
+                    window.location.href = 'login.html';
+                }
+            });
+        </script>
+    </div>
 </body>
+
 </html>

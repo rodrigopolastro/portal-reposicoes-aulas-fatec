@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
+    <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
     <title>Formulário enviados</title>
 
 </head>
+
 <body>
     <header>
         <div class="topo">
-            <div class="fundo"><img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
-            <div class="fundo2"><img src="../../assets/images/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
+            <div class="fundo"><img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo"
+                    class="logo-governo"></div>
+            <div class="fundo2"><img src="../../assets/images/logo-fatec_itapira.png" alt="logo" class="logo-fatec">
+            </div>
         </div>
         <nav>
             <a href="index-professor.html" class="botao-nav">Início</a>
@@ -33,7 +37,7 @@
                         <option value="Justificativa de Falta">Justificativa de Falta</option>
                         <option value="Reposição de Aulas">Reposição de Aulas</option>
                     </select>
-                    
+
                     <label for="filterStatus">Status:</label>
                     <select id="filterStatus" class="filter-input">
                         <option value="">Todos</option>
@@ -41,13 +45,13 @@
                         <option value="Deferido">Deferido</option>
                         <option value="Indeferido">Indeferido</option>
                     </select>
-    
+
                     <input type="submit" value="Aplicar filtro">
                     <input type="reset" value="Limpar filtro" onclick="limparFiltro()">
                 </div>
             </form>
         </div>
-    
+
         <div class="table">
             <table id="formTable">
                 <thead>
@@ -119,19 +123,19 @@
                 </tbody>
             </table>
         </div>
-    
+
         <script>
             function aplicarFiltro() {
                 var tipoFiltro = document.getElementById('filterTipo').value;
                 var statusFiltro = document.getElementById('filterStatus').value;
-    
+
                 var tabela = document.getElementById('formTable');
                 var linhas = tabela.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-    
+
                 for (var i = 0; i < linhas.length; i++) {
                     var tipo = linhas[i].getAttribute('data-tipo');
                     var status = linhas[i].getAttribute('data-status');
-    
+
                     if ((tipoFiltro === "" || tipo === tipoFiltro) &&
                         (statusFiltro === "" || status === statusFiltro)) {
                         linhas[i].classList.remove('hidden');
@@ -141,26 +145,28 @@
                 }
                 return false; // Evitar o envio do formulário
             }
-    
+
             function limparFiltro() {
                 var tabela = document.getElementById('formTable');
                 var linhas = tabela.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-    
+
                 for (var i = 0; i < linhas.length; i++) {
                     linhas[i].classList.remove('hidden');
                 }
             }
         </script>
-        
+
     </main>
     <footer class="site-footer">
         <div class="footer">
             <img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
-            <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista - CEP: 13974-080</p>
+            <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista -
+                CEP: 13974-080</p>
             <p class="rodape">Telefone: (19) 3843-1996 | (19) 3863-5210 (WhatsApp)</p>
             <p class="rodape">&copy; 2024 Equipe 6Tec. Todos os direitos reservados.</p>
         </div>
     </footer>
 
 </body>
+
 </html>

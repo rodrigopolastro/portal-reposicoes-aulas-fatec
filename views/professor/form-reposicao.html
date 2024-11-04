@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
+    <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
     <title>Formulário de Reposição de Aulas</title>
 </head>
+
 <body>
     <header>
         <div class="topo">
-            <div class="fundo"><img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
-            <div class="fundo2"><img src="../../assets/images/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
+            <div class="fundo"><img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo"
+                    class="logo-governo"></div>
+            <div class="fundo2"><img src="../../assets/images/logo-fatec_itapira.png" alt="logo" class="logo-fatec">
+            </div>
         </div>
         <nav>
             <a href="index-professor.html" class="botao-nav">Início</a>
@@ -29,7 +33,7 @@
                         <p><strong>Nome:</strong> </p>
                         <p>Ana Célia Ribeiro Bizigato Portes</p>
                     </div>
-    
+
                     <div class="item-pequeno">
                         <p><strong>Matrícula:</strong> </p>
                         <p>0000000000005</p>
@@ -51,187 +55,189 @@
                         <input type="checkbox" value="cst-dsm" name="cursos">
                         <span class="custom-checkbox"></span> CST-DSM
                     </label>
-                
+
                     <label class="checkbox-label">
                         <input type="checkbox" value="cst-ge" name="cursos">
                         <span class="custom-checkbox"></span> CST-GE
                     </label>
-                
+
                     <label class="checkbox-label">
                         <input type="checkbox" value="cst-gpi" name="cursos">
                         <span class="custom-checkbox"></span> CST-GPI
                     </label>
-                
+
                     <label class="checkbox-label">
                         <input type="checkbox" value="cst-gti" name="cursos">
                         <span class="custom-checkbox"></span> CST-GTI
                     </label>
-                
+
                     <label class="checkbox-label">
                         <input type="checkbox" value="hae" name="cursos">
                         <span class="custom-checkbox"></span> HAE
                     </label>
                 </div>
-            
 
-             </div>
-    
-                <h4>Dados das aulas não ministradas:</h4>
-
-            
-                <div class="adicionar">
-                    <label for="data-n-ministrada">Data da(s) aula(s) não ministrada(s): *</label>
-                    <input type="date" name="data-n-ministrada" id="data-n-ministrada">
-                    <label for="qtd-aulas">Número de aulas: *</label>
-                    <input type="number" name="qtd-aulas" id="qtd-aulas" class="dias">
-                    <label for="disciplina">Disciplina: *</label>
-                    <select id="disciplina">
-                        <option value="0">Selecione...</option>
-                        <option value="1">Engenharia I</option>
-                        <option value="2">Engenharia II</option>
-                        <option value="3">Engenharia III</option>
-                    </select>
-                    <input type="submit" value="Adicionar">
-                </div>
-        
-
-                <div class="table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="ordem">Ordem</th>
-                                <th class="data-aula">Data da(s) aula(s) não ministrada(s)</th>
-                                <th class="num-aula">Número de aulas</th>
-                                <th class="disciplina">Disciplina</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>01</td>
-                                <td>19/04/2024</td>
-                                <td>4</td>
-                                <td>Engenharia de Software I</td>
-                            </tr>
-                            <tr>
-                                <td>02</td>
-                                <td>17/05/2024</td>
-                                <td>2</td>
-                                <td>Engenharia de Software I</td>
-                            </tr>
-                            <tr>
-                                <td>03</td>
-                                <td>20/05/2024</td>
-                                <td>2</td>
-                                <td>Engenharia de Software II</td>
-                            </tr>
-                            <ty>
-                                <td>04</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </ty>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h4>Dados das Aulas de Reposição</h4>
-
-                <div class="adicionar">
-                    <label for="data-reposicao">Data da Reposição: *</label>
-                    <input type="date" name="data-reposicao" id="data-reposicao">
-                    <label for="hora-inicio">Início: </label>
-                    <select id="hora-inicio" class="horario">
-                        <option value="0">Selecione...</option>
-                        <option value="1">07h40min</option>
-                        <option value="2">08h30min</option>
-                        <option value="3">09h20min</option>
-                        <option value="4">10h10min</option> 
-                        <option value="5">11h10min</option> 
-                        <option value="6">12h00min</option> 
-                        <option value="7">18h10min</option> 
-                        <option value="8">19h00min</option> 
-                        <option value="9">19h50min</option> 
-                        <option value="10">20h50min</option> 
-                        <option value="11">21h40min</option> 
-                    </select>
-                    </select class="disciplina">
-                    <label for="disciplina">Disciplina: *</label>
-                    <select id="disciplina">
-                        <option value="0">Selecione...</option>
-                        <option value="1">Engenharia I</option>
-                        <option value="2">Engenharia II</option>
-                        <option value="3">Engenharia III</option>
-                    </select>
-                    <input type="submit" value="Adicionar">
-                </div>
-                
-                <div class="table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="ordem">Ordem</th>
-                                <th class="data-rep">Data da(s) aula(s) não ministrada(s)</th>
-                                <th class="data-rep">Data da Reposição</th>
-                                <th class="num-aula">Horário</th>
-                                <th class="disciplina">Disciplina</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>01</td>
-                                <td>19/04/2024</td>
-                                <td>21/06/2024</td>
-                                <td>19h00min - 22h30min</td>
-                                <td>Engenharia de Software I</td>
-                            </tr>
-                            <tr>
-                                <td>02</td>
-                                <td>17/05/2024</td>
-                                <td>22/06/2024</td>
-                                <td>18h10min - 19h50min</td>
-                                <td>Engenharia de Software I</td>
-                            </tr>
-                            <tr>
-                                <td>03</td>
-                                <td>20/05/2024</td>
-                                <td>29/06/2024</td>
-                                <td>20h50min - 22h30min</td>
-                                <td>Engenharia de Software II</td>
-                            </tr>
-                            <tr>
-                                <td>04</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="parag">
-                    <p>Observe as exigências legais:máximo de 8 horas diárias de trabalho, intervalo de 1 hora 
-                        entre um expediente e outro e de 6 horas em cada expediente.</p>
-                    <br><br>
-                    <p>*Campo obrigatório</p>
-                </div>
-            </form>
-            <form method="POST" action="gera-pdf-formulario-reposicao.php">
-                <input type="hidden" name="file_name" value="pdf-reposicao.pdf">
-                <input type="submit" value="Enviar">
-            </form>
 
         </div>
-    
+
+        <h4>Dados das aulas não ministradas:</h4>
+
+
+        <div class="adicionar">
+            <label for="data-n-ministrada">Data da(s) aula(s) não ministrada(s): *</label>
+            <input type="date" name="data-n-ministrada" id="data-n-ministrada">
+            <label for="qtd-aulas">Número de aulas: *</label>
+            <input type="number" name="qtd-aulas" id="qtd-aulas" class="dias">
+            <label for="disciplina">Disciplina: *</label>
+            <select id="disciplina">
+                <option value="0">Selecione...</option>
+                <option value="1">Engenharia I</option>
+                <option value="2">Engenharia II</option>
+                <option value="3">Engenharia III</option>
+            </select>
+            <input type="submit" value="Adicionar">
+        </div>
+
+
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="ordem">Ordem</th>
+                        <th class="data-aula">Data da(s) aula(s) não ministrada(s)</th>
+                        <th class="num-aula">Número de aulas</th>
+                        <th class="disciplina">Disciplina</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01</td>
+                        <td>19/04/2024</td>
+                        <td>4</td>
+                        <td>Engenharia de Software I</td>
+                    </tr>
+                    <tr>
+                        <td>02</td>
+                        <td>17/05/2024</td>
+                        <td>2</td>
+                        <td>Engenharia de Software I</td>
+                    </tr>
+                    <tr>
+                        <td>03</td>
+                        <td>20/05/2024</td>
+                        <td>2</td>
+                        <td>Engenharia de Software II</td>
+                    </tr>
+                    <ty>
+                        <td>04</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </ty>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>Dados das Aulas de Reposição</h4>
+
+        <div class="adicionar">
+            <label for="data-reposicao">Data da Reposição: *</label>
+            <input type="date" name="data-reposicao" id="data-reposicao">
+            <label for="hora-inicio">Início: </label>
+            <select id="hora-inicio" class="horario">
+                <option value="0">Selecione...</option>
+                <option value="1">07h40min</option>
+                <option value="2">08h30min</option>
+                <option value="3">09h20min</option>
+                <option value="4">10h10min</option>
+                <option value="5">11h10min</option>
+                <option value="6">12h00min</option>
+                <option value="7">18h10min</option>
+                <option value="8">19h00min</option>
+                <option value="9">19h50min</option>
+                <option value="10">20h50min</option>
+                <option value="11">21h40min</option>
+            </select>
+            </select class="disciplina">
+            <label for="disciplina">Disciplina: *</label>
+            <select id="disciplina">
+                <option value="0">Selecione...</option>
+                <option value="1">Engenharia I</option>
+                <option value="2">Engenharia II</option>
+                <option value="3">Engenharia III</option>
+            </select>
+            <input type="submit" value="Adicionar">
+        </div>
+
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="ordem">Ordem</th>
+                        <th class="data-rep">Data da(s) aula(s) não ministrada(s)</th>
+                        <th class="data-rep">Data da Reposição</th>
+                        <th class="num-aula">Horário</th>
+                        <th class="disciplina">Disciplina</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01</td>
+                        <td>19/04/2024</td>
+                        <td>21/06/2024</td>
+                        <td>19h00min - 22h30min</td>
+                        <td>Engenharia de Software I</td>
+                    </tr>
+                    <tr>
+                        <td>02</td>
+                        <td>17/05/2024</td>
+                        <td>22/06/2024</td>
+                        <td>18h10min - 19h50min</td>
+                        <td>Engenharia de Software I</td>
+                    </tr>
+                    <tr>
+                        <td>03</td>
+                        <td>20/05/2024</td>
+                        <td>29/06/2024</td>
+                        <td>20h50min - 22h30min</td>
+                        <td>Engenharia de Software II</td>
+                    </tr>
+                    <tr>
+                        <td>04</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="parag">
+            <p>Observe as exigências legais:máximo de 8 horas diárias de trabalho, intervalo de 1 hora
+                entre um expediente e outro e de 6 horas em cada expediente.</p>
+            <br><br>
+            <p>*Campo obrigatório</p>
+        </div>
+        </form>
+        <form method="POST" action="gera-pdf-formulario-reposicao.php">
+            <input type="hidden" name="file_name" value="pdf-reposicao.pdf">
+            <input type="submit" value="Enviar">
+        </form>
+
+        </div>
+
     </main>
     <footer class="site-footer">
         <div class="footer">
             <img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
-            <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista - CEP: 13974-080</p>
+            <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista -
+                CEP: 13974-080</p>
             <p class="rodape">Telefone: (19) 3843-1996 | (19) 3863-5210 (WhatsApp)</p>
             <p class="rodape">&copy; 2024 Equipe 6Tec. Todos os direitos reservados.</p>
         </div>
     </footer>
 
 </body>
+
 </html>
