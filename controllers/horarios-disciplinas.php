@@ -11,17 +11,17 @@ if (isset($jsonRequest['acao_horarios_disciplinas'])) {
 } else if (isset($_POST['acao_horarios_disciplinas'])) {
     $params = $_POST['params'] ?? [];
     echo json_encode(controllerHorariosDisciplinas($_POST['acao_horarios_disciplinas'], $params));
-} 
+}
 
 function controllerHorariosDisciplinas($acao_horarios_disciplinas, $params = [])
 {
     switch ($acao_horarios_disciplinas) {
-        case 'select_aulas_professor_periodo':
+        case 'busca_aulas_professor_periodo':
             $idProfessor = 3; // ana célia
             $aulasNoPeriodo = [];
             $sequenciaDias = geraSequenciaDias($params['data_inicial'], $params['quantidade_dias']);
             foreach ($sequenciaDias as $dia) {
-                $aulasNoPeriodo = array_merge($aulasNoPeriodo, buscaAulasProfessorData($idProfessor, $dia));
+                $aulasNoPeriodo = array_merge($aulasNoPeriodo, selectAulasProfessorData($idProfessor, $dia));
             }
             return $aulasNoPeriodo;
             break;
@@ -30,6 +30,6 @@ function controllerHorariosDisciplinas($acao_horarios_disciplinas, $params = [])
             return [
                 'sucesso' => false,
                 'msgErro' => "Ação para Horários de Disciplinas inválida informada: '" . $acao_horarios_disciplinas . "'"
-            ];    
+            ];
     }
 }

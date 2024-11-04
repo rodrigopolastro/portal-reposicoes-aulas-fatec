@@ -2,7 +2,7 @@
 require_once caminhoAbsoluto('database/conexao-banco.php');
 
 // ============== SELECT QUERIES ==============
-function buscaTiposFaltas()
+function selectTiposFaltas()
 {
     global $conexao;
     $sql = $conexao->prepare(

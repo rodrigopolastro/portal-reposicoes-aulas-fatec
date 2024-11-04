@@ -2,7 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers/caminho-absoluto.php';
 require_once caminhoAbsoluto('controllers/tipos-faltas.php');
 
-$tiposFaltas = controllerTiposFaltas('select_tipos_faltas');
+$tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +35,7 @@ $tiposFaltas = controllerTiposFaltas('select_tipos_faltas');
         <h1>Formulário para Justificativa de Faltas:</h1>
         <div class="corpo">
             <form method="POST" action="../../controllers/justificativas-faltas.php" enctype="multipart/form-data">
-                <input type="hidden" name="acao_justificativas_faltas" value="insert_justificativa_falta">
+                <input type="hidden" name="acao_justificativas_faltas" value="cria_justificativa_falta">
                 <input id="inputTipoIntervalo" type="hidden" name="tipo_intervalo" value="">
                 <div class="formcomeço">
                     <div class="item-pequeno">

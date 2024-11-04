@@ -19,7 +19,10 @@ if (isset($jsonRequest['acao_justificativas_faltas_justificativas_faltas'])) {
 function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [])
 {
     switch ($acao_justificativas_faltas) {
-        case 'insert_justificativa_falta':
+        case 'busca_justificativa_falta':
+            // $jutificativa_falta = buscaJustifativaFalta($params['id_justificativa']);
+
+        case 'cria_justificativa_falta':
             try {
                 $idNovaJustificativa = criaJustificativaFalta(
                     $_POST['id_tipo_falta'],
@@ -29,7 +32,7 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
 
                 if ($_POST['tipo_intervalo'] == 'dias') {
                     $aulasPerdidas = controllerHorariosDisciplinas(
-                        'select_aulas_professor_periodo',
+                        'busca_aulas_professor_periodo',
                         [
                             'data_inicial' => $_POST['data_inicial_falta'],
                             'quantidade_dias' => $_POST['quantidade_dias']
@@ -37,7 +40,7 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                     );
 
                     foreach ($aulasPerdidas as $aulaPerdida) {
-                        controllerHorariosAusencias('insert_horario_ausencia', [
+                        controllerHorariosAusencias('cria_horario_ausencia', [
                             'id_justificativa' => $idNovaJustificativa,
                             'data_falta' => $aulaPerdida['data_aula'],
                             'id_horario' => $aulaPerdida['HRF_id']

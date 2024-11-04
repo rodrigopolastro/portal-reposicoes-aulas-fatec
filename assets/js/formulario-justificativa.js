@@ -133,7 +133,7 @@ async function buscaAulasProfessorData() {
                 "Content-Type": "application/x-www-form-urlencoded",
             },
             body: JSON.stringify({
-                acao_horarios_disciplinas: "select_aulas_professor_periodo",
+                acao_horarios_disciplinas: "busca_aulas_professor_periodo",
                 params: {
                     data_inicial: dataFalta,
                     quantidade_dias: quantidadeDias,

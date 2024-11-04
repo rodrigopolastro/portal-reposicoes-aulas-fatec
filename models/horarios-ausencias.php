@@ -2,7 +2,7 @@
 require_once caminhoAbsoluto('database/conexao-banco.php');
 
 // ============== ACTION QUERIES ==============
-function criaHorarioAusencia($idJustificativa, $dataFalta, $idHorario)
+function insertHorarioAusencia($idJustificativa, $dataFalta, $idHorario)
 {
     global $conexao;
     $sql = $conexao->prepare(

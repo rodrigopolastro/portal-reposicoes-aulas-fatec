@@ -15,8 +15,8 @@ if (isset($jsonRequest['acao_horarios_ausencias'])) {
 function controllerHorariosAusencias($acao_horarios_ausencias, $params = [])
 {
     switch ($acao_horarios_ausencias) {
-        case 'insert_horario_ausencia':
-            criaHorarioAusencia(
+        case 'cria_horario_ausencia':
+            insertHorarioAusencia(
                 $params['id_justificativa'],
                 $params['data_falta'],
                 $params['id_horario']

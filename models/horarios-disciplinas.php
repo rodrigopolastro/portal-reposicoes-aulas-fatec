@@ -2,7 +2,7 @@
 require_once caminhoAbsoluto('database/conexao-banco.php');
 
 // ============== SELECT QUERIES ==============
-function buscaAulasProfessorData($idProfessor, $dataAula)
+function selectAulasProfessorData($idProfessor, $dataAula)
 {
     global $conexao;
     $sql = $conexao->prepare(
@@ -25,7 +25,7 @@ function buscaAulasProfessorData($idProfessor, $dataAula)
         WHERE USR_id = :id_professor
           AND HRF_ordem_dia_semana = DAYOFWEEK(:data_aula)"
     );
-    
+
     $sql->bindValue('id_professor', $idProfessor);
     $sql->bindValue('data_aula', $dataAula);
     $sql->execute();

@@ -10,13 +10,13 @@ if (isset($jsonRequest['acao_tipos_faltas'])) {
 } else if (isset($_POST['acao_tipos_faltas'])) {
     $params = $_POST['params'] ?? [];
     echo json_encode(controllerTiposFaltas($_POST['acao_tipos_faltas'], $params));
-} 
+}
 
 function controllerTiposFaltas($acao_tipos_faltas, $params = [])
 {
     switch ($acao_tipos_faltas) {
-        case 'select_tipos_faltas':
-            $tiposFaltas = buscaTiposFaltas();
+        case 'busca_tipos_faltas':
+            $tiposFaltas = selectTiposFaltas();
             return $tiposFaltas;
             break;
 
