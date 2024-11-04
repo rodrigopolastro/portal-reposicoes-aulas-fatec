@@ -13,7 +13,7 @@ $tiposFaltas = controllerTiposFaltas('select_tipos_faltas');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
     <link rel="stylesheet" href="../../assets/css/utilidades.css">
-    <link rel="stylesheet" href="../../assets/css/form-justificativa.css">
+    <link rel="stylesheet" href="../../assets/css/enviar-justificativa.css">
     <title>Formulário de Justificativa de Falta</title>
 
 </head>
@@ -160,10 +160,10 @@ $tiposFaltas = controllerTiposFaltas('select_tipos_faltas');
                             </div>
                         </div>
                     </div>
-                    <div id="divAnexo">
-                        <label for="fileInput" id="fileLabel" class="d-none file-label">Anexar comprovante</label>
-                        <input type="file" id="fileInput" class="d-none file-input" name="comprovante" accept="image/*">
-                        <span id="fileName" class="d-none file-name">Nenhum arquivo selecionado</span>
+                    <div id="divAnexo" class="d-none">
+                        <label for="fileInput" id="fileLabel" class="file-label">Anexar comprovante</label>
+                        <input type="file" id="fileInput" class="file-input" name="comprovante" accept="image/*">
+                        <span id="fileName" class="file-name">Nenhum arquivo selecionado</span>
                     </div>
                     <div>
                         <input type="submit" value="Enviar" id="btnEnviar">

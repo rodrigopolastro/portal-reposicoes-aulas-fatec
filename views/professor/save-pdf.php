@@ -1,18 +1,18 @@
 <?php
-$file_name = $_POST['file_name'];
-if ($file_name == 'pdf-reposicao.pdf') {
-    $was_file_created = true;
-} else {
-    $final_path = 'pdfs-formularios/' . $file_name;
+// $file_name = $_POST['file_name'];
+// if ($file_name == 'pdf-reposicao.pdf') {
+//     $was_file_created = true;
+// } else {
+//     $final_path = 'pdfs-formularios/' . $file_name;
 
-    if ($final_path) {
-        if (rename('pdfs-formularios/temp_file.pdf', trim($final_path))) {
-            $was_file_created = true;
-        } else {
-            $was_file_created = false;
-        }
-    }
-}
+//     if ($final_path) {
+//         if (rename('pdfs-formularios/temp_file.pdf', trim($final_path))) {
+//             $was_file_created = true;
+//         } else {
+//             $was_file_created = false;
+//         }
+//     }
+// }
 ?>
 
 <!DOCTYPE html>
