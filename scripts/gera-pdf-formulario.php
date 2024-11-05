@@ -3,12 +3,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers
 require_once caminhoAbsoluto('vendor/autoload.php');
 require_once caminhoAbsoluto('controllers/justificativas-faltas.php');
 
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
-
 $justificativa_falta = controllerJustificativasFaltas(
-    'select_justificativa_falta',
+    'busca_justificativa_falta',
     ['id_justificativa' => $_GET['id_justificativa']]
 );
 
@@ -154,10 +150,13 @@ $justificativa_falta = controllerJustificativasFaltas(
 //         []                // AltImgs
 //     );
 // } else {
-//     $pdf->Cell(0, 10, 'Nenhum documento foi anexado.', 0, 1, 'C');
+// $pdf->Cell(0, 10, 'Nenhum documento foi anexado.', 0, 1, 'C');
 // }
 
 // $pdf_data = $pdf->Output('temp_file.pdf', 'S');
 // file_put_contents('pdfs-formularios/temp_file.pdf', $pdf_data);
 
-// header('url?=');
+header(
+    'Location: ../views/professor/confirmar-envio.php' .
+        '?id_justificativa=' . $_GET['id_justificativa']
+);
