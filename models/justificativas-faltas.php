@@ -1,6 +1,31 @@
 <?php
 require_once caminhoAbsoluto('database/conexao-banco.php');
 
+function selectFormulariosProfessor($idProfessor)
+{
+    global $conexao;
+    $sql = $conexao->prepare(
+        "SELECT   
+            JUF_id,
+            TPF_categoria,
+            JUF_status,
+            JUF_data_envio,
+            JUF_data_aprovacao,
+            JUF_feedback_coordenador,
+            PLR_id,
+            PLR_status
+        FROM JUSTIFICATIVAS_FALTAS
+        INNER JOIN TIPOS_FALTAS ON TPF_id = JUF_id_tipo_falta 
+        LEFT JOIN PLANOS_REPOSICOES ON PLR_id_justificativa = JUF_id
+        WHERE JUF_id_professor = :id_professor"
+    );
+
+    $sql->bindValue('id_professor', $idProfessor);
+    $sql->execute();
+
+    $formularios = $sql->fetchAll(PDO::FETCH_ASSOC);
+    return $formularios;
+}
 
 function selectJustificativaFalta($idJustificativa)
 {

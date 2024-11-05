@@ -1,3 +1,10 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers/caminho-absoluto.php';
+require_once caminhoAbsoluto('controllers/justificativas-faltas.php');
+
+$formularios = controllerJustificativasFaltas('busca_formularios_professor');
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -56,75 +63,42 @@
             <table id="formTable">
                 <thead>
                     <tr>
-                        <th></th>
                         <th class="ordem">Data da falta</th>
                         <th class="ordem">Motivo</th>
                         <th class="ordem">Curso</th>
                         <th class="tipo">Disciplina</th>
                         <th class="ordem">Status Justificativa</th>
-                        <th class="ordem">Vizualizar PDF</th>
+                        <th class="ordem">Visualizar PDF</th>
                         <th class="ordem">Feedback</th>
-                        <th class="ordem">Reposição</th>
+                        <th class="ordem">Enviar Reposição</th>
                         <th class="ordem">Status Reposição</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-tipo="Justificativa de Falta" data-status="Indeferido">
-                        <td class="centro"><input type="radio" name="select-row"></td>
-                        <td>14/04/2024</td>
-                        <td>Dengue</td>
-                        <td>CST-DSM</td>
-                        <td>Engenharia de Software I</td>
-                        <td>Deferido</td>
-                        <td><button
-                                onclick="window.open('../../pdfs-formularios/pdf-reposicao.pdf', '_blank')">Visualizar
-                                PDF</button></td>
-                        <td class="centro">-</a></td>
-                        <td class="centro">ok</td>
-                        <td class="centro">Deferido</td>
-                    </tr>
-                    <tr data-tipo="Justificativa de Falta" data-status="Indeferido">
-                        <td class="centro"><input type="radio" name="select-row"></td>
-                        <td>26/04/2024</td>
-                        <td>Mal-estar</td>
-                        <td>CST-DSM</td>
-                        <td>Engenharia de Software I</td>
-                        <td>Deferido</td>
-                        <td><button
-                                onclick="window.open('../../pdfs-formularios/pdf-reposicao.pdf', '_blank')">Visualizar
-                                PDF</button></td>
-                        <td class="centro">-</td>
-                        <td class="centro"><a href="form-reposicao.php">Enviar</a></td>
-                        <td class="centro">-</td>
-                    </tr>
-                    <tr data-tipo="Justificativa de Falta" data-status="Indeferido">
-                        <td class="centro"><input type="radio" name="select-row"></td>
-                        <td>19/05/2024</td>
-                        <td>Dor de cabeça</td>
-                        <td>CST-DSM</td>
-                        <td>Engenharia de Software I</td>
-                        <td>Indeferido</td>
-                        <td><button
-                                onclick="window.open('../../pdfs-formularios/pdf-reposicao.pdf', '_blank')">Visualizar
-                                PDF</button></td>
-                        <td class="centro"><a href=""><img src="../../assets/images/feedback.png"></a></td>
-                        <td class="centro">-</td>
-                        <td class="centro">-</td>
-                    </tr>
-                    <tr data-tipo="Justificativa de Falta" data-status="Indeferido">
-                        <td class="centro"><input type="radio" name="select-row"></td>
-                        <td>26/04/2024</td>
-                        <td>Dengue</td>
-                        <td>CST-DSM</td>
-                        <td>Engenharia de Software I</td>
-                        <td>Em análise</td>
-                        <td><button
-                                onclick="window.open('../../pdfs-formularios/pdf-reposicao.pdf', '_blank')">Visualizar
-                                PDF</button></td>
-                        <td class="centro">-</td>
-                        <td class="centro">-</td>
-                        <td class="centro">-</td>
-                    </tr>
+                    <?php foreach ($formularios as $formulario): ?>
+                        <tr>
+                            <td>Data da falta</td>
+                            <td><?= $formulario['TPF_categoria'] ?></td>
+                            <td>Curso</td>
+                            <td>Disciplina</td>
+                            <td><?= $formulario['JUF_status'] ?></td>
+                            <td>
+                                <a href="<?= '../../scripts/gera-pdf-formulario.php?id_justificativa=' . $formulario['JUF_id'] ?>">
+                                    <button>Visualizar PDF</button>
+                                </a>
+                            </td>
+                            <td class="centro"><?= $formulario['JUF_feedback_coordenador'] ?></td>
+                            <td class="centro">
+                                <?php if (is_null($formulario['PLR_id'])) : ?>
+                                    <a href="<?= './enviar-reposicao.php?id_justificativa=' . $formulario['JUF_id'] ?>">Enviar</a>
+                                <?php else : ?>
+                                    <p>Enviado</p>
+                                <?php endif; ?>
+                                <!-- fazer um if para só exibir botão de enviar caso  -->
+                            </td>
+                            <td class="centro"><?= $formulario['PLR_status'] ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
 

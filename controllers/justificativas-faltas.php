@@ -4,6 +4,8 @@ require_once caminhoAbsoluto('models/justificativas-faltas.php');
 require_once caminhoAbsoluto('controllers/horarios-disciplinas.php');
 require_once caminhoAbsoluto('controllers/horarios-ausencias.php');
 
+$idUsuarioLogado = 3;
+
 $jsonRequest = json_decode(file_get_contents('php://input'), true);
 
 if (isset($jsonRequest['acao_justificativas_faltas_justificativas_faltas'])) {
@@ -17,6 +19,12 @@ if (isset($jsonRequest['acao_justificativas_faltas_justificativas_faltas'])) {
 function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [])
 {
     switch ($acao_justificativas_faltas) {
+        case 'busca_formularios_professor':
+            global $idUsuarioLogado;
+            $formularios = selectFormulariosProfessor($idUsuarioLogado);
+            return $formularios;
+            break;
+
         case 'busca_justificativa_falta':
             $justificativa_falta = selectJustificativaFalta($params['id_justificativa']);
             return $justificativa_falta;
@@ -24,7 +32,7 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
 
         case 'cria_justificativa_falta':
             try {
-                $idUsuarioLogado = 3; // Ana Célia
+                global $idUsuarioLogado; // Ana Célia
                 $idNovaJustificativa = insertJustificativaFalta([
                     'id_professor' => $idUsuarioLogado,
                     'id_tipo_falta' => $params['id_tipo_falta'],
