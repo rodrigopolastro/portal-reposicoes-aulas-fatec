@@ -8,7 +8,7 @@ if (isset($jsonRequest['acao_horarios_ausencias'])) {
     $params = $jsonRequest['params'] ?? [];
     echo json_encode(controllerHorariosAusencias($jsonRequest['acao_horarios_ausencias'], $params));
 } else if (isset($_POST['acao_horarios_ausencias'])) {
-    $params = $_POST['params'] ?? [];
+    $params = $_POST ?? [];
     echo json_encode(controllerHorariosAusencias($_POST['acao_horarios_ausencias'], $params));
 }
 

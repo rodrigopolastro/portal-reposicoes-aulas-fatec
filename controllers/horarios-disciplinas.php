@@ -9,7 +9,7 @@ if (isset($jsonRequest['acao_horarios_disciplinas'])) {
     $params = $jsonRequest['params'] ?? [];
     echo json_encode(controllerHorariosDisciplinas($jsonRequest['acao_horarios_disciplinas'], $params));
 } else if (isset($_POST['acao_horarios_disciplinas'])) {
-    $params = $_POST['params'] ?? [];
+    $params = $_POST ?? [];
     echo json_encode(controllerHorariosDisciplinas($_POST['acao_horarios_disciplinas'], $params));
 }
 

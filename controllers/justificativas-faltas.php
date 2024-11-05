@@ -12,7 +12,7 @@ if (isset($jsonRequest['acao_justificativas_faltas_justificativas_faltas'])) {
     $params = $jsonRequest['params'] ?? [];
     echo json_encode(controllerJustificativasFaltas($jsonRequest['acao_justificativas_faltas'], $params));
 } else if (isset($_POST['acao_justificativas_faltas'])) {
-    $params = $_POST['params'] ?? [];
+    $params = $_POST ?? [];
     echo json_encode(controllerJustificativasFaltas($_POST['acao_justificativas_faltas'], $params));
 }
 

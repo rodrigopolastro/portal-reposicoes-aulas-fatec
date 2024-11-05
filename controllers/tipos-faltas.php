@@ -8,7 +8,7 @@ if (isset($jsonRequest['acao_tipos_faltas'])) {
     $params = $jsonRequest['params'] ?? [];
     echo json_encode(controllerTiposFaltas($jsonRequest['acao_tipos_faltas'], $params));
 } else if (isset($_POST['acao_tipos_faltas'])) {
-    $params = $_POST['params'] ?? [];
+    $params = $_POST ?? [];
     echo json_encode(controllerTiposFaltas($_POST['acao_tipos_faltas'], $params));
 }
 
