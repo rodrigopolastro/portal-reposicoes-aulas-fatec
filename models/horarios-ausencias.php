@@ -1,6 +1,23 @@
 <?php
 require_once caminhoAbsoluto('database/conexao-banco.php');
 
+function selectDatasAusenciasJustificativa($idJustificativa)
+{
+    global $conexao;
+    $sql = $conexao->prepare(
+        "SELECT DISTINCT
+            HRA_data_falta
+        FROM HORARIOS_AUSENCIAS
+        WHERE HRA_id_justificativa = id_justificativa"
+    );
+
+    $sql->bindValue('id_justificativa', $idJustificativa);
+    $sql->execute();
+
+    $datasAusencias = $sql->fetch(PDO::FETCH_ASSOC);
+    return $datasAusencias;
+}
+
 // ============== ACTION QUERIES ==============
 function insertHorarioAusencia($idJustificativa, $dataFalta, $idHorario)
 {

@@ -1,6 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers/caminho-absoluto.php';
 require_once caminhoAbsoluto('controllers/justificativas-faltas.php');
+require_once caminhoAbsoluto('controllers/disciplinas.php');
+require_once caminhoAbsoluto('controllers/horarios-ausencias.php');
 
 $formularios = controllerJustificativasFaltas('busca_formularios_professor');
 ?>
@@ -65,8 +67,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                     <tr>
                         <th class="ordem">Data da falta</th>
                         <th class="ordem">Motivo</th>
-                        <th class="ordem">Curso</th>
-                        <th class="tipo">Disciplina</th>
+                        <th class="tipo">Disciplinas</th>
                         <th class="ordem">Status Justificativa</th>
                         <th class="ordem">Visualizar PDF</th>
                         <th class="ordem">Feedback</th>
@@ -76,11 +77,30 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                 </thead>
                 <tbody>
                     <?php foreach ($formularios as $formulario): ?>
+                        <?php
+                        $disciplinas = controllerDisciplinas(
+                            'busca_disciplinas_justificativa',
+                            ['id_justificativa' => $formulario['JUF_id']]
+                        );
+
+                        if ($formulario['TPF_tipo_intervalo'] == 'dias') {
+                            $datasAusencias = controllerJustificativasFaltas(
+                                'busca_datas_ausencias_justificativa',
+                                ['id_justificativa' => $formulario['JUF_id']]
+                            );
+                        }
+
+                        ?>
                         <tr>
                             <td>Data da falta</td>
                             <td><?= $formulario['TPF_categoria'] ?></td>
-                            <td>Curso</td>
-                            <td>Disciplina</td>
+                            <td>
+                                <ul>
+                                    <?php foreach ($disciplinas as $disciplina) : ?>
+                                        <li><?= '(' . $disciplina['CUR_sigla'] . ') ' . $disciplina['DCP_nome'] ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </td>
                             <td><?= $formulario['JUF_status'] ?></td>
                             <td>
                                 <a href="<?= '../../scripts/gera-pdf-formulario.php?id_justificativa=' . $formulario['JUF_id'] ?>">
@@ -94,7 +114,6 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                                 <?php else : ?>
                                     <p>Enviado</p>
                                 <?php endif; ?>
-                                <!-- fazer um if para só exibir botão de enviar caso  -->
                             </td>
                             <td class="centro"><?= $formulario['PLR_status'] ?></td>
                         </tr>

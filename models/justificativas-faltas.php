@@ -8,6 +8,7 @@ function selectFormulariosProfessor($idProfessor)
         "SELECT   
             JUF_id,
             TPF_categoria,
+            TPF_tipo_intervalo,
             JUF_status,
             JUF_data_envio,
             JUF_data_aprovacao,

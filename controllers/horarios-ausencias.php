@@ -15,6 +15,11 @@ if (isset($jsonRequest['acao_horarios_ausencias'])) {
 function controllerHorariosAusencias($acao_horarios_ausencias, $params = [])
 {
     switch ($acao_horarios_ausencias) {
+        case 'busca_datas_ausencias_justificativa':
+            $datasAusencias = selectDatasAusenciasJustificativa($params['id_justificativa']);
+            return $datasAusencias;
+            break;
+
         case 'cria_horario_ausencia':
             insertHorarioAusencia(
                 $params['id_justificativa'],
