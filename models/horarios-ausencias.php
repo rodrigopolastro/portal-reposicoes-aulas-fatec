@@ -14,7 +14,7 @@ function selectDatasAusenciasJustificativa($idJustificativa)
         FROM HORARIOS_AUSENCIAS
         INNER JOIN HORARIOS_FATEC ON HRF_id = HRA_id_horario
         WHERE HRA_id_justificativa = :id_justificativa
-        ORDER BY HRA_data_falta"
+        ORDER BY HRA_data_falta, HRF_horario_inicio"
     );
 
     $sql->bindValue('id_justificativa', $idJustificativa);

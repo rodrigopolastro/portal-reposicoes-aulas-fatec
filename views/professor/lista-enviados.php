@@ -13,7 +13,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
     <title>Formulário enviados</title>
 
 </head>
@@ -27,30 +27,30 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
             </div>
         </div>
         <nav>
-            <a href="index-professor.html" class="botao-nav">Início</a>
-            <a href="enviar-formularios.html" class="botao-nav">Enviar formulário</a>
-            <a href="lista-enviados.html" class="botao-nav">Formulários enviados</a>
+            <a href="index-professor.html" class="botao-nav">InÃ­cio</a>
+            <a href="enviar-formularios.html" class="botao-nav">Enviar formulÃ¡rio</a>
+            <a href="lista-enviados.html" class="botao-nav">FormulÃ¡rios enviados</a>
             <a href="login.html" class="botao-nav">Sair</a>
         </nav>
 
     </header>
     <main>
-        <h1>Formulários Enviados</h1>
+        <h1>FormulÃ¡rios Enviados</h1>
 
         <div class="topo-form">
             <form id="filterForm" onsubmit="return aplicarFiltro()">
                 <div class="filtro-form">
-                    <label for="filterTipo">Tipo de Formulário:</label>
+                    <label for="filterTipo">Tipo de FormulÃ¡rio:</label>
                     <select id="filterTipo" class="filter-input">
                         <option value="">Todos</option>
                         <option value="Justificativa de Falta">Justificativa de Falta</option>
-                        <option value="Reposição de Aulas">Reposição de Aulas</option>
+                        <option value="ReposiÃ§Ã£o de Aulas">ReposiÃ§Ã£o de Aulas</option>
                     </select>
 
                     <label for="filterStatus">Status:</label>
                     <select id="filterStatus" class="filter-input">
                         <option value="">Todos</option>
-                        <option value="Em análise">Em análise</option>
+                        <option value="Em anÃ¡lise">Em anÃ¡lise</option>
                         <option value="Deferido">Deferido</option>
                         <option value="Indeferido">Indeferido</option>
                     </select>
@@ -65,14 +65,14 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
             <table id="formTable">
                 <thead>
                     <tr>
-                        <th class="ordem">Data da falta</th>
+                        <th class="ordem">Período da Falta</th>
                         <th class="ordem">Motivo</th>
                         <th class="tipo">Disciplinas</th>
                         <th class="ordem">Status Justificativa</th>
                         <th class="ordem">Visualizar PDF</th>
                         <th class="ordem">Feedback</th>
-                        <th class="ordem">Enviar Reposição</th>
-                        <th class="ordem">Status Reposição</th>
+                        <th class="ordem">Enviar ReposiÃ§Ã£o</th>
+                        <th class="ordem">Status ReposiÃ§Ã£o</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -84,22 +84,22 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                         );
 
                         if ($formulario['TPF_tipo_intervalo'] == 'dias') {
-                            $datasAusencias = controllerAusencias(
+                            $datasAusencias = controllerHorariosAusencias(
                                 'busca_datas_ausencias_justificativa',
                                 ['id_justificativa' => $formulario['JUF_id']]
                             );
                             $dataInicial = $datasAusencias[0]['HRA_data_falta'];
-                            $dataFinal = end($datasAusencias['HRA_data_falta']);
-                            
-                            if($dataInicial == $dataFinal){
-                                $strDataFormatada = new DateTimeImmutable($dataInicial)->format('d/m/y');
+                            $dataFinal = end($datasAusencias)['HRA_data_falta'];
+
+                            if ($dataInicial == $dataFinal) {
+                                $strDataFormatada = (new DateTimeImmutable($dataInicial))->format('d/m/y');
                             } else {
-                                $dataInicialFormatada = new DateTimeImmutable($dataInicial)->format('d/m/y');
-                                $dataFinalFormatada = new DateTimeImmutable($dataFinal)->format('d/m/y');
-                                $strDataFormatada = $dataInicialFormatada . ' - ' . $dataFinalFormatada;
+                                $dataInicialFormatada = (new DateTimeImmutable($dataInicial))->format('d/m/y');
+                                $dataFinalFormatada = (new DateTimeImmutable($dataFinal))->format('d/m/y');
+                                $strDataFormatada = $dataInicialFormatada . ' a ' . $dataFinalFormatada;
                             }
-                        } else if ($formulario['TPF_tipo_intervalo'] == 'horas'){
-                            $strDataFormatada = 'ainda n�o trabalhamos com horas';
+                        } else if ($formulario['TPF_tipo_intervalo'] == 'horas') {
+                            $strDataFormatada = 'ainda não trabalhamos com horas';
                         }
 
                         ?>
@@ -155,7 +155,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                         linhas[i].classList.add('hidden');
                     }
                 }
-                return false; // Evitar o envio do formulário
+                return false; // Evitar o envio do formulÃ¡rio
             }
 
             function limparFiltro() {

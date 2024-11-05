@@ -16,7 +16,7 @@ function controllerDisciplinas($acao_disciplinas, $params = [])
 {
     switch ($acao_disciplinas) {
         case 'busca_disciplina_professor_horario':
-            $disciplina = selectDisciplinasJustificativa($params['id_professor'], $params['id_horario']);
+            $disciplina = selectDisciplinaProfessorHorario($params['id_professor'], $params['id_horario']);
             return $disciplina;
             break;
 
