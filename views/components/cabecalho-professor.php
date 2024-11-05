@@ -3,14 +3,14 @@
     require_once caminhoAbsoluto('views/components/imagens-cabecalho.php');
     ?>
     <nav>
-        <a href="index-professor.html" class="botao-nav">Início</a>
+        <a href="../professor/index.php" class="botao-nav">Início</a>
 
         <!-- Dropdown para 'Enviar formulário' -->
         <div class="dropdown">
-            <a href="#" class="botao-nav dropdown-btn">Enviar formulário</a>
+            
             <div class="dropdown-content">
-                <a href="<?= caminhoAbsoluto('views/professor/form-justificativa.php', true) ?>" class="botao-nav">Justificativa de falta</a>
-                <a href="<?= caminhoAbsoluto('views/professor/form-reposicao.php', true) ?>" class="botao-nav">Reposição de aulas</a>
+                <a href="<?= caminhoAbsoluto('views/professor/enviar-justificativa.php', true) ?>" class="botao-nav">Justificativa de falta</a>
+                <a href="<?= caminhoAbsoluto('views/professor/enviar-reposicao.php', true) ?>" class="botao-nav">Reposição de aulas</a>
             </div>
         </div>
 
