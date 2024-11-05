@@ -1,5 +1,18 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers/caminho-absoluto.php';
+require_once caminhoAbsoluto('controllers/justificativas-faltas.php');
+require_once caminhoAbsoluto('controllers/horarios-ausencias.php');
+require_once caminhoAbsoluto('controllers/disciplinas.php');
+
+$justificativaFalta = controllerJustificativasFaltas(
+    'busca_justificativa_falta',
+    ['id_justificativa' => $_GET['id_justificativa']]
+);
+
+$horariosAusencias = controllerHorariosAusencias(
+    'busca_datas_ausencias_justificativa'
+    ['id_justificativa' => $_GET['id_justificativa']]
+);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -100,7 +113,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers
 
                     <h2>Tabela de Horários</h2>
 
-                    <table>
+                    <table class="d-none">
                         <thead>
                             <tr>
                                 <th>Horário</th>
@@ -295,12 +308,43 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers
                                 <thead>
                                     <tr>
                                         <th class="data-rep">Data da(s) aula(s) não ministrada(s)</th>
+                                        <th class="data-rep">Disciplina</th>
                                         <th class="data-rep">Data da Reposição</th>
                                         <th class="data-rep">Horário</th>
-                                        <th class="data-rep">Disciplina</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php foreach($horariosAusencias as $horarioAusencia): ?>
+                                        <tr>
+                                            <td><?= $horarioAusencia['HRA_data_falta'] ?></td>
+                                            <?php 
+                                                $disciplinaAusencia = controllerDisciplinas('busca_disciplina_professor_horario',[
+                                                    'id_professor' => $justificativaFalta['JUF_id_professor'],
+                                                    'id_horario' => $horarioAusencia['HRA_id_horario'] 
+                                                ]);
+                                            ?>
+                                            <td><?= '(' . $disciplinaAusencia['CUR_sigla'] . ') ' . $disciplinaAusencia['DCP_nome'] ?></td>
+                                            <td>
+                                                <input type="date" name="data-reposicao" id="data-reposicao">
+                                            </td>
+                                            <td>
+                                                <select id="hora-inicio">
+                                                    <option value="0">Selecione...</option>
+                                                    <option value="1">07h40min</option>
+                                                    <option value="2">08h30min</option>
+                                                    <option value="3">09h20min</option>
+                                                    <option value="4">10h10min</option>
+                                                    <option value="5">11h10min</option>
+                                                    <option value="6">12h00min</option>
+                                                    <option value="7">18h10min</option>
+                                                    <option value="8">19h00min</option>
+                                                    <option value="9">19h50min</option>
+                                                    <option value="10">20h50min</option>
+                                                    <option value="11">21h40min</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                     <tr>
                                         <td>19/08/2024</td>
                                         <td>

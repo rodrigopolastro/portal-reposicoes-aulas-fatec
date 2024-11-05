@@ -15,6 +15,11 @@ if (isset($jsonRequest['acao_disciplinas'])) {
 function controllerDisciplinas($acao_disciplinas, $params = [])
 {
     switch ($acao_disciplinas) {
+        case 'busca_disciplina_professor_horario':
+            $disciplina = selectDisciplinasJustificativa($params['id_professor'], $params['id_horario']);
+            return $disciplina;
+            break;
+
         case 'busca_disciplinas_justificativa':
             $disciplinas = selectDisciplinasJustificativa($params['id_justificativa']);
             return $disciplinas;
