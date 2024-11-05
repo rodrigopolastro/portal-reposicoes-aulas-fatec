@@ -16,8 +16,8 @@ function controllerHorariosAusencias($acao_horarios_ausencias, $params = [])
 {
     switch ($acao_horarios_ausencias) {
         case 'busca_datas_ausencias_justificativa':
-            $datasAusencias = selectDatasAusenciasJustificativa($params['id_justificativa']);
-            return $datasAusencias;
+            $horariosAusencias = selectDatasAusenciasJustificativa($params['id_justificativa']);
+            return $horariosAusencias;
             break;
 
         case 'cria_horario_ausencia':

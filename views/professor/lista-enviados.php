@@ -84,15 +84,27 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                         );
 
                         if ($formulario['TPF_tipo_intervalo'] == 'dias') {
-                            $datasAusencias = controllerJustificativasFaltas(
+                            $datasAusencias = controllerAusencias(
                                 'busca_datas_ausencias_justificativa',
                                 ['id_justificativa' => $formulario['JUF_id']]
                             );
+                            $dataInicial = $datasAusencias[0]['HRA_data_falta'];
+                            $dataFinal = end($datasAusencias['HRA_data_falta']);
+                            
+                            if($dataInicial == $dataFinal){
+                                $strDataFormatada = new DateTimeImmutable($dataInicial)->format('d/m/y');
+                            } else {
+                                $dataInicialFormatada = new DateTimeImmutable($dataInicial)->format('d/m/y');
+                                $dataFinalFormatada = new DateTimeImmutable($dataFinal)->format('d/m/y');
+                                $strDataFormatada = $dataInicialFormatada . ' - ' . $dataFinalFormatada;
+                            }
+                        } else if ($formulario['TPF_tipo_intervalo'] == 'horas'){
+                            $strDataFormatada = 'ainda não trabalhamos com horas';
                         }
 
                         ?>
                         <tr>
-                            <td>Data da falta</td>
+                            <td><?= $strDataFormatada ?></td>
                             <td><?= $formulario['TPF_categoria'] ?></td>
                             <td>
                                 <ul>

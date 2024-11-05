@@ -6,15 +6,21 @@ function selectDatasAusenciasJustificativa($idJustificativa)
     global $conexao;
     $sql = $conexao->prepare(
         "SELECT DISTINCT
-            HRA_data_falta
+            HRA_data_falta,
+            HRA_id_horario,
+            HRF_nome_dia_semana,
+            HRF_horario_inicio,
+            HRF_horario_fim
         FROM HORARIOS_AUSENCIAS
-        WHERE HRA_id_justificativa = id_justificativa"
+        INNER JOIN HORARIOS_FATEC ON HRF_id = HRA_id_horario
+        WHERE HRA_id_justificativa = :id_justificativa
+        ORDER BY HRA_data_falta"
     );
 
     $sql->bindValue('id_justificativa', $idJustificativa);
     $sql->execute();
 
-    $datasAusencias = $sql->fetch(PDO::FETCH_ASSOC);
+    $datasAusencias = $sql->fetchAll(PDO::FETCH_ASSOC);
     return $datasAusencias;
 }
 
