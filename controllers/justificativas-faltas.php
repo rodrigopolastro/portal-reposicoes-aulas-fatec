@@ -81,6 +81,22 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                 header('Location: ' . $params['url_destino']);
             }
             break;
+        
+        case 'avalia_justificativa':
+            if($params['deferimento'] == 'deferido'){
+                $feedback = null;
+            }else{
+                $feedback = $params['feedback'];
+            }
+            updateAvaliacaoJustificativa(
+                [
+                'id_justificativa' => 2,
+                'status_justificativa' => $params['deferimento'],
+                'feedback_justificativa' => $feedback
+                ]
+            );
+            break;
+
 
         default:
             return [

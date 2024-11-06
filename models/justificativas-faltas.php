@@ -11,7 +11,7 @@ function selectFormulariosProfessor($idProfessor)
             TPF_tipo_intervalo,
             JUF_status,
             JUF_data_envio,
-            JUF_data_aprovacao,
+            JUF_data_avaliacao,
             JUF_feedback_coordenador,
             PLR_id,
             PLR_status
@@ -41,7 +41,7 @@ function selectJustificativaFalta($idJustificativa)
             JUF_texto_justificativa,
             JUF_status,
             JUF_data_envio,
-            JUF_data_aprovacao,
+            JUF_data_avaliacao,
             JUF_feedback_coordenador,
             JUF_id_professor,
             USR_nome_completo,
@@ -96,5 +96,21 @@ function deleteJustificativaFalta($idJustificativa)
     );
 
     $sql->bindValue(':id_justificativa', $idJustificativa);
+    $sql->execute();
+}
+
+function updateAvaliacaoJustificativa($avaliacaoJustificativa){
+    global $conexao;
+    $sql = $conexao->prepare(
+        "UPDATE JUSTIFICATIVAS_FALTAS SET
+            JUF_status = :status_justificativa,
+            JUF_feedback_coordenador = :feedback_justificativa,
+            JUF_data_avaliacao = CURRENT_TIMESTAMP()
+            WHERE JUF_id = :id_justificativa"
+    );
+
+    $sql->bindValue(':id_justificativa', $avaliacaoJustificativa['id_justificativa']);
+    $sql->bindValue(':status_justificativa', $avaliacaoJustificativa['status_justificativa']);
+    $sql->bindValue(':feedback_justificativa', $avaliacaoJustificativa['feedback_justificativa']);
     $sql->execute();
 }
