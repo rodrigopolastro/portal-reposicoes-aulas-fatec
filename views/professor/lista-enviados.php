@@ -27,9 +27,9 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
             </div>
         </div>
         <nav>
-            <a href="index-professor.html" class="botao-nav">InÃ­cio</a>
-            <a href="enviar-formularios.html" class="botao-nav">Enviar formulÃ¡rio</a>
-            <a href="lista-enviados.html" class="botao-nav">FormulÃ¡rios enviados</a>
+            <a href="index.php" class="botao-nav">InÃ­cio</a>
+            <a href="enviar-formularios.php" class="botao-nav">Enviar formulÃ¡rio</a>
+            <a href="lista-enviados.php" class="botao-nav">FormulÃ¡rios enviados</a>
             <a href="login.html" class="botao-nav">Sair</a>
         </nav>
 

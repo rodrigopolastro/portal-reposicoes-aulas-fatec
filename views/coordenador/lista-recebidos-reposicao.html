@@ -18,7 +18,7 @@
             </div>
         </div>
         <nav>
-            <a href="index-coordenador.html" class="botao-nav">Início</a>
+            <a href="index.php" class="botao-nav">Início</a>
             <a href="lista-recebidos-faltas.html" class="botao-nav">Justificativas de Falta</a>
             <a href="lista-recebidos-reposicao.html" class="botao-nav">Reposição de Aulas</a>
             <a href="informacoes.html" class="botao-nav">Informações do Curso</a>
@@ -28,16 +28,9 @@
     </header>
     <main>
         <h1>Reposição de Aulas Recebidas</h1>
-        <div class="form-coord">
-            <p>Escolha quais formlulários gostaria de visualizar: </p>
-            <div class="exibir2">
+        
 
-                <button id="botao-recebidos" class="custom-link">Esperando análise</button>
-                <button id="botao-finalizados" class="custom-link">Finalizados</button>
-            </div>
-        </div>
-
-        <div id="recebidos" class="hidden-content">
+        <div id="recebidos">
             <div class="topo-form">
                 <form id="filtro-form-recebidos">
                     <div class="filtro-form">
@@ -130,120 +123,8 @@
             </div>
         </div>
 
-        <div id="finalizados" class="hidden-content">
-            <div class="topo-form">
-                <form id="filtro-form-recebidos">
-                    <div class="filtro-form">
-                        <label for="filterTipo">Professor: </label>
-                        <select id="filterTipo" class="filter-input">
-                            <option value="">Todos</option>
-                            <option value="Douglas Rosa">Douglas Rosa</option>
-                            <option value="José Gonçalves Pinto Junior">José Gonçalves Pinto Junior</option>
-                            <option value="Lúcio">Lúcio</option>
-                            <option value="Mateus">Mateus</option>
-                            <option value="Thiago Salhab Alves">Thiago Salhab Alves</option>
-                            <option value="Vagner">Vagner</option>
-                        </select>
+        
 
-                        <label for="disciplina">Disciplina:</label>
-                        <select id="disciplina" class="filter-input">
-                            <option value="0">Todos</option>
-                            <option value="Programação para Dispositivos Móveis I">Programação para Dispositivos Móveis
-                                I</option>
-                            <option value="Banco de Dados Relacional">Banco de Dados Relacional</option>
-                            <option value="Integração e Entrega Contínua">Integração e Entrega Contínua</option>
-                            <option value="Aprendizagem de Máquina">Aprendizagem de Máquina</option>
-                            <option value="Interação Humano Computador">Interação Humano Computador</option>
-                            <option value="Álgebra Linear">Álgebra Linear</option>
-                        </select>
-
-                        <label for="filterStatus">Status:</label>
-                        <select id="filterStatus" class="filter-input">
-                            <option value="">Todos</option>
-                            <option value="Em analise">Em análise</option>
-                            <option value="Deferido">Deferido</option>
-                            <option value="Indeferido">Indeferido</option>
-                        </select>
-
-                        <input type="submit" value="Aplicar filtro">
-                        <input type="reset" name="Limpar" value="Limpar filtro">
-                    </div>
-                </form>
-            </div>
-
-            <div class="table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="ordem">Data de recebimento</th>
-                            <th class="ordem">Data da reposição</th>
-                            <th class="componente">Professor</th>
-                            <th class="componente">Disciplina</th>
-                            <th class="status">Status</th>
-                            <th class="ordem"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>03/04/2024</td>
-                            <td>12/05/2024</td>
-                            <td>Douglas Rosa</td>
-                            <td>Programação para Dispositivos Móveis I</td>
-                            <td>Indeferido</td>
-                            <td class="centro"><a href="indeferido.html"><img src="../../assets/images/indeferido.png"
-                                        class="iconeAnalisar"><a href=""><img src="../../assets/images/feedback.png"
-                                            class="iconeAnalisar"></a></a></td>
-                        </tr>
-                        <tr>
-                            <td>15/04/2024</td>
-                            <td>26/05/2024</td>
-                            <td>José Gonçalves Pinto Junior</td>
-                            <td>Banco de Dados Relacional</td>
-                            <td>Deferido</td>
-                            <td class="centro"><a href="deferido.html"><img src="../../assets/images/deferido.png"
-                                        class="iconeAnalisar"></a></td>
-                        </tr>
-                        <tr>
-                            <td>17/04/2024</td>
-                            <td>29/05/2024</td>
-                            <td>Lúcio</td>
-                            <td>Integração e Entrega Contínua</td>
-                            <td>Deferido</td>
-                            <td class="centro"><a href=""><img src="../../assets/images/indeferido.png"
-                                        class="iconeAnalisar"></a></td>
-                        </tr>
-                        <tr>
-                            <td>20/04/2024</td>
-                            <td>10/05/2024</td>
-                            <td>Mateus</td>
-                            <td>Aprendizagem de Máquina</td>
-                            <td>Deferido</td>
-                            <td class="centro"><a href=""><img src="../../assets/images/indeferido.png"
-                                        class="iconeAnalisar"></a></td>
-                        </tr>
-                        <tr>
-                            <td>26/04/2024</td>
-                            <td>20/06/2024</td>
-                            <td>Thiago Salhab Alves</td>
-                            <td>Interação Humano Computador</td>
-                            <td>Indeferido</td>
-                            <td class="centro"><a href=""><img src="../../assets/images/indeferido.png"
-                                        class="iconeAnalisar"><a href=""><img src="../../assets/images/feedback.png"
-                                            class="iconeAnalisar"></a></a></td>
-                        </tr>
-                        <tr>
-                            <td>28/04/2024</td>
-                            <td>06/05/2024</td>
-                            <td>Vagner</td>
-                            <td>Álgebra Linear</td>
-                            <td>Deferido</td>
-                            <td class="centro"><a href=""><img src="../../assets/images/indeferido.png"
-                                        class="iconeAnalisar"></a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
         <script>
             document.getElementById('botao-recebidos').addEventListener('click', function () {

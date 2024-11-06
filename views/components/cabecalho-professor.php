@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <a href="lista-enviados.html" class="botao-nav">Formulários enviados</a>
+        <a href="lista-enviados.php" class="botao-nav">Formulários enviados</a>
         <a href="login.html" class="botao-nav">Sair</a>
     </nav>
 </header>

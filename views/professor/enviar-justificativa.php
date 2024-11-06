@@ -25,9 +25,9 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
             <div class="fundo2"><img src="../../assets/images/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
         </div>
         <nav>
-            <a href="index-professor.html" class="botao-nav">Início</a>
-            <a href="enviar-formularios.html" class="botao-nav">Enviar formulário</a>
-            <a href="lista-enviados.html" class="botao-nav">Formulários enviados</a>
+            <a href="index.php" class="botao-nav">Início</a>
+            <a href="enviar-formularios.php" class="botao-nav">Enviar formulário</a>
+            <a href="lista-enviados.php" class="botao-nav">Formulários enviados</a>
             <a href="login.html" class="botao-nav">Sair</a>
         </nav>
     </header>

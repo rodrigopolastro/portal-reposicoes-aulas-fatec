@@ -47,7 +47,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers
 
                 <div class="item-index">
                     <p class="p-icone">Ver formulários enviados</p><br>
-                    <a href="./lista-enviados.html" class="link-index"><img src="../../assets/images/comente.png"
+                    <a href="./lista-enviados.php" class="link-index"><img src="../../assets/images/comente.png"
                             width="60px" class="icone"></a>
                 </div>
 

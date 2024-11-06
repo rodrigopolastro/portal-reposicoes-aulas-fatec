@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../style.css">
+        <link rel="stylesheet" href="../../assets/css/style.css">
     <title>Formulário enviado - Reposição de Aula</title>
 
 </head>
 <body>
     <header>
         <div class="topo">
-            <div class="fundo"><img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
-            <div class="fundo2"><img src="img/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
+            <div class="fundo"><img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
+            <div class="fundo2"><img src="../../assets/images/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
         </div>
         <nav>
-            <a href="index-coordenador.html" class="botao-nav">Início</a>
+            <a href="index.php" class="botao-nav">Início</a>
             <a href="lista-recebidos-faltas.html" class="botao-nav">Justificativas de Falta</a>
-            <a href="" class="botao-nav">Reposição de Aulas</a>
+            <a href="lista-recebidos-faltas.html" class="botao-nav">Reposição de Aulas</a>
             <a href="informacoes.html" class="botao-nav">Informações do Curso</a>
             <a href="login.html" class="botao-nav">Sair</a>
         </nav>
@@ -34,7 +34,7 @@
 
         <h2>Analisar</h2>
         <div class="topo-form">
-            <form id="analise-coordenador">
+            <form id="analise-coordenador" method="POST" action="">
                 <label for="deferimento"><strong>Esta Reposição de Aula está:</strong></label><br><br>
                 <input type="radio" id="deferido" name="deferimento" value="deferido">
                 <label for="deferido">Deferida</label>

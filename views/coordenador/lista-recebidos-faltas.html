@@ -14,7 +14,7 @@
             <div class="fundo2"><img src="../../assets/images/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
         </div>
         <nav>
-            <a href="index-coordenador.html" class="botao-nav">Início</a>
+            <a href="index.php" class="botao-nav">Início</a>
             <a href="lista-recebidos-faltas.html" class="botao-nav">Justificativas de Falta</a>
             <a href="lista-recebidos-reposicao.html" class="botao-nav">Reposição de Aulas</a>
             <a href="informacoes.html" class="botao-nav">Informações do Curso</a>
@@ -24,16 +24,9 @@
     </header>
     <main>
         <h1>Justificativa de Faltas Recebidas</h1>
-        <div class="form-coord">
-        <p>Escolha quais formlulários gostaria de visualizar: </p>
-            <div class="exibir2">
+        
 
-                <button id="botao-recebidos" class="custom-link">Esperando análise</button>
-                <button id="botao-finalizados" class="custom-link">Finalizados</button>
-            </div>
-        </div>
-
-        <div id="recebidos" class="hidden-content">
+        <div id="recebidos">
             <div class="topo-form">
                 <form id="filtro-form-recebidos" onsubmit="return aplicarFiltro()">
                     <div class="filtro-form">
@@ -175,102 +168,7 @@
             }
         </script>
 
-        <div id="finalizados" class="hidden-content">
-            <div class="topo-form">
-                <form id="filtro-form-finalizados" onsubmit="return aplicarFiltroFinalizados()">
-                    <div class="filtro-form">
-                        <label for="filterProfessorF">Professor:</label>
-                        <select id="filterProfessorF" class="filter-input">
-                            <option value="">Todos</option>
-                            <option value="Wladimir José Camillo Menegassi">Wladimir José Camillo Menegassi</option>
-                            <option value="Ana Célia Ribeiro Bizigato Portes">Ana Célia Ribeiro Bizigato Portes</option>
-                            <option value="Thiago Salhab Alves">Thiago Salhab Alves</option>
-                        </select>
-
-                        <label for="filterDisciplinaF">Disciplina:</label>
-                        <select id="filterDisciplinaF" class="filter-input">
-                            <option value="">Todos</option>
-                            <option value="Modelagem de Banco de Dados">Modelagem de Banco de Dados</option>
-                            <option value="Engenharia de Software I">Engenharia de Software I</option>
-                            <option value="Design Digital">Design Digital</option>
-                        </select>
-
-                        <label for="filterStatusF">Status:</label>
-                        <select id="filterStatusF" class="filter-input">
-                            <option value="">Todos</option>
-                            <option value="Indeferido">Indeferido</option>
-                            <option value="Deferido">Deferido</option>
-                        </select>
-
-                        <input type="submit" value="Aplicar filtro">
-                        <input type="reset" value="Limpar filtro" onclick="limparFiltroFinalizados()">
-                    </div>
-                </form>
-            </div>
-
-            <div class="table">
-                <table id="tabela-finalizados">
-                    <thead>
-                        <tr>
-                            <th class="ordem">Número</th>
-                            <th class="ordem">Data de recebimento</th>
-                            <th class="componente">Professor</th>
-                            <th class="componente">Disciplina</th>
-                            <th class="status">Status</th>
-                            <th class="ordem"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr data-professor="Wladimir José Camillo Menegassi" data-disciplina="Modelagem de Banco de Dados" data-status="Indeferido">
-                            <td>01</td>
-                            <td>04/03/2024</td>
-                            <td>Wladimir José Camillo Menegassi</td>
-                            <td>Modelagem de Banco de Dados</td>
-                            <td>Indeferido</td>
-                            <td class="centro"><a href="indeferido.html"><img src="../../assets/images/indeferido.png" class="iconeAnalisar"></a><a href=""><img src="../../assets/images/feedback.png" class="iconeAnalisar"></a></td>
-                        </tr>
-                        <tr data-professor="Wladimir José Camillo Menegassi" data-disciplina="Modelagem de Banco de Dados" data-status="Deferido">
-                            <td>02</td>
-                            <td>16/03/2024</td>
-                            <td>Wladimir José Camillo Menegassi</td>
-                            <td>Modelagem de Banco de Dados</td>
-                            <td>Deferido</td>
-                            <td class="centro"><a href="deferido.html"><img src="../../assets/images/deferido.png" class="iconeAnalisar"></a></td>
-                        </tr>
-                        <tr data-professor="Ana Célia Ribeiro Bizigato Portes" data-disciplina="Engenharia de Software I" data-status="Deferido">
-                            <td>03</td>
-                            <td>14/04/2024</td>
-                            <td>Ana Célia Ribeiro Bizigato Portes</td>
-                            <td>Engenharia de Software I</td>
-                            <td>Indeferido</td>
-                            <td class="centro">
-                                <a href="justificativa1_coord.html"><img src="../../assets/images/indeferido.png" class="iconeAnalisar"></a>
-                                <a href=""><img src="../../assets/images/feedback.png" class="iconeAnalisar"></a>
-                            </td>
-                        </tr>
-                        <tr data-professor="Ana Célia Ribeiro Bizigato Portes" data-disciplina="Engenharia de Software I" data-status="Deferido">
-                            <td>04</td>
-                            <td>17/05/2024</td>
-                            <td>Ana Célia Ribeiro Bizigato Portes</td>
-                            <td>Engenharia de Software II</td>
-                            <td>Deferido</td>
-                            <td class="centro">
-                                <a href="justificativa2_coord.html"><img src="../../assets/images/deferido.png" class="iconeAnalisar"></a>
-                            </td>
-                        </tr>
-                        <tr data-professor="Thiago Salhab Alves" data-disciplina="Design Digital" data-status="Deferido">
-                            <td>06</td>
-                            <td>28/04/2024</td>
-                            <td>Thiago Salhab Alves</td>
-                            <td>Design Digital</td>
-                            <td>Deferido</td>
-                            <td class="centro"><a href=""><img src="../../assets/images/deferido.png" class="iconeAnalisar"></a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
+        
         <script>
             // Função para aplicar os filtros
             function aplicarFiltroFinalizados() {
