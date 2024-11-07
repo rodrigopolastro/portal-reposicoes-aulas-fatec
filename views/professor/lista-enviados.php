@@ -19,21 +19,9 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
 </head>
 
 <body>
-    <header>
-        <div class="topo">
-            <div class="fundo"><img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo"
-                    class="logo-governo"></div>
-            <div class="fundo2"><img src="../../assets/images/logo-fatec_itapira.png" alt="logo" class="logo-fatec">
-            </div>
-        </div>
-        <nav>
-            <a href="index-professor.html" class="botao-nav">InÃ­cio</a>
-            <a href="enviar-formularios.html" class="botao-nav">Enviar formulÃ¡rio</a>
-            <a href="lista-enviados.html" class="botao-nav">FormulÃ¡rios enviados</a>
-            <a href="login.html" class="botao-nav">Sair</a>
-        </nav>
-
-    </header>
+    <?php
+        require_once '../components/cabecalho-professor.php';
+    ?>
     <main>
         <h1>FormulÃ¡rios Enviados</h1>
 
@@ -169,15 +157,9 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
         </script>
 
     </main>
-    <footer class="site-footer">
-        <div class="footer">
-            <img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
-            <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista -
-                CEP: 13974-080</p>
-            <p class="rodape">Telefone: (19) 3843-1996 | (19) 3863-5210 (WhatsApp)</p>
-            <p class="rodape">&copy; 2024 Equipe 6Tec. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+    <?php
+    require_once '../components/rodape.php'
+    ?>
 
 </body>
 
