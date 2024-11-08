@@ -90,7 +90,7 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
             }
             updateAvaliacaoJustificativa(
                 [
-                'id_justificativa' => 2,
+                'id_justificativa' => 3,
                 'status_justificativa' => $params['deferimento'],
                 'feedback_justificativa' => $feedback
                 ]

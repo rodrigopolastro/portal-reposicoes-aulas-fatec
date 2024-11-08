@@ -37,7 +37,7 @@
 
                 <div class="item-index">
                     <p class="p-icone">Justificativas de Falta</p><br>
-                    <a href="lista-recebidos-faltas.html" class="link-index"><img
+                    <a href="lista-recebidos-faltas.php" class="link-index"><img
                             src="../../assets/images/justificativa.png" width="60px" class="icone"></a>
                 </div>
 

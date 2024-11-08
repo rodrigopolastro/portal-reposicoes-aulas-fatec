@@ -46,3 +46,25 @@ function selectDisciplinasJustificativa($idJustificativa)
     $disciplinas = $sql->fetchAll(PDO::FETCH_ASSOC);
     return $disciplinas;;
 }
+
+function selectDisciplinasJustificativaCoordenador($idJustificativa)
+{
+    global $conexao;
+    $sql = $conexao->prepare(
+        "SELECT DISTINCT
+            CUR_sigla,
+            DCP_sigla,
+            DCP_nome,
+            DCP_semestre
+        FROM DISCIPLINAS
+        INNER JOIN CURSOS ON CUR_id = DCP_id_curso
+        INNER JOIN JUSTIFICATIVAS_FALTAS ON JUF_id_professor = DCP_id_professor
+        WHERE JUF_id = :id_justificativa"
+    );
+
+    $sql->bindValue('id_justificativa', $idJustificativa);
+    $sql->execute();
+
+    $disciplinas = $sql->fetchAll(PDO::FETCH_ASSOC);
+    return $disciplinas;;
+}

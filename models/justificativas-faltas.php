@@ -120,11 +120,15 @@ function selectFormulariosFaltasCoordenadores()
     global $conexao;
     $sql = $conexao->prepare(
         "SELECT   
-            JUF_id,
-            JUF_status,
-            JUF_data_envio,
-            JUF_id_professor
-        FROM JUSTIFICATIVAS_FALTAS"
+    JUF_id,
+    JUF_status,
+    JUF_data_envio,
+    JUF_id_professor,
+    USR_nome_completo
+    FROM 
+    JUSTIFICATIVAS_FALTAS
+    INNER JOIN 
+    USUARIOS ON USR_id = JUF_id_professor"
     );
 
     $sql->execute();
@@ -132,3 +136,4 @@ function selectFormulariosFaltasCoordenadores()
     $formulariosCoordenador = $sql->fetchAll(PDO::FETCH_ASSOC);
     return $formulariosCoordenador;
 }
+
