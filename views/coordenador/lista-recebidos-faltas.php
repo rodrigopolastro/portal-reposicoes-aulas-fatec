@@ -1,3 +1,11 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers/caminho-absoluto.php';
+require_once caminhoAbsoluto('controllers/justificativas-faltas.php');
+require_once caminhoAbsoluto('controllers/disciplinas.php');
+
+$formulariosCoordenador = controllerJustificativasFaltas('busca_faltas_coordenador');
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -71,64 +79,51 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr data-professor="Ana Célia Ribeiro Bizigato Portes" data-disciplina="Engenharia de Software I">
-                            <td>01</td>
-                            <td>09/05/2024</td>
-                            <td>Ana Célia Ribeiro Bizigato Portes</td>
-                            <td>Gestão Ágil de Projetos de Software</td>
-                            <td>Analisar</td>
-                            <td class="centro"><a href="avaliar-falta.html"><img src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
+                    <?php foreach ($formulariosCoordenador as $formularioCoordenador):?>
+                        <?php
+                        $dataEnvio = $formularioCoordenador['JUF_data_envio'];
+                        $dataEnvioFormatada = (new DateTimeImmutable($dataEnvio))->format('d/m/y');
+                        // $disciplinas = controllerDisciplinas(
+                        //     'busca_disciplinas_justificativa',
+                        //     ['id_justificativa' => $formulariosCoordenador['JUF_id']]
+                        // );
+
+                        // if ($formulariosCoordenador['TPF_tipo_intervalo'] == 'dias') {
+                        //     $datasAusencias = controllerHorariosAusencias(
+                        //         'busca_datas_ausencias_justificativa',
+                        //         ['id_justificativa' => $formulariosCoordenador['JUF_id']]
+                        //     );
+                        //     $dataInicial = $datasAusencias[0]['HRA_data_falta'];
+                        //     $dataFinal = end($datasAusencias)['HRA_data_falta'];
+
+                        //     if ($dataInicial == $dataFinal) {
+                        //         $strDataFormatada = (new DateTimeImmutable($dataInicial))->format('d/m/y');
+                        //     } else {
+                        //         $dataInicialFormatada = (new DateTimeImmutable($dataInicial))->format('d/m/y');
+                        //         $dataFinalFormatada = (new DateTimeImmutable($dataFinal))->format('d/m/y');
+                        //         $strDataFormatada = $dataInicialFormatada . ' a ' . $dataFinalFormatada;
+                        //     }
+                        // } else if ($formularioCoordenador['TPF_tipo_intervalo'] == 'horas') {
+                        //     $strDataFormatada = 'ainda não trabalhamos com horas';
+                        // }
+
+                        ?>
+                        <tr>
+                        <td><?=$formularioCoordenador['JUF_id']?></td>
+                        <td><?=$dataEnvioFormatada?></td>
+                        <td><?=$formularioCoordenador['JUF_id_professor']?></td>
+                        <td></td>
+                        <!-- <td>
+                            <ul>
+                                    <?php foreach ($disciplinas as $disciplina) : ?>
+                                        <li><?= '(' . $disciplina['CUR_sigla'] . ') ' . $disciplina['DCP_nome'] ?></li>
+                                    <?php endforeach; ?>
+                            </ul>
+                        </td> -->
+                        <td><?= $formularioCoordenador['JUF_status'] ?></td>
                         </tr>
                         
-                        <tr data-professor="Janaina" data-disciplina="Inglês">
-                            <td>02</td>
-                            <td>10/05/2024</td>
-                            <td>Janaina</td>
-                            <td>Inglês</td>
-                            <td>Analisar</td>
-                            <td class="centro"><a href="avaliar-falta.html"><img src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
-                        </tr>
-                        <tr data-professor="Wladimir José Camillo Menegassi" data-disciplina="Modelagem de Banco de Dados">
-                            <td>03</td>
-                            <td>23/05/2024</td>
-                            <td>Wladimir José Camillo Menegassi</td>
-                            <td>Modelagem de Banco de Dados</td>
-                            <td>Analisar</td>
-                            <td class="centro"><a href="avaliar-falta.html"><img src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
-                        </tr>
-                        <tr data-professor="Wladimir José Camillo Menegassi" data-disciplina="Modelagem de Banco de Dados">
-                            <td>04</td>
-                            <td>25/05/2024</td>
-                            <td>Wladimir José Camillo Menegassi</td>
-                            <td>Modelagem de Banco de Dados</td>
-                            <td>Analisar</td>
-                            <td class="centro"><a href="avaliar-falta.html"><img src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
-                        </tr>
-                        <tr data-professor="Thiago Salhab Alves" data-disciplina="Design Digital">
-                            <td>05</td>
-                            <td>09/06/2024</td>
-                            <td>Thiago Salhab Alves</td>
-                            <td>Design Digital</td>
-                            <td>Analisar</td>
-                            <td class="centro"><a href="avaliar-falta.html"><img src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
-                        </tr>
-                        <tr data-professor="José Gonçalves Pinto Junior" data-disciplina="Algoritmo e lógica de programação">
-                            <td>06</td>
-                            <td>12/06/2024</td>
-                            <td>José Gonçalves Pinto Junior</td>
-                            <td>Algoritmo e lógica de programação</td>
-                            <td>Analisar</td>
-                            <td class="centro"><a href="avaliar-falta.html"><img src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
-                        </tr>
-                        <tr data-professor="Edison Kazuo Igarashi" data-disciplina="Sistemas Operacionais e Redes de Computadores">
-                            <td>07</td>
-                            <td>17/06/2024</td>
-                            <td>Edison Kazuo Igarashi</td>
-                            <td>Sistemas Operacionais e Redes de Computadores</td>
-                            <td>Analisar</td>
-                            <td class="centro"><a href="avaliar-falta.html"><img src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
-                        </tr>
-                        
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

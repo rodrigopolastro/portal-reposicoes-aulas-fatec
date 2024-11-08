@@ -114,3 +114,21 @@ function updateAvaliacaoJustificativa($avaliacaoJustificativa){
     $sql->bindValue(':feedback_justificativa', $avaliacaoJustificativa['feedback_justificativa']);
     $sql->execute();
 }
+
+function selectFormulariosFaltasCoordenadores()
+{
+    global $conexao;
+    $sql = $conexao->prepare(
+        "SELECT   
+            JUF_id,
+            JUF_status,
+            JUF_data_envio,
+            JUF_id_professor
+        FROM JUSTIFICATIVAS_FALTAS"
+    );
+
+    $sql->execute();
+
+    $formulariosCoordenador = $sql->fetchAll(PDO::FETCH_ASSOC);
+    return $formulariosCoordenador;
+}

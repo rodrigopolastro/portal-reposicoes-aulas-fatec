@@ -97,7 +97,10 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
             );
             break;
 
-
+        case 'busca_faltas_coordenador':
+            $formulariosCoordenador = selectFormulariosFaltasCoordenadores();
+            return $formulariosCoordenador;
+        break;    
         default:
             return [
                 'sucesso' => false,
