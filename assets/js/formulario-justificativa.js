@@ -68,7 +68,6 @@ window.addEventListener("load", () => {
     );
     const divPeriodoDias = document.getElementById("divPeriodoDias");
     const divPeriodoHoras = document.getElementById("divPeriodoHoras");
-    const listaOptionsFaltas = document.getElementsByClassName("option-falta");
 
     function atualizarPeriodoDias(optionFalta) {
         divDataInicialFalta.classList.remove("d-none");
@@ -117,19 +116,56 @@ function calculaDataFinal() {
 }
 
 inputDataInicialFalta.addEventListener("change", () => {
-    buscaAulasProfessorData();
     calculaDataFinal();
+    buscaAulasProfessorData();
 });
 inputPeriodoDias.addEventListener("input", () => {
-    buscaAulasProfessorData();
     calculaDataFinal();
+    buscaAulasProfessorData();
 });
 
 async function buscaAulasProfessorData() {
+    function desabilitaHorarioFalta() {
+        let btnEnviar = document.getElementById("btnEnviar");
+        let selectHorarioFalta = document.getElementById("selectHorarioFalta");
+
+        selectHorarioFalta.disabled = true;
+        btnEnviar.disabled = true;
+        btnEnviar.classList.add("btn-disabled");
+
+        selectHorarioFalta.length = 0;
+        let option = document.createElement("option");
+        option.textContent = "Informe a data primeiro";
+        selectHorarioFalta.appendChild(option);
+    }
+
+    function geraListaHorariosFalta(idHorarioSelecionado) {
+        let selectHorarioFalta = document.getElementById("selectHorarioFalta");
+        let listaIdsHorarios = Array.from(selectHorarioFalta.options).map(
+            (option) => Number(option.dataset.idHorario)
+        );
+
+        if (document.getElementById("inputRadioAtraso").checked) {
+            //Teve falta na aula selecionada e nas anteriores
+            idsAulasPerdidas = listaIdsHorarios.filter(
+                (idHorario) => idHorario <= idHorarioSelecionado
+            );
+        } else if (document.getElementById("inputRadioSaida").checked) {
+            //Teve falta na aula selecionada e nas próximas
+            idsAulasPerdidas = listaIdsHorarios.filter(
+                (idHorario) => idHorario >= idHorarioSelecionado
+            );
+        }
+
+        //Grava em elemento invisível do form para enviar ao backend
+        document.getElementById("inputIdsHorariosFalta").value =
+            JSON.stringify(idsAulasPerdidas);
+    }
+
     let dataFalta = inputDataInicialFalta.value;
     let quantidadeDias = inputPeriodoDias.value;
     if (!dataFalta || !quantidadeDias) {
-        return false;
+        desabilitaHorarioFalta();
     }
     try {
         fetch("../../controllers/horarios-disciplinas.php", {
@@ -148,19 +184,37 @@ async function buscaAulasProfessorData() {
         })
             .then((response) => response.json())
             .then((aulasProfessor) => {
-                let btnEnviar = document.getElementById("btnEnviar");
                 if (aulasProfessor.length > 0) {
                     console.log(JSON.stringify(aulasProfessor, null, 4));
                     btnEnviar.disabled = false;
                     btnEnviar.classList.remove("btn-disabled");
+                    selectHorarioFalta.disabled = false;
+
+                    selectHorarioFalta.length = 0;
+                    aulasProfessor.forEach((aula) => {
+                        let option = document.createElement("option");
+                        option.textContent =
+                            aula.HRF_horario_inicio +
+                            " - " +
+                            aula.HRF_horario_fim;
+                        option.dataset.idHorario = aula.HRF_id;
+                        selectHorarioFalta.appendChild(option);
+                    });
+
+                    selectHorarioFalta.addEventListener("change", () => {
+                        let opcaoSelecionada =
+                            selectHorarioFalta.options[
+                                selectHorarioFalta.selectedIndex
+                            ];
+                        let idHorarioSelecionado =
+                            opcaoSelecionada.dataset.idHorario;
+                        geraListaHorariosFalta(Number(idHorarioSelecionado));
+                    });
                 } else {
                     alert(
                         "Cadastro negado: Você não ministra nenhuma aula no período!"
                     );
-                    btnEnviar.disabled = true;
-                    btnEnviar.classList.add("btn-disabled");
-                    // inputDataInicialFalta.value = "";
-                    // inputPeriodoDias.value = "";
+                    desabilitaHorarioFalta();
                 }
             });
     } catch (erro) {
@@ -169,13 +223,9 @@ async function buscaAulasProfessorData() {
 }
 
 document.getElementById("inputRadioAtraso").addEventListener("click", () => {
-    document.getElementById("labelHorarioFalta").textContent =
-        "Horário Chegada";
+    document.getElementById("labelHorarioFalta").textContent = "Chegada entre";
 });
 
-document
-    .getElementById("inputRadioSaidaAntecipada")
-    .addEventListener("click", () => {
-        document.getElementById("labelHorarioFalta").textContent =
-            "Horário Saída";
-    });
+document.getElementById("inputRadioSaida").addEventListener("click", () => {
+    document.getElementById("labelHorarioFalta").textContent = "Saída entre";
+});

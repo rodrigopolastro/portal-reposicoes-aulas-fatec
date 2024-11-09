@@ -56,6 +56,15 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                             'id_horario' => $aulaPerdida['HRF_id']
                         ]);
                     }
+                } else if ($params['tipo_intervalo'] == 'horas') {
+                    $idsHorariosFaltas = json_decode($params['ids_horarios_falta']);
+                    foreach ($idsHorariosFaltas as $idHorario) {
+                        controllerHorariosAusencias('cria_horario_ausencia', [
+                            'id_justificativa' => $idNovaJustificativa,
+                            'data_falta' => $params['data_inicial_falta'],
+                            'id_horario' => $idHorario
+                        ]);
+                    }
                 }
 
                 header(

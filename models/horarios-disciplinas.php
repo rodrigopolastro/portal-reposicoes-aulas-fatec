@@ -23,7 +23,8 @@ function selectAulasProfessorData($idProfessor, $dataAula)
         INNER JOIN CURSOS ON CUR_id = DCP_id_curso
         INNER JOIN USUARIOS ON USR_id = DCP_id_professor
         WHERE USR_id = :id_professor
-          AND HRF_ordem_dia_semana = DAYOFWEEK(:data_aula)"
+          AND HRF_ordem_dia_semana = DAYOFWEEK(:data_aula)
+        ORDER BY HRF_id"
     );
 
     $sql->bindValue('id_professor', $idProfessor);

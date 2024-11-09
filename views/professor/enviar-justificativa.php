@@ -13,9 +13,8 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
     <link rel="stylesheet" href="../../assets/css/utilidades.css">
-    <link rel="stylesheet" href="../../assets/css/enviar-justificativa.css">
+    <link rel="stylesheet" href="../../assets/css/form-justificativa.css">
     <title>Formulário de Justificativa de Falta</title>
-
 </head>
 
 <body>
@@ -28,6 +27,7 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
             <form method="POST" action="../../controllers/justificativas-faltas.php" enctype="multipart/form-data">
                 <input type="hidden" name="acao_justificativas_faltas" value="cria_justificativa_falta">
                 <input id="inputTipoIntervalo" type="hidden" name="tipo_intervalo" value="">
+                <input id="inputIdsHorariosFalta" type="hidden" name="ids_horarios_falta" value="">
                 <div class="formcomeço">
                     <div class="item-pequeno">
                         <p><strong>Nome:</strong> </p>
@@ -50,7 +50,7 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                 </div>
 
                 <label for="categoria_falta">Categoria da Falta:</label>
-                <select id="selectCategoriaFalta" name="categoria_falta">
+                <select id="selectCategoriaFalta" name="categoria_falta" class="w-25">
                     <option id="optionNenhumaOpcao" value="">Selecione...</option>
                     <option id="optionlicencaMedica" value="licenca_medica">Licença e Falta Médica </option>
                     <option id="optionLegislacao" value="legislacao_trabalhista">Faltas Previstas na Legislação Trabalhista</option>
@@ -141,13 +141,15 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                                     <label for="inputRadioAtraso">Atraso</label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="tipo_falta_horas" id="inputRadioSaidaAntecipada" value="saida_antecipada">
-                                    <label for="inputRadioSaidaAntecipada">Saída Antecipada</label>
+                                    <input type="radio" name="tipo_falta_horas" id="inputRadioSaida" value="saida_antecipada">
+                                    <label for="inputRadioSaida">Saída Antecipada</label>
                                 </div>
                             </div>
                             <div>
-                                <label id="labelHorarioFalta" for="inputHorarioFalta">Horário Chegada: </label>
-                                <input type="time" id="inputHorarioFalta" name="horario_falta">
+                                <label id="labelHorarioFalta" for="inputHorarioFalta">Chegada Entre:</label>
+                                <select id="selectHorarioFalta" disabled>
+                                    <option value="">Informe a data primeiro</option>
+                                </select>
                             </div>
                         </div>
                     </div>
