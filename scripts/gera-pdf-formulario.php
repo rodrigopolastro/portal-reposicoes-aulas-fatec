@@ -2,58 +2,88 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers/caminho-absoluto.php';
 require_once caminhoAbsoluto('vendor/autoload.php');
 require_once caminhoAbsoluto('controllers/justificativas-faltas.php');
+require_once caminhoAbsoluto('controllers/disciplinas.php');
+require_once caminhoAbsoluto('controllers/horarios-ausencias.php');
 
 $justificativa_falta = controllerJustificativasFaltas(
     'busca_justificativa_falta',
     ['id_justificativa' => $_GET['id_justificativa']]
 );
+$disciplinas = controllerDisciplinas(
+    'busca_disciplinas_justificativa',
+    ['id_justificativa' => $_GET['id_justificativa']]
+);
+$datasAusencias = controllerHorariosAusencias(
+    'busca_datas_ausencias_justificativa',
+    ['id_justificativa' => $_GET['id_justificativa']]
+);
+$dataInicial = $datasAusencias[0]['HRA_data_falta'];
+$dataFinal = end($datasAusencias)['HRA_data_falta'];
 
-// class CustomTCPDF extends TCPDF
-// {
-//     public function Header()
-//     {
-//         $this->Image(
-//             'img/logo-fatec_itapira.png', // File
-//             0,               // X coordinate
-//             5,               // Y coordinate
-//             80,              // Width
-//             0,               // Height
-//             '',               // Type (inferred from file extension)
-//             '', // Link
-//             '',              // Align
-//             true,             // Resize
-//             300,              // DPI
-//             'C',               // PAlign
-//             false,            // IsMask
-//             false,            // ImgMask
-//             0,                // Border
-//             false,            // FitBox
-//             false,            // Hidden
-//             true,            // FitOnPage
-//             false,            // Alt
-//             []                // AltImgs
-//         );
-//     }
-// }
 
-// $pdf = new CustomTCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-// $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-// $pdf->SetTitle('Formulário de Justificativa de Faltas');
-// $pdf->SetFont('helvetica', '', 12);
+class CustomTCPDF extends TCPDF
+{
+    public function Header()
+    {
+        $this->Image(
+            'img/logo-fatec_itapira.png', // File
+            0,               // X coordinate
+            5,               // Y coordinate
+            80,              // Width
+            0,               // Height
+            '',               // Type (inferred from file extension)
+            '', // Link
+            '',              // Align
+            true,             // Resize
+            300,              // DPI
+            'C',               // PAlign
+            false,            // IsMask
+            false,            // ImgMask
+            0,                // Border
+            false,            // FitBox
+            false,            // Hidden
+            true,            // FitOnPage
+            false,            // Alt
+            []                // AltImgs
+        );
+    }
+}
 
-// $pdf->AddPage();
-// $pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 180, $pdf->GetY());
-// $pdf->SetFont('helvetica', 'B', 16);
-// $pdf->Cell(0, 10, 'Dados do Professor', 0, 1, 'C');
-// $pdf->SetFont('helvetica', '', 12);
-// $pdf->Cell(0, 10, 'Nome: ' . 'Ana Célia Ribeiro Bizigato Portes', 0, 1);
-// $pdf->Cell(0, 10, 'Matrícula: ' . '0000000000005', 0, 1);
-// $pdf->Cell(0, 10, 'Regime jurídico: CLT', 0, 1);
-// $pdf->Cell(0, 3, '', 0, 1);
-// $pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 180, $pdf->GetY());
-// $pdf->SetFont('helvetica', 'B', 16);
-// $pdf->Cell(0, 15, 'Justificativa de Falta', 0, 1, 'C');
-// $pdf->SetFont('helvetica', '', 12);
+$pdf = new CustomTCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+$pdf->SetTitle('Formulário de Justificativa de Faltas');
+$pdf->SetFont('helvetica', '', 12);
+
+$pdf->AddPage();
+$pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 180, $pdf->GetY());
+$pdf->SetFont('helvetica', 'B', 16);
+$pdf->Cell(0, 10, 'Dados do Professor', 0, 1, 'C');
+$pdf->SetFont('helvetica', '', 12);
+$pdf->Cell(0, 10, 'Nome: ' . 'Ana Célia Ribeiro Bizigato Portes', 0, 1);
+$pdf->Cell(0, 10, 'Matrícula: ' . '0000000000005', 0, 1);
+$pdf->Cell(0, 10, 'Regime jurídico: CLT', 0, 1);
+$pdf->Cell(0, 3, '', 0, 1);
+$pdf->Line($pdf->GetX(), $pdf->GetY(), $pdf->GetX() + 180, $pdf->GetY());
+$pdf->SetFont('helvetica', 'B', 16);
+$pdf->Cell(0, 15, 'Justificativa de Falta', 0, 1, 'C');
+$pdf->SetFont('helvetica', '', 12);
+$pdf->Cell(0, 10, 'Disciplinas: ', 0, 1);
+foreach ($disciplinas as $disciplina) {
+    $pdf->Cell(0, 10, '(' . $disciplina['CUR_sigla'] . ') ' . $disciplina['DCP_nome'], 0, 1);
+};
+if ($dataInicial == $dataFinal) {
+    $strDataFormatada = (new DateTimeImmutable($dataInicial))->format('d/m/y');
+    $pdf->Cell(0, 10,'Falta referente ao dia: ' . $strDataFormatada, 0, 1);
+} else {
+    $dataInicialFormatada = (new DateTimeImmutable($dataInicial))->format('d/m/y');
+    $dataFinalFormatada = (new DateTimeImmutable($dataFinal))->format('d/m/y');
+    $strDataFormatada = $dataInicialFormatada . ' a ' . $dataFinalFormatada;
+    $pdf->Cell(0, 10,'Falta referente aos dias: ' . $strDataFormatada, 0, 1);
+}
+$pdf->Cell(0, 10, 'Tipo de Falta: ' . $justificativa_falta['TPF_descricao'], 0, 1);
+
+
+
 // $pdf->write(10, 'Cursos: ');
 // if (isset($_POST['cursos'])) {
 //     foreach ($_POST['cursos'] as $curso) {
@@ -153,8 +183,8 @@ $justificativa_falta = controllerJustificativasFaltas(
 // $pdf->Cell(0, 10, 'Nenhum documento foi anexado.', 0, 1, 'C');
 // }
 
-// $pdf_data = $pdf->Output('temp_file.pdf', 'S');
-// file_put_contents('pdfs-formularios/temp_file.pdf', $pdf_data);
+$pdf_data = $pdf->Output('temp_file.pdf', 'S');
+file_put_contents('../pdfs-formularios/temp_file.pdf', $pdf_data);
 
 header(
     'Location: ../views/professor/confirmar-envio.php' .
