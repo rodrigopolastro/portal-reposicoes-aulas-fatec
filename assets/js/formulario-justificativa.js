@@ -13,6 +13,7 @@ const inputDataFinalFalta = document.getElementById("inputDataFinalFalta");
 const inputTipoIntervalo = document.getElementById("inputTipoIntervalo");
 const divAnexo = document.getElementById("divAnexo");
 
+const listaOptionsFaltas = document.getElementsByClassName("option-falta");
 selectCategoriaFalta.addEventListener("change", () => {
     const divDataInicialFalta = document.getElementById("divDataInicialFalta");
     const divPeriodoDias = document.getElementById("divPeriodoDias");
@@ -40,6 +41,10 @@ selectCategoriaFalta.addEventListener("change", () => {
         divFaltasInjustificadas.classList.remove("d-none");
         divAnexo.classList.add("d-none"); //não possui anexo
     }
+
+    Array.from(listaOptionsFaltas).forEach((optionFalta) => {
+        radio.checked = false;
+    });
 });
 
 function escondeTodasDivsFaltas() {
@@ -88,6 +93,7 @@ window.addEventListener("load", () => {
             labelDataInicialFalta.textContent = "Data da Falta";
             divPeriodoDias.classList.add("d-none");
             divPeriodoHoras.classList.remove("d-none");
+            inputPeriodoDias.value = 1;
         }
     }
     Array.from(listaOptionsFaltas).forEach((optionFalta) => {
