@@ -13,30 +13,21 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
     <link rel="stylesheet" href="../../assets/css/utilidades.css">
-    <link rel="stylesheet" href="../../assets/css/enviar-justificativa.css">
+    <link rel="stylesheet" href="../../assets/css/form-justificativa.css">
     <title>Formulário de Justificativa de Falta</title>
-
 </head>
 
 <body>
-    <header>
-        <div class="topo">
-            <div class="fundo"><img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
-            <div class="fundo2"><img src="../../assets/images/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
-        </div>
-        <nav>
-            <a href="index.php" class="botao-nav">Início</a>
-            <a href="enviar-formularios.php" class="botao-nav">Enviar formulário</a>
-            <a href="lista-enviados.php" class="botao-nav">Formulários enviados</a>
-            <a href="login.html" class="botao-nav">Sair</a>
-        </nav>
-    </header>
+    <?php
+    require_once '../components/cabecalho-professor.php';
+    ?>
     <main>
         <h1>Formulário para Justificativa de Faltas:</h1>
         <div class="corpo">
             <form method="POST" action="../../controllers/justificativas-faltas.php" enctype="multipart/form-data">
                 <input type="hidden" name="acao_justificativas_faltas" value="cria_justificativa_falta">
                 <input id="inputTipoIntervalo" type="hidden" name="tipo_intervalo" value="">
+                <input id="inputIdsHorariosFalta" type="hidden" name="ids_horarios_falta" value="">
                 <div class="formcomeço">
                     <div class="item-pequeno">
                         <p><strong>Nome:</strong> </p>
@@ -59,7 +50,7 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                 </div>
 
                 <label for="categoria_falta">Categoria da Falta:</label>
-                <select id="selectCategoriaFalta" name="categoria_falta">
+                <select id="selectCategoriaFalta" name="categoria_falta" class="w-25">
                     <option id="optionNenhumaOpcao" value="">Selecione...</option>
                     <option id="optionlicencaMedica" value="licenca_medica">Licença e Falta Médica </option>
                     <option id="optionLegislacao" value="legislacao_trabalhista">Faltas Previstas na Legislação Trabalhista</option>
@@ -150,13 +141,15 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                                     <label for="inputRadioAtraso">Atraso</label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="tipo_falta_horas" id="inputRadioSaidaAntecipada" value="saida_antecipada">
-                                    <label for="inputRadioSaidaAntecipada">Saída Antecipada</label>
+                                    <input type="radio" name="tipo_falta_horas" id="inputRadioSaida" value="saida_antecipada">
+                                    <label for="inputRadioSaida">Saída Antecipada</label>
                                 </div>
                             </div>
                             <div>
-                                <label id="labelHorarioFalta" for="inputHorarioFalta">Horário Chegada: </label>
-                                <input type="time" id="inputHorarioFalta" name="horario_falta">
+                                <label id="labelHorarioFalta" for="inputHorarioFalta">Chegada Entre:</label>
+                                <select id="selectHorarioFalta" disabled>
+                                    <option value="">Informe a data primeiro</option>
+                                </select>
                             </div>
                         </div>
                     </div>
