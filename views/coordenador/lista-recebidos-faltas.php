@@ -24,7 +24,7 @@ $formulariosCoordenador = controllerJustificativasFaltas('busca_faltas_coordenad
         <nav>
             <a href="index.php" class="botao-nav">Início</a>
             <a href="lista-recebidos-faltas.php" class="botao-nav">Justificativas de Falta</a>
-            <a href="lista-recebidos-reposicao.html" class="botao-nav">Reposição de Aulas</a>
+            <a href="lista-recebidos-reposicao.php" class="botao-nav">Reposição de Aulas</a>
             <a href="informacoes.html" class="botao-nav">Informações do Curso</a>
             <a href="login.html" class="botao-nav">Sair</a>
         </nav>
@@ -34,7 +34,7 @@ $formulariosCoordenador = controllerJustificativasFaltas('busca_faltas_coordenad
         <h1>Justificativa de Faltas Recebidas</h1>
         
 
-        <div id="recebidos">
+        <!-- <div id="recebidos">
             <div class="topo-form">
                 <form id="filtro-form-recebidos" onsubmit="return aplicarFiltro()">
                     <div class="filtro-form">
@@ -64,7 +64,7 @@ $formulariosCoordenador = controllerJustificativasFaltas('busca_faltas_coordenad
                         <input type="reset" value="Limpar filtro" onclick="limparFiltro()">
                     </div>
                 </form>
-            </div>
+            </div> -->
         
             <div class="table">
                 <table id="tabela-recebidos">

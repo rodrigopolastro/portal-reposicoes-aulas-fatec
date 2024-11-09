@@ -27,30 +27,30 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
             </div>
         </div>
         <nav>
-            <a href="index.php" class="botao-nav">InÃ­cio</a>
-            <a href="enviar-formularios.php" class="botao-nav">Enviar formulÃ¡rio</a>
-            <a href="lista-enviados.php" class="botao-nav">FormulÃ¡rios enviados</a>
+            <a href="index.php" class="botao-nav">Início</a>
+            <a href="enviar-formularios.php" class="botao-nav">Enviar formulário</a>
+            <a href="lista-enviados.php" class="botao-nav">Formulário enviados</a>
             <a href="login.html" class="botao-nav">Sair</a>
         </nav>
 
     </header>
     <main>
-        <h1>FormulÃ¡rios Enviados</h1>
+        <h1>Formulário Enviados</h1>
 
         <div class="topo-form">
             <form id="filterForm" onsubmit="return aplicarFiltro()">
                 <div class="filtro-form">
-                    <label for="filterTipo">Tipo de FormulÃ¡rio:</label>
+                    <label for="filterTipo">Tipo de Formulário:</label>
                     <select id="filterTipo" class="filter-input">
                         <option value="">Todos</option>
                         <option value="Justificativa de Falta">Justificativa de Falta</option>
-                        <option value="ReposiÃ§Ã£o de Aulas">ReposiÃ§Ã£o de Aulas</option>
+                        <option value="ReposiÃ§Ã£o de Aulas">Reposição de Aulas</option>
                     </select>
 
                     <label for="filterStatus">Status:</label>
                     <select id="filterStatus" class="filter-input">
                         <option value="">Todos</option>
-                        <option value="Em anÃ¡lise">Em anÃ¡lise</option>
+                        <option value="Em anÃ¡lise">Em análise</option>
                         <option value="Deferido">Deferido</option>
                         <option value="Indeferido">Indeferido</option>
                     </select>
@@ -69,10 +69,9 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                         <th class="ordem">Motivo</th>
                         <th class="tipo">Disciplinas</th>
                         <th class="ordem">Status Justificativa</th>
-                        <th class="ordem">Visualizar PDF</th>
                         <th class="ordem">Feedback</th>
-                        <th class="ordem">Enviar ReposiÃ§Ã£o</th>
-                        <th class="ordem">Status ReposiÃ§Ã£o</th>
+                        <th class="ordem">Enviar Reposição</th>
+                        <th class="ordem">Status Reposição</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,12 +113,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                                 </ul>
                             </td>
                             <td><?= $formulario['JUF_status'] ?></td>
-                            <td>
-                                <a href="<?= '../../scripts/gera-pdf-formulario.php?id_justificativa=' . $formulario['JUF_id'] ?>">
-                                    <button>Visualizar PDF</button>
-                                </a>
-                            </td>
-                            <td class="centro"><?= $formulario['JUF_feedback_coordenador'] ?></td>
+                            <td><?= $formulario['JUF_feedback_coordenador'] ?? "Não possui"?></td>
                             <td class="centro">
                                 <?php if (is_null($formulario['PLR_id'])) : ?>
                                     <a href="<?= './enviar-reposicao.php?id_justificativa=' . $formulario['JUF_id'] ?>">Enviar</a>

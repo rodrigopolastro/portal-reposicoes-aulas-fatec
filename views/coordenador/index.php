@@ -43,7 +43,7 @@
 
                 <div class="item-index">
                     <p class="p-icone">Reposições de Aulas</p><br>
-                    <a href="lista-recebidos-reposicao.html" class="link-index"><img
+                    <a href="lista-recebidos-reposicao.php" class="link-index"><img
                             src="../../assets/images/reposicao.png" width="60px" class="icone"></a>
                 </div>
 
