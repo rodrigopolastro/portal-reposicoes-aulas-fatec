@@ -19,18 +19,9 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
 </head>
 
 <body>
-    <header>
-        <div class="topo">
-            <div class="fundo"><img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
-            <div class="fundo2"><img src="../../assets/images/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
-        </div>
-        <nav>
-            <a href="index-professor.html" class="botao-nav">Início</a>
-            <a href="enviar-formularios.html" class="botao-nav">Enviar formulário</a>
-            <a href="lista-enviados.html" class="botao-nav">Formulários enviados</a>
-            <a href="login.html" class="botao-nav">Sair</a>
-        </nav>
-    </header>
+    <?php
+    require_once '../components/cabecalho-professor.php';
+    ?>
     <main>
         <h1>Formulário para Justificativa de Faltas:</h1>
         <div class="corpo">
