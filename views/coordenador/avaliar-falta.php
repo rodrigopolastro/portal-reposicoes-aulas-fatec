@@ -36,6 +36,7 @@
         <div class="topo-form">
             <form id="analise-coordenador" method="POST" action="../../controllers/justificativas-faltas.php">
                 <input type="hidden" name="acao_justificativas_faltas" value="avalia_justificativa">
+                <input type="hidden" name="id_justificativa" value="<?=$_GET['id_justificativa']?>">
                 <label for="deferimento"><strong>Esta Justificativa de Falta está:</strong></label><br><br>
                 <input type="radio" id="deferido" name="deferimento" value="deferido">
                 <label for="deferido">Deferida</label>

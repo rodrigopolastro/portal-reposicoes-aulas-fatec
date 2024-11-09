@@ -79,6 +79,7 @@ $formulariosCoordenador = controllerJustificativasFaltas('busca_faltas_coordenad
                         </tr>
                     </thead>
                     <tbody>
+                    <?php $contador = 1;?>
                     <?php foreach ($formulariosCoordenador as $formularioCoordenador):?>
                         <?php
                         $dataEnvio = $formularioCoordenador['JUF_data_envio'];
@@ -88,28 +89,9 @@ $formulariosCoordenador = controllerJustificativasFaltas('busca_faltas_coordenad
                              ['id_justificativa' => $formularioCoordenador['JUF_id']]
                          );
 
-                        // if ($formulariosCoordenador['TPF_tipo_intervalo'] == 'dias') {
-                        //     $datasAusencias = controllerHorariosAusencias(
-                        //         'busca_datas_ausencias_justificativa',
-                        //         ['id_justificativa' => $formulariosCoordenador['JUF_id']]
-                        //     );
-                        //     $dataInicial = $datasAusencias[0]['HRA_data_falta'];
-                        //     $dataFinal = end($datasAusencias)['HRA_data_falta'];
-
-                        //     if ($dataInicial == $dataFinal) {
-                        //         $strDataFormatada = (new DateTimeImmutable($dataInicial))->format('d/m/y');
-                        //     } else {
-                        //         $dataInicialFormatada = (new DateTimeImmutable($dataInicial))->format('d/m/y');
-                        //         $dataFinalFormatada = (new DateTimeImmutable($dataFinal))->format('d/m/y');
-                        //         $strDataFormatada = $dataInicialFormatada . ' a ' . $dataFinalFormatada;
-                        //     }
-                        // } else if ($formularioCoordenador['TPF_tipo_intervalo'] == 'horas') {
-                        //     $strDataFormatada = 'ainda não trabalhamos com horas';
-                        // }
-
                         ?>
                         <tr>
-                        <td><?=$formularioCoordenador['JUF_id']?></td>
+                        <td><?=$contador?></td>
                         <td><?=$dataEnvioFormatada?></td>
                         <td><?=$formularioCoordenador['USR_nome_completo']?></td>
                         <td>
@@ -121,9 +103,9 @@ $formulariosCoordenador = controllerJustificativasFaltas('busca_faltas_coordenad
                             </ul>
                         </td>
                         <td><?= $formularioCoordenador['JUF_status'] ?></td>
-                        <td><a href="avaliar-reposicao.html">Avaliar</a></td>
+                        <td><a href="avaliar-falta.php?id_justificativa=<?=$formularioCoordenador['JUF_id']?>">Avaliar</a></td>
                         </tr>
-                        
+                    <?php $contador += 1;?>
                     <?php endforeach; ?>
                     </tbody>
                 </table>

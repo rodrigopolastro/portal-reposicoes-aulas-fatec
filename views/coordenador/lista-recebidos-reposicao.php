@@ -73,51 +73,6 @@
                             <td class="centro"><a href="avaliar-reposicao.html"><img
                                         src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
                         </tr>
-                        <tr>
-                            <td>19/05/2024</td>
-                            <td>19/03/2024</td>
-                            <td>Janaina</td>
-                            <td>Inglês</td>
-                            <td>06/06/2024</td>
-                            <td class="centro"><a href="avaliar-reposicao.html"><img
-                                        src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
-                        </tr>
-                        <tr>
-                            <td>21/05/2024</td>
-                            <td>20/04/2024</td>
-                            <td>Ana Célia Ribeiro Bizigato Portes</td>
-                            <td>Engenharia de Software I</td>
-                            <td>01/06/2024</td>
-                            <td class="centro"><a href="avaliar-reposicao.html"><img
-                                        src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
-                        </tr>
-                        <tr>
-                            <td>26/05/2024</td>
-                            <td>04/05/2024</td>
-                            <td>José Gonçalves Pinto Juniors</td>
-                            <td>Segurança no Desenvolvimento de Aplicações</td>
-                            <td>10/06/2024</td>
-                            <td class="centro"><a href="avaliar-reposicao.html"><img
-                                        src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
-                        </tr>
-                        <tr>
-                            <td>10/06/2024</td>
-                            <td>22/05/2024</td>
-                            <td>Edison Kazuo Igarashi</td>
-                            <td>Sistemas Operacionais e Redes de Computadores</td>
-                            <td>15/06/2024</td>
-                            <td class="centro"><a href="avaliar-reposicao.html"><img
-                                        src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
-                        </tr>
-                        <tr>
-                            <td>03/06/2024</td>
-                            <td>02/06/2024</td>
-                            <td>Thiago Salhab Alves</td>
-                            <td>Design Digital</td>
-                            <td>01/07/2024</td>
-                            <td class="centro"><a href="avaliar-reposicao.html"><img
-                                        src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
