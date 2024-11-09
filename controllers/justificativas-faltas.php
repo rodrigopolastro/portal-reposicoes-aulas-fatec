@@ -3,6 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers
 require_once caminhoAbsoluto('models/justificativas-faltas.php');
 require_once caminhoAbsoluto('controllers/horarios-disciplinas.php');
 require_once caminhoAbsoluto('controllers/horarios-ausencias.php');
+require_once caminhoAbsoluto('controllers/comprovantes-faltas.php');
 
 $idUsuarioLogado = 3;
 
@@ -68,18 +69,22 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                 }
                 if (isset($_FILES['comprovante'])) {
                     $arquivo = $_FILES['comprovante'];
-                    $numero = $idNovaJustificativa; // Pegando o número enviado pelo formulário
                     $diretorioDestino = caminhoAbsoluto('comprovante-justificativa');
-                    // Verifique se houve algum erro no upload
+                    
                     if ($arquivo['error'] === UPLOAD_ERR_OK) {
-                        // Defina o nome do arquivo usando "comprovanteJustificativa" e o número
-                        $extensao = pathinfo($arquivo['name'], PATHINFO_EXTENSION); // Obtém a extensão do arquivo original
-                        $nomeArquivo = "comprovanteJustificativa{$numero}." . $extensao;
+                       
+                        $extensao = pathinfo($arquivo['name'], PATHINFO_EXTENSION);
+                        $nomeArquivo = "comprovanteJustificativa{$idNovaJustificativa}." . $extensao;
                         $caminhoDestino = $diretorioDestino . "/" . $nomeArquivo;
                 
-                        // Move o arquivo para o diretório de destino
+                        
                         if (move_uploaded_file($arquivo['tmp_name'], $caminhoDestino)) {
-                            echo "Upload realizado com sucesso! O arquivo foi salvo como: " . $nomeArquivo;
+                            controllerComprovantesFaltas('cria_comprovante_falta', [
+                                'id_justificativa_comprovante' => $idNovaJustificativa,
+                                'nome_arquivo_comprovante' => $nomeArquivo
+                            ]);
+                            echo "Chegou aqui";
+
                         } else {
                             echo "Erro ao mover o arquivo.";
                         }
@@ -90,10 +95,10 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                     echo "Nenhum arquivo ou número foi enviado.";
                 }
 
-                header(
-                    "Location: ../scripts/gera-pdf-formulario.php" .
-                        "?id_justificativa=" . $idNovaJustificativa
-                );
+                // header(
+                //     "Location: ../scripts/gera-pdf-formulario.php" .
+                //         "?id_justificativa=" . $idNovaJustificativa
+                // );
                 exit();
             } catch (Throwable $erro) {
                 if (isset($idNovaJustificativa)) {
