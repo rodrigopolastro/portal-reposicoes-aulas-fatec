@@ -66,6 +66,29 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                         ]);
                     }
                 }
+                if (isset($_FILES['comprovante'])) {
+                    $arquivo = $_FILES['comprovante'];
+                    $numero = $idNovaJustificativa; // Pegando o número enviado pelo formulário
+                    $diretorioDestino = caminhoAbsoluto('comprovante-justificativa');
+                    // Verifique se houve algum erro no upload
+                    if ($arquivo['error'] === UPLOAD_ERR_OK) {
+                        // Defina o nome do arquivo usando "comprovanteJustificativa" e o número
+                        $extensao = pathinfo($arquivo['name'], PATHINFO_EXTENSION); // Obtém a extensão do arquivo original
+                        $nomeArquivo = "comprovanteJustificativa{$numero}." . $extensao;
+                        $caminhoDestino = $diretorioDestino . "/" . $nomeArquivo;
+                
+                        // Move o arquivo para o diretório de destino
+                        if (move_uploaded_file($arquivo['tmp_name'], $caminhoDestino)) {
+                            echo "Upload realizado com sucesso! O arquivo foi salvo como: " . $nomeArquivo;
+                        } else {
+                            echo "Erro ao mover o arquivo.";
+                        }
+                    } else {
+                        echo "Erro no upload: " . $arquivo['error'];
+                    }
+                } else {
+                    echo "Nenhum arquivo ou número foi enviado.";
+                }
 
                 header(
                     "Location: ../scripts/gera-pdf-formulario.php" .
