@@ -328,7 +328,6 @@ $horariosAusencias = controllerHorariosAusencias(
                 </p>
                 <p>*Campo obrigatório</p>
             </div>
-            <input type="hidden" name="file_name" value="pdf-reposicao.pdf">
             <input type="submit" value="Enviar">
         </form>
     </main>
