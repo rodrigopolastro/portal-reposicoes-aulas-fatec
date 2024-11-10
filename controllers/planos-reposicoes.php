@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers/caminho-absoluto.php';
 require_once caminhoAbsoluto('models/planos-reposicoes.php');
+require_once caminhoAbsoluto('controllers/horarios-reposicoes.php');
 
 $idUsuarioLogado = 3; //Ana Célia
 
@@ -16,11 +17,6 @@ if (isset($jsonRequest['acao_planos_reposicoes'])) {
 
 function controllerPlanosReposicoes($acao_planos_reposicoes, $params = [])
 {
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
-
-    return true;
     switch ($acao_planos_reposicoes) {
         case 'cria_plano_reposicao':
             try {
@@ -28,41 +24,23 @@ function controllerPlanosReposicoes($acao_planos_reposicoes, $params = [])
                 $idNovoPlanoReposicao = insertPlanoReposicao([
                     'id_justificativa' => $params['id_justificativa'],
                     'id_professor' => $idUsuarioLogado,
-                    'status' => 'em análise'
+                    'status_reposicao' => 'em análise'
                 ]);
 
                 for ($i = 0; $i < count($params['datas-reposicoes']); $i++) {
-                    controllerHorariosAusencias(
-                        'cria_horario_ausencia',
+                    controllerHorariosReposicoes(
+                        'cria_horario_reposicao',
                         [
-                            'id_justificativa' => $idNovaJustificativa,
-                            'data_falta' => $aulaPerdida['data_aula'],
-                            'id_horario' => $aulaPerdida['HRF_id']
+                            'id_reposicao' => $idNovoPlanoReposicao,
+                            'data_reposicao' => $params['datas-reposicoes'][$i],
+                            'id_horario' => $params['horarios-reposicoes'][$i]
                         ]
                     );
                 }
 
-                // if ($params['tipo_intervalo'] == 'dias') {
-                //     $aulasPerdidas = controllerHorariosDisciplinas(
-                //         'busca_aulas_professor_periodo',
-                //         [
-                //             'data_inicial' => $params['data_inicial_falta'],
-                //             'quantidade_dias' => $params['quantidade_dias']
-                //         ]
-                //     );
-
-                //     foreach ($aulasPerdidas as $aulaPerdida) {
-                //         controllerHorariosAusencias('cria_horario_ausencia', [
-                //             'id_justificativa' => $idNovaJustificativa,
-                //             'data_falta' => $aulaPerdida['data_aula'],
-                //             'id_horario' => $aulaPerdida['HRF_id']
-                //         ]);
-                //     }
-                // }
-
                 header(
                     "Location: ../scripts/gera-pdf-formulario.php" .
-                        "?id_justificativa=" . $idNovaJustificativa
+                        "?id_justificativa=" . $params['id_justificativa']
                 );
                 exit();
             } catch (Throwable $erro) {

@@ -30,10 +30,14 @@ async function buscaHorariosFatecData(dataFalta) {
                         (selectHorarios) => {
                             horariosDisponiveis.forEach((horario) => {
                                 console.log(horario.HRF_horario_inicio);
-                                let htmlOption = `
-                                    <option>${horario.HRF_horario_inicio} - ${horario.HRF_horario_fim}</option>
-                                `;
-                                selectHorarios.innerHTML += htmlOption;
+                                let optionHorario =
+                                    document.createElement("option");
+                                optionHorario.textContent =
+                                    horario.HRF_horario_inicio +
+                                    " - " +
+                                    horario.HRF_horario_fim;
+                                optionHorario.value = horario.HRF_id;
+                                selectHorarios.appendChild(optionHorario);
                             });
                         }
                     );

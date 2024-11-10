@@ -133,6 +133,8 @@ CREATE TABLE PLANOS_REPOSICOES (
             'indeferido',
             'em análise'
         )),
+    CONSTRAINT UNQ_PLANOS_REPOSICOES_JUSTIFICATIVAS_FALTAS_id_justificativa
+        UNIQUE (PLR_id_justificativa),
     CONSTRAINT FK_JUSTIFICATIVAS_FALTAS_PLANOS_REPOSICOES
         FOREIGN KEY (PLR_id_justificativa)
         REFERENCES JUSTIFICATIVAS_FALTAS (JUF_id)
