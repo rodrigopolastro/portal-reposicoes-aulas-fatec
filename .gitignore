@@ -1,3 +1,4 @@
 vendor
+
 pdfs-formularios/*
-!pdfs-formularios/pdf-reposicao.pdf
+comprovantes-justificativas/*

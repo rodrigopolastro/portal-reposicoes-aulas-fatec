@@ -3,6 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers
 require_once caminhoAbsoluto('models/justificativas-faltas.php');
 require_once caminhoAbsoluto('controllers/horarios-disciplinas.php');
 require_once caminhoAbsoluto('controllers/horarios-ausencias.php');
+require_once caminhoAbsoluto('controllers/comprovantes-faltas.php');
 
 $idUsuarioLogado = 3;
 
@@ -67,11 +68,35 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                     }
                 }
 
-                header(
-                    "Location: ../scripts/gera-pdf-formulario.php" .
-                        "?id_justificativa=" . $idNovaJustificativa
-                );
-                exit();
+                if (isset($_FILES['comprovante'])) {
+                    $arquivo = $_FILES['comprovante'];
+                    $diretorioDestino = caminhoAbsoluto('comprovante-justificativa');
+
+                    if ($arquivo['error'] === UPLOAD_ERR_OK) {
+                        $extensao = pathinfo($arquivo['name'], PATHINFO_EXTENSION);
+                        $nomeArquivo = "comprovanteJustificativa{$idNovaJustificativa}." . $extensao;
+                        $caminhoDestino = $diretorioDestino . "/" . $nomeArquivo;
+
+                        if (move_uploaded_file($arquivo['tmp_name'], $caminhoDestino)) {
+                            controllerComprovantesFaltas('cria_comprovante_falta', [
+                                'id_justificativa_comprovante' => $idNovaJustificativa,
+                                'nome_arquivo_comprovante' => $nomeArquivo
+                            ]);
+                        } else {
+                            echo "Erro ao mover o arquivo.";
+                        }
+                    } else {
+                        echo "Erro no upload: " . $arquivo['error'];
+                    }
+                } else {
+                    echo "Nenhum arquivo ou número foi enviado.";
+                }
+
+                // header(
+                //     "Location: ../scripts/gera-pdf-formulario.php" .
+                //         "?id_justificativa=" . $idNovaJustificativa
+                // );
+                // exit();
             } catch (Throwable $erro) {
                 if (isset($idNovaJustificativa)) {
                     deleteJustificativaFalta($idNovaJustificativa);
@@ -90,18 +115,18 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                 header('Location: ' . $params['url_destino']);
             }
             break;
-        
+
         case 'avalia_justificativa':
-            if($params['deferimento'] == 'deferido'){
+            if ($params['deferimento'] == 'deferido') {
                 $feedback = null;
-            }else{
+            } else {
                 $feedback = $params['feedback'];
             }
             updateAvaliacaoJustificativa(
                 [
-                'id_justificativa' => $params['id_justificativa'],
-                'status_justificativa' => $params['deferimento'],
-                'feedback_justificativa' => $feedback
+                    'id_justificativa' => $params['id_justificativa'],
+                    'status_justificativa' => $params['deferimento'],
+                    'feedback_justificativa' => $feedback
                 ]
             );
             break;
@@ -109,7 +134,8 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
         case 'busca_faltas_coordenador':
             $formulariosCoordenador = selectFormulariosFaltasCoordenadores();
             return $formulariosCoordenador;
-        break;    
+            break;
+
         default:
             return [
                 'sucesso' => false,
