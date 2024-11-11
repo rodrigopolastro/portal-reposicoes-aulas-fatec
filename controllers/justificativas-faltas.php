@@ -5,6 +5,8 @@ require_once caminhoAbsoluto('controllers/horarios-disciplinas.php');
 require_once caminhoAbsoluto('controllers/horarios-ausencias.php');
 require_once caminhoAbsoluto('controllers/comprovantes-faltas.php');
 
+define('CAMINHO_PASTA_COMPROVANTES', caminhoAbsoluto('comprovantes-faltas'));
+
 $idUsuarioLogado = 3;
 
 $jsonRequest = json_decode(file_get_contents('php://input'), true);
@@ -70,12 +72,14 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
 
                 if (isset($_FILES['comprovante']) && $_FILES['comprovante']['error'] === UPLOAD_ERR_OK) {
                     $arquivo = $_FILES['comprovante'];
-                    $diretorioDestino = caminhoAbsoluto('comprovante-justificativa');
+                    if (!is_dir(CAMINHO_PASTA_COMPROVANTES)) {
+                        mkdir(CAMINHO_PASTA_COMPROVANTES);
+                    }
 
                     if ($arquivo['error'] === UPLOAD_ERR_OK) {
                         $extensao = pathinfo($arquivo['name'], PATHINFO_EXTENSION);
                         $nomeArquivo = "comprovanteJustificativa{$idNovaJustificativa}." . $extensao;
-                        $caminhoDestino = $diretorioDestino . "/" . $nomeArquivo;
+                        $caminhoDestino = CAMINHO_PASTA_COMPROVANTES . "/" . $nomeArquivo;
 
                         if (move_uploaded_file($arquivo['tmp_name'], $caminhoDestino)) {
                             controllerComprovantesFaltas('cria_comprovante_falta', [
@@ -96,11 +100,11 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                     }
                 }
 
-                // header(
-                //     "Location: ../scripts/gera-pdf-formulario.php" .
-                //         "?id_justificativa=" . $idNovaJustificativa
-                // );
-                // exit();
+                header(
+                    "Location: ../scripts/gera-pdf-formulario.php" .
+                        "?id_justificativa=" . $idNovaJustificativa
+                );
+                exit();
             } catch (Throwable $erro) {
                 if (isset($idNovaJustificativa)) {
                     deleteJustificativaFalta($idNovaJustificativa);
