@@ -18,6 +18,8 @@ selectCategoriaFalta.addEventListener("change", () => {
     const divDataInicialFalta = document.getElementById("divDataInicialFalta");
     const divPeriodoDias = document.getElementById("divPeriodoDias");
     const divPeriodoHoras = document.getElementById("divPeriodoHoras");
+    const divMotivoFalta = document.getElementById("divMotivoFalta");
+
     const selectedOption =
         selectCategoriaFalta.options[selectCategoriaFalta.selectedIndex];
     const option = selectedOption.id;
@@ -27,18 +29,23 @@ selectCategoriaFalta.addEventListener("change", () => {
         divDataInicialFalta.classList.add("d-none");
         divPeriodoDias.classList.add("d-none");
         divPeriodoHoras.classList.add("d-none");
+        divMotivoFalta.classList.add("d-none");
         divAnexo.classList.add("d-none"); //não possui anexo
     } else if (option == "optionlicencaMedica") {
         divFaltasLicencaMedica.classList.remove("d-none");
+        divMotivoFalta.classList.add("d-none");
         divAnexo.classList.remove("d-none"); //anexo obrigatório
     } else if (option == "optionLegislacao") {
         divFaltasLegislacao.classList.remove("d-none");
         divAnexo.classList.remove("d-none"); //anexo obrigatório
+        divMotivoFalta.classList.add("d-none");
     } else if (option == "optionJustificada") {
         divFaltasJustificadas.classList.remove("d-none");
+        divMotivoFalta.classList.remove("d-none");
         divAnexo.classList.remove("d-none"); //anexo opcional
     } else if (option == "optionInjustificada") {
         divFaltasInjustificadas.classList.remove("d-none");
+        divMotivoFalta.classList.add("d-none");
         divAnexo.classList.add("d-none"); //não possui anexo
     }
 

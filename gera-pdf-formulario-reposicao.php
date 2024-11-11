@@ -30,7 +30,7 @@ require 'vendor/autoload.php';
     <main>
         <h1 style="text-align: center; margin:0; padding-bottom: 25px;">Revise os dados preenchidos antes de enviar o formulário</h1>
         <div style="display: flex; justify-content: center; align-items: center;">
-            <embed src="pdfs-formularios/pdf-reposicao.pdf" type="application/pdf" width="60%" height="1200px" />
+            <embed src="assets/pdfs/exemplo-pdf-reposicao.pdf" type="application/pdf" width="60%" height="1200px" />
         </div>
         <form method="POST" action="save-pdf.php">
             <input type="hidden" name="file_name" value="pdf-reposicao.pdf">
