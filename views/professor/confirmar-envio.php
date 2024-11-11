@@ -13,9 +13,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers
 
 <body>
     <h1>Revise os Dados Preenchidos antes de prosseguir</h1>
-    <iframe src="../../pdfs-formularios/temp_file.pdf" width="100%" height="600px">
+    <iframe src="../../private/temp_file.pdf" width="100%" height="600px">
         Seu navegador não suporta visualização de PDF.
-        <a href="../../pdfs-formularios/temp_file.pdf">Clique aqui para visualizar o PDF</a>.
+        <a href="../../private/temp_file.pdf">Clique aqui para visualizar o PDF</a>.
     </iframe>
     <br>
     <br>

@@ -1,4 +1,4 @@
 vendor
 
-pdfs-formularios/*
-comprovantes-faltas/*
+private/*
+!private/.gitkeep

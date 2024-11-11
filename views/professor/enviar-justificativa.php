@@ -171,6 +171,10 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                         <input type="file" id="fileInput" class="file-input" name="comprovante" accept="image/*">
                         <span id="fileName" class="file-name">Nenhum arquivo selecionado</span>
                     </div>
+                    <div id="divMotivoFalta" class="d-none">
+                        <label for="textareaMotivoFalta">Motivo da Falta</label>
+                        <textarea name="texto_justificativa" id="textareaMotivoFalta"></textarea>
+                    </div>
                     <div>
                         <input type="submit" value="Enviar" id="btnEnviar">
                     </div>

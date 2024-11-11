@@ -73,12 +73,12 @@ foreach ($disciplinas as $disciplina) {
 };
 if ($dataInicial == $dataFinal) {
     $strDataFormatada = (new DateTimeImmutable($dataInicial))->format('d/m/y');
-    $pdf->Cell(0, 10,'Falta referente ao dia: ' . $strDataFormatada, 0, 1);
+    $pdf->Cell(0, 10, 'Falta referente ao dia: ' . $strDataFormatada, 0, 1);
 } else {
     $dataInicialFormatada = (new DateTimeImmutable($dataInicial))->format('d/m/y');
     $dataFinalFormatada = (new DateTimeImmutable($dataFinal))->format('d/m/y');
     $strDataFormatada = $dataInicialFormatada . ' a ' . $dataFinalFormatada;
-    $pdf->Cell(0, 10,'Falta referente aos dias: ' . $strDataFormatada, 0, 1);
+    $pdf->Cell(0, 10, 'Falta referente aos dias: ' . $strDataFormatada, 0, 1);
 }
 $pdf->Cell(0, 10, 'Tipo de Falta: ' . $justificativa_falta['TPF_descricao'], 0, 1);
 
@@ -184,7 +184,7 @@ $pdf->Cell(0, 10, 'Tipo de Falta: ' . $justificativa_falta['TPF_descricao'], 0, 
 // }
 
 $pdf_data = $pdf->Output('temp_file.pdf', 'S');
-file_put_contents('../pdfs-formularios/temp_file.pdf', $pdf_data);
+file_put_contents('../private/temp_file.pdf', $pdf_data);
 
 header(
     'Location: ../views/professor/confirmar-envio.php' .
