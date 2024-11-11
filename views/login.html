@@ -1,57 +1,19 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/estilo-geral.css">
     <title>Login</title>
 </head>
-
 <body>
-    <div class="caixa">
-        <div class="topo">
-            <div class="fundo"><img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
-            <div class="fundo2"><img src="img/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
-        </div>
-        <div class="inicio"></div>
-        <h1>Portal de Justificativas de Faltas</h1>
-        <form id="loginForm">
-            <label for="usuario">E-mail</label>
-            <input type="email" id="usuario" placeholder="nome@fatec.sp.gov.br" required autocomplete="off">
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" required>
-            <a href="redefinir-senha.html">Esqueci minha senha</a>
-            <input type="submit" value="Entrar">
-
-        </form>
-    </div>
-
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Impede o envio do formulário para evitar o comportamento padrão
-
-            var usuario = document.getElementById('usuario').value;
-            var senha = document.getElementById('senha').value;
-
-            // Verifica se os campos estão preenchidos
-            if (!usuario || !senha) {
-                alert('Por favor, preencha ambos os campos.');
-                return;
-            }
-
-            // Redireciona com base no email inserido
-            if (usuario === 'professor@fatec.sp.gov.br') {
-                window.location.href = '/professor/index-professor.html';
-            } else if (usuario === 'coordenador@fatec.sp.gov.br') {
-                window.location.href = '/coordenador/index-coordenador.html';
-            } else if (usuario === 'secretaria@fatec.sp.gov.br') {
-                window.location.href = 'secretaria/index-secretaria.html';
-            } else {
-                alert('Email não reconhecido. Por favor, tente novamente.');
-            }
-        });
-    </script>
+    <form action="login.php" method="POST">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required>
+        <br>
+        <button type="submit">Entrar</button>
+    </form>
 </body>
-
 </html>
