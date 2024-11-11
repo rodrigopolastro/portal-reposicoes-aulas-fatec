@@ -49,14 +49,16 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                     </div>
                 </div>
 
-                <label for="categoria_falta">Categoria da Falta:</label>
-                <select id="selectCategoriaFalta" name="categoria_falta" class="w-25">
-                    <option id="optionNenhumaOpcao" value="">Selecione...</option>
-                    <option id="optionlicencaMedica" value="licenca_medica">Licença e Falta Médica </option>
-                    <option id="optionLegislacao" value="legislacao_trabalhista">Faltas Previstas na Legislação Trabalhista</option>
-                    <option id="optionJustificada" value="falta_justificada">Faltas Justificadas (Se deferido, não implicam em desconto do Descanso Semanal Remunerado – DSR)</option>
-                    <option id="optionInjustificada" value="falta_injustificada">Faltas Injustificadas (Com desconto do Descanso Semanal Remunerado – DSR) </option>
-                </select>
+                <div>
+                    <label for="categoria_falta">Categoria da Falta:</label>
+                    <select id="selectCategoriaFalta" name="categoria_falta" class="">
+                        <option id="optionNenhumaOpcao" value="">Selecione...</option>
+                        <option id="optionlicencaMedica" value="licenca_medica">Licença e Falta Médica </option>
+                        <option id="optionLegislacao" value="legislacao_trabalhista">Faltas Previstas na Legislação Trabalhista</option>
+                        <option id="optionJustificada" value="falta_justificada">Faltas Justificadas</option>
+                        <option id="optionInjustificada" value="falta_injustificada">Faltas Injustificadas</option>
+                    </select>
+                </div>
                 <div id="divFaltasLicencaMedica" class="d-none">
                     <?php foreach ($tiposFaltas as $tipoFalta) : ?>
                         <?php if ($tipoFalta['TPF_categoria'] == 'Licença e Falta Médica') : ?>
