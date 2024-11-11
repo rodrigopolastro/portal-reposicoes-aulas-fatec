@@ -68,7 +68,7 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                     }
                 }
 
-                if (isset($_FILES['comprovante'])) {
+                if (isset($_FILES['comprovante']) && $_FILES['comprovante']['error'] === UPLOAD_ERR_OK) {
                     $arquivo = $_FILES['comprovante'];
                     $diretorioDestino = caminhoAbsoluto('comprovante-justificativa');
 
@@ -83,13 +83,17 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                                 'nome_arquivo_comprovante' => $nomeArquivo
                             ]);
                         } else {
-                            echo "Erro ao mover o arquivo.";
+                            return [
+                                'sucesso' => false,
+                                'msgErro' => 'Ocorreu um erro ao salvar o arquivo no diretório'
+                            ];
                         }
                     } else {
-                        echo "Erro no upload: " . $arquivo['error'];
+                        return [
+                            'sucesso' => false,
+                            'msgErro' => 'Ocorreu um erro no upload do arquivo. Status: ' . $arquivo['error']
+                        ];
                     }
-                } else {
-                    echo "Nenhum arquivo ou número foi enviado.";
                 }
 
                 // header(
