@@ -43,7 +43,7 @@ selectCategoriaFalta.addEventListener("change", () => {
     }
 
     Array.from(listaOptionsFaltas).forEach((optionFalta) => {
-        radio.checked = false;
+        optionFalta.checked = false;
     });
 });
 
@@ -87,7 +87,7 @@ window.addEventListener("load", () => {
                 inputPeriodoDias.min = 1;
             }
 
-            inputPeriodoDias.value = intervaloFixo === "1" ? maxDias : "";
+            inputPeriodoDias.value = intervaloFixo === "1" ? maxDias : "1";
         } else if (tipoIntervalo == "horas") {
             labelDataInicialFalta.textContent = "Data da Falta";
             divPeriodoDias.classList.add("d-none");
