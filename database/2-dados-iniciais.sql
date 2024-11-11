@@ -15,13 +15,11 @@ INSERT INTO TIPOS_FALTAS (
     ('Licença e Falta Médica', 'Licença-Saúde (Atestado médico igual ou superior a 2 dias)', 'dias', NULL, FALSE),
     ('Licença e Falta Médica', 'Licença-Maternidade (Atestado médico de até 15 dias)',  'dias', 15, FALSE),
 
-    ('Falta Injustificada', 'Falta', 'dias', NULL, FALSE),
-    ('Falta Injustificada', 'Atraso', 'horas', NULL, FALSE),
-    ('Falta Injustificada', 'Saída Antecipada', 'horas', NULL, FALSE),
+    ('Falta Injustificada', 'Falta por Dia(s)', 'dias', NULL, FALSE),
+    ('Falta Injustificada', 'Falta por Hora(s)', 'horas', NULL, FALSE),
 
-    ('Falta Justificada', 'Falta', 'dias', NULL, FALSE),
-    ('Falta Justificada', 'Atraso', 'horas', NULL, FALSE),
-    ('Falta Justificada', 'Saída Antecipada', 'horas', NULL, FALSE),
+    ('Falta Justificada', 'Falta por Dia(s)', 'dias', NULL, FALSE),
+    ('Falta Justificada', 'Falta por Hora(s)', 'horas', NULL, FALSE),
 
     ('Falta Prevista na Legislação Trabalhista', 'Falecimento de cônjuge, pai, mãe, filho', 'dias', 9, TRUE),
     ('Falta Prevista na Legislação Trabalhista', 'Falecimento ascendente (exceto pai e mãe), descendente (exceto filho), irmão ou pessoa declarada na CTPS, que viva sob sua dependência econômica', 'dias', 2, TRUE),
