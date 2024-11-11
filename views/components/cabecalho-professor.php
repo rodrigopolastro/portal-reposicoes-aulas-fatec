@@ -4,7 +4,6 @@
     ?>
     <nav>
         <a href="../professor/index.php" class="botao-nav">Início</a>
-        <!-- Dropdown para 'Enviar formulário' -->
         <div class="dropdown">
             <div class="dropdown-content">
                 <a href="<?= caminhoAbsoluto('views/professor/enviar-justificativa.php', true) ?>" class="botao-nav">Justificativa de falta</a>

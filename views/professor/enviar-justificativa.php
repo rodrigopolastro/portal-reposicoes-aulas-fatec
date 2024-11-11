@@ -11,7 +11,7 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="../../assets/css/utilidades.css">
     <link rel="stylesheet" href="../../assets/css/form-justificativa.css">
     <title>Formulário de Justificativa de Falta</title>
@@ -23,7 +23,7 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
     ?>
     <main>
         <h1>Formulário para Justificativa de Faltas:</h1>
-        <div class="corpo">
+        <div class="topo-form">
             <form method="POST" action="../../controllers/justificativas-faltas.php" enctype="multipart/form-data">
                 <input type="hidden" name="acao_justificativas_faltas" value="cria_justificativa_falta">
                 <input id="inputTipoIntervalo" type="hidden" name="tipo_intervalo" value="">
@@ -57,18 +57,20 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                     <option id="optionJustificada" value="falta_justificada">Faltas Justificadas (Se deferido, não implicam em desconto do Descanso Semanal Remunerado – DSR)</option>
                     <option id="optionInjustificada" value="falta_injustificada">Faltas Injustificadas (Com desconto do Descanso Semanal Remunerado – DSR) </option>
                 </select>
-
                 <div id="divFaltasLicencaMedica" class="d-none">
                     <?php foreach ($tiposFaltas as $tipoFalta) : ?>
                         <?php if ($tipoFalta['TPF_categoria'] == 'Licença e Falta Médica') : ?>
                             <div>
                                 <input type="radio" class="option-falta"
+                                    id="radioTipoFalta<?= $tipoFalta['TPF_id'] ?>"
                                     data-intervalo-fixo="<?= $tipoFalta['TPF_intervalo_fixo'] ?>"
                                     data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>"
                                     data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"
                                     value="<?= $tipoFalta['TPF_id'] ?>"
                                     name="id_tipo_falta">
-                                <label><?= $tipoFalta['TPF_descricao'] ?></label>
+                                <label for="radioTipoFalta<?= $tipoFalta['TPF_id'] ?>">
+                                    <?= $tipoFalta['TPF_descricao'] ?>
+                                </label>
                             </div>
                         <?php endif ?>
                     <?php endforeach ?>
@@ -79,12 +81,15 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                         <?php if ($tipoFalta['TPF_categoria'] == 'Falta Prevista na Legislação Trabalhista') : ?>
                             <div>
                                 <input type="radio" class="option-falta"
+                                    id="radioTipoFalta<?= $tipoFalta['TPF_id'] ?>"
                                     data-intervalo-fixo="<?= $tipoFalta['TPF_intervalo_fixo'] ?>"
                                     data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>"
                                     data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"
                                     value="<?= $tipoFalta['TPF_id'] ?>"
                                     name="id_tipo_falta">
-                                <label><?= $tipoFalta['TPF_descricao'] ?></label>
+                                <label for="radioTipoFalta<?= $tipoFalta['TPF_id'] ?>">
+                                    <?= $tipoFalta['TPF_descricao'] ?>
+                                </label>
                             </div>
                         <?php endif ?>
                     <?php endforeach ?>
@@ -95,12 +100,15 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                         <?php if ($tipoFalta['TPF_categoria'] == 'Falta Justificada') : ?>
                             <div>
                                 <input type="radio" class="option-falta"
+                                    id="radioTipoFalta<?= $tipoFalta['TPF_id'] ?>"
                                     data-intervalo-fixo="<?= $tipoFalta['TPF_intervalo_fixo'] ?>"
                                     data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>"
                                     data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"
                                     value="<?= $tipoFalta['TPF_id'] ?>"
                                     name="id_tipo_falta">
-                                <label><?= $tipoFalta['TPF_descricao'] ?></label>
+                                <label for="radioTipoFalta<?= $tipoFalta['TPF_id'] ?>">
+                                    <?= $tipoFalta['TPF_descricao'] ?>
+                                </label>
                             </div>
                         <?php endif ?>
                     <?php endforeach ?>
@@ -111,29 +119,32 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                         <?php if ($tipoFalta['TPF_categoria'] == 'Falta Injustificada') : ?>
                             <div>
                                 <input type="radio" class="option-falta"
+                                    id="radioTipoFalta<?= $tipoFalta['TPF_id'] ?>"
                                     data-intervalo-fixo="<?= $tipoFalta['TPF_intervalo_fixo'] ?>"
                                     data-max-dias="<?= $tipoFalta['TPF_max_dias'] ?>"
                                     data-tipo-intervalo="<?= $tipoFalta['TPF_tipo_intervalo'] ?>"
                                     value="<?= $tipoFalta['TPF_id'] ?>"
                                     name="id_tipo_falta">
-                                <labeli><?= $tipoFalta['TPF_descricao'] ?></label>
+                                <label for="radioTipoFalta<?= $tipoFalta['TPF_id'] ?>">
+                                    <?= $tipoFalta['TPF_descricao'] ?>
+                                </label>
                             </div>
                         <?php endif ?>
                     <?php endforeach ?>
                 </div>
                 <div>
-                    <div class="d-flex">
+                    <div>
                         <div id="divDataInicialFalta" class="d-none">
                             <label id="labelDataInicialFalta" for="inputDataInicialFalta">Data Inicial da Falta: </label>
-                            <input type="date" id="inputDataInicialFalta" name="data_inicial_falta">
+                            <input type="date" id="inputDataInicialFalta" name="data_inicial_falta" class="dataFalta">
                         </div>
-                        <div id="divPeriodoDias" class="d-none d-flex">
+                        <div id="divPeriodoDias" class="d-none">
                             <label for="inputPeriodoDias">Dias Afastado: </label>
-                            <input type="number" id="inputPeriodoDias" name="quantidade_dias" min="1" step="1" value="1">
+                            <input type="number" id="inputPeriodoDias" name="quantidade_dias" min="1" step="1" value="1" class="dias">
                             <label for="inputDataFinalFalta">Data Final da Falta: </label>
                             <input type="date" id="inputDataFinalFalta" disabled>
                         </div>
-                        <div id="divPeriodoHoras" class="d-none d-flex align-items-center">
+                        <div id="divPeriodoHoras" class="d-none">
                             <div>
                                 <span>Tipo da Falta por Horário</span>
                                 <div>
@@ -165,14 +176,10 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
             </form>
         </div>
     </main>
-    <footer class="site-footer">
-        <div class="footer">
-            <img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
-            <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista - CEP: 13974-080</p>
-            <p class="rodape">Telefone: (19) 3843-1996 | (19) 3863-5210 (WhatsApp)</p>
-            <p class="rodape">&copy; 2024 Equipe 6Tec. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+    <?php
+    require_once '../components/rodape.php'
+    ?>
+
     <script src="../../assets/js/formulario-justificativa.js"></script>
 </body>
 

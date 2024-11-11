@@ -12,7 +12,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Garantir que o conteúdo principal expanda para preencher o espaço */
-    font-family: helvetica;
+    font-family: verdana;
 }
 
 .wrapper {
@@ -69,7 +69,7 @@ nav{
 .botao-nav {
     color: white;
     line-height: 35px;
-    font-family: 'helvetica';
+    font-family: 'verdana';
     font-size: 16px;
     text-decoration: none;
     letter-spacing: 1px;
@@ -83,7 +83,7 @@ nav{
 }
 
 h1{
-    font-family: 'helvetica';
+    font-family: 'verdana';
     font-style: normal;
     font-weight: 400;
     font-size: 36px;
@@ -95,7 +95,7 @@ h1{
 }
 
 h2{
-    font-family: 'helvetica';
+    font-family: 'verdana';
     font-style: normal;
     font-weight: 400;
     font-size: 28px;
@@ -107,7 +107,7 @@ h2{
 }
 
 h3{
-    font-family: 'helvetica';
+    font-family: 'verdana';
     font-style: normal;
     font-weight: 400;
     font-size: 28px;
@@ -119,7 +119,7 @@ h3{
 }
 
 h4{
-    font-family: 'helvetica';
+    font-family: 'verdana';
     text-decoration: solid;
     font-weight: 400;
     font-size: 22px;
@@ -138,7 +138,7 @@ h4{
 }
 
 p{
-    font-family: 'helvetica'; 
+    font-family: 'verdana'; 
     font-size: 16px; 
     color: #004F68;
     margin-right: 10px;
@@ -146,8 +146,8 @@ p{
 }
 
 
-label{
-    font-family: 'helvetica'; 
+label, span{
+    font-family: 'verdana'; 
     font-size: 16px; 
     color: #004F68;
     margin-right: 10px; 
@@ -177,7 +177,7 @@ label{
 
 /*Estilização de checbox*/
 label.checkbox-label {
-    font-family: 'helvetica'; 
+    font-family: 'verdana'; 
     font-size: 16px; 
     color: #004F68;
     margin-right: 10px; 
@@ -279,11 +279,12 @@ input[type="number"]:focus {
 input[type="number"].dias {
     width: 10%;
     padding: 6px; 
-    border: 1px solid #EC9999;
+    border: 1px solid #62C9E0;
     border-radius: 20px; 
     font-size: 16px; 
     margin-bottom: 10px; 
-    background-color: #EC9999;
+    margin-right: 20px;
+    background-color: #62C9E0;
     transition: box-shadow 0.3s;
     transition: border-color 0.3s;
 
@@ -305,7 +306,7 @@ input[type="date"] {
     border: 3px solid #004F68; 
     border-radius: 4px;
     font-size: 16px; 
-    font-family: helvetica;
+    font-family: verdana;
     transition: box-shadow 0.3s;
 }
 
@@ -320,7 +321,7 @@ input[type="time"] {
     border: 3px solid #004F68; 
     border-radius: 4px;
     font-size: 16px; 
-    font-family: helvetica;
+    font-family: verdana;
     transition: box-shadow 0.3s;
 }
 
@@ -350,7 +351,7 @@ input[type="radio"]:hover {
 }
 
 input[type="radio"]:checked {
-    background-color: #A50000;
+    background-color: #62C9E0;
 }
 .periodo-label {
     color: #004F68; 
@@ -370,7 +371,7 @@ select {
     color: #004F68;
     width: 20%;
     outline: none;
-    font-family: helvetica;;
+    font-family: verdana;;
 }
 
 .custom-select {
@@ -423,7 +424,7 @@ input[type="submit"]{
     color: #fff; 
     border: none; 
     padding: 10px 20px;
-    font-family: helvetica, sans-serif; 
+    font-family: verdana, sans-serif; 
     font-size: 16px; 
     border-radius: 5px; 
     cursor: pointer; 
@@ -446,7 +447,7 @@ input[type="reset"]{
     color: #fff; 
     border: none; 
     padding: 10px 20px;
-    font-family: helvetica, sans-serif; 
+    font-family: verdana, sans-serif; 
     font-size: 16px; 
     border-radius: 5px; 
     cursor: pointer; 
@@ -479,7 +480,7 @@ input[type="reset"]:focus{
 }
 
 .file-name {
-    font-family: 'helvetica';
+    font-family: 'verdana';
     color: #004F68;
     margin-left: 10px;
     font-size: 14px;
@@ -489,7 +490,7 @@ input[type="reset"]:focus{
 
 /*Estilização de link*/
 .link{
-    font-family: 'helvetica';
+    font-family: 'verdana';
     font-size: 20px;
     text-decoration: none;
     color: #fff;
@@ -501,7 +502,7 @@ input[type="reset"]:focus{
     color: #fff; 
     border: none; 
     padding: 10px 20px;
-    font-family: helvetica, sans-serif; 
+    font-family: verdana, sans-serif; 
     font-size: 16px; 
     text-decoration: none;
     border-radius: 5px; 
@@ -676,7 +677,7 @@ th:last-child, td:last-child {
 }
 
 .link-pdf{
-    font-family: helvetica;
+    font-family: verdana;
     font-size: 16px;
     color: #A50000;
     text-decoration: none;
@@ -689,7 +690,7 @@ th:last-child, td:last-child {
 }
 
 .link-semestre{
-    font-family: helvetica;
+    font-family: verdana;
     font-size: 16px;
     color: #004F68;
     margin-top: 10px;
@@ -768,7 +769,7 @@ th:last-child, td:last-child {
 }
 
 .parag-status{
-    font-family: helvetica;
+    font-family: verdana;
     font-size: 22px;
     color: #A50000;
 }
@@ -801,7 +802,7 @@ th:last-child, td:last-child {
     color: #fff; 
     border: none; 
     padding: 10px 20px;
-    font-family: helvetica, sans-serif; 
+    font-family: verdana, sans-serif; 
     font-size: 16px; 
     border-radius: 5px; 
     cursor: pointer; 
@@ -818,7 +819,7 @@ th:last-child, td:last-child {
     color: #fff; 
     border: none; 
     padding: 10px 20px;
-    font-family: helvetica, sans-serif; 
+    font-family: verdana, sans-serif; 
     font-size: 16px; 
     border-radius: 5px; 
     cursor: pointer; 
@@ -837,7 +838,7 @@ th:last-child, td:last-child {
 
 /*estilo para caixa de texto*/
 textarea {
-    font-family: 'helvetica';
+    font-family: 'verdana';
     font-size: 16px;
     color:#004F68;
     border-radius: 8px; 
@@ -849,4 +850,11 @@ textarea {
 
 textarea:hover{
     border: 2px solid #004F68;
+}
+
+.radioTipoFalta{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    justify-content: space-between;
 }
