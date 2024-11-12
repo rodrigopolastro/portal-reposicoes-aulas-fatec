@@ -106,35 +106,36 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                                 <?php if ($formulario['JUF_status'] == 'indeferido') : ?>
                                     <div>
                                         <span>
-                                            <a href="./enviar-justificativa.php?editar=" <?= $formulario['JUF_id'] ?>>Editar</a>
+                                            <a href="./enviar-justificativa.php?editar=<?= $formulario['JUF_id'] ?>">Editar</a>
                                         </span>
                                     </div>
                                 <?php endif; ?>
                             </td>
                             <td id="tdStatusReposicao" class="centro">
-                                <?php
-                                if (is_null($formulario['PLR_id'])) {
-                                    if ($formulario['JUF_status'] == 'deferido') {
-                                        $statusReposicao =
-                                            "<span>" .
-                                            "<a href='./enviar-reposicao.php?id_justificativa='" .
-                                            $formulario['JUF_id'] . ">Enviar</a>" .
-                                            "</span>";
-                                    } else {
-                                        $statusReposicao = '<span>...</span>';
-                                    }
-                                } else {
-                                    $statusReposicao = "<div><span>" . $formulario['PLR_status']  . "</span></div>";
-                                    if ($formulario['PLR_status'] == 'indeferido') {
-                                        "<div>" .
-                                            "<span>" .
-                                            "<a href='./enviar-reposicao.php?editar='"  . $formulario['JUF_id'] . ">Editar</a>" .
-                                            "</span>" .
-                                            "</div>";
-                                    }
-                                }
-                                ?>
-                                <?= $statusReposicao ?>
+                                <?php if (is_null($formulario['PLR_id'])) : ?>
+                                    <?php if ($formulario['JUF_status'] == 'deferido') : ?>
+                                        <div>
+                                            <span>
+                                                <a href="./enviar-reposicao.php?id_justificativa=" <?= $formulario['JUF_id'] ?>>Enviar</a>
+                                            </span>
+                                        </div>
+                                    <?php else : ?>
+                                        <div>
+                                            <span>...</span>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php else : ?>
+                                    <div>
+                                        <span><?= $formulario['PLR_status'] ?></span>
+                                    </div>
+                                    <?php if ($formulario['PLR_status'] == 'indeferido') : ?>
+                                        <div>
+                                            <span>
+                                                <a href="./enviar-reposicao.php?editar=<?= $formulario['PLR_id'] ?>">Editar</a>
+                                            </span>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php endif; ?>
                             </td>
                             <td id=""><?= $formulario['JUF_feedback_coordenador'] ?? "Não possui" ?></td>
                         </tr>
