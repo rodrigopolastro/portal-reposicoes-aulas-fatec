@@ -26,13 +26,13 @@ class CustomTCPDF extends TCPDF
     public function Header()
     {
         $this->Image(
-            'img/logo-fatec_itapira.png', // File
+            '../assets/images/logo-fatec_itapira.png', // File
             0,               // X coordinate
             5,               // Y coordinate
             80,              // Width
             0,               // Height
             '',               // Type (inferred from file extension)
-            '', // Link
+            '',              // Link
             '',              // Align
             true,             // Resize
             300,              // DPI
@@ -80,7 +80,8 @@ if ($dataInicial == $dataFinal) {
     $strDataFormatada = $dataInicialFormatada . ' a ' . $dataFinalFormatada;
     $pdf->Cell(0, 10, 'Falta referente aos dias: ' . $strDataFormatada, 0, 1);
 }
-$pdf->Cell(0, 10, 'Tipo de Falta: ' . $justificativa_falta['TPF_descricao'], 0, 1);
+$pdf->Cell(0, 10, 'Tipo de Falta: ' . $justificativa_falta['TPF_categoria'], 0, 1);
+$pdf->Cell(0, 10, 'Descrição: ' . $justificativa_falta['TPF_descricao'], 0, 1);
 
 
 
