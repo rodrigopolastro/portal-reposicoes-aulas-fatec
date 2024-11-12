@@ -99,7 +99,8 @@ function deleteJustificativaFalta($idJustificativa)
     $sql->execute();
 }
 
-function updateAvaliacaoJustificativa($avaliacaoJustificativa){
+function updateAvaliacaoJustificativa($avaliacaoJustificativa)
+{
     global $conexao;
     $sql = $conexao->prepare(
         "UPDATE JUSTIFICATIVAS_FALTAS SET
@@ -136,4 +137,3 @@ function selectFormulariosFaltasCoordenadores()
     $formulariosCoordenador = $sql->fetchAll(PDO::FETCH_ASSOC);
     return $formulariosCoordenador;
 }
-

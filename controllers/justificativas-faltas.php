@@ -5,7 +5,7 @@ require_once caminhoAbsoluto('controllers/horarios-disciplinas.php');
 require_once caminhoAbsoluto('controllers/horarios-ausencias.php');
 require_once caminhoAbsoluto('controllers/comprovantes-faltas.php');
 
-define('CAMINHO_PASTA_COMPROVANTES', caminhoAbsoluto('comprovantes-faltas'));
+define('CAMINHO_PASTA_COMPROVANTES', caminhoAbsoluto('private/comprovantes-faltas'));
 
 $idUsuarioLogado = 3;
 
@@ -39,7 +39,7 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                 $idNovaJustificativa = insertJustificativaFalta([
                     'id_professor' => $idUsuarioLogado,
                     'id_tipo_falta' => $params['id_tipo_falta'],
-                    'texto_justificativa' => '',
+                    'texto_justificativa' => $params['texto_justificativa'],
                     'status_justificativa' => 'em análise'
                 ]);
 
