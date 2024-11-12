@@ -3,7 +3,7 @@ Projeto desenvolvido para auxiliar a secretaria acadêmica no registro e control
 ___
 Desenvolvido pelos alunos do curso de Desenvolvimento de Software Multiplataforma da FATEC de Itapira (2024)
 - Cristiane A. de Lima
-- David G. Vicentini
+- Gabriel Dante Candido
 - Letícia Favoretto
 - Guilherme Soriani
 - Rodrigo Polastro
