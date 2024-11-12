@@ -55,6 +55,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                 <thead>
                     <tr>
                         <th class="ordem colunaImprimir d-none"></th>
+                        <th class="ordem">Data de Envio</th>
                         <th class="ordem">Período da Falta</th>
                         <th class="ordem">Motivo</th>
                         <th class="tipo">Disciplinas</th>
@@ -80,18 +81,18 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                             $dataFinal = end($datasAusencias)['HRA_data_falta'] ?? '.';
 
                             if ($dataInicial == $dataFinal) {
-                                $strDataFormatada = (new DateTimeImmutable($dataInicial))->format('d/m/y');
+                                $strPeriodoFormatado = (new DateTimeImmutable($dataInicial))->format('d/m/y');
                             } else {
                                 $dataInicialFormatada = (new DateTimeImmutable($dataInicial))->format('d/m/y');
                                 $dataFinalFormatada = (new DateTimeImmutable($dataFinal))->format('d/m/y');
-                                $strDataFormatada = $dataInicialFormatada . ' a ' . $dataFinalFormatada;
+                                $strPeriodoFormatado = $dataInicialFormatada . ' a ' . $dataFinalFormatada;
                             }
                         } else if ($formulario['TPF_tipo_intervalo'] == 'horas') {
                             $dataFalta = $datasAusencias[0]['HRA_data_falta'];
                             $horarioInicial = $datasAusencias[0]['HRF_horario_inicio'];
                             $horarioFinal = end($datasAusencias)['HRF_horario_fim'];
 
-                            $strDataFormatada =
+                            $strPeriodoFormatado =
                                 (new DateTimeImmutable($dataFalta))->format('d/m/y') .
                                 ', das ' . $horarioInicial . ' às ' . $horarioFinal;
                         }
@@ -104,16 +105,19 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                                     <button class="btnImprimirFormulario">Imprimir</button>
                                 </a>
                             </td>
-                            <td id="tdPeriodo"><?= $strDataFormatada ?></td>
-                            <td id="tdMotivo"><?= $formulario['TPF_categoria'] ?></td>
-                            <td id="tdDisciplinas">
+                            <td class="tdDataEnvio">
+                                <?= (new DateTimeImmutable($formulario['JUF_data_envio']))->format('d/m/y') ?>
+                            </td>
+                            <td class="tdPeriodo"><?= $strPeriodoFormatado ?></td>
+                            <td class="tdMotivo"><?= $formulario['TPF_categoria'] ?></td>
+                            <td class="tdDisciplinas">
                                 <ul>
                                     <?php foreach ($disciplinas as $disciplina) : ?>
                                         <li><?= '(' . $disciplina['CUR_sigla'] . ') ' . $disciplina['DCP_nome'] ?></li>
                                     <?php endforeach; ?>
                                 </ul>
                             </td>
-                            <td id="tdStatusJustificativa">
+                            <td class="tdStatusJustificativa">
                                 <div>
                                     <span><?= $formulario['JUF_status'] ?></span>
                                 </div>
@@ -125,7 +129,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                                     </div>
                                 <?php endif; ?>
                             </td>
-                            <td id="tdStatusReposicao" class="centro">
+                            <td class="tdStatusReposicao centro">
                                 <?php if (is_null($formulario['PLR_id'])) : ?>
                                     <?php if ($formulario['JUF_status'] == 'deferido') : ?>
                                         <div>
@@ -151,7 +155,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                                     <?php endif; ?>
                                 <?php endif; ?>
                             </td>
-                            <td id=""><?= $formulario['JUF_feedback_coordenador'] ?? "Não possui" ?></td>
+                            <td class="tdFeedbackCoordenador"><?= $formulario['JUF_feedback_coordenador'] ?? "Não possui" ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

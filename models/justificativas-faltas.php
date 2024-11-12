@@ -18,7 +18,8 @@ function selectFormulariosProfessor($idProfessor)
         FROM JUSTIFICATIVAS_FALTAS
         INNER JOIN TIPOS_FALTAS ON TPF_id = JUF_id_tipo_falta 
         LEFT JOIN PLANOS_REPOSICOES ON PLR_id_justificativa = JUF_id
-        WHERE JUF_id_professor = :id_professor"
+        WHERE JUF_id_professor = :id_professor
+        ORDER BY JUF_data_envio DESC"
     );
 
     $sql->bindValue('id_professor', $idProfessor);
