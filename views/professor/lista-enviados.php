@@ -24,7 +24,6 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
     ?>
     <main>
         <h1>Formulário Enviados</h1>
-
         <div class="topo-form">
             <form id="filterForm" onsubmit="return aplicarFiltro()">
                 <div class="filtro-form">
@@ -32,23 +31,20 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                     <select id="filterTipo" class="filter-input">
                         <option value="">Todos</option>
                         <option value="Justificativa de Falta">Justificativa de Falta</option>
-                        <option value="ReposiÃ§Ã£o de Aulas">Reposição de Aulas</option>
+                        <option value="Reposição de Aulas">Reposição de Aulas</option>
                     </select>
-
                     <label for="filterStatus">Status:</label>
                     <select id="filterStatus" class="filter-input">
                         <option value="">Todos</option>
-                        <option value="Em anÃ¡lise">Em análise</option>
+                        <option value="Em análise">Em análise</option>
                         <option value="Deferido">Deferido</option>
                         <option value="Indeferido">Indeferido</option>
                     </select>
-
                     <input type="submit" value="Aplicar filtro">
                     <input type="reset" value="Limpar filtro" onclick="limparFiltro()">
                 </div>
             </form>
         </div>
-
         <div class="table">
             <table id="formTable">
                 <thead>
@@ -57,9 +53,8 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                         <th class="ordem">Motivo</th>
                         <th class="tipo">Disciplinas</th>
                         <th class="ordem">Status Justificativa</th>
-                        <th class="ordem">Feedback</th>
-                        <th class="ordem">Enviar Reposição</th>
                         <th class="ordem">Status Reposição</th>
+                        <th class="ordem">Feedback</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,7 +64,6 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                             'busca_disciplinas_justificativa',
                             ['id_justificativa' => $formulario['JUF_id']]
                         );
-
                         if ($formulario['TPF_tipo_intervalo'] == 'dias') {
                             $datasAusencias = controllerHorariosAusencias(
                                 'busca_datas_ausencias_justificativa',
@@ -86,39 +80,69 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                                 $strDataFormatada = $dataInicialFormatada . ' a ' . $dataFinalFormatada;
                             }
                         } else if ($formulario['TPF_tipo_intervalo'] == 'horas') {
-                            $strDataFormatada = 'ainda não trabalhamos com horas';
-                        }
+                            $dataFalta = $datasAusencias[0]['HRA_data_falta'];
+                            $horarioInicial = $datasAusencias[0]['HRF_horario_inicio'];
+                            $horarioFinal = end($datasAusencias)['HRF_horario_fim'];
 
+                            $strDataFormatada =
+                                (new DateTimeImmutable($dataInicial))->format('d/m/y') .
+                                ', das ' . $horarioInicial . ' às ' . $horarioFinal;
+                        }
                         ?>
                         <tr>
-                            <td><?= $strDataFormatada ?></td>
-                            <td><?= $formulario['TPF_categoria'] ?></td>
-                            <td>
+                            <td id="tdPeriodo"><?= $strDataFormatada ?></td>
+                            <td id="tdMotivo"><?= $formulario['TPF_categoria'] ?></td>
+                            <td id="tdDisciplinas">
                                 <ul>
                                     <?php foreach ($disciplinas as $disciplina) : ?>
                                         <li><?= '(' . $disciplina['CUR_sigla'] . ') ' . $disciplina['DCP_nome'] ?></li>
                                     <?php endforeach; ?>
                                 </ul>
                             </td>
-                            <td><?= $formulario['JUF_status'] ?></td>
-                            <td><?= $formulario['JUF_feedback_coordenador'] ?? "Não possui" ?></td>
-                            <td class="centro">
-                                <?php if (is_null($formulario['PLR_id'])) : ?>
-                                    <a href="<?= './enviar-reposicao.php?id_justificativa=' . $formulario['JUF_id'] ?>">Enviar</a>
-                                <?php else : ?>
-                                    <p>Enviado</p>
+                            <td id="tdStatusJustificativa">
+                                <div>
+                                    <span><?= $formulario['JUF_status'] ?></span>
+                                </div>
+                                <?php if ($formulario['JUF_status'] == 'indeferido') : ?>
+                                    <div>
+                                        <span>
+                                            <a href="./enviar-justificativa.php?editar=" <?= $formulario['JUF_id'] ?>>Editar</a>
+                                        </span>
+                                    </div>
                                 <?php endif; ?>
                             </td>
-                            <td class="centro"><?= $formulario['PLR_status'] ?></td>
+                            <td id="tdStatusReposicao" class="centro">
+                                <?php
+                                if (is_null($formulario['PLR_id'])) {
+                                    if ($formulario['JUF_status'] == 'deferido') {
+                                        $statusReposicao =
+                                            "<span>" .
+                                            "<a href='./enviar-reposicao.php?id_justificativa='" .
+                                            $formulario['JUF_id'] . ">Enviar</a>" .
+                                            "</span>";
+                                    } else {
+                                        $statusReposicao = '<span>...</span>';
+                                    }
+                                } else {
+                                    $statusReposicao = "<div><span>" . $formulario['PLR_status']  . "</span></div>";
+                                    if ($formulario['PLR_status'] == 'indeferido') {
+                                        "<div>" .
+                                            "<span>" .
+                                            "<a href='./enviar-reposicao.php?editar='"  . $formulario['JUF_id'] . ">Editar</a>" .
+                                            "</span>" .
+                                            "</div>";
+                                    }
+                                }
+                                ?>
+                                <?= $statusReposicao ?>
+                            </td>
+                            <td id=""><?= $formulario['JUF_feedback_coordenador'] ?? "Não possui" ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
-
-
         </div>
-
-        <script>
+        <!-- <script>
             function aplicarFiltro() {
                 var tipoFiltro = document.getElementById('filterTipo').value;
                 var statusFiltro = document.getElementById('filterStatus').value;
@@ -148,8 +172,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                     linhas[i].classList.remove('hidden');
                 }
             }
-        </script>
-
+        </script> -->
     </main>
     <?php
     require_once '../components/rodape.php'
