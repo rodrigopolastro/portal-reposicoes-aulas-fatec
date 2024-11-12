@@ -44,11 +44,16 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                     <input type="reset" value="Limpar filtro" onclick="limparFiltro()">
                 </div>
             </form>
+            <div class="d-flex justify-content-end w-75">
+                <button id="btnExportar">Exportar como PDF</button>
+                <button id="btnCancelar">Cancelar</button>
+            </div>
         </div>
         <div class="table">
             <table id="formTable">
                 <thead>
                     <tr>
+                        <th class="ordem colunaImprimir d-none"></th>
                         <th class="ordem">Período da Falta</th>
                         <th class="ordem">Motivo</th>
                         <th class="tipo">Disciplinas</th>
@@ -90,6 +95,13 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                         }
                         ?>
                         <tr>
+                            <td class="colunaImprimir d-none">
+                                <a href="../../scripts/gera-pdf-formulario.php
+                                    ?id_justificativa=<?= $formulario['JUF_id'] ?>"
+                                    target="_blank">
+                                    <button class="btnImprimirFormulario">Imprimir</button>
+                                </a>
+                            </td>
                             <td id="tdPeriodo"><?= $strDataFormatada ?></td>
                             <td id="tdMotivo"><?= $formulario['TPF_categoria'] ?></td>
                             <td id="tdDisciplinas">
@@ -174,6 +186,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                 }
             }
         </script> -->
+        <script src="../../assets/js/lista-enviados.js"></script>
     </main>
     <?php
     require_once '../components/rodape.php'

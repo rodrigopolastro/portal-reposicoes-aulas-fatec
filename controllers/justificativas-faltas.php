@@ -101,8 +101,9 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                 }
 
                 header(
-                    "Location: ../scripts/gera-pdf-formulario.php" .
-                        "?id_justificativa=" . $idNovaJustificativa
+                    'Location: ' . caminhoAbsoluto('scripts/gera-pdf-formulario.php', true) .
+                        '?id_justificativa=' . $idNovaJustificativa .
+                        '&url_destino=' . caminhoAbsoluto('views/professor/confirmar-envio.php', true)
                 );
                 exit();
             } catch (Throwable $erro) {

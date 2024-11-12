@@ -185,9 +185,10 @@ $pdf->Cell(0, 10, 'Descrição: ' . $justificativa_falta['TPF_descricao'], 0, 1)
 // }
 
 $pdf_data = $pdf->Output('temp_file.pdf', 'S');
-file_put_contents('../private/temp_file.pdf', $pdf_data);
+file_put_contents(caminhoAbsoluto('private/temp_file.pdf'), $pdf_data);
 
-header(
-    'Location: ../views/professor/confirmar-envio.php' .
-        '?id_justificativa=' . $_GET['id_justificativa']
-);
+if (isset($_GET['url_destino'])) {
+    header('Location: ' . $_GET['url_destino'] . '?id_justificativa=' . $_GET['id_justificativa']);
+} else {
+    header('Location: ' . caminhoAbsoluto('private/temp_file.pdf', true));
+}

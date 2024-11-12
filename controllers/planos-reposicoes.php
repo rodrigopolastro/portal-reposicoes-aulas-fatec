@@ -39,8 +39,10 @@ function controllerPlanosReposicoes($acao_planos_reposicoes, $params = [])
                 }
 
                 header(
-                    "Location: ../scripts/gera-pdf-formulario.php" .
-                        "?id_justificativa=" . $params['id_justificativa']
+                    'Location: ' . caminhoAbsoluto('scripts/gera-pdf-formulario.php', true) .
+                        '?id_justificativa=' . $params['id_justificativa'] .
+                        '&url_destino=' . caminhoAbsoluto('views/professor/confirmar-envio.php', true)
+
                 );
                 exit();
             } catch (Throwable $erro) {
