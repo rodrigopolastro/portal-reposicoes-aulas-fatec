@@ -14,6 +14,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/utilidades.css">
     <title>Formulário enviados</title>
 
 </head>
@@ -25,7 +26,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
     <main>
         <h1>Formulário Enviados</h1>
         <div class="topo-form">
-            <form id="filterForm" onsubmit="return aplicarFiltro()">
+            <form id="filterForm" onsubmit="return aplicarFiltro()" class="d-none">
                 <div class="filtro-form">
                     <label for="filterTipo">Tipo de Formulário:</label>
                     <select id="filterTipo" class="filter-input">
@@ -69,13 +70,14 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                             'busca_disciplinas_justificativa',
                             ['id_justificativa' => $formulario['JUF_id']]
                         );
+                        $datasAusencias = controllerHorariosAusencias(
+                            'busca_datas_ausencias_justificativa',
+                            ['id_justificativa' => $formulario['JUF_id']]
+                        );
+
                         if ($formulario['TPF_tipo_intervalo'] == 'dias') {
-                            $datasAusencias = controllerHorariosAusencias(
-                                'busca_datas_ausencias_justificativa',
-                                ['id_justificativa' => $formulario['JUF_id']]
-                            );
-                            $dataInicial = $datasAusencias[0]['HRA_data_falta'];
-                            $dataFinal = end($datasAusencias)['HRA_data_falta'];
+                            $dataInicial = $datasAusencias[0]['HRA_data_falta'] ?? '.';
+                            $dataFinal = end($datasAusencias)['HRA_data_falta'] ?? '.';
 
                             if ($dataInicial == $dataFinal) {
                                 $strDataFormatada = (new DateTimeImmutable($dataInicial))->format('d/m/y');
@@ -90,7 +92,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                             $horarioFinal = end($datasAusencias)['HRF_horario_fim'];
 
                             $strDataFormatada =
-                                (new DateTimeImmutable($dataInicial))->format('d/m/y') .
+                                (new DateTimeImmutable($dataFalta))->format('d/m/y') .
                                 ', das ' . $horarioInicial . ' às ' . $horarioFinal;
                         }
                         ?>
