@@ -85,11 +85,14 @@ CREATE TABLE JUSTIFICATIVAS_FALTAS (
     JUF_id_tipo_falta INTEGER NOT NULL,
     JUF_id_professor INTEGER NOT NULL,
     JUF_texto_justificativa VARCHAR(500),
+    JUF_quantidade_dias INTEGER NOT NULL,
     JUF_status VARCHAR(30) NOT NULL,
     JUF_data_envio TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     JUF_data_avaliacao TIMESTAMP NULL DEFAULT NULL,
     JUF_feedback_coordenador VARCHAR(300),
 
+    CONSTRAINT CHK_JUSTIFICATIVAS_FALTAS_quantidade_dias
+        CHECK (JUF_quantidade_dias > 0),
     CONSTRAINT CHK_JUSTIFICATIVAS_FALTAS_status
         CHECK (JUF_status IN (
             'deferido',

@@ -15,6 +15,15 @@ const divAnexo = document.getElementById("divAnexo");
 
 const listaOptionsFaltas = document.getElementsByClassName("option-falta");
 selectCategoriaFalta.addEventListener("change", () => {
+    escondeTodasDivsFaltas();
+    exibeDivsCategoria();
+
+    Array.from(listaOptionsFaltas).forEach((optionFalta) => {
+        optionFalta.checked = false;
+    });
+});
+
+function exibeDivsCategoria() {
     const divDataInicialFalta = document.getElementById("divDataInicialFalta");
     const divPeriodoDias = document.getElementById("divPeriodoDias");
     const divPeriodoHoras = document.getElementById("divPeriodoHoras");
@@ -22,37 +31,32 @@ selectCategoriaFalta.addEventListener("change", () => {
 
     const selectedOption =
         selectCategoriaFalta.options[selectCategoriaFalta.selectedIndex];
-    const option = selectedOption.id;
+    const idCategoriaSelecionada = selectedOption.id;
 
-    escondeTodasDivsFaltas();
-    if (option == "optionNenhumaOpcao") {
+    if (idCategoriaSelecionada == "optionNenhumaOpcao") {
         divDataInicialFalta.classList.add("d-none");
         divPeriodoDias.classList.add("d-none");
         divPeriodoHoras.classList.add("d-none");
         divMotivoFalta.classList.add("d-none");
         divAnexo.classList.add("d-none"); //não possui anexo
-    } else if (option == "optionlicencaMedica") {
+    } else if (idCategoriaSelecionada == "optionlicencaMedica") {
         divFaltasLicencaMedica.classList.remove("d-none");
         divMotivoFalta.classList.add("d-none");
         divAnexo.classList.remove("d-none"); //anexo obrigatório
-    } else if (option == "optionLegislacao") {
+    } else if (idCategoriaSelecionada == "optionLegislacao") {
         divFaltasLegislacao.classList.remove("d-none");
         divAnexo.classList.remove("d-none"); //anexo obrigatório
         divMotivoFalta.classList.add("d-none");
-    } else if (option == "optionJustificada") {
+    } else if (idCategoriaSelecionada == "optionJustificada") {
         divFaltasJustificadas.classList.remove("d-none");
         divMotivoFalta.classList.remove("d-none");
         divAnexo.classList.remove("d-none"); //anexo opcional
-    } else if (option == "optionInjustificada") {
+    } else if (idCategoriaSelecionada == "optionInjustificada") {
         divFaltasInjustificadas.classList.remove("d-none");
         divMotivoFalta.classList.add("d-none");
         divAnexo.classList.add("d-none"); //não possui anexo
     }
-
-    Array.from(listaOptionsFaltas).forEach((optionFalta) => {
-        optionFalta.checked = false;
-    });
-});
+}
 
 function escondeTodasDivsFaltas() {
     divFaltasLicencaMedica.classList.add("d-none");
@@ -124,14 +128,20 @@ function calculaDataFinal() {
 
 inputDataInicialFalta.addEventListener("change", () => {
     calculaDataFinal();
-    buscaAulasProfessorData();
+    buscaAulasProfessorData(
+        inputDataInicialFalta.value,
+        inputPeriodoDias.value
+    );
 });
 inputPeriodoDias.addEventListener("input", () => {
     calculaDataFinal();
-    buscaAulasProfessorData();
+    buscaAulasProfessorData(
+        inputDataInicialFalta.value,
+        inputPeriodoDias.value
+    );
 });
 
-async function buscaAulasProfessorData() {
+async function buscaAulasProfessorData(dataFalta, quantidadeDias) {
     function desabilitaHorarioFalta() {
         let btnEnviar = document.getElementById("btnEnviar");
         let selectHorarioFalta = document.getElementById("selectHorarioFalta");
@@ -169,8 +179,8 @@ async function buscaAulasProfessorData() {
             JSON.stringify(idsAulasPerdidas);
     }
 
-    let dataFalta = inputDataInicialFalta.value;
-    let quantidadeDias = inputPeriodoDias.value;
+    // let dataFalta = inputDataInicialFalta.value;
+    // let quantidadeDias = inputPeriodoDias.value;
     if (!dataFalta || !quantidadeDias) {
         desabilitaHorarioFalta();
     }

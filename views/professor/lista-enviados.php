@@ -124,7 +124,8 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                                 <?php if ($formulario['JUF_status'] == 'indeferido') : ?>
                                     <div>
                                         <span>
-                                            <a href="./enviar-justificativa.php?editar=<?= $formulario['JUF_id'] ?>">Editar</a>
+                                            <a href="./enviar-justificativa.php?editar_justificativa=
+                                                 <?= $formulario['JUF_id'] ?>">Editar</a>
                                         </span>
                                     </div>
                                 <?php endif; ?>
@@ -134,7 +135,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                                     <?php if ($formulario['JUF_status'] == 'deferido') : ?>
                                         <div>
                                             <span>
-                                                <a href="./enviar-reposicao.php?id_justificativa=" <?= $formulario['JUF_id'] ?>>Enviar</a>
+                                                <a href="./enviar-reposicao.php?id_justificativa=<?= $formulario['JUF_id'] ?>">Enviar</a>
                                             </span>
                                         </div>
                                     <?php else : ?>
@@ -149,7 +150,8 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                                     <?php if ($formulario['PLR_status'] == 'indeferido') : ?>
                                         <div>
                                             <span>
-                                                <a href="./enviar-reposicao.php?editar=<?= $formulario['PLR_id'] ?>">Editar</a>
+                                                <a href="./enviar-reposicao.php?editar_reposicao=
+                                                     <?= $formulario['PLR_id'] ?>">Editar</a>
                                             </span>
                                         </div>
                                     <?php endif; ?>

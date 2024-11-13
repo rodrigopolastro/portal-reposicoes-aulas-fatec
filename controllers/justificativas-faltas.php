@@ -11,7 +11,7 @@ $idUsuarioLogado = 3;
 
 $jsonRequest = json_decode(file_get_contents('php://input'), true);
 
-if (isset($jsonRequest['acao_justificativas_faltas_justificativas_faltas'])) {
+if (isset($jsonRequest['acao_justificativas_faltas'])) {
     $params = $jsonRequest['params'] ?? [];
     echo json_encode(controllerJustificativasFaltas($jsonRequest['acao_justificativas_faltas'], $params));
 } else if (isset($_POST['acao_justificativas_faltas'])) {
@@ -40,7 +40,8 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                     'id_professor' => $idUsuarioLogado,
                     'id_tipo_falta' => $params['id_tipo_falta'],
                     'texto_justificativa' => $params['texto_justificativa'],
-                    'status_justificativa' => 'em análise'
+                    'quantidade_dias' => $params['quantidade_dias'],
+                    'status_justificativa' => 'em análise',
                 ]);
 
                 if ($params['tipo_intervalo'] == 'dias') {
@@ -124,6 +125,11 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                 header('Location: ' . $params['url_destino']);
             }
             break;
+
+            // case 'altera_justificativa_falta':
+            //     updateJustificativaFalta([
+
+            //     ]);
 
         case 'avalia_justificativa':
             if ($params['deferimento'] == 'deferido') {

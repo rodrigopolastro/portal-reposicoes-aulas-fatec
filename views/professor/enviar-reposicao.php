@@ -95,7 +95,7 @@ $horariosAusencias = controllerHorariosAusencias(
             </div>
         </div>
         <h2>Tabela de Horários</h2>
-        <table class="d-none">
+        <table class="">
             <thead>
                 <tr>
                     <th>Horário</th>
