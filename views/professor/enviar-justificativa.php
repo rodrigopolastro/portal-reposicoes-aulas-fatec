@@ -58,6 +58,7 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                         <option id="optionJustificada" value="falta_justificada">Faltas Justificadas</option>
                         <option id="optionInjustificada" value="falta_injustificada">Faltas Injustificadas</option>
                     </select>
+                    <br/><br/>
                 </div>
                 <div id="divFaltasLicencaMedica" class="d-none">
                     <?php foreach ($tiposFaltas as $tipoFalta) : ?>
@@ -73,6 +74,7 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                                 <label for="radioTipoFalta<?= $tipoFalta['TPF_id'] ?>">
                                     <?= $tipoFalta['TPF_descricao'] ?>
                                 </label>
+                                <br/><br/>
                             </div>
                         <?php endif ?>
                     <?php endforeach ?>
@@ -92,6 +94,7 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                                 <label for="radioTipoFalta<?= $tipoFalta['TPF_id'] ?>">
                                     <?= $tipoFalta['TPF_descricao'] ?>
                                 </label>
+                                <br/><br/>
                             </div>
                         <?php endif ?>
                     <?php endforeach ?>
@@ -111,6 +114,7 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                                 <label for="radioTipoFalta<?= $tipoFalta['TPF_id'] ?>">
                                     <?= $tipoFalta['TPF_descricao'] ?>
                                 </label>
+                                <br/><br/>
                             </div>
                         <?php endif ?>
                     <?php endforeach ?>
@@ -130,6 +134,7 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                                 <label for="radioTipoFalta<?= $tipoFalta['TPF_id'] ?>">
                                     <?= $tipoFalta['TPF_descricao'] ?>
                                 </label>
+                                <br/><br/>
                             </div>
                         <?php endif ?>
                     <?php endforeach ?>
@@ -137,32 +142,39 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                 <div>
                     <div>
                         <div id="divDataInicialFalta" class="d-none">
+                        <br/>
                             <label id="labelDataInicialFalta" for="inputDataInicialFalta">Data Inicial da Falta: </label>
                             <input type="date" id="inputDataInicialFalta" name="data_inicial_falta" class="dataFalta">
                         </div>
+                        <br/><br/>
                         <div id="divPeriodoDias" class="d-none">
                             <label for="inputPeriodoDias">Dias Afastado: </label>
                             <input type="number" id="inputPeriodoDias" name="quantidade_dias" min="1" step="1" value="1" class="dias">
                             <label for="inputDataFinalFalta">Data Final da Falta: </label>
                             <input type="date" id="inputDataFinalFalta" disabled>
+                            <br/><br/>
                         </div>
                         <div id="divPeriodoHoras" class="d-none">
                             <div>
                                 <span>Tipo da Falta por Horário</span>
+                                <br/><br/>
                                 <div>
                                     <input type="radio" name="tipo_falta_horas" id="inputRadioAtraso" value="atraso" checked>
                                     <label for="inputRadioAtraso">Atraso</label>
                                 </div>
+                                <br/><br/>
                                 <div>
                                     <input type="radio" name="tipo_falta_horas" id="inputRadioSaida" value="saida_antecipada">
                                     <label for="inputRadioSaida">Saída Antecipada</label>
                                 </div>
+                                <br/>
                             </div>
                             <div>
                                 <label id="labelHorarioFalta" for="inputHorarioFalta">Chegada Entre:</label>
                                 <select id="selectHorarioFalta" disabled>
                                     <option value="">Informe a data primeiro</option>
                                 </select>
+                                <br/><br/>
                             </div>
                         </div>
                     </div>

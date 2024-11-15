@@ -28,7 +28,10 @@ body {
 }
 
 .logo-governo {
-    width: 110%;
+    width: 70%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
 }
 
 .fundo {
@@ -140,7 +143,7 @@ h4 {
 p {
     font-family: "verdana";
     font-size: 16px;
-    color: #004f68;
+    color: #2e2e2e;
     margin-right: 10px;
     margin-bottom: 20px;
 }
@@ -149,7 +152,7 @@ label,
 span {
     font-family: "verdana";
     font-size: 16px;
-    color: #004f68;
+    color: #2e2e2e;
     margin-right: 10px;
     margin-bottom: 30px;
     text-align: justify;
@@ -190,7 +193,7 @@ input[type="checkbox"] {
     display: inline-block;
     width: 20px;
     height: 20px;
-    background-color: #ec9999;
+    background-color: #62C9E0;
     border-radius: 4px;
     vertical-align: middle;
     cursor: pointer;
@@ -203,7 +206,7 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked + .custom-checkbox {
-    background-color: #a50000;
+    background-color: #005992;
 }
 
 input[type="checkbox"]:checked + .custom-checkbox::after {
@@ -214,11 +217,11 @@ input[type="checkbox"]:checked + .custom-checkbox::after {
 input[type="text"] {
     width: 60%;
     padding: 6px;
-    border: 1px solid #ec9999;
+    border: 1px solid #62C9E0;
     border-radius: 20px;
     font-size: 16px;
     margin-bottom: 10px;
-    background-color: #ec9999;
+    background-color: #62C9E0;
     transition: box-shadow 0.3s;
     transition: border-color 0.3s;
 }
@@ -234,11 +237,11 @@ input[type="text"]:focus {
 input[type="text"].motivo {
     width: 30%;
     padding: 6px;
-    border: 1px solid #ec9999;
+    border: 1px solid #62C9E0;
     border-radius: 20px;
     font-size: 16px;
     margin-bottom: 10px;
-    background-color: #ec9999;
+    background-color: #62C9E0;
     transition: box-shadow 0.3s;
     transition: border-color 0.3s;
 }
@@ -255,11 +258,11 @@ input[type="text"].motivo:focus {
 input[type="number"] {
     width: 60%;
     padding: 6px;
-    border: 1px solid #ec9999;
+    border: 1px solid #62C9E0;
     border-radius: 20px;
     font-size: 16px;
     margin-bottom: 10px;
-    background-color: #ec9999;
+    background-color: #62C9E0;
     transition: box-shadow 0.3s;
     transition: border-color 0.3s;
 }
@@ -416,10 +419,11 @@ input[type="submit"] {
     background-color: #004f68;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    width: 120px;
+    padding: 12px 20px;
     font-family: verdana, sans-serif;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin: 5px;
@@ -435,7 +439,7 @@ input[type="submit"]:focus {
 }
 
 input[type="reset"] {
-    background-color: #ec9999;
+    background-color: #62C9E0;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -525,17 +529,16 @@ input[type="reset"]:focus {
 
 /*estilização de tabela*/
 table {
-    width: 70%;
+    width: 80%;
     border-collapse: separate;
     border-spacing: 0;
     border: 1px solid #ccc;
     border-radius: 10px;
     overflow: hidden;
 }
-th,
-td {
+th, td {
     padding: 10px;
-    color: #004f68;
+    color: #2e2e2e;
 }
 thead {
     background-color: #004f68;
@@ -843,4 +846,68 @@ textarea:hover {
     flex-direction: column;
     width: 60%;
     justify-content: space-between;
+}
+
+/* Estilo para o botão Exportar */
+.d-flex .btnExportar  {
+    background-color: #004f68 !important;
+    color: white !important;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.d-flex .btnExportar:hover {
+    background-color: #233254 !important; 
+}
+
+/* Estilo para o botão Cancelar */
+.d-flex .btnCancelar {
+    background-color: #842519 !important; /* vermelho */
+    color: white !important;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px; /* espaçamento entre os botões */
+}
+
+.d-flex .btnCancelar:hover {
+    background-color: #5d150c !important; /* vermelho mais escuro */
+}
+
+.btnImprimirFormulario{
+    background-color: #004f68 !important;
+    color: white !important;
+    border: none;
+    padding: 7px 17px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btnImprimirFormulario:hover {
+    background-color: #233254 !important; 
+}
+
+.linkTabela {
+    color: #004f68; 
+    font-weight: bold; 
+    text-decoration: none; 
+    padding: 10px 10px; 
+    border-radius: 4px;
+    transition: color 0.3s ease;
+}
+
+.linkTabela:hover {
+    text-decoration: underline; 
+    font-size: 18px;
 }

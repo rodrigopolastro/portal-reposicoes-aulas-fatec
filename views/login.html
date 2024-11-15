@@ -4,43 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/estilo-geral.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
     <title>Login</title>
 </head>
 
 <body>
     <div class="caixa">
-        <div class="topo">
-            <div class="fundo"><img src="img/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
-            <div class="fundo2"><img src="img/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
+        <div class="conteudo">
+            <!-- Logo à esquerda -->
+            <div class="logo-lado-esquerdo">
+                <img src="../assets/images/logo-fatec.png" alt="logo" class="logo-fatec">
+            </div>
+            
+            <!-- Formulário à direita -->
+            <div class="form-lado-direito">
+                <h1>Portal de Justificativas de Faltas</h1>
+                <form id="loginForm">
+                    <label for="usuario">E-mail</label>
+                    <input type="email" id="usuario" placeholder="nome@fatec.sp.gov.br" required autocomplete="off">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" required>
+                    <a href="redefinir-senha.html">Esqueci minha senha</a>
+                    <br/><br/>
+                    <div class="btnSubmit">
+                        <input type="submit" value="Entrar">
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="inicio"></div>
-        <h1>Portal de Justificativas de Faltas</h1>
-        <form id="loginForm">
-            <label for="usuario">E-mail</label>
-            <input type="email" id="usuario" placeholder="nome@fatec.sp.gov.br" required autocomplete="off">
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" required>
-            <a href="redefinir-senha.html">Esqueci minha senha</a>
-            <input type="submit" value="Entrar">
-
-        </form>
     </div>
 
     <script>
         document.getElementById('loginForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Impede o envio do formulário para evitar o comportamento padrão
+            event.preventDefault();
 
             var usuario = document.getElementById('usuario').value;
             var senha = document.getElementById('senha').value;
 
-            // Verifica se os campos estão preenchidos
             if (!usuario || !senha) {
                 alert('Por favor, preencha ambos os campos.');
                 return;
             }
 
-            // Redireciona com base no email inserido
             if (usuario === 'professor@fatec.sp.gov.br') {
                 window.location.href = '/professor/index-professor.html';
             } else if (usuario === 'coordenador@fatec.sp.gov.br') {
