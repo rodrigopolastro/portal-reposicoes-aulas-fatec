@@ -29,7 +29,6 @@ iframe {
     max-width: 100%; /* Responsivo para ajustar à tela */
 }
 
-
 form {
     display: flex; /* Torna o formulário flexível */
     justify-content: center; /* Centraliza os itens no eixo horizontal */
@@ -83,4 +82,12 @@ a button:hover {
         font-size: 14px;
         padding: 8px 16px;
     }
+}
+
+#btnConfirmarEnvio {
+    background-color: #720606;
+}
+
+#btnConfirmarEnvio:hover {
+    background-color: #a50000;
 }

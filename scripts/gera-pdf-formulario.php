@@ -29,11 +29,11 @@ class CustomTCPDF extends TCPDF
     {
         // Definir as dimensões da imagem
         $imageWidth = 80; // Largura da imagem em milímetros
-    
+
         // Calcular a posição X para centralizar a imagem
         $pageWidth = $this->getPageWidth();
         $xPosition = ($pageWidth - $imageWidth) / 2;
-    
+
         // Adicionar a imagem centralizada
         $this->Image(
             '../assets/images/logo-fatec_itapira.png', // Caminho da imagem
@@ -137,7 +137,7 @@ foreach ($datasAusencias as $data) {
             $fill                        // Fundo alternado
         );
     } // Posição atual do cursor em Y
-    
+
     $pdf->SetXY($x + 50, $y); // Avança o cursor para a próxima célula
     $pdf->Ln(10);             // Salta para a próxima linha
     $fill = !$fill;           // Alterna cor de fundo
@@ -193,4 +193,3 @@ if (isset($_GET['url_destino'])) {
 } else {
     header('Location: ' . caminhoAbsoluto('private/temp_file.pdf', true));
 }
-

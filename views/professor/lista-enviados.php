@@ -51,7 +51,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
             <table id="formTable">
                 <thead>
                     <tr>
-                        <th class="ordem colunaImprimir d-none"></th>
+                        <th class="ordem"></th>
                         <th class="ordem">Data de Envio</th>
                         <th class="ordem">Período da Falta</th>
                         <th class="ordem">Motivo</th>
@@ -95,12 +95,13 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                         }
                         ?>
                         <tr>
-                            <td class="colunaImprimir d-none">
-                                <a href="../../scripts/gera-pdf-formulario.php
-                                    ?id_justificativa=<?= $formulario['JUF_id'] ?>"
-                                    target="_blank">
-                                    <button class="btnImprimirFormulario">Imprimir</button>
-                                </a>
+                            <td class="">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <a href="../../scripts/gera-pdf-formulario.php?id_justificativa=<?= $formulario['JUF_id'] ?>"
+                                        target="_blank">
+                                        <img src="../../assets/images/icone-pdf.png" alt="" width="25" class="icone-pdf">
+                                    </a>
+                                </div>
                             </td>
                             <td class="tdDataEnvio">
                                 <?= (new DateTimeImmutable($formulario['JUF_data_envio']))->format('d/m/y') ?>
@@ -116,7 +117,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                             </td>
                             <td class="tdStatusJustificativa">
                                 <div>
-                                    <span><?= $formulario['JUF_status'] ?></span>
+                                    <span><?= ucfirst($formulario['JUF_status']) ?></span>
                                 </div>
                                 <?php if ($formulario['JUF_status'] == 'indeferido') : ?>
                                     <div>
@@ -143,7 +144,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                                     <?php endif; ?>
                                 <?php else : ?>
                                     <div>
-                                        <span><?= $formulario['PLR_status'] ?></span>
+                                        <span><?= ucfirst($formulario['PLR_status']) ?></span>
                                     </div>
                                     <?php if ($formulario['PLR_status'] == 'indeferido') : ?>
                                         <div>

@@ -1,4 +1,4 @@
-
+<!-- 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -26,4 +26,67 @@
         </form>
     </div>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/login.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="caixa">
+        <div class="conteudo">
+            <!-- Logo à esquerda -->
+            <div class="logo-lado-esquerdo">
+                <img src="../assets/images/logo-fatec.png" alt="logo" class="logo-fatec">
+            </div>
+
+            <!-- Formulário à direita -->
+            <div class="form-lado-direito">
+                <h1>Portal de Justificativas de Faltas</h1>
+                <form id="loginForm">
+                    <label for="usuario">E-mail</label>
+                    <input type="email" id="usuario" placeholder="nome@fatec.sp.gov.br" required autocomplete="off">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" required>
+                    <a href="redefinir-senha.html">Esqueci minha senha</a>
+                    <br /><br />
+                    <div class="btnSubmit">
+                        <input type="submit" value="Entrar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script>
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var usuario = document.getElementById('usuario').value;
+            var senha = document.getElementById('senha').value;
+
+            if (!usuario || !senha) {
+                alert('Por favor, preencha ambos os campos.');
+                return;
+            }
+
+            if (usuario === 'professor@fatec.sp.gov.br') {
+                window.location.href = '/professor/index-professor.html';
+            } else if (usuario === 'coordenador@fatec.sp.gov.br') {
+                window.location.href = '/coordenador/index-coordenador.html';
+            } else if (usuario === 'secretaria@fatec.sp.gov.br') {
+                window.location.href = 'secretaria/index-secretaria.html';
+            } else {
+                alert('Email não reconhecido. Por favor, tente novamente.');
+            }
+        });
+    </script> -->
+</body>
+
 </html>
