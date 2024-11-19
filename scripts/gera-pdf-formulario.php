@@ -90,6 +90,50 @@ $pdf->SetFont('helvetica', '', 12);
 $pdf->Cell(0, 10, $statusJustificativa, 0, 1);
 $pdf->Cell(0, 10, 'Feedback do Coordenador: ' . $feedbackCoordenador, 0, 1);
 
+$pdf->Ln(10); // Espaço antes da imagem
+
+// Verificar se há um comprovante para exibir
+$pathComprovante = caminhoAbsoluto('private/comprovantes-faltas/comprovanteJustificativa' . $justificativa_falta['JUF_id'] . '.png');
+
+if (file_exists($pathComprovante)) {
+    $pdf->SetFont('helvetica', 'B', 14);
+    $pdf->Cell(0, 10, 'Comprovante:', 0, 1, 'L');
+    $pdf->Ln(5);
+
+    // Definir dimensões da imagem do comprovante
+    $xInicial = 15;          // Posição X
+    $largura = 180;          // Largura da imagem em mm
+    $yInicial = $pdf->GetY(); // Coordenada Y atual
+
+    $pdf->Image(
+        $pathComprovante,   // Caminho da imagem
+        $xInicial,          // Coordenada X (esquerda da página)
+        $yInicial,          // Coordenada Y
+        $largura,           // Largura em mm
+        0,                  // Altura proporcional (definida automaticamente)
+        '',                 // Tipo de imagem (auto detect)
+        '',                 // URL de destino (caso seja clicável)
+        '',                 // Alinhamento
+        false,              // Redimensionar (false para não distorcer)
+        300,                // Resolução em DPI
+        '',                 // String de ajustes (caso necessário)
+        false,              // Não ajustar proporção
+        false,              // Não recortar
+        0,                  // Margem
+        'M',                // Alinhamento interno (M: meio)
+        false               // Alterar estado
+    );
+
+    // Obter altura ocupada pela imagem
+    $alturaComprovante = $pdf->getImageRBY() - $yInicial;
+
+    // Ajustar a posição do cursor para evitar sobreposição
+    $pdf->SetY($yInicial + $alturaComprovante + 10); // 10 mm de espaço extra após a imagem
+} else {
+    $pdf->Cell(0, 10, 'Nenhum comprovante anexado.', 0, 1, 'L');
+    $pdf->Ln(5);
+}
+
 // Plano de reposição de aulas
 $pdf->Ln(10); // Espaço antes da tabela
 $pdf->SetFont('helvetica', 'B', 14);
