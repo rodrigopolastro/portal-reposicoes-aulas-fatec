@@ -1,40 +1,39 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers/caminho-absoluto.php';
+?>
+
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
     <link rel="stylesheet" href="../../assets/css/index.css">
     <title>Início</title>
-
 </head>
 
 <body>
-    <header>
-        <div class="topo">
-            <div class="fundo"><img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo"
-                    class="logo-governo"></div>
-            <div class="fundo2"><img src="../../assets/images/logo-fatec_itapira.png" alt="logo" class="logo-fatec">
-            </div>
-        </div>
-        <div class="inicio"></div>
-
-    </header>
+    <?php
+    require_once '../components/cabecalho-coordenador.php';
+    ?>
     <main>
         <div class="titulo-inicio2">
-            <h1 class="titulo-inicio2">Portal para Justificativa de Faltas</h1>
+            <h1 class="titulo-inicio2">Portal para Justificativa de Faltas</h1> 
         </div>
-        <div class="corpo-inicio">
+            <div class="topoIndex">
 
-            <div class="lateralEsquerda">
-                <h1 class="titulo-inicio">Bem-vindo(a)</h1>
-                <p class="parag-inicio">Coordenador(a)</p><br>
-                <p class="parag-inicio">Márcia Regina Reggiolli</p><br>
-                <p class="parag-inicio">Matricula: 0000000000005</p><br>
-                <p class="parag-inicio">CST-DSM </p><br><br>
+                <div class="lateralEsquerda">
+                    <p class="parag-inicio"><strong>Bem-vindo(a)</strong></p>
+                    <p class="parag-inicio"><strong>Coordenador(a): </strong>Márcia Regina Reggiolli</p>
+                    <p class="parag-inicio"><strong>Matricula: </strong>0000000000005</p>
+                    <p class="parag-inicio"><strong>Curso: </strong>CST-DSM </p>
+                </div>
+                <div class="notificacao"> 
+                    <p><strong>Notificação: </strong>Nenhuma notificação.</p>
+                </div>
             </div>
 
             <div class="lateralDireita">
-
                 <div class="item-index">
                     <p class="p-icone">Justificativas de Falta</p><br>
                     <a href="lista-recebidos-faltas.php" class="link-index"><img
@@ -53,26 +52,9 @@
                             width="60px" class="icone"></a>
                 </div>
 
-                <div class="item-index">
-                    <p class="p-icone">Sair</p><br>
-                    <a href="login.html" class="link-index"><img src="../../assets/images/poder.png" width="60px"
-                            class="icone"></a>
-                </div>
-
 
             </div>
-        </div>
     </main>
-    <footer class="site-footer">
-        <div class="footer">
-            <img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
-            <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista -
-                CEP: 13974-080</p>
-            <p class="rodape">Telefone: (19) 3843-1996 | (19) 3863-5210 (WhatsApp)</p>
-            <p class="rodape">&copy; 2024 Equipe 6Tec. Todos os direitos reservados.</p>
-        </div>
-    </footer>
-
-</body>
-
-</html>
+    <?php
+    require_once '../components/rodape.php';
+    ?>
