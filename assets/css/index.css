@@ -3,16 +3,20 @@
     padding: 0;
     box-sizing: border-box;
 }
-.topo{
+
+.topo {
     display: flex;
     justify-content: space-between;
 }
 
-.logo-governo{
-    width: 110%;
+.logo-governo {
+    width: 70%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
 }
 
-.fundo{
+.fundo {
     background-color: #000;
     width: 20%;
     height: 100px;
@@ -25,16 +29,17 @@
     justify-content: center;
 }
 
-.logo-fatec{
+.logo-fatec {
     width: 65%;
 }
 
-.fundo2{
+.fundo2 {
     height: 100px;
     display: flex;
     align-items: center;
     justify-content: end;
 }
+
 
 .inicio{
     background-color: #000;
@@ -42,7 +47,7 @@
 }
 
 h1{
-    font-family: 'helvetica';
+    font-family: 'verdana';
     font-style: normal;
     font-weight: 400;
     font-size: 36px;
@@ -54,7 +59,7 @@ h1{
 }
 
 h2{
-    font-family: 'helvetica';
+    font-family: 'verdana';
     font-style: normal;
     font-weight: 400;
     font-size: 28px;
@@ -66,7 +71,7 @@ h2{
 }
 
 h3{
-    font-family: 'helvetica';
+    font-family: 'verdana';
     font-style: normal;
     font-weight: 400;
     font-size: 28px;
@@ -78,7 +83,7 @@ h3{
 }
 
 h4{
-    font-family: 'helvetica';
+    font-family: 'verdana';
     text-decoration: solid;
     font-weight: 400;
     font-size: 22px;
@@ -91,7 +96,7 @@ h4{
 }
 
 p{
-    font-family: 'helvetica'; 
+    font-family: 'verdana'; 
     font-size: 16px; 
     color: #004F68;
     margin-right: 10px;
@@ -111,21 +116,21 @@ p{
 }
 
 /*index*/
-.corpo-inicio{
-    height: 90%;
+
+.topoIndex{
+    width: 100%;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
+    justify-content: space-around;
 }
+
 .lateralEsquerda{
-    background-color: #720606;
-    margin: 50px;
-    width: 25%;
-    height: 500px;
+    margin-left: 50px;
+    margin-right: 70px;
+    width: 70%;
+    height: 250px;
     border-radius: 10px;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -136,16 +141,33 @@ p{
 
 .lateralDireita{
     margin: 50px;
-    width: 75%;
+    width: 95%;
     height: 500px;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+}
+
+.notificacao{
+    font-family: verdana;
+    font-size: 20px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    margin-bottom: 50px;
+    margin-right: 70px ;
+    background-color: #EBEBEB;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .item-index{
     color: #004F68;
-    font-family: Helvetica;
+    font-family: verdana;
     font-size: 20px;
     width: 40%;
     display: flex;
@@ -170,7 +192,7 @@ p{
 }
 
 .item-index-se{
-    font-family: Helvetica;
+    font-family: verdana;
     font-size: 20px;
     width: 35%;
     height: 100px;
@@ -198,7 +220,7 @@ p{
 
 
 .titulo-inicio{
-    color: #fff;
+    color: #8b0000;
     font-size: 42px;
     margin-left: 0;
     display: flex;
@@ -208,16 +230,16 @@ p{
 }
 
 .titulo-inicio2{
-    color: #A50000;
+    color: #8b0000;
     font-size: 42px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-
+    margin-top: 20px;
 }
 
 .parag-inicio{
-    color: #fff;
+    color: #2e2e2e;
     font-size: 18px;
 }
 
@@ -235,7 +257,7 @@ main {
     background-color: #222; 
     color: #fff;          
     text-align: center;     
-    padding: 20px 0;        
+       
     position:relative;
     bottom: 0;
     width: 100%;
