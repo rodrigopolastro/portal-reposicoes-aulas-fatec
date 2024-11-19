@@ -911,3 +911,31 @@ textarea:hover {
     text-decoration: underline; 
     font-size: 18px;
 }
+a button {
+    all: unset; /* Remove estilos padrão */
+    display: inline-block; /* Permite padding e centralização */
+    background-color: #4caf50;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none; /* Remove borda padrão */
+    text-decoration: none;
+}
+
+a button:hover {
+    background-color: #45a049;
+}
+
+/* Estilizando o iframe */
+iframe {
+    width: 100%;
+    max-width: 800px; /* Define um tamanho máximo */
+    height: 600px; /* Altura fixa */
+    border: 1px solid #ccc; /* Adiciona borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+}

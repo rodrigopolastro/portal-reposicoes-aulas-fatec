@@ -8,7 +8,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/confirma-envio.css">
     <title>Confirmar Envio</title>
 </head>
 
@@ -21,14 +21,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers
     <br>
     <br>
     <form action="../../controllers/justificativas-faltas.php" method="POST">
-        <input type="hidden" name="acao_justificativas_faltas" value="exclui_justificativa_falta">
-        <input type="hidden" name="id_justificativa" value="<?= $_GET['id_justificativa'] ?>">
-        <input type="hidden" name="url_destino" value="<?= caminhoAbsoluto('views/professor/enviar-justificativa.php', true) ?>">
-        <input type="submit" value="Retornar para o Cadastro">
-    </form>
+    <input type="hidden" name="acao_justificativas_faltas" value="exclui_justificativa_falta">
+    <input type="hidden" name="id_justificativa" value="<?= $_GET['id_justificativa'] ?>">
+    <input type="hidden" name="url_destino" value="<?= caminhoAbsoluto('views/professor/enviar-justificativa.php', true) ?>">
+    <input type="submit" value="Retornar para o Cadastro">
     <a href="./formulario-enviado.html">
         <button>Confirmar Envio</button>
     </a>
+</form>
+
 </body>
 
 </html>

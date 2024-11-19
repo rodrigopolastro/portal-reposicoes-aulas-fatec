@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    text-align: center; /* Garante que todos os textos fiquem centralizados */
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #222;
+    text-align: center; /* Centraliza o texto */
+    margin-bottom: 20px;
+}
+
+iframe {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 100%; /* Responsivo para ajustar à tela */
+}
+
+
+form {
+    display: flex; /* Torna o formulário flexível */
+    justify-content: center; /* Centraliza os itens no eixo horizontal */
+    align-items: center; /* Alinha os itens no eixo vertical */
+    gap: 10px; /* Adiciona espaçamento entre os itens */
+    margin-bottom: 20px;
+}
+
+form input[type="submit"] {
+    background-color: #842519;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    flex-shrink: 0; /* Garante que o botão não encolha */
+}
+
+form input[type="submit"]:hover {
+    background-color: #a03022;
+}
+
+a button {
+    display: inline-block; /* Permite padding e centralização */
+    background-color: #004f68;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0; /* Garante que o botão não encolha */
+    text-align: center;
+}
+
+a button:hover {
+    background-color: #003b4e;
+}
+
+@media (max-width: 768px) {
+    form {
+        flex-direction: column; /* Empilha os itens no modo responsivo */
+        gap: 10px; /* Mantém o espaçamento vertical */
+    }
+
+    form input[type="submit"],
+    a button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
