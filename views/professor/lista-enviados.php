@@ -45,9 +45,9 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                     <input type="reset" value="Limpar filtro" onclick="limparFiltro()">
                 </div>
             </form>
-            
+
         </div>
-        <div class="table">  
+        <div class="table">
             <table id="formTable">
                 <thead>
                     <tr>
@@ -121,7 +121,8 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                                 <?php if ($formulario['JUF_status'] == 'indeferido') : ?>
                                     <div>
                                         <span>
-                                            <a href="./enviar-justificativa.php?editar=<?= $formulario['JUF_id'] ?>" class="linkTabela">Editar</a>
+                                            <a href="./enviar-justificativa.php?editar_justificativa=<?= $formulario['JUF_id'] ?>"
+                                                class="linkTabela">Editar</a>
                                         </span>
                                     </div>
                                 <?php endif; ?>
@@ -131,7 +132,8 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                                     <?php if ($formulario['JUF_status'] == 'deferido') : ?>
                                         <div>
                                             <span>
-                                                <a href="./enviar-reposicao.php?id_justificativa=" <?= $formulario['JUF_id'] ?>  class="linkTabela">Enviar</a>
+                                                <a href="./enviar-reposicao.php?id_justificativa=" <?= $formulario['JUF_id'] ?>
+                                                    class="linkTabela">Enviar</a>
                                             </span>
                                         </div>
                                     <?php else : ?>
@@ -146,7 +148,8 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                                     <?php if ($formulario['PLR_status'] == 'indeferido') : ?>
                                         <div>
                                             <span>
-                                                <a href="./enviar-reposicao.php?editar=<?= $formulario['PLR_id'] ?>" class="linkTabela">Editar</a>
+                                                <a href="./enviar-reposicao.php?editar_reposicao=<?= $formulario['PLR_id'] ?>"
+                                                    class="linkTabela">Editar</a>
                                             </span>
                                         </div>
                                     <?php endif; ?>
@@ -157,10 +160,10 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            
+
         </div>
         <div class="topo-form">
-        <div class="d-flex justify-content-end w-75">
+            <div class="d-flex justify-content-end w-75">
                 <button id="btnExportar" class="btnExportar">Exportar como PDF</button>
                 <button id="btnCancelar" class="btnCancelar">Cancelar</button>
             </div>

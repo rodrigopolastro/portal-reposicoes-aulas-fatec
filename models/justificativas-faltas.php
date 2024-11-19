@@ -9,6 +9,7 @@ function selectFormulariosProfessor($idProfessor)
             JUF_id,
             TPF_categoria,
             TPF_tipo_intervalo,
+            JUF_quantidade_dias,
             JUF_status,
             JUF_data_envio,
             JUF_data_avaliacao,
@@ -35,11 +36,14 @@ function selectJustificativaFalta($idJustificativa)
     $sql = $conexao->prepare(
         "SELECT   
             JUF_id,
+            PLR_id,
             JUF_id_tipo_falta,
+            TPF_id,
             TPF_categoria,
             TPF_descricao,
             TPF_tipo_intervalo,
             JUF_texto_justificativa,
+            JUF_quantidade_dias,
             JUF_status,
             JUF_data_envio,
             JUF_data_avaliacao,
@@ -51,6 +55,7 @@ function selectJustificativaFalta($idJustificativa)
         FROM JUSTIFICATIVAS_FALTAS
         INNER JOIN TIPOS_FALTAS ON TPF_id = JUF_id_tipo_falta 
         INNER JOIN USUARIOS ON USR_id = JUF_id_professor
+        LEFT JOIN PLANOS_REPOSICOES ON PLR_id_justificativa = JUF_id
         WHERE JUF_id = :id_justificativa"
     );
 
@@ -70,11 +75,13 @@ function insertJustificativaFalta($justificativaFalta)
             JUF_id_professor,
             JUF_id_tipo_falta, 
             JUF_texto_justificativa, 
+            JUF_quantidade_dias,
             JUF_status
         ) VALUES (
             :id_professor,
             :id_tipo_falta, 
             :texto_justificativa, 
+            :quantidade_dias,
             :status_justificativa
         )"
     );
@@ -82,6 +89,7 @@ function insertJustificativaFalta($justificativaFalta)
     $sql->bindValue('id_professor', $justificativaFalta['id_professor']);
     $sql->bindValue('id_tipo_falta', $justificativaFalta['id_tipo_falta']);
     $sql->bindValue('texto_justificativa', $justificativaFalta['texto_justificativa']);
+    $sql->bindValue('quantidade_dias', $justificativaFalta['quantidade_dias']);
     $sql->bindValue('status_justificativa', $justificativaFalta['status_justificativa']);
     $sql->execute();
 

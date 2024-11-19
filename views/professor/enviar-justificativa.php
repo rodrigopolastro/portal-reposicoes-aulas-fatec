@@ -53,14 +53,16 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                     <label for="categoria_falta">Categoria da Falta:</label>
                     <select id="selectCategoriaFalta" name="categoria_falta" class="">
                         <option id="optionNenhumaOpcao" value="">Selecione...</option>
-                        <option id="optionlicencaMedica" value="licenca_medica">Licença e Falta Médica </option>
-                        <option id="optionLegislacao" value="legislacao_trabalhista">Faltas Previstas na Legislação Trabalhista</option>
-                        <option id="optionJustificada" value="falta_justificada">Faltas Justificadas</option>
-                        <option id="optionInjustificada" value="falta_injustificada">Faltas Injustificadas</option>
+                        <option id="optionlicencaMedica" value="licenca_medica">Licença e Falta Médica</option>
+                        <option id="optionLegislacao" value="legislacao_trabalhista">Falta Prevista na Legislação Trabalhista</option>
+                        <option id="optionJustificada" value="falta_justificada">Falta Justificada</option>
+                        <option id="optionInjustificada" value="falta_injustificada">Falta Injustificada</option>
                     </select>
                     <br/><br/>
                 </div>
-                <div id="divFaltasLicencaMedica" class="d-none">
+                <div id="divFaltasLicencaMedica"
+                    data-categoria-falta="Licença e Falta Médica"
+                    class="divCategoriaFalta d-none">
                     <?php foreach ($tiposFaltas as $tipoFalta) : ?>
                         <?php if ($tipoFalta['TPF_categoria'] == 'Licença e Falta Médica') : ?>
                             <div>
@@ -80,7 +82,9 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                     <?php endforeach ?>
                 </div>
 
-                <div id="divFaltasLegislacao" class="d-none">
+                <div id="divFaltasLegislacao"
+                    data-categoria-falta="Falta Prevista na Legislação Trabalhista"
+                    class="divCategoriaFalta d-none">
                     <?php foreach ($tiposFaltas as $tipoFalta) : ?>
                         <?php if ($tipoFalta['TPF_categoria'] == 'Falta Prevista na Legislação Trabalhista') : ?>
                             <div>
@@ -100,7 +104,9 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                     <?php endforeach ?>
                 </div>
 
-                <div id="divFaltasJustificadas" class="d-none">
+                <div id="divFaltasJustificadas"
+                    data-categoria-falta="Falta Justificada"
+                    class="divCategoriaFalta d-none">
                     <?php foreach ($tiposFaltas as $tipoFalta) : ?>
                         <?php if ($tipoFalta['TPF_categoria'] == 'Falta Justificada') : ?>
                             <div>
@@ -120,7 +126,9 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                     <?php endforeach ?>
                 </div>
 
-                <div id="divFaltasInjustificadas" class="d-none">
+                <div id="divFaltasInjustificadas"
+                    data-categoria-falta="Falta Injustificada"
+                    class="divCategoriaFalta d-none">
                     <?php foreach ($tiposFaltas as $tipoFalta) : ?>
                         <?php if ($tipoFalta['TPF_categoria'] == 'Falta Injustificada') : ?>
                             <div>
@@ -197,8 +205,10 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
     <?php
     require_once '../components/rodape.php'
     ?>
-
     <script src="../../assets/js/formulario-justificativa.js"></script>
+    <?php if (isset($_GET['editar_justificativa'])) : ?>
+        <script src='../../assets/js/reenvio-justificativa.js'></script>
+    <?php endif; ?>
 </body>
 
 </html>
