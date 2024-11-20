@@ -15,6 +15,11 @@ if (isset($jsonRequest['acao_horarios_reposicoes'])) {
 function controllerHorariosReposicoes($acao_horarios_reposicoes, $params = [])
 {
     switch ($acao_horarios_reposicoes) {
+        case 'busca_datas_reposicoes_justificativa':
+            $horariosReposicoes = selectDatasReposicoesJustificativa($params['id_reposicao']);
+            return $horariosReposicoes;
+            break;
+
         case 'cria_horario_reposicao':
             insertHorarioReposicao([
                 'id_reposicao' => $params['id_reposicao'],

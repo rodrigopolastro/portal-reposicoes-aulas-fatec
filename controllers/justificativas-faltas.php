@@ -144,6 +144,7 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
                     'feedback_justificativa' => $feedback
                 ]
             );
+            header('Location: ' . caminhoAbsoluto('views/coordenador/lista-recebidos-faltas.php', true));
             break;
 
         case 'busca_faltas_coordenador':

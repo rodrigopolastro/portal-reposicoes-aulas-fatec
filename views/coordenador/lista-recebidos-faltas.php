@@ -8,13 +8,15 @@ $formulariosCoordenador = controllerJustificativasFaltas('busca_faltas_coordenad
 
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
+    <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
     <title>Formulário enviados</title>
 
 </head>
+
 <body>
     <header>
         <div class="topo">
@@ -32,7 +34,7 @@ $formulariosCoordenador = controllerJustificativasFaltas('busca_faltas_coordenad
     </header>
     <main>
         <h1>Justificativa de Faltas Recebidas</h1>
-        
+
 
         <!-- <div id="recebidos">
             <div class="topo-form">
@@ -65,66 +67,72 @@ $formulariosCoordenador = controllerJustificativasFaltas('busca_faltas_coordenad
                     </div>
                 </form>
             </div> -->
-        
-            <div class="table">
-                <table id="tabela-recebidos">
-                    <thead>
-                        <tr>
-                            <th class="ordem">Número</th>
-                            <th class="ordem">Data de recebimento</th>
-                            <th class="componente">Professor</th>
-                            <th class="componente">Disciplina</th>
-                            <th class="status">Status</th>
-                            <th class="ordem">Avaliar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php $contador = 1;?>
-                    <?php foreach ($formulariosCoordenador as $formularioCoordenador):?>
+
+        <div class="table">
+            <table id="tabela-recebidos">
+                <thead>
+                    <tr>
+                        <th class="ordem">Número</th>
+                        <th class="ordem">Data de recebimento</th>
+                        <th class="componente">Professor</th>
+                        <th class="componente">Disciplina</th>
+                        <th class="status">Status</th>
+                        <th class="ordem">Avaliar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $contador = 1; ?>
+                    <?php foreach ($formulariosCoordenador as $formularioCoordenador): ?>
                         <?php
                         $dataEnvio = $formularioCoordenador['JUF_data_envio'];
                         $dataEnvioFormatada = (new DateTimeImmutable($dataEnvio))->format('d/m/y');
                         $disciplinas = controllerDisciplinas(
-                             'busca_disciplinas_justificativa',
-                             ['id_justificativa' => $formularioCoordenador['JUF_id']]
-                         );
+                            'busca_disciplinas_justificativa',
+                            ['id_justificativa' => $formularioCoordenador['JUF_id']]
+                        );
 
                         ?>
                         <tr>
-                        <td><?=$contador?></td>
-                        <td><?=$dataEnvioFormatada?></td>
-                        <td><?=$formularioCoordenador['USR_nome_completo']?></td>
-                        <td>
-                        
-                            <ul>
+                            <td><?= $contador ?></td>
+                            <td><?= $dataEnvioFormatada ?></td>
+                            <td><?= $formularioCoordenador['USR_nome_completo'] ?></td>
+                            <td>
+
+                                <ul>
                                     <?php foreach ($disciplinas as $disciplina) : ?>
                                         <li><?= '(' . $disciplina['CUR_sigla'] . ') ' . $disciplina['DCP_nome'] ?></li>
                                     <?php endforeach; ?>
-                            </ul>
-                        </td>
-                        <td><?= $formularioCoordenador['JUF_status'] ?></td>
-                        <td><a href="avaliar-falta.php?id_justificativa=<?=$formularioCoordenador['JUF_id']?>">Avaliar</a></td>
+                                </ul>
+                            </td>
+                            <td><?= ucfirst($formularioCoordenador['JUF_status']) ?></td>
+                            <td>
+                                <?php if ($formularioCoordenador['JUF_status'] == 'em análise') : ?>
+                                    <a href="avaliar-falta.php?id_justificativa=<?= $formularioCoordenador['JUF_id'] ?>">Avaliar</a>
+                                <?php else: ?>
+                                    <span>Analisado</span>
+                                <?php endif; ?>
+                            </td>
                         </tr>
-                    <?php $contador += 1;?>
+                        <?php $contador += 1; ?>
                     <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
-    
+        </div>
+
         <script>
             // Função para aplicar os filtros
             function aplicarFiltro() {
                 var professorFiltro = document.getElementById('filterProfessor').value;
                 var disciplinaFiltro = document.getElementById('filterDisciplina').value;
-    
+
                 var tabela = document.getElementById('tabela-recebidos');
                 var linhas = tabela.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-    
+
                 for (var i = 0; i < linhas.length; i++) {
                     var professor = linhas[i].getAttribute('data-professor');
                     var disciplina = linhas[i].getAttribute('data-disciplina');
-    
+
                     if ((professorFiltro === "" || professor === professorFiltro) &&
                         (disciplinaFiltro === "" || disciplina === disciplinaFiltro)) {
                         linhas[i].classList.remove('hidden');
@@ -134,19 +142,19 @@ $formulariosCoordenador = controllerJustificativasFaltas('busca_faltas_coordenad
                 }
                 return false; // Evita o envio do formulário
             }
-    
+
             // Função para limpar os filtros
             function limparFiltro() {
                 var tabela = document.getElementById('tabela-recebidos');
                 var linhas = tabela.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-    
+
                 for (var i = 0; i < linhas.length; i++) {
                     linhas[i].classList.remove('hidden');
                 }
             }
         </script>
 
-        
+
         <script>
             // Função para aplicar os filtros
             function aplicarFiltroFinalizados() {
@@ -189,12 +197,11 @@ $formulariosCoordenador = controllerJustificativasFaltas('busca_faltas_coordenad
                 document.getElementById('recebidos').style.display = 'block';
                 document.getElementById('finalizados').style.display = 'none';
             });
-    
+
             document.getElementById('botao-finalizados').addEventListener('click', function() {
                 document.getElementById('recebidos').style.display = 'none';
                 document.getElementById('finalizados').style.display = 'block';
             });
-    
         </script>
 
     </main>
@@ -208,4 +215,5 @@ $formulariosCoordenador = controllerJustificativasFaltas('busca_faltas_coordenad
     </footer>
 
 </body>
+
 </html>

@@ -133,7 +133,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
                                     <?php if ($formulario['JUF_status'] == 'deferido') : ?>
                                         <div>
                                             <span>
-                                                <a href="./enviar-reposicao.php?id_justificativa=" <?= $formulario['JUF_id'] ?>
+                                                <a href="./enviar-reposicao.php?id_justificativa=<?= $formulario['JUF_id'] ?>"
                                                     class="linkTabela">Enviar</a>
                                             </span>
                                         </div>
@@ -163,7 +163,7 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
             </table>
 
         </div>
-        <div class="topo-form">
+        <div class="topo-form d-none">
             <div class="d-flex justify-content-end w-75">
                 <button id="btnExportar" class="btnExportar">Exportar como PDF</button>
                 <button id="btnCancelar" class="btnCancelar">Cancelar</button>

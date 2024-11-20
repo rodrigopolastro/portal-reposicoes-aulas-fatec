@@ -4,6 +4,7 @@ require_once caminhoAbsoluto('vendor/autoload.php');
 require_once caminhoAbsoluto('controllers/justificativas-faltas.php');
 require_once caminhoAbsoluto('controllers/disciplinas.php');
 require_once caminhoAbsoluto('controllers/horarios-ausencias.php');
+require_once caminhoAbsoluto('controllers/horarios-reposicoes.php');
 
 // Recuperar dados do banco
 $justificativa_falta = controllerJustificativasFaltas(
@@ -17,6 +18,10 @@ $disciplinas = controllerDisciplinas(
 $datasAusencias = controllerHorariosAusencias(
     'busca_datas_ausencias_justificativa',
     ['id_justificativa' => $_GET['id_justificativa']]
+);
+$datasReposicoes = controllerHorariosReposicoes(
+    'busca_datas_reposicoes_justificativa',
+    ['id_reposicao' => $justificativa_falta['PLR_id']]
 );
 $dataEnvio = (new DateTime())->format('d/m/Y');
 $statusJustificativa = $justificativa_falta['status'] ?? 'Pendente';
@@ -112,16 +117,25 @@ $pdf->SetFont('helvetica', '', 12);
 $pdf->SetFillColor(240, 240, 240); // Fundo cinza claro para linhas alternadas
 
 $fill = 0; // Alterna cor de fundo
-foreach ($datasAusencias as $data) {
-    $horarioInicio = $data['HRA_horario_inicio'] ?? 'N/A';
-    $horarioFim = $data['HRA_horario_fim'] ?? 'N/A';
-    $horario = $horarioInicio . ' - ' . $horarioFim;
+for ($i = 0; $i < count($datasAusencias); $i++) {
+    $dataAusencia = $datasAusencias[$i];
+    $reposicao = $datasReposicoes[$i];
 
-    $dataReposicao = $data['HRA_data_reposicao'] ?? 'N/A';
+    $dataReposicao = $reposicao['HRR_data_reposicao'];
+    $horarioInicioReposicao = $reposicao['HRF_horario_inicio'] ?? 'N/A';
+    $horarioFimReposicao = $reposicao['HRF_horario_fim'] ?? 'N/A';
 
+    $horario = $horarioInicioReposicao . ' - ' . $horarioFimReposicao;
+
+    if (is_null($reposicao['HRR_data_reposicao'])) {
+        $dataReposicao = 'N/A';
+    } else {
+        $dataReposicao = date_format(date_create($reposicao['HRR_data_reposicao']), "d/m/y");
+    }
+    $dataAusenciaFormatada = date_format(date_create($datasAusencias[$i]['HRA_data_falta']), "d/m/y");
     // Linha da tabela
-    $pdf->Cell(40, 10, $data['HRA_data_falta'] ?? 'N/A', 1, 0, 'C', $fill);
-    $pdf->Cell(40, 10, $dataReposicao, 1, 0, 'C', $fill);
+    $pdf->Cell(40, 10, $dataAusenciaFormatada ?? 'N/A', 1, 0, 'C', $fill); //falta
+    $pdf->Cell(40, 10, $dataReposicao ?? 'N/A', 1, 0, 'C', $fill);
     $pdf->Cell(60, 10, $horario, 1, 0, 'C', $fill);
 
     // MultiCell para quebrar o texto da coluna "Disciplina"
@@ -148,13 +162,14 @@ $pdf->Ln(10); // Espaço antes da imagem
 $pathComprovante = caminhoAbsoluto('private/comprovantes-faltas/comprovanteJustificativa' . $justificativa_falta['JUF_id'] . '.png');
 
 if (file_exists($pathComprovante)) {
+    $pdf->AddPage();
     $pdf->SetFont('helvetica', 'B', 14);
     $pdf->Cell(0, 10, 'Comprovante:', 0, 1, 'L');
     $pdf->Ln(5);
 
     // Definir dimensões da imagem do comprovante
     $xInicial = 15;          // Posição X
-    $largura = 180;          // Largura da imagem em mm
+    $largura = $pdf->getPageWidth() * 0.5;          // Largura da imagem em mm
     $yInicial = $pdf->GetY(); // Coordenada Y atual
 
     $pdf->Image(
@@ -165,8 +180,8 @@ if (file_exists($pathComprovante)) {
         0,                  // Altura proporcional (definida automaticamente)
         '',                 // Tipo de imagem (auto detect)
         '',                 // URL de destino (caso seja clicável)
-        '',                 // Alinhamento
-        false,              // Redimensionar (false para não distorcer)
+        'C',                 // Alinhamento
+        true,              // Redimensionar (false para não distorcer)
         300,                // Resolução em DPI
         '',                 // String de ajustes (caso necessário)
         false,              // Não ajustar proporção

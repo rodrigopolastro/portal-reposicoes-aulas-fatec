@@ -49,11 +49,12 @@
             <!-- Formulário à direita -->
             <div class="form-lado-direito">
                 <h1>Portal de Justificativas de Faltas</h1>
-                <form id="loginForm">
+                <form id="loginForm" method="POST" action="./login.php">
                     <label for="usuario">E-mail</label>
-                    <input type="email" id="usuario" placeholder="nome@fatec.sp.gov.br" required autocomplete="off">
+                    <input type="email" id="usuario" placeholder="nome@fatec.sp.gov.br" required autocomplete="off"
+                        name="email">
                     <label for="senha">Senha</label>
-                    <input type="password" id="senha" required>
+                    <input type="password" id="senha" required name="senha">
                     <a href="redefinir-senha.html">Esqueci minha senha</a>
                     <br /><br />
                     <div class="btnSubmit">

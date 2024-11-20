@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
+    <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
     <title>Justificativas de Falta - DSM</title>
 
 </head>
+
 <body>
     <header>
         <div class="topo">
-            <div class="fundo"><img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
-            <div class="fundo2"><img src="../../assets/images/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
+            <div class="fundo"><img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo"
+                    class="logo-governo"></div>
+            <div class="fundo2"><img src="../../assets/images/logo-fatec_itapira.png" alt="logo" class="logo-fatec">
+            </div>
         </div>
         <nav>
-            <a href="index-secretaria.html" class="botao-nav">Início</a>
+            <a href="index.php" class="botao-nav">Início</a>
             <a href="" class="botao-nav">GTI</a>
             <a href="" class="botao-nav">GPI</a>
             <a href="" class="botao-nav">GE</a>
-            <a href="lista-secretaria-dsm.html" class="botao-nav">DSM</a>
-            <a href="calendario-escolar.html" class="botao-nav">Calendário Acadêmico</a>
+            <a href="" class="botao-nav">DSM</a>
+            <a href="../calendario-escolar-2-2024.html" class="botao-nav">Calendário Acadêmico</a>
             <a href="login.html" class="botao-nav">Sair</a>
         </nav>
 
@@ -27,40 +31,7 @@
     <main>
         <h1>Desenvolvimento de Software Multiplataforma</h1>
         <h3>Formulários Recebidos</h3>
-        <h4>Justificativas de Falta</h4>
-        
         <div id="recebidos">
-            <div class="topo-form">
-                <form id="filtro-form-recebidos">
-                    <div class="filtro-form">
-                        <label for="filterProfessor">Professor:</label>
-                        <select id="filterProfessor" class="filter-input">
-                            <option value="">Todos</option>
-                            <option value="Wladimir José Camillo Menegassi">Wladimir José Camillo Menegassi</option>
-                            <option value="Janaina">Janaina</option>
-                            <option value="Ana Célia Ribeiro Bizigato Portes">Ana Célia Ribeiro Bizigato Portes</option>
-                            <option value="Thiago Salhab Alves">Thiago Salhab Alves</option>
-                            <option value="José Gonçalves Pinto Junior">José Gonçalves Pinto Junior</option>
-                            <option value="Edison Kazuo Igarashi">Edison Kazuo Igarashi</option>
-                        </select>
-    
-                        <label for="filterDisciplina">Disciplina:</label>
-                        <select id="filterDisciplina" class="filter-input">
-                            <option value="">Todos</option>
-                            <option value="Modelagem de Banco de Dados">Modelagem de Banco de Dados</option>
-                            <option value="Inglês">Inglês</option>
-                            <option value="Engenharia de Software I">Engenharia de Software I</option>
-                            <option value="Design Digital">Design Digital</option>
-                            <option value="Algoritmo e lógica de programação">Algoritmo e lógica de programação</option>
-                            <option value="Sistemas Operacionais e Redes de Computadores">Sistemas Operacionais e Redes de Computadores</option>
-                        </select>
-    
-                        <input type="submit" value="Aplicar filtro">
-                        <input type="reset" value="Limpar filtro" onclick="limparFiltro()">
-                    </div>
-                </form>
-            </div>
-        
             <div class="table">
                 <table id="tabela-recebidos">
                     <thead>
@@ -70,17 +41,16 @@
                             <th class="componente">Professor</th>
                             <th class="componente">Disciplina</th>
                             <th class="status">Status</th>
-                            <th class="ordem">Fim</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr data-professor="Wladimir José Camillo Menegassi" data-disciplina="Modelagem de Banco de Dados">
+                        <tr data-professor="Wladimir José Camillo Menegassi"
+                            data-disciplina="Modelagem de Banco de Dados">
                             <td>01</td>
                             <td>09/05/2024</td>
                             <td>Wladimir José Camillo Menegassi</td>
                             <td>Modelagem de Banco de Dados</td>
                             <td>Indeferido</td>
-                            <td class="centro"><a href="finalizar.html"><img src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
                         </tr>
                         <tr data-professor="Janaina" data-disciplina="Inglês">
                             <td>02</td>
@@ -88,23 +58,22 @@
                             <td>Janaina</td>
                             <td>Inglês</td>
                             <td>Deferido</td>
-                            <td class="centro"><a href=""><img src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
                         </tr>
-                        <tr data-professor="Wladimir José Camillo Menegassi" data-disciplina="Modelagem de Banco de Dados">
+                        <tr data-professor="Wladimir José Camillo Menegassi"
+                            data-disciplina="Modelagem de Banco de Dados">
                             <td>03</td>
                             <td>23/05/2024</td>
                             <td>Wladimir José Camillo Menegassi</td>
                             <td>Modelagem de Banco de Dados</td>
                             <td>Deferido</td>
-                            <td class="centro"><a href=""><img src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
                         </tr>
-                        <tr data-professor="Ana Célia Ribeiro Bizigato Portes" data-disciplina="Engenharia de Software I">
+                        <tr data-professor="Ana Célia Ribeiro Bizigato Portes"
+                            data-disciplina="Engenharia de Software I">
                             <td>04</td>
                             <td>25/05/2024</td>
                             <td>Ana Célia Ribeiro Bizigato Portes</td>
                             <td>Gestão Ágil de Projetos de Software</td>
                             <td>Deferido</td>
-                            <td class="centro"><a href=""><img src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
                         </tr>
                         <tr data-professor="Thiago Salhab Alves" data-disciplina="Design Digital">
                             <td>05</td>
@@ -112,38 +81,39 @@
                             <td>Thiago Salhab Alves</td>
                             <td>Design Digital</td>
                             <td>Indeferido</td>
-                            <td class="centro"><a href=""><img src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
                         </tr>
-                        <tr data-professor="José Gonçalves Pinto Junior" data-disciplina="Algoritmo e lógica de programação">
+                        <tr data-professor="José Gonçalves Pinto Junior"
+                            data-disciplina="Algoritmo e lógica de programação">
                             <td>06</td>
                             <td>12/06/2024</td>
                             <td>José Gonçalves Pinto Junior</td>
                             <td>Algoritmo e lógica de programação</td>
                             <td>Deferido</td>
-                            <td class="centro"><a href=""><img src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
                         </tr>
-                        <tr data-professor="Edison Kazuo Igarashi" data-disciplina="Sistemas Operacionais e Redes de Computadores">
+                        <tr data-professor="Edison Kazuo Igarashi"
+                            data-disciplina="Sistemas Operacionais e Redes de Computadores">
                             <td>07</td>
                             <td>17/06/2024</td>
                             <td>Edison Kazuo Igarashi</td>
                             <td>Sistemas Operacionais e Redes de Computadores</td>
                             <td>Deferido</td>
-                            <td class="centro"><a href=""><img src="../../assets/images/analisar.png" class="iconeAnalisar"></a></td>
                         </tr>
-                        
+
                     </tbody>
                 </table>
             </div>
-        </div>            
+        </div>
     </main>
     <footer class="site-footer">
         <div class="footer">
             <img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
-            <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista - CEP: 13974-080</p>
+            <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista -
+                CEP: 13974-080</p>
             <p class="rodape">Telefone: (19) 3843-1996 | (19) 3863-5210 (WhatsApp)</p>
             <p class="rodape">&copy; 2024 Equipe 6Tec. Todos os direitos reservados.</p>
         </div>
     </footer>
 
 </body>
+
 </html>
