@@ -99,7 +99,13 @@ window.addEventListener("load", () => {
                 inputPeriodoDias.min = 1;
             }
 
-            inputPeriodoDias.value = intervaloFixo === "1" ? maxDias : "1";
+            let idTipoFalta = optionFalta.value;
+            //Licença-Saúde (Atestado médico igual ou superior a 2 dias)
+            if (idTipoFalta == "3") {
+                inputPeriodoDias.min = 2;
+            }
+
+            inputPeriodoDias.value = inputPeriodoDias.min;
         } else if (tipoIntervalo == "horas") {
             labelDataInicialFalta.textContent = "Data da Falta";
             divPeriodoDias.classList.add("d-none");
