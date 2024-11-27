@@ -107,7 +107,8 @@ $formulariosCoordenador = controllerJustificativasFaltas('busca_faltas_coordenad
                             <td><?= ucfirst($formularioCoordenador['JUF_status']) ?></td>
                             <td>
                                 <?php if ($formularioCoordenador['JUF_status'] == 'em análise') : ?>
-                                    <a href="avaliar-falta.php?id_justificativa=<?= $formularioCoordenador['JUF_id'] ?>">Avaliar</a>
+                                    <a href="../../scripts/gera-pdf-formulario.php?id_justificativa=<?= $formularioCoordenador['JUF_id'] .
+                                                                                                        '&url_destino=' . caminhoAbsoluto('views/coordenador/avaliar-falta.php', true) ?>">Avaliar</a>
                                 <?php else: ?>
                                     <span>Analisado</span>
                                 <?php endif; ?>

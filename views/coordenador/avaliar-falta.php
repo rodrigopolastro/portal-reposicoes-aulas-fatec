@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/utilidades.css">
     <title>Formulário enviado - Justificativa de Falta</title>
 
 </head>
+
 <body>
     <header>
         <div class="topo">
@@ -24,11 +27,17 @@
     </header>
     <main>
         <h1>Justificativa de Falta</h1>
-        
-        <div class="form-respondido">
+
+        <!-- <div class="form-respondido">
             <iframe src="../../assets/pdfs/exemplo-pdf-justificativa.pdf" width="100%" height="600px">
-                Seu navegador não suporta visualização de PDF. 
+                Seu navegador não suporta visualização de PDF.
                 <a href="../../assets/pdfs/exemplo-pdf-justificativa.pdf">Clique aqui para visualizar o PDF</a>.
+            </iframe>
+        </div> -->
+        <div class="w-100 vh-100 d-flex justify-content-center">
+            <iframe src=" ../../private/temp_file.pdf" class="w-75 h-100">
+                Seu navegador não suporta visualização de PDF.
+                <a href="../../private/temp_file.pdf">Clique aqui para visualizar o PDF</a>.
             </iframe>
         </div>
 
@@ -36,7 +45,7 @@
         <div class="topo-form">
             <form id="analise-coordenador" method="POST" action="../../controllers/justificativas-faltas.php">
                 <input type="hidden" name="acao_justificativas_faltas" value="avalia_justificativa">
-                <input type="hidden" name="id_justificativa" value="<?=$_GET['id_justificativa']?>">
+                <input type="hidden" name="id_justificativa" value="<?= $_GET['id_justificativa'] ?>">
                 <label for="deferimento"><strong>Esta Justificativa de Falta está:</strong></label><br><br>
                 <input type="radio" id="deferido" name="deferimento" value="deferido">
                 <label for="deferido">Deferida</label>
@@ -47,7 +56,7 @@
                     <label for="feedback"><strong>Feedback:</strong></label><br><br>
                     <textarea name="feedback" id="txtFeedback" rows="4" cols="30"></textarea>
                 </div>
-        
+
                 <input type="submit" value="Enviar">
                 <br><br><br>
 
@@ -55,25 +64,25 @@
 
             </form>
         </div>
-        
+
         <script>
             // verificar quando o rádio "Indeferido" é selecionado
             document.addEventListener("DOMContentLoaded", function() {
                 var radioIndeferido = document.getElementById("indeferido");
                 var radioDeferido = document.getElementById("deferido");
                 var feedbackDiv = document.getElementById("feedback");
-        
+
                 radioIndeferido.addEventListener("change", function() {
                     if (radioIndeferido.checked) {
-                        feedbackDiv.style.display = "block";  // Mostra o campo de feedback
+                        feedbackDiv.style.display = "block"; // Mostra o campo de feedback
                     } else {
-                        feedbackDiv.style.display = "none";   // Esconde o campo de feedback se não estiver selecionado
+                        feedbackDiv.style.display = "none"; // Esconde o campo de feedback se não estiver selecionado
                     }
                 });
 
                 radioDeferido.addEventListener("change", function() {
                     if (radioDeferido.checked) {
-                        feedbackDiv.style.display = "none";  // Esconde o campo de feedback se o "Deferido" for selecionado
+                        feedbackDiv.style.display = "none"; // Esconde o campo de feedback se o "Deferido" for selecionado
                     }
                 });
             });
@@ -90,4 +99,5 @@
     </footer>
 
 </body>
+
 </html>
