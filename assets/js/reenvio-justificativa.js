@@ -103,47 +103,29 @@ async function preencheDadosFormulario(justificativaFalta, datasAusencias) {
     );
     tipoFaltaSelecionada.checked = true;
 
+    //Preenche input que armazena o tipo de intervalo da falta ("dias" ou "horas")
+    document.getElementById("inputTipoIntervalo").value =
+        tipoFaltaSelecionada.dataset.tipoIntervalo;
+
+    //Preenche data final, periodo de dias e data da faltqa
     let divDataInicialFalta = document.getElementById("divDataInicialFalta");
     divDataInicialFalta.classList.remove("d-none");
-
     let dataInicial = datasAusencias[0].HRA_data_falta;
-    let dataFinal = datasAusencias.pop.HRA_data_falta;
+    let dataFinal = datasAusencias[datasAusencias.length - 1].HRA_data_falta;
     let periodoDias = justificativaFalta.JUF_quantidade_dias;
-
     document.getElementById("inputDataInicialFalta").value = dataInicial;
     document.getElementById("inputPeriodoDias").value = periodoDias;
     document.getElementById("inputDataFinalFalta").value = dataFinal;
 
+    //Verifica se o professor tem aulas no periodo selecionado
     await buscaAulasProfessorData(dataInicial, periodoDias);
 
+    //Exibe componente relativo a tipo de intervalo selecionado
     if (justificativaFalta.TPF_tipo_intervalo == "dias") {
         document.getElementById("divPeriodoDias").classList.remove("d-none");
     } else if (justificativaFalta.TPF_tipo_intervalo == "horas") {
         document.getElementById("divPeriodoHoras").classList.remove("d-none");
     }
-
-    // let dataFinal = datasAusencias.pop.HRA_data_falta;
 }
-
-// if ($formulario['TPF_tipo_intervalo'] == 'dias') {
-//     $dataInicial = $datasAusencias[0]['HRA_data_falta'] ?? '.';
-//     $dataFinal = end($datasAusencias)['HRA_data_falta'] ?? '.';
-
-//     if ($dataInicial == $dataFinal) {
-//         $strPeriodoFormatado = (new DateTimeImmutable($dataInicial))->format('d/m/y');
-//     } else {
-//         $dataInicialFormatada = (new DateTimeImmutable($dataInicial))->format('d/m/y');
-//         $dataFinalFormatada = (new DateTimeImmutable($dataFinal))->format('d/m/y');
-//         $strPeriodoFormatado = $dataInicialFormatada . ' a ' . $dataFinalFormatada;
-//     }
-// } else if ($formulario['TPF_tipo_intervalo'] == 'horas') {
-//     $dataFalta = $datasAusencias[0]['HRA_data_falta'];
-//     $horarioInicial = $datasAusencias[0]['HRF_horario_inicio'];
-//     $horarioFinal = end($datasAusencias)['HRF_horario_fim'];
-
-//     $strPeriodoFormatado =
-//         (new DateTimeImmutable($dataFalta))->format('d/m/y') .
-//         ', das ' . $horarioInicial . ' às ' . $horarioFinal;
-// }
 
 carregaFormulario();

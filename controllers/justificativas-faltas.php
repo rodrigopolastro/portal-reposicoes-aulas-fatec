@@ -34,6 +34,10 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
             break;
 
         case 'cria_justificativa_falta':
+            // echo '<pre>';
+            // print_r($params);
+            // echo '</pre>';
+            // break;
             try {
                 global $idUsuarioLogado; // Ana Célia
                 $idNovaJustificativa = insertJustificativaFalta([
