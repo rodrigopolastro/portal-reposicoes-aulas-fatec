@@ -141,20 +141,26 @@ for ($i = 0; $i < count($datasAusencias); $i++) {
     // MultiCell para quebrar o texto da coluna "Disciplina"
     $x = $pdf->GetX(); // Posição atual do cursor em X
     $y = $pdf->GetY();
-    foreach ($disciplinas as $disciplina) {
-        $pdf->MultiCell(
-            50,                          // Largura
-            10,                          // Altura da linha
-            $disciplina['DCP_nome'] ?? 'N/A',  // Texto da disciplina
-            1,                           // Com borda
-            'C',                         // Alinhamento centralizado
-            $fill                        // Fundo alternado
-        );
-    } // Posição atual do cursor em Y
 
-    $pdf->SetXY($x + 50, $y); // Avança o cursor para a próxima célula
-    $pdf->Ln(10);             // Salta para a próxima linha
-    $fill = !$fill;           // Alterna cor de fundo
+    // Coluna "Data da Falta"
+    $pdf->MultiCell(40, 10, $data['HRA_data_falta'] ?? 'N/A', 1, 'C', $fill, 0);
+    $pdf->SetXY($x + 40, $y);
+
+    // Coluna "Data da Reposição"
+    $pdf->MultiCell(40, 10, $dataReposicao, 1, 'C', $fill, 0);
+    $pdf->SetXY($x + 80, $y);
+
+    // Coluna "Horário"
+    $pdf->MultiCell(60, 10, $horario, 1, 'C', $fill, 0);
+    $pdf->SetXY($x + 140, $y);
+
+    // Coluna "Disciplina" (usar quebra de linha automática)
+    $disciplinaText = implode("\n", array_map(fn($d) => $d['DCP_nome'] ?? 'N/A', $disciplinas));
+    $pdf->MultiCell(50, 10, $disciplinaText, 1, 'C', $fill);
+
+    // Alterna cor de fundo e salta para a próxima linha
+    $pdf->Ln();
+    $fill = !$fill;
 }
 $pdf->Ln(10); // Espaço antes da imagem
 
