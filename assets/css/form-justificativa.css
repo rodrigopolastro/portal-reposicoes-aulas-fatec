@@ -1,3 +1,9 @@
 .btn-disabled {
     background-color: #37627092 !important;
 }
+
+#pCadastroNegado {
+    color: #a50000;
+    font-weight: 600;
+    font-size: 18px;
+}

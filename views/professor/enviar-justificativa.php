@@ -58,7 +58,7 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                         <option id="optionJustificada" value="falta_justificada">Falta Justificada</option>
                         <option id="optionInjustificada" value="falta_injustificada">Falta Injustificada</option>
                     </select>
-                    <br/><br/>
+                    <br /><br />
                 </div>
                 <div id="divFaltasLicencaMedica"
                     data-categoria-falta="Licença e Falta Médica"
@@ -76,7 +76,7 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                                 <label for="radioTipoFalta<?= $tipoFalta['TPF_id'] ?>">
                                     <?= $tipoFalta['TPF_descricao'] ?>
                                 </label>
-                                <br/><br/>
+                                <br /><br />
                             </div>
                         <?php endif ?>
                     <?php endforeach ?>
@@ -98,7 +98,7 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                                 <label for="radioTipoFalta<?= $tipoFalta['TPF_id'] ?>">
                                     <?= $tipoFalta['TPF_descricao'] ?>
                                 </label>
-                                <br/><br/>
+                                <br /><br />
                             </div>
                         <?php endif ?>
                     <?php endforeach ?>
@@ -120,7 +120,7 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                                 <label for="radioTipoFalta<?= $tipoFalta['TPF_id'] ?>">
                                     <?= $tipoFalta['TPF_descricao'] ?>
                                 </label>
-                                <br/><br/>
+                                <br /><br />
                             </div>
                         <?php endif ?>
                     <?php endforeach ?>
@@ -142,7 +142,7 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                                 <label for="radioTipoFalta<?= $tipoFalta['TPF_id'] ?>">
                                     <?= $tipoFalta['TPF_descricao'] ?>
                                 </label>
-                                <br/><br/>
+                                <br /><br />
                             </div>
                         <?php endif ?>
                     <?php endforeach ?>
@@ -150,39 +150,39 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                 <div>
                     <div>
                         <div id="divDataInicialFalta" class="d-none">
-                        <br/>
+                            <br />
                             <label id="labelDataInicialFalta" for="inputDataInicialFalta">Data Inicial da Falta: </label>
                             <input type="date" id="inputDataInicialFalta" name="data_inicial_falta" class="dataFalta">
                         </div>
-                        <br/><br/>
+                        <br /><br />
                         <div id="divPeriodoDias" class="d-none">
                             <label for="inputPeriodoDias">Dias Afastado: </label>
                             <input type="number" id="inputPeriodoDias" name="quantidade_dias" min="1" step="1" value="1" class="dias">
                             <label for="inputDataFinalFalta">Data Final da Falta: </label>
                             <input type="date" id="inputDataFinalFalta" disabled>
-                            <br/><br/>
+                            <br /><br />
                         </div>
                         <div id="divPeriodoHoras" class="d-none">
                             <div>
                                 <span>Tipo da Falta por Horário</span>
-                                <br/><br/>
+                                <br /><br />
                                 <div>
                                     <input type="radio" name="tipo_falta_horas" id="inputRadioAtraso" value="atraso" checked>
                                     <label for="inputRadioAtraso">Atraso</label>
                                 </div>
-                                <br/><br/>
+                                <br /><br />
                                 <div>
                                     <input type="radio" name="tipo_falta_horas" id="inputRadioSaida" value="saida_antecipada">
                                     <label for="inputRadioSaida">Saída Antecipada</label>
                                 </div>
-                                <br/>
+                                <br />
                             </div>
                             <div>
                                 <label id="labelHorarioFalta" for="inputHorarioFalta">Chegada Entre:</label>
                                 <select id="selectHorarioFalta" disabled>
                                     <option value="">Informe a data primeiro</option>
                                 </select>
-                                <br/><br/>
+                                <br /><br />
                             </div>
                         </div>
                     </div>
@@ -194,6 +194,9 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                     <div id="divMotivoFalta" class="d-none">
                         <label for="textareaMotivoFalta">Motivo da Falta</label>
                         <textarea name="texto_justificativa" id="textareaMotivoFalta"></textarea>
+                    </div>
+                    <div>
+                        <p id="pCadastroNegado" class="d-none">Cadastro negado: Você não ministra nenhuma aula no período!</p>
                     </div>
                     <div>
                         <input type="submit" value="Enviar" id="btnEnviar">

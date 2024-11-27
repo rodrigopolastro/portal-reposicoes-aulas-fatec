@@ -12,6 +12,7 @@ const inputDataInicialFalta = document.getElementById("inputDataInicialFalta");
 const inputDataFinalFalta = document.getElementById("inputDataFinalFalta");
 const inputTipoIntervalo = document.getElementById("inputTipoIntervalo");
 const divAnexo = document.getElementById("divAnexo");
+const pCadastroNegado = document.getElementById("pCadastroNegado");
 
 const listaOptionsFaltas = document.getElementsByClassName("option-falta");
 selectCategoriaFalta.addEventListener("change", () => {
@@ -227,10 +228,9 @@ async function buscaAulasProfessorData(dataFalta, quantidadeDias) {
                             opcaoSelecionada.dataset.idHorario;
                         geraListaHorariosFalta(Number(idHorarioSelecionado));
                     });
+                    pCadastroNegado.classList.add("d-none");
                 } else {
-                    alert(
-                        "Cadastro negado: Você não ministra nenhuma aula no período!"
-                    );
+                    pCadastroNegado.classList.remove("d-none");
                     desabilitaHorarioFalta();
                 }
             });
