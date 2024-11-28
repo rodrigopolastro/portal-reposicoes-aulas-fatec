@@ -22,3 +22,37 @@ function selectHorariosFatecData($dataAula)
     $horariosFatec = $sql->fetchAll(PDO::FETCH_ASSOC);
     return $horariosFatec;
 }
+
+function selectHorariosInicioFim()
+{
+    global $conexao;
+    $sql = $conexao->prepare(
+        "SELECT DISTINCT 
+            HRF_horario_inicio,
+            HRF_horario_fim
+        FROM HORARIOS_FATEC
+        ORDER BY HRF_horario_inicio"
+    );
+
+    $sql->execute();
+    $horariosInicioFim = $sql->fetchAll(PDO::FETCH_ASSOC);
+    return $horariosInicioFim;
+}
+
+function selectHorariosInicioFimSemana()
+{
+    global $conexao;
+    $sql = $conexao->prepare(
+        "SELECT
+            HRF_ordem_dia_semana, 
+            HRF_nome_dia_semana,
+            HRF_horario_inicio,
+            HRF_horario_fim
+        FROM HORARIOS_FATEC
+        ORDER BY HRF_horario_inicio, HRF_ordem_dia_semana"
+    );
+
+    $sql->execute();
+    $horariosInicioFimSemana = $sql->fetchAll(PDO::FETCH_ASSOC);
+    return $horariosInicioFimSemana;
+}

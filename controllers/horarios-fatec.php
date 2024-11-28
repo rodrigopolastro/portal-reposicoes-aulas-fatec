@@ -20,6 +20,16 @@ function controllerHorariosFatec($acao_horarios_fatec, $params = [])
             return $sequenciaDias;
             break;
 
+        case 'busca_horarios_inicio_fim':
+            $horariosInicioFim = selectHorariosInicioFim();
+            return $horariosInicioFim;
+            break;
+
+        case 'busca_horarios_inicio_fim_semana':
+            $horariosInicioFimSemana = selectHorariosInicioFimSemana();
+            return $horariosInicioFimSemana;
+            break;
+
         default:
             return [
                 'sucesso' => false,
