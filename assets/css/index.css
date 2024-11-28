@@ -13,7 +13,6 @@
     width: 70%;
     margin-bottom: 20px;
     margin-top: 20px;
-
 }
 
 .fundo {
@@ -40,14 +39,13 @@
     justify-content: end;
 }
 
-
-.inicio{
+.inicio {
     background-color: #000;
     height: 5px;
 }
 
-h1{
-    font-family: 'verdana';
+h1 {
+    font-family: "verdana";
     font-style: normal;
     font-weight: 400;
     font-size: 36px;
@@ -55,11 +53,11 @@ h1{
     margin-top: 20px;
     margin-left: 50px;
     margin-bottom: 30px;
-    color: #004F68;
+    color: #004f68;
 }
 
-h2{
-    font-family: 'verdana';
+h2 {
+    font-family: "verdana";
     font-style: normal;
     font-weight: 400;
     font-size: 28px;
@@ -67,11 +65,11 @@ h2{
     margin-top: 20px;
     margin-left: 50px;
     margin-bottom: 30px;
-    color: #004F68;
+    color: #004f68;
 }
 
-h3{
-    font-family: 'verdana';
+h3 {
+    font-family: "verdana";
     font-style: normal;
     font-weight: 400;
     font-size: 28px;
@@ -79,11 +77,11 @@ h3{
     margin-top: 20px;
     margin-left: 50px;
     margin-bottom: 30px;
-    color: #004F68;
+    color: #004f68;
 }
 
-h4{
-    font-family: 'verdana';
+h4 {
+    font-family: "verdana";
     text-decoration: solid;
     font-weight: 400;
     font-size: 22px;
@@ -91,41 +89,40 @@ h4{
     margin-top: 30px;
     margin-left: 50px;
     margin-bottom: 30px;
-    color: #004F68;
-
+    color: #004f68;
 }
 
-p{
-    font-family: 'verdana'; 
-    font-size: 16px; 
-    color: #004F68;
+p {
+    font-family: "verdana";
+    font-size: 16px;
+    color: #004f68;
     margin-right: 10px;
     margin-bottom: 20px;
 }
 
-.p-icone{
+.p-icone {
     font-size: 18px;
 }
 
-.icone{
+.icone {
     width: 60px;
     transition: width 0.4s ease;
+    padding-bottom: 10px;
 }
-.icone:hover{
+.icone:hover {
     width: 70px;
 }
 
 /*index*/
 
-.topoIndex{
+.topoIndex {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.lateralEsquerda{
-    margin-left: 50px;
+.lateralEsquerda {
     margin-right: 70px;
     width: 70%;
     height: 250px;
@@ -134,55 +131,50 @@ p{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content:center;
+    justify-content: center;
     align-content: center;
     text-align: justify;
 }
 
-.lateralDireita{
-    margin: 50px;
-    width: 95%;
-    height: 500px;
+.lateralDireita {
+    margin: 40px 0;
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
     flex-wrap: nowrap;
 }
 
-.notificacao{
+.notificacao {
     font-family: verdana;
     font-size: 20px;
     width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    justify-self: center;
     align-items: center;
-    margin-bottom: 50px;
-    margin-right: 70px ;
-    background-color: #EBEBEB;
+    background-color: #ebebeb;
     border-radius: 10px;
-    padding: 30px;
+    /* padding: 30px; */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.item-index{
-    color: #004F68;
+.item-index {
+    color: #004f68;
     font-family: verdana;
     font-size: 20px;
-    width: 40%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
-    margin-right: 70px ;
-    background-color: #EBEBEB;
+    /* margin-bottom: 50px; */
+    background-color: #ebebeb;
     border-radius: 10px;
-    padding: 30px;
+    padding: 55px 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.cursos{
+.cursos {
     margin-left: 10%;
     width: 80%;
     display: flex;
@@ -191,7 +183,7 @@ p{
     justify-content: space-around;
 }
 
-.item-index-se{
+.item-index-se {
     font-family: verdana;
     font-size: 20px;
     width: 35%;
@@ -199,37 +191,33 @@ p{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #004F68;
+    background-color: #004f68;
     margin-right: 100px;
     margin-bottom: 50px;
     border-radius: 10px;
     padding: 30px;
-
 }
 
-.link-index{
-    color: #004F68;
+.link-index {
+    color: #004f68;
     text-decoration: none;
 }
 
-
-.link-index-se{
+.link-index-se {
     color: #fff;
     text-decoration: none;
 }
 
-
-.titulo-inicio{
+.titulo-inicio {
     color: #8b0000;
     font-size: 42px;
     margin-left: 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
-
 }
 
-.titulo-inicio2{
+.titulo-inicio2 {
     color: #8b0000;
     font-size: 42px;
     display: flex;
@@ -238,7 +226,7 @@ p{
     margin-top: 20px;
 }
 
-.parag-inicio{
+.parag-inicio {
     color: #2e2e2e;
     font-size: 18px;
 }
@@ -249,26 +237,25 @@ main {
     padding: 20px;
 }
 
-.site-footer{
+.site-footer {
     bottom: 0;
 }
 
 .footer {
-    background-color: #222; 
-    color: #fff;          
-    text-align: center;     
-       
-    position:relative;
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+
+    position: relative;
     bottom: 0;
     width: 100%;
-    margin-top:30px;
+    margin-top: 30px;
 }
 
-.logo-governo-rodape{
+.logo-governo-rodape {
     margin-bottom: 10px;
 }
 
-p.rodape{
+p.rodape {
     color: #aaa;
 }
-
