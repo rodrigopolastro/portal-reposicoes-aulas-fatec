@@ -12,6 +12,7 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
     <link rel="stylesheet" href="../../assets/css/utilidades.css">
     <link rel="stylesheet" href="../../assets/css/form-justificativa.css">
     <title>Formulário de Justificativa de Falta</title>
@@ -28,6 +29,9 @@ $tiposFaltas = controllerTiposFaltas('busca_tipos_faltas');
                 <input type="hidden" name="acao_justificativas_faltas" value="cria_justificativa_falta">
                 <input id="inputTipoIntervalo" type="hidden" name="tipo_intervalo" value="">
                 <input id="inputIdsHorariosFalta" type="hidden" name="ids_horarios_falta" value="">
+                <?php if (isset($_GET['editar_justificativa'])): ?>
+                    <input id="" type="hidden" name="id_justificativa_editada" value="<?= $_GET['editar_justificativa'] ?>">
+                <?php endif; ?>
                 <div class="formcomeço">
                     <div class="item-pequeno">
                         <p><strong>Nome:</strong> </p>

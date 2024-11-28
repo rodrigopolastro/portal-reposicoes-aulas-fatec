@@ -39,6 +39,10 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
             // echo '</pre>';
             // break;
             try {
+                if (isset($params['id_justificativa_editada'])) {
+                    deleteJustificativaFalta($params['id_justificativa_editada']);
+                }
+
                 global $idUsuarioLogado; // Ana Célia
                 $idNovaJustificativa = insertJustificativaFalta([
                     'id_professor' => $idUsuarioLogado,
