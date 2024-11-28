@@ -90,8 +90,8 @@ h1 {
     font-size: 36px;
     line-height: 54px;
     margin-top: 20px;
-    margin-left: 50px;
-    margin-bottom: 30px;
+    /*margin-left: 50px; */
+    /* margin-bottom: 30px; */
     color: #004f68;
 }
 
@@ -523,7 +523,7 @@ input[type="reset"]:focus {
 
 /*estilização de tabela*/
 table {
-    width: 70%;
+    width: 75%;
     border-collapse: separate;
     border-spacing: 0;
     border: 1px solid #ccc;

@@ -31,7 +31,6 @@ body {
     width: 70%;
     margin-bottom: 20px;
     margin-top: 20px;
-
 }
 
 .fundo {
@@ -193,7 +192,7 @@ input[type="checkbox"] {
     display: inline-block;
     width: 20px;
     height: 20px;
-    background-color: #62C9E0;
+    background-color: #62c9e0;
     border-radius: 4px;
     vertical-align: middle;
     cursor: pointer;
@@ -217,11 +216,11 @@ input[type="checkbox"]:checked + .custom-checkbox::after {
 input[type="text"] {
     width: 60%;
     padding: 6px;
-    border: 1px solid #62C9E0;
+    border: 1px solid #62c9e0;
     border-radius: 20px;
     font-size: 16px;
     margin-bottom: 10px;
-    background-color: #62C9E0;
+    background-color: #62c9e0;
     transition: box-shadow 0.3s;
     transition: border-color 0.3s;
 }
@@ -237,11 +236,11 @@ input[type="text"]:focus {
 input[type="text"].motivo {
     width: 30%;
     padding: 6px;
-    border: 1px solid #62C9E0;
+    border: 1px solid #62c9e0;
     border-radius: 20px;
     font-size: 16px;
     margin-bottom: 10px;
-    background-color: #62C9E0;
+    background-color: #62c9e0;
     transition: box-shadow 0.3s;
     transition: border-color 0.3s;
 }
@@ -258,11 +257,11 @@ input[type="text"].motivo:focus {
 input[type="number"] {
     width: 60%;
     padding: 6px;
-    border: 1px solid #62C9E0;
+    border: 1px solid #62c9e0;
     border-radius: 20px;
     font-size: 16px;
     margin-bottom: 10px;
-    background-color: #62C9E0;
+    background-color: #62c9e0;
     transition: box-shadow 0.3s;
     transition: border-color 0.3s;
 }
@@ -439,7 +438,7 @@ input[type="submit"]:focus {
 }
 
 input[type="reset"] {
-    background-color: #62C9E0;
+    background-color: #62c9e0;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -536,7 +535,8 @@ table {
     border-radius: 10px;
     overflow: hidden;
 }
-th, td {
+th,
+td {
     padding: 10px;
     color: #2e2e2e;
 }
@@ -849,7 +849,7 @@ textarea:hover {
 }
 
 /* Estilo para o botão Exportar */
-.d-flex .btnExportar  {
+.d-flex .btnExportar {
     background-color: #004f68 !important;
     color: white !important;
     border: none;
@@ -862,7 +862,7 @@ textarea:hover {
 }
 
 .d-flex .btnExportar:hover {
-    background-color: #233254 !important; 
+    background-color: #233254 !important;
 }
 
 /* Estilo para o botão Cancelar */
@@ -883,7 +883,7 @@ textarea:hover {
     background-color: #5d150c !important; /* vermelho mais escuro */
 }
 
-.btnImprimirFormulario{
+.btnImprimirFormulario {
     background-color: #004f68 !important;
     color: white !important;
     border: none;
@@ -895,20 +895,20 @@ textarea:hover {
     transition: background-color 0.3s ease;
 }
 .btnImprimirFormulario:hover {
-    background-color: #233254 !important; 
+    background-color: #233254 !important;
 }
 
 .linkTabela {
-    color: #004f68; 
-    font-weight: bold; 
-    text-decoration: none; 
-    padding: 10px 10px; 
+    color: #004f68;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 10px;
     border-radius: 4px;
     transition: color 0.3s ease;
 }
 
 .linkTabela:hover {
-    text-decoration: underline; 
+    text-decoration: underline;
     font-size: 18px;
 }
 a button {

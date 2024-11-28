@@ -23,7 +23,9 @@ $justificativasFaltas = controllerJustificativasFaltas('busca_justificativas_fal
     require_once '../components/cabecalho-coordenador.php';
     ?>
     <main>
-        <h1>Justificativa de Faltas Recebidas</h1>
+        <div class="d-flex justify-content-center">
+            <h1 class="w-75">Justificativas de Faltas Recebidas</h1>
+        </div>
         <div class="table">
             <table id="tabela-recebidos">
                 <thead>
@@ -82,102 +84,10 @@ $justificativasFaltas = controllerJustificativasFaltas('busca_justificativas_fal
                 </tbody>
             </table>
         </div>
-        </div>
-
-        <script>
-            // Função para aplicar os filtros
-            function aplicarFiltro() {
-                var professorFiltro = document.getElementById('filterProfessor').value;
-                var disciplinaFiltro = document.getElementById('filterDisciplina').value;
-
-                var tabela = document.getElementById('tabela-recebidos');
-                var linhas = tabela.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-
-                for (var i = 0; i < linhas.length; i++) {
-                    var professor = linhas[i].getAttribute('data-professor');
-                    var disciplina = linhas[i].getAttribute('data-disciplina');
-
-                    if ((professorFiltro === "" || professor === professorFiltro) &&
-                        (disciplinaFiltro === "" || disciplina === disciplinaFiltro)) {
-                        linhas[i].classList.remove('hidden');
-                    } else {
-                        linhas[i].classList.add('hidden');
-                    }
-                }
-                return false; // Evita o envio do formulário
-            }
-
-            // Função para limpar os filtros
-            function limparFiltro() {
-                var tabela = document.getElementById('tabela-recebidos');
-                var linhas = tabela.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-
-                for (var i = 0; i < linhas.length; i++) {
-                    linhas[i].classList.remove('hidden');
-                }
-            }
-        </script>
-
-
-        <script>
-            // Função para aplicar os filtros
-            function aplicarFiltroFinalizados() {
-                var professorFiltro = document.getElementById('filterProfessorF').value;
-                var disciplinaFiltro = document.getElementById('filterDisciplinaF').value;
-                var statusFiltro = document.getElementById('filterStatusF').value;
-
-                var tabela = document.getElementById('tabela-finalizados');
-                var linhas = tabela.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-
-                for (var i = 0; i < linhas.length; i++) {
-                    var professor = linhas[i].getAttribute('data-professor');
-                    var disciplina = linhas[i].getAttribute('data-disciplina');
-                    var status = linhas[i].getAttribute('data-status');
-
-                    if ((professorFiltro === "" || professor === professorFiltro) &&
-                        (disciplinaFiltro === "" || disciplina === disciplinaFiltro) &&
-                        (statusFiltro === "" || status === statusFiltro)) {
-                        linhas[i].classList.remove('hidden');
-                    } else {
-                        linhas[i].classList.add('hidden');
-                    }
-                }
-                return false; // Evita o envio do formulário
-            }
-
-            // Função para limpar os filtros
-            function limparFiltroFinalizados() {
-                var tabela = document.getElementById('tabela-finalizados');
-                var linhas = tabela.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-
-                for (var i = 0; i < linhas.length; i++) {
-                    linhas[i].classList.remove('hidden');
-                }
-            }
-        </script>
-
-        <script>
-            document.getElementById('botao-recebidos').addEventListener('click', function() {
-                document.getElementById('recebidos').style.display = 'block';
-                document.getElementById('finalizados').style.display = 'none';
-            });
-
-            document.getElementById('botao-finalizados').addEventListener('click', function() {
-                document.getElementById('recebidos').style.display = 'none';
-                document.getElementById('finalizados').style.display = 'block';
-            });
-        </script>
-
     </main>
-    <footer class="site-footer">
-        <div class="footer">
-            <img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo-rodape">
-            <p class="rodape">Fatec Ogari de Castro Pacheco - Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista - CEP: 13974-080</p>
-            <p class="rodape">Telefone: (19) 3843-1996 | (19) 3863-5210 (WhatsApp)</p>
-            <p class="rodape">&copy; Equipe 6Tec. Todos os direitos reservados.</p>
-        </div>
-    </footer>
-
+    <?php
+    require '../components/rodape';
+    ?>
 </body>
 
 </html>

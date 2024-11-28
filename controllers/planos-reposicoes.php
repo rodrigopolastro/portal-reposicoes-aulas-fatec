@@ -64,6 +64,11 @@ function controllerPlanosReposicoes($acao_planos_reposicoes, $params = [])
             }
             break;
 
+        case 'busca_planos_reposicoes_coordenador':
+            $planosReposicoes = selectPlanosReposicoesCoordenador();
+            return $planosReposicoes;
+            break;
+
         default:
             return [
                 'sucesso' => false,
