@@ -163,44 +163,6 @@ $formularios = controllerJustificativasFaltas('busca_formularios_professor');
             </table>
 
         </div>
-        <div class="topo-form d-none">
-            <div class="d-flex justify-content-end w-75">
-                <button id="btnExportar" class="btnExportar">Exportar como PDF</button>
-                <button id="btnCancelar" class="btnCancelar">Cancelar</button>
-            </div>
-        </div>
-        <!-- <script>
-            function aplicarFiltro() {
-                var tipoFiltro = document.getElementById('filterTipo').value;
-                var statusFiltro = document.getElementById('filterStatus').value;
-
-                var tabela = document.getElementById('formTable');
-                var linhas = tabela.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-
-                for (var i = 0; i < linhas.length; i++) {
-                    var tipo = linhas[i].getAttribute('data-tipo');
-                    var status = linhas[i].getAttribute('data-status');
-
-                    if ((tipoFiltro === "" || tipo === tipoFiltro) &&
-                        (statusFiltro === "" || status === statusFiltro)) {
-                        linhas[i].classList.remove('hidden');
-                    } else {
-                        linhas[i].classList.add('hidden');
-                    }
-                }
-                return false; // Evitar o envio do formulÃ¡rio
-            }
-
-            function limparFiltro() {
-                var tabela = document.getElementById('formTable');
-                var linhas = tabela.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-
-                for (var i = 0; i < linhas.length; i++) {
-                    linhas[i].classList.remove('hidden');
-                }
-            }
-        </script> -->
-        <script src="../../assets/js/lista-enviados.js"></script>
     </main>
     <?php
     require_once '../components/rodape.php'

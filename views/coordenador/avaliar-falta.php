@@ -27,13 +27,6 @@
     </header>
     <main>
         <h1>Justificativa de Falta</h1>
-
-        <!-- <div class="form-respondido">
-            <iframe src="../../assets/pdfs/exemplo-pdf-justificativa.pdf" width="100%" height="600px">
-                Seu navegador não suporta visualização de PDF.
-                <a href="../../assets/pdfs/exemplo-pdf-justificativa.pdf">Clique aqui para visualizar o PDF</a>.
-            </iframe>
-        </div> -->
         <div class="w-100 vh-100 d-flex justify-content-center">
             <iframe src=" ../../private/temp_file.pdf" class="w-75 h-100">
                 Seu navegador não suporta visualização de PDF.

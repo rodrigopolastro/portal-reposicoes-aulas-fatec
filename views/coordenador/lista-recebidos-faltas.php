@@ -76,8 +76,7 @@ $justificativasFaltas = controllerJustificativasFaltas('busca_justificativas_fal
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <?= empty($justificativaFalta['JUF_feedback_coordenador']) ? '...'
-                                    : $justificativaFalta['JUF_feedback_coordenador'] ?>
+                                <?= $justificativaFalta['JUF_feedback_coordenador'] ?? "Não possui" ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -86,7 +85,7 @@ $justificativasFaltas = controllerJustificativasFaltas('busca_justificativas_fal
         </div>
     </main>
     <?php
-    require '../components/rodape';
+    require '../components/rodape.php';
     ?>
 </body>
 

@@ -81,8 +81,7 @@ $planosReposicoes = controllerPlanosReposicoes('busca_planos_reposicoes_coordena
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <?= empty($planoReposicao['PLR_status']) ? '...'
-                                    : $planoReposicao['PLR_status'] ?>
+                                <?= $planoReposicao['JUF_feedback_coordenador'] ?? "Não possui" ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
