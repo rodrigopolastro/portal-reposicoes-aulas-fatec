@@ -80,6 +80,7 @@ $horariosAusencias = controllerHorariosAusencias(
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $contador = 1 ?>
                                 <?php foreach ($horariosAusencias as $horarioAusencia): ?>
                                     <tr>
                                         <?php
@@ -103,14 +104,19 @@ $horariosAusencias = controllerHorariosAusencias(
                                         ?>
                                         <td><?= '(' . $disciplinaAusencia['CUR_sigla'] . ') ' . $disciplinaAusencia['DCP_nome'] ?></td>
                                         <td>
-                                            <input type="date" name="datas-reposicoes[]" id="data-reposicao">
+                                            <div class="d-flex justify-content-center">
+                                                <input type="date" name="datas-reposicoes[]" class="input-data-reposicao" data-ordem-data="<?= $contador ?>">
+                                            </div>
                                         </td>
                                         <td>
-                                            <select name="horarios-reposicoes[]" class="select-horarios-disponiveis" style="width:80%;">
-                                                <option value="">Informe a data da reposição</option>
-                                            </select>
+                                            <div class="d-flex justify-content-center">
+                                                <select disabled name="horarios-reposicoes[]" class="select-horarios-disponiveis" id="selectHorarioReposicao<?= $contador ?>">
+                                                    <option value="">Informe uma data válida.</option>
+                                                </select>
+                                            </div>
                                         </td>
                                     </tr>
+                                    <?php $contador++; ?>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

@@ -1,8 +1,26 @@
+const listaInputsDatasReposicoes = document.getElementsByClassName(
+    "input-data-reposicao"
+);
 const listaSelectsHorarios = document.getElementsByClassName(
     "select-horarios-disponiveis"
 );
 
-async function buscaHorariosFatecData(dataFalta) {
+Array.from(listaInputsDatasReposicoes).forEach((inputDataReposicao) => {
+    inputDataReposicao.addEventListener("change", () => {
+        let dataFalta = inputDataReposicao.value;
+        let selectDestino = document.getElementById(
+            "selectHorarioReposicao" + inputDataReposicao.dataset.ordemData
+        );
+        buscaHorariosFatecData(dataFalta, selectDestino);
+        // console.log(inputDataReposicao.data);
+    });
+});
+
+// window.addEventListener("load", () => {
+//     buscaHorariosFatecData("2024-11-06");
+// });
+
+async function buscaHorariosFatecData(dataFalta, selectDestino) {
     try {
         fetch("../../controllers/horarios-fatec.php", {
             method: "POST",
@@ -19,26 +37,24 @@ async function buscaHorariosFatecData(dataFalta) {
         })
             .then((response) => response.json())
             .then((horariosDisponiveis) => {
+                selectDestino.length = 0;
+
                 if (horariosDisponiveis.length > 0) {
-                    Array.from(listaSelectsHorarios).forEach(
-                        (selectHorarios) => {
-                            horariosDisponiveis.forEach((horario) => {
-                                console.log(horario.HRF_horario_inicio);
-                                let optionHorario =
-                                    document.createElement("option");
-                                optionHorario.textContent =
-                                    horario.HRF_horario_inicio +
-                                    " - " +
-                                    horario.HRF_horario_fim;
-                                optionHorario.value = horario.HRF_id;
-                                selectHorarios.appendChild(optionHorario);
-                            });
-                        }
-                    );
+                    horariosDisponiveis.forEach((horario) => {
+                        let optionHorario = document.createElement("option");
+                        optionHorario.textContent =
+                            horario.HRF_horario_inicio +
+                            " - " +
+                            horario.HRF_horario_fim;
+                        optionHorario.value = horario.HRF_id;
+                        selectDestino.appendChild(optionHorario);
+                        selectDestino.disabled = false;
+                    });
                 } else {
-                    alert(
-                        "Erro: O sistema não encontrou nenhuma disponível na data informada"
-                    );
+                    let optionVazio = document.createElement("option");
+                    optionVazio.textContent = "Informe uma data válida.";
+                    selectDestino.appendChild(optionVazio);
+                    selectDestino.disabled = true;
                 }
             });
     } catch (erro) {
