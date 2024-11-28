@@ -23,9 +23,18 @@ $datasReposicoes = controllerHorariosReposicoes(
     'busca_datas_reposicoes_justificativa',
     ['id_reposicao' => $justificativa_falta['PLR_id']]
 );
-$dataEnvio = (new DateTime())->format('d/m/Y');
-$statusJustificativa = $justificativa_falta['status'] ?? 'Pendente';
-$feedbackCoordenador = $justificativa_falta['feedback'] ?? 'Nenhum feedback registrado.';
+switch ($justificativa_falta['JUF_status']) {
+    case 'em análise':
+        $statusJustificativa = 'Em Análise';
+        break;
+    case 'deferido':
+        $statusJustificativa = 'Deferida';
+        break;
+    case 'indeferido':
+        $statusJustificativa = 'Indeferida';
+        break;
+}
+$feedbackCoordenador = $justificativa_falta['JUF_feedback'] ?? 'Nenhum feedback registrado.';
 
 // Configuração do PDF
 class CustomTCPDF extends TCPDF
@@ -54,21 +63,22 @@ $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
 $pdf->SetTitle('Formulário de Justificativa de Faltas');
 $pdf->SetFont('helvetica', '', 12);
 $pdf->AddPage();
+$pdf->Ln(3);
+
+$marginLeft = 15; // Margem esquerda
+$marginRight = 15; // Margem direita
+$yPosition = $pdf->GetY(); // Posição Y atual
+$pdf->Line($marginLeft, $yPosition, $pdf->getPageWidth() - $marginRight, $yPosition); // Linha horizontal
 
 
 // Início do conteúdo
 $pdf->SetFont('helvetica', '', 12);
-$pdf->Cell(0, 10, 'Data de envio: ' . $dataEnvio, 0, 1);
+$pdf->Cell(0, 10, 'Data de envio: ' . date_format(date_create($justificativa_falta['JUF_data_envio']), "d/m/y"), 0, 1, 'R');
 
 $pdf->SetLineWidth(0.1); // Define a espessura da linha (fina)
 $pdf->SetDrawColor(0, 0, 0); // Define a cor da linha (preto)
 
-// Ajustar margens da linha
-$marginLeft = 15; // Margem esquerda
-$marginRight = 15; // Margem direita
-$yPosition = $pdf->GetY(); // Posição Y atual
 
-$pdf->Line($marginLeft, $yPosition, $pdf->getPageWidth() - $marginRight, $yPosition); // Linha horizontal
 
 $pdf->Ln(5);
 $pdf->SetTextColor(0, 79, 104);
@@ -93,7 +103,6 @@ $pdf->SetDrawColor(0, 0, 0); // Define a cor da linha (preto)
 $marginLeft = 15; // Margem esquerda
 $marginRight = 15; // Margem direita
 $yPosition = $pdf->GetY(); // Posição Y atual
-
 $pdf->Line($marginLeft, $yPosition, $pdf->getPageWidth() - $marginRight, $yPosition); // Linha horizontal
 
 $pdf->Ln(5);
@@ -109,7 +118,7 @@ foreach ($disciplinas as $disciplina) {
     $pdf->Cell(0, 10, 'Disciplina: ' . $disciplina['DCP_nome'], 0, 1);
 }
 $pdf->SetX(20);
-$pdf->Cell(0, 10, 'Falta referente ao dia: ' . $datasAusencias[0]['HRA_data_falta'], 0, 1);
+$pdf->Cell(0, 10, 'Falta referente ao dia: ' . date_format(date_create($datasAusencias[0]['HRA_data_falta']), "d/m/y"), 0, 1);
 $pdf->SetX(20);
 $pdf->Cell(0, 10, 'Tipo de Falta: ' . $justificativa_falta['TPF_categoria'], 0, 1);
 $pdf->SetX(20);
@@ -149,6 +158,11 @@ $pdf->SetX(20);
 // Plano de reposição de aulas
 
 $pdf->AddPage();
+$pdf->Ln(3);
+$yPosition = $pdf->GetY();
+$pdf->Line($marginLeft, $yPosition, $pdf->getPageWidth() - $marginRight, $yPosition);
+$pdf->SetFont('helvetica', '', 12);
+$pdf->Cell(0, 10, 'Data de envio: ' . date_format(date_create($justificativa_falta['PLR_data_envio']), "d/m/y"), 0, 1, 'R');
 $pdf->SetFont('helvetica', 'B', 14);
 $pdf->Cell(0, 10, 'Plano de Reposição de Aulas', 0, 1, 'C'); // Título centralizado
 $pdf->Ln(5);
@@ -177,7 +191,7 @@ for ($i = 0; $i < count($datasAusencias); $i++) {
     if (isset($datasReposicoes[$i])) {
         $reposicao = $datasReposicoes[$i];
         $dataReposicao = date_format(date_create($reposicao['HRR_data_reposicao']), "d/m/y");
-        $horarioReposicao = $reposicao['HRF_horario_inicio'] . ' - ' . $reposicao['HRF_horario_fim'];
+        $horarioReposicao = $reposicao['HRF_horario_inicio'] . ' às ' . $reposicao['HRF_horario_fim'];
         $dataHorarioReposicao = $dataReposicao . ' - ' . $horarioReposicao;
     }
 
@@ -223,8 +237,11 @@ $pathComprovante = caminhoAbsoluto('private/comprovantes-faltas/comprovanteJusti
 
 if (file_exists($pathComprovante)) {
     $pdf->AddPage();
+    $pdf->Ln(3);
+    $yPosition = $pdf->GetY();
+    $pdf->Line($marginLeft, $yPosition, $pdf->getPageWidth() - $marginRight, $yPosition);
     $pdf->SetFont('helvetica', 'B', 14);
-    $pdf->Cell(0, 10, 'Comprovante:', 0, 1, 'L');
+    $pdf->Cell(0, 10, 'Comprovante da Falta:', 0, 1, 'L');
     $pdf->Ln(5);
 
     // Definir dimensões da imagem do comprovante

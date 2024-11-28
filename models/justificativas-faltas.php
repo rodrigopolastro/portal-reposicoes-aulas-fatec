@@ -37,6 +37,7 @@ function selectJustificativaFalta($idJustificativa)
         "SELECT   
             JUF_id,
             PLR_id,
+            PLR_data_envio,
             JUF_id_tipo_falta,
             TPF_id,
             TPF_categoria,
