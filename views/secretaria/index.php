@@ -13,6 +13,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers
 </head>
 
 <body>
+    <?php
+    require_once '../components/cabecalho-secretaria.php';
+    ?>
     <main>
         <h1 class="titulo-inicio2">Portal para Justificativas de Faltas</h1>
         <h3>Bem-vindo(a)</h2>
@@ -35,7 +38,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers
 
                 <div class="item-index">
                     <p class="p-icone">Desenvolvimento de Software Multiplataforma - DSM</p><br>
-                    <a href="lista-justificativas.html" class="link-index"><img src="../../assets/images/software.png" class="icone"></a>
+                    <a href="lista-processos-finalizados.php" class="link-index"><img src="../../assets/images/software.png" class="icone"></a>
                 </div>
             </div>
             </div>
