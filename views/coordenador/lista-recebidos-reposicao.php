@@ -77,12 +77,12 @@ $planosReposicoes = controllerPlanosReposicoes('busca_planos_reposicoes_coordena
                                     </a>
                                 <?php else: ?>
                                     <div><span>Analisado:</span></div>
-                                    <div><span style="font-weight: bold"><?= ucfirst($planoReposicao['JUF_status']) ?></span></div>
+                                    <div><span style="font-weight: bold"><?= ucfirst($planoReposicao['PLR_status']) ?></span></div>
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <?= empty($planoReposicao['JUF_feedback_coordenador']) ? '...'
-                                    : $planoReposicao['JUF_feedback_coordenador'] ?>
+                                <?= empty($planoReposicao['PLR_status']) ? '...'
+                                    : $planoReposicao['PLR_status'] ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

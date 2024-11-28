@@ -148,3 +148,27 @@ function selectJustificativasFaltasCoordenador()
     $justificativasFaltas = $sql->fetchAll(PDO::FETCH_ASSOC);
     return $justificativasFaltas;
 }
+
+// Formulários que serão exibidos para a secretaria.
+// Um processo está finalizado quando o plano de reposição estiver deferido.
+function selectProcessosFinalizados()
+{
+    global $conexao;
+    $sql = $conexao->prepare(
+        "SELECT   
+            JUF_id,
+            JUF_id_professor,
+            JUF_data_envio,     -- Início do Processo
+            PLR_id,
+            PLR_data_avaliacao, -- Finalização do Processo
+            USR_nome_completo
+        FROM JUSTIFICATIVAS_FALTAS
+        INNER JOIN USUARIOS ON USR_id = JUF_id_professor
+        INNER JOIN PLANOS_REPOSICOES ON PLR_id_justificativa = JUF_id
+                                    AND PLR_status = 'deferido'"
+    );
+
+    $sql->execute();
+    $processosFinalizados = $sql->fetchAll(PDO::FETCH_ASSOC);
+    return $processosFinalizados;
+}

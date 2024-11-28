@@ -151,6 +151,11 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
             return $justificativasFaltas;
             break;
 
+        case 'busca_processos_finalizados':
+            $processosFinalizados = selectProcessosFinalizados();
+            return $processosFinalizados;
+            break;
+
         default:
             return [
                 'sucesso' => false,
