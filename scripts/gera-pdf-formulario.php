@@ -96,7 +96,8 @@ $pdf->Cell(0, 10, $statusJustificativa, 0, 1);
 $pdf->Cell(0, 10, 'Feedback do Coordenador: ' . $feedbackCoordenador, 0, 1);
 
 // Plano de reposição de aulas
-$pdf->Ln(10); // Espaço antes da tabela
+
+$pdf->AddPage();
 $pdf->SetFont('helvetica', 'B', 14);
 $pdf->Cell(0, 10, 'Plano de Reposição de Aulas', 0, 1, 'C'); // Título centralizado
 $pdf->Ln(5);
@@ -107,10 +108,9 @@ $pdf->SetDrawColor(0, 0, 0); // Cor da borda
 $pdf->SetFont('helvetica', 'B', 12);
 
 // Cabeçalho da tabela
-$pdf->Cell(40, 10, 'Data da Falta', 1, 0, 'C', 1);
-$pdf->Cell(40, 10, 'Data da Reposição', 1, 0, 'C', 1);
-$pdf->Cell(60, 10, 'Horário', 1, 0, 'C', 1);
-$pdf->Cell(50, 10, 'Disciplina', 1, 1, 'C', 1);
+$pdf->Cell(60, 10, 'Data da Falta', 1, 0, 'C', 1);
+$pdf->Cell(60, 10, 'Data da Reposição', 1, 0, 'C', 1);
+$pdf->Cell(60, 10, 'Disciplina', 1, 1, 'C', 1);
 
 // Configuração de linhas da tabela
 $pdf->SetFont('helvetica', '', 12);
@@ -118,48 +118,51 @@ $pdf->SetFillColor(240, 240, 240); // Fundo cinza claro para linhas alternadas
 
 $fill = 0; // Alterna cor de fundo
 for ($i = 0; $i < count($datasAusencias); $i++) {
-    $dataAusencia = $datasAusencias[$i];
-    $reposicao = $datasReposicoes[$i];
+    $ausencia = $datasAusencias[$i];
+    $dataAusencia = date_format(date_create($ausencia['HRA_data_falta']), "d/m/y");
+    $horarioAusencia = $ausencia['HRF_horario_inicio'] . ' às ' . $ausencia['HRF_horario_inicio'];
+    $dataHorarioAusencia = $dataAusencia . ' - ' . $horarioAusencia;
 
-    $dataReposicao = $reposicao['HRR_data_reposicao'];
-    $horarioInicioReposicao = $reposicao['HRF_horario_inicio'] ?? 'N/A';
-    $horarioFimReposicao = $reposicao['HRF_horario_fim'] ?? 'N/A';
-
-    $horario = $horarioInicioReposicao . ' - ' . $horarioFimReposicao;
-
-    if (is_null($reposicao['HRR_data_reposicao'])) {
-        $dataReposicao = 'N/A';
-    } else {
+    if (isset($datasReposicoes[$i])) {
+        $reposicao = $datasReposicoes[$i];
         $dataReposicao = date_format(date_create($reposicao['HRR_data_reposicao']), "d/m/y");
+        $horarioReposicao = $reposicao['HRF_horario_inicio'] . ' - ' . $reposicao['HRF_horario_fim'];
+        $dataHorarioReposicao = $dataReposicao . ' - ' . $horarioReposicao;
     }
-    $dataAusenciaFormatada = date_format(date_create($datasAusencias[$i]['HRA_data_falta']), "d/m/y");
+
+    $conteudoCelulaDisciplina = $ausencia['DCP_nome'] ?? 'N/A';
+    $larguraCelulaDisciplina = 60;
+    $alturaCelulaDisciplina = $pdf->getStringHeight($larguraCelulaDisciplina, $conteudoCelulaDisciplina);
+
+    $alturaLinhas = max(10, $alturaCelulaDisciplina);
+
+    $pdf->Cell(60, $alturaLinhas, $dataHorarioAusencia ?? 'N/A', 1, 0, 'C', $fill);
+    $pdf->Cell(60, $alturaLinhas, $dataHorarioReposicao ?? 'N/A', 1, 0, 'C', $fill);
+    $pdf->MultiCell(60, $alturaLinhas, $ausencia['DCP_nome'], 1, 'C', $fill);
+
+
     // Linha da tabela
-    $pdf->Cell(40, 10, $dataAusenciaFormatada ?? 'N/A', 1, 0, 'C', $fill); //falta
-    $pdf->Cell(40, 10, $dataReposicao ?? 'N/A', 1, 0, 'C', $fill);
-    $pdf->Cell(60, 10, $horario, 1, 0, 'C', $fill);
+    // $pdf->Cell(60, 10, $dataHorarioAusencia ?? 'N/A', 1, 0, 'C', $fill);
+    // $pdf->Cell(60, 10, $dataHorarioReposicao ?? 'N/A', 1, 0, 'C', $fill);
+    // $pdf->MultiCell(60, 10, $ausencia['DCP_nome'] ?? 'N/A', 1, 'C', $fill);
 
     // MultiCell para quebrar o texto da coluna "Disciplina"
     $x = $pdf->GetX(); // Posição atual do cursor em X
     $y = $pdf->GetY();
 
     // Coluna "Data da Falta"
-    $pdf->MultiCell(40, 10, $data['HRA_data_falta'] ?? 'N/A', 1, 'C', $fill, 0);
-    $pdf->SetXY($x + 40, $y);
+    // $pdf->MultiCell(40, 10, $dataHorarioAusencia ?? 'N/A', 1, 'C', $fill, 0);
+    // $pdf->SetXY($x + 40, $y);
 
     // Coluna "Data da Reposição"
-    $pdf->MultiCell(40, 10, $dataReposicao, 1, 'C', $fill, 0);
-    $pdf->SetXY($x + 80, $y);
-
-    // Coluna "Horário"
-    $pdf->MultiCell(60, 10, $horario, 1, 'C', $fill, 0);
-    $pdf->SetXY($x + 140, $y);
+    // $pdf->MultiCell(40, 10, $dataHorarioReposicao ?? 'N/A', 1, 'C', $fill, 0);
+    // $pdf->SetXY($x + 80, $y);
 
     // Coluna "Disciplina" (usar quebra de linha automática)
-    $disciplinaText = implode("\n", array_map(fn($d) => $d['DCP_nome'] ?? 'N/A', $disciplinas));
-    $pdf->MultiCell(50, 10, $disciplinaText, 1, 'C', $fill);
+    // $disciplinaText = implode("\n", array_map(fn($d) => $d['DCP_nome'] ?? 'N/A', $disciplinas));
 
     // Alterna cor de fundo e salta para a próxima linha
-    $pdf->Ln();
+    // $pdf->Ln();
     $fill = !$fill;
 }
 $pdf->Ln(10); // Espaço antes da imagem
