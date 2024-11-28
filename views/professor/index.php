@@ -47,7 +47,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers
             </div>
             <div class="item-index">
                 <p class="p-icone">Grade Horária</p><br>
-                <a href="./vizualizar-grade-horaria.php" class="link-index"><img src="../../assets/images/editar (1).png"
+                <a href="./minha-grade-horaria.php" class="link-index"><img src="../../assets/images/editar (1).png"
                         width="60px" class="icone"></a>
             </div>
 
