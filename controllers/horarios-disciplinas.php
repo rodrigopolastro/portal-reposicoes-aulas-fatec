@@ -26,6 +26,12 @@ function controllerHorariosDisciplinas($acao_horarios_disciplinas, $params = [])
             return $aulasNoPeriodo;
             break;
 
+        case 'busca_aulas_professor_semana':
+            $idProfessor = 3; // ana célia
+            $aulasProfessorSemana = selectAulasProfessorSemana($idProfessor);
+            return $aulasProfessorSemana;
+            break;
+
         default:
             return [
                 'sucesso' => false,

@@ -34,3 +34,32 @@ function selectAulasProfessorData($idProfessor, $dataAula)
     $resultados = $sql->fetchAll(PDO::FETCH_ASSOC);
     return $resultados;
 }
+
+function selectAulasProfessorSemana($idProfessor)
+{
+    global $conexao;
+    $sql = $conexao->prepare(
+        "SELECT
+            HRF_id,
+            HRF_nome_dia_semana,
+            CUR_sigla,
+            CUR_nome,
+            DCP_semestre,
+            DCP_sigla, 
+            DCP_nome,
+            HRF_horario_inicio,
+            HRF_horario_fim
+        FROM HORARIOS_FATEC
+        INNER JOIN HORARIOS_DISCIPLINAS ON HRD_id_horario = HRF_id
+        INNER JOIN DISCIPLINAS ON DCP_id = HRD_id_disciplina
+        INNER JOIN CURSOS ON CUR_id = DCP_id_curso
+        INNER JOIN USUARIOS ON USR_id = DCP_id_professor
+        WHERE USR_id = :id_professor"
+    );
+
+    $sql->bindValue('id_professor', $idProfessor);
+    $sql->execute();
+
+    $aulasProfessorSemana = $sql->fetchAll(PDO::FETCH_ASSOC);
+    return $aulasProfessorSemana;
+}
