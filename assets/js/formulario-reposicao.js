@@ -2,12 +2,6 @@ const listaSelectsHorarios = document.getElementsByClassName(
     "select-horarios-disponiveis"
 );
 
-// Array.from(listaSelectsHorarios).forEach((selectHorarios) => {});
-
-window.addEventListener("load", () => {
-    buscaHorariosFatecData("2024-11-06");
-});
-
 async function buscaHorariosFatecData(dataFalta) {
     try {
         fetch("../../controllers/horarios-fatec.php", {
@@ -51,3 +45,17 @@ async function buscaHorariosFatecData(dataFalta) {
         console.error("Erro na requisição: ", erro);
     }
 }
+
+const btnExibirGradeHoraria = document.getElementById("btnExibirGradeHoraria");
+const divGradeHoraria = document.getElementById("divGradeHoraria");
+btnExibirGradeHoraria.addEventListener("click", () => {
+    if (divGradeHoraria.dataset.estaExibida == "true") {
+        divGradeHoraria.dataset.estaExibida = "false";
+        document.getElementById("divGradeHoraria").classList.add("d-none");
+        btnExibirGradeHoraria.textContent = "Exibir Grade Horária";
+    } else {
+        divGradeHoraria.dataset.estaExibida = "true";
+        document.getElementById("divGradeHoraria").classList.remove("d-none");
+        btnExibirGradeHoraria.textContent = "Ocultar Grade Horária";
+    }
+});
