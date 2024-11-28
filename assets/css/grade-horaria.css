@@ -1,0 +1,42 @@
+table#tableGradeHoraria {
+    text-align: center;
+}
+
+#tableGradeHoraria th,
+td {
+    padding: 8px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+#tableGradeHoraria th {
+    background-color: #0b9247;
+    color: white;
+}
+
+.turma-em-aula {
+    background-color: #d0dead;
+}
+
+.professor-tem-aula {
+    background-color: #7feb7c;
+    color: black;
+}
+
+.legenda {
+    margin-top: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.legenda-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cor-legenda {
+    width: 15px;
+    height: 15px;
+    border: 1px solid #ddd;
+}
