@@ -125,24 +125,26 @@ function updateAvaliacaoJustificativa($avaliacaoJustificativa)
     $sql->execute();
 }
 
-function selectFormulariosFaltasCoordenadores()
+function selectJustificativasFaltasCoordenador()
 {
     global $conexao;
     $sql = $conexao->prepare(
         "SELECT   
-    JUF_id,
-    JUF_status,
-    JUF_data_envio,
-    JUF_id_professor,
-    USR_nome_completo
-    FROM 
-    JUSTIFICATIVAS_FALTAS
-    INNER JOIN 
-    USUARIOS ON USR_id = JUF_id_professor"
+            JUF_id,
+            JUF_id_professor,
+            JUF_status,
+            JUF_data_envio,
+            JUF_data_avaliacao,
+            JUF_feedback_coordenador,
+            PLR_id,
+            USR_nome_completo
+        FROM JUSTIFICATIVAS_FALTAS
+        INNER JOIN USUARIOS ON USR_id = JUF_id_professor
+        LEFT JOIN PLANOS_REPOSICOES ON PLR_id_justificativa = JUF_id
+        WHERE PLR_id IS NULL"
     );
 
     $sql->execute();
-
-    $formulariosCoordenador = $sql->fetchAll(PDO::FETCH_ASSOC);
-    return $formulariosCoordenador;
+    $justificativasFaltas = $sql->fetchAll(PDO::FETCH_ASSOC);
+    return $justificativasFaltas;
 }

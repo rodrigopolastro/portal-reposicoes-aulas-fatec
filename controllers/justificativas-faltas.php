@@ -34,10 +34,6 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
             break;
 
         case 'cria_justificativa_falta':
-            // echo '<pre>';
-            // print_r($params);
-            // echo '</pre>';
-            // break;
             try {
                 if (isset($params['id_justificativa_editada'])) {
                     deleteJustificativaFalta($params['id_justificativa_editada']);
@@ -134,11 +130,6 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
             }
             break;
 
-            // case 'altera_justificativa_falta':
-            //     updateJustificativaFalta([
-
-            //     ]);
-
         case 'avalia_justificativa':
             if ($params['deferimento'] == 'deferido') {
                 $feedback = null;
@@ -155,9 +146,9 @@ function controllerJustificativasFaltas($acao_justificativas_faltas, $params = [
             header('Location: ' . caminhoAbsoluto('views/coordenador/lista-recebidos-faltas.php', true));
             break;
 
-        case 'busca_faltas_coordenador':
-            $formulariosCoordenador = selectFormulariosFaltasCoordenadores();
-            return $formulariosCoordenador;
+        case 'busca_justificativas_faltas_coordenador':
+            $justificativasFaltas = selectJustificativasFaltasCoordenador();
+            return $justificativasFaltas;
             break;
 
         default:

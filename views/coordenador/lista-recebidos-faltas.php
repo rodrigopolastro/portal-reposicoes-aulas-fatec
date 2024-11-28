@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers
 require_once caminhoAbsoluto('controllers/justificativas-faltas.php');
 require_once caminhoAbsoluto('controllers/disciplinas.php');
 
-$formulariosCoordenador = controllerJustificativasFaltas('busca_faltas_coordenador');
+$justificativasFaltas = controllerJustificativasFaltas('busca_justificativas_faltas_coordenador');
 ?>
 
 <!DOCTYPE html>
@@ -13,108 +13,71 @@ $formulariosCoordenador = controllerJustificativasFaltas('busca_faltas_coordenad
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/estilo-geral.css">
-    <title>Formulário enviados</title>
+    <link rel="stylesheet" href="../../assets/css/utilidades.css">
+    <title>Justificativas de Faltas Recebidas</title>
 
 </head>
 
 <body>
-    <header>
-        <div class="topo">
-            <div class="fundo"><img src="../../assets/images/logo-governo-do-estado-sp.png" alt="logo" class="logo-governo"></div>
-            <div class="fundo2"><img src="../../assets/images/logo-fatec_itapira.png" alt="logo" class="logo-fatec"></div>
-        </div>
-        <nav>
-            <a href="index.php" class="botao-nav">Início</a>
-            <a href="lista-recebidos-faltas.php" class="botao-nav">Justificativas de Falta</a>
-            <a href="lista-recebidos-reposicao.php" class="botao-nav">Reposição de Aulas</a>
-            <a href="informacoes.html" class="botao-nav">Informações do Curso</a>
-            <a href="login.html" class="botao-nav">Sair</a>
-        </nav>
-
-    </header>
+    <?php
+    require_once '../components/cabecalho-coordenador.php';
+    ?>
     <main>
         <h1>Justificativa de Faltas Recebidas</h1>
-
-
-        <!-- <div id="recebidos">
-            <div class="topo-form">
-                <form id="filtro-form-recebidos" onsubmit="return aplicarFiltro()">
-                    <div class="filtro-form">
-                        <label for="filterProfessor">Professor:</label>
-                        <select id="filterProfessor" class="filter-input">
-                            <option value="">Todos</option>
-                            <option value="Wladimir José Camillo Menegassi">Wladimir José Camillo Menegassi</option>
-                            <option value="Janaina">Janaina</option>
-                            <option value="Ana Célia Ribeiro Bizigato Portes">Ana Célia Ribeiro Bizigato Portes</option>
-                            <option value="Thiago Salhab Alves">Thiago Salhab Alves</option>
-                            <option value="José Gonçalves Pinto Junior">José Gonçalves Pinto Junior</option>
-                            <option value="Edison Kazuo Igarashi">Edison Kazuo Igarashi</option>
-                        </select>
-    
-                        <label for="filterDisciplina">Disciplina:</label>
-                        <select id="filterDisciplina" class="filter-input">
-                            <option value="">Todos</option>
-                            <option value="Modelagem de Banco de Dados">Modelagem de Banco de Dados</option>
-                            <option value="Inglês">Inglês</option>
-                            <option value="Engenharia de Software I">Engenharia de Software I</option>
-                            <option value="Design Digital">Design Digital</option>
-                            <option value="Algoritmo e lógica de programação">Algoritmo e lógica de programação</option>
-                            <option value="Sistemas Operacionais e Redes de Computadores">Sistemas Operacionais e Redes de Computadores</option>
-                        </select>
-    
-                        <input type="submit" value="Aplicar filtro">
-                        <input type="reset" value="Limpar filtro" onclick="limparFiltro()">
-                    </div>
-                </form>
-            </div> -->
-
         <div class="table">
             <table id="tabela-recebidos">
                 <thead>
                     <tr>
-                        <th class="ordem">Número</th>
+                        <th class="ordem"></th>
                         <th class="ordem">Data de recebimento</th>
                         <th class="componente">Professor</th>
-                        <th class="componente">Disciplina</th>
+                        <th class="componente">Disciplinas</th>
                         <th class="status">Status</th>
-                        <th class="ordem">Avaliar</th>
+                        <th class="ordem">Feedback Enviado</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $contador = 1; ?>
-                    <?php foreach ($formulariosCoordenador as $formularioCoordenador): ?>
+                    <?php foreach ($justificativasFaltas as $justificativaFalta): ?>
                         <?php
-                        $dataEnvio = $formularioCoordenador['JUF_data_envio'];
-                        $dataEnvioFormatada = (new DateTimeImmutable($dataEnvio))->format('d/m/y');
+                        $dataEnvioFormatada = (new DateTimeImmutable($justificativaFalta['JUF_data_envio']))->format('d/m/y');
                         $disciplinas = controllerDisciplinas(
                             'busca_disciplinas_justificativa',
-                            ['id_justificativa' => $formularioCoordenador['JUF_id']]
+                            ['id_justificativa' => $justificativaFalta['JUF_id']]
                         );
 
                         ?>
                         <tr>
-                            <td><?= $contador ?></td>
+                            <td class="">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <a href="../../scripts/gera-pdf-formulario.php?id_justificativa=<?= $justificativaFalta['JUF_id'] ?>"
+                                        target="_blank">
+                                        <img src="../../assets/images/icone-pdf.png" alt="" width="25" class="icone-pdf">
+                                    </a>
+                                </div>
+                            </td>
                             <td><?= $dataEnvioFormatada ?></td>
-                            <td><?= $formularioCoordenador['USR_nome_completo'] ?></td>
+                            <td><?= $justificativaFalta['USR_nome_completo'] ?></td>
                             <td>
-
                                 <ul>
                                     <?php foreach ($disciplinas as $disciplina) : ?>
                                         <li><?= '(' . $disciplina['CUR_sigla'] . ') ' . $disciplina['DCP_nome'] ?></li>
                                     <?php endforeach; ?>
                                 </ul>
                             </td>
-                            <td><?= ucfirst($formularioCoordenador['JUF_status']) ?></td>
                             <td>
-                                <?php if ($formularioCoordenador['JUF_status'] == 'em análise') : ?>
-                                    <a href="../../scripts/gera-pdf-formulario.php?id_justificativa=<?= $formularioCoordenador['JUF_id'] .
+                                <?php if ($justificativaFalta['JUF_status'] == 'em análise') : ?>
+                                    <a href="../../scripts/gera-pdf-formulario.php?id_justificativa=<?= $justificativaFalta['JUF_id'] .
                                                                                                         '&url_destino=' . caminhoAbsoluto('views/coordenador/avaliar-falta.php', true) ?>">Avaliar</a>
                                 <?php else: ?>
-                                    <span>Analisado</span>
+                                    <div><span>Analisado:</span></div>
+                                    <div><span style="font-weight: bold"><?= ucfirst($justificativaFalta['JUF_status']) ?></span></div>
                                 <?php endif; ?>
                             </td>
+                            <td>
+                                <?= empty($justificativaFalta['JUF_feedback_coordenador']) ? '...'
+                                    : $justificativaFalta['JUF_feedback_coordenador'] ?>
+                            </td>
                         </tr>
-                        <?php $contador += 1; ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>
