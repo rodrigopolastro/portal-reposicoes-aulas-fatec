@@ -54,10 +54,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/portal-reposicoes-aulas-fatec/helpers
                     </div>
                     <div class="item-index">
                         <a href="./minha-grade-horaria.php" class="link-index">
-                            <img src="../../assets/images/editar (1).png"
+                            <img src="../../assets/images/calendario.png"
                                 width="60px" class="icone">
                         </a>
-                        <p class="p-icone text-center w-75 mb-0">Ver formulários enviados</p>
+                        <p class="p-icone text-center w-75 mb-0">Minha Grade Horária</p>
                     </div>
                 </div>
             </div>
